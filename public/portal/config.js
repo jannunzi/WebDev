@@ -12,7 +12,7 @@
             // routes for modules
             $routeProvider
                 .when('/modules/' + i, {
-                    templateUrl: '/portal/modules/module'+i+'/index.html'
+                    templateUrl: '/portal/modules/module' + i + '/index.html'
                 });
 
             // routes for lectures in modules

@@ -4,7 +4,7 @@
         title: 'CS5610',
         modules: [
             {
-                title: 'Modulo 0',
+                title: 'Modulo AAA',
                 lectures: [
                     {
                         title: 'Lectura 0'
