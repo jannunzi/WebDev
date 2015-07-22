@@ -4,7 +4,7 @@
         title: 'CS5610',
         modules: [
             {
-                title: 'Modulo AAA',
+                title: 'Modulo AAA Asd',
                 lectures: [
                     {
                         title: 'Lectura 0'
@@ -19,6 +19,9 @@
                 assignments: [
                     {
                         title: 'Tarea 0'
+                    },
+                    {
+                        title: 'Tarea 1'
                     }
                 ],
                 examples: [
