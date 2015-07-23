@@ -19,7 +19,7 @@
             for (var j = 0; j < courses[0].modules[i].lectures.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/lectures/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/lectures/lecture' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/lectures/' + j + '/index.html'
                     });
             }
 
