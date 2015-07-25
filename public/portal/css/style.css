@@ -1,3 +1,119 @@
-/*.container-fluid {
-  background-color: #cc3300;
-  }*/
+
+h1, h2, h3, h4, h5{
+	color:#386078;
+}
+h1{
+	font-size:33px;	
+}
+
+#navbar{
+	margin-top:10px;	
+}
+
+
+.nav-sidebar a{
+	font-weight:bold;	
+}
+
+
+.nav-tabs{
+	margin-top:50px;	
+}
+	
+
+	
+.alert-success {
+    color: #000;
+    background-color: #edf5fa;
+    border-color: #edf5fa;
+}
+.alert {
+    padding:15px 40px 25px 40px;
+    margin-bottom: 30px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	margin-top:30px;
+}	
+	
+	
+	
+.navbar-brand  h1{
+	color:#ffd54d;
+	font-size:28px;
+	font-weight:bold;
+	margin:0;
+}
+.navbar-brand h2{
+	color:#77b3d5;
+	font-size:14px;
+	font-weight:bold;
+	margin:0;
+}
+.navbar-brand {
+	padding: 5px 0 0 10px;
+}
+	
+	
+	
+	
+	
+	
+	
+.overview p{
+	font-size:110%;	
+}
+.overview h3{
+	margin-top:0;
+	margin-bottom:20px;
+}
+
+
+
+.navbar {
+    /* min-height: 50px; */
+	min-height: 80px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+.sidebar {
+	top: 81px;	
+}
+.main .page-header {
+
+	margin-top: 40px;
+}
+
+.navbar-inverse {
+    background-color: #334d5c;
+    border-color: #334d5c;
+	/*border-top: 5px solid #C2162D;*/
+	
+	background: #334d5c url("../images/brand_bg.gif") no-repeat fixed left top;
+}
+.container-fluid .navbar-header{
+	margin-top:10px;
+	margin-left: 75px;	
+}
+.navbar-brand {
+    float: left;
+    height: 50px;
+    /*padding: 15px;*/
+    font-size: 25px;
+    /*line-height: 20px;*/
+	
+}
+
+.navbar-inverse .navbar-brand {
+    color:#fff;
+	font-weight:bold;
+}
+
+.nav > li > a {
+    padding-top: 5px;
+	padding-bottom:5px;
+
+}
+
+
+
+
