@@ -1,0 +1,20 @@
+<script>
+  function add()
+  {
+    var a = document.getElementById("a").value;
+    var b = document.getElementById("b").value;
+    
+    a = parseInt(a);
+    b = parseInt(b);
+    
+    var c = a + b;
+    document.getElementById("c").value = c;
+    
+    return false;
+  }
+</script>
+
+A = <input id="a"/><br/>
+B = <input id="b"/><button onclick="add()">Add</button><br/>
+C = <input id="c"/>
+
