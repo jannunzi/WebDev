@@ -12,14 +12,14 @@
             // routes for modules
             $routeProvider
                 .when('/modules/' + i, {
-                    templateUrl: '/portal/modules/module'+i+'/index.html'
+                    templateUrl: '/portal/modules/' + i + '/index.html'
                 });
 
             // routes for lectures in modules
             for (var j = 0; j < courses[0].modules[i].lectures.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/lectures/' + j, {
-                        templateUrl: '/portal/modules/module' + i + '/lectures/lecture' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/lectures/' + j + '/index.html'
                     });
             }
 
@@ -27,7 +27,7 @@
             for (var j = 0; j < courses[0].modules[i].assignments.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/assignments/' + j, {
-                        templateUrl: '/portal/modules/module' + i + '/assignments/assignment' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/assignments/assignment' + j + '/index.html'
                     });
             }
 
@@ -35,7 +35,7 @@
             for (var j = 0; j < courses[0].modules[i].videos.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/videos/' + j, {
-                        templateUrl: '/portal/modules/module' + i + '/videos/video' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/videos/video' + j + '/index.html'
                     });
             }
 
@@ -43,7 +43,7 @@
             for (var j = 0; j < courses[0].modules[i].examples.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/examples/' + j, {
-                        templateUrl: '/portal/modules/module' + i + '/examples/example' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/examples/example' + j + '/index.html'
                     });
             }
 
@@ -51,7 +51,7 @@
             for (var j = 0; j < courses[0].modules[i].slides.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/slides/' + j, {
-                        templateUrl: '/portal/modules/module' + i + '/slides/slide' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/slides/slide' + j + '/index.html'
                     });
             }
         }
