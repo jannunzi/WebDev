@@ -1,7 +1,7 @@
 ﻿
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +32,8 @@
     <script src="services/CourseService.js"></script>
     <script src="config.js"></script>
     <script src="navController.js"></script>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
   </head>
 
   <body ng-app="app">
@@ -39,7 +41,8 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -87,25 +90,26 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div>
 
-            <!-- Nav tabs -->
-            <!--<ul class="nav nav-tabs" role="tablist">
-              <li role="presentation"><a ng-href="#overview" data-toggle="tab">Overview</a></li>
-              <li role="presentation"><a ng-href="#/modules/{{navController.selectedModuleIndex}}/lectures/0" data-toggle="tab">Lectures</a></li>
-              <li role="presentation"><a ng-href="#experiments" data-toggle="tab">Experiments</a></li>
-              <li role="presentation"><a ng-href="#examples" data-toggle="tab">Examples</a></li>              
-              <li role="presentation"><a ng-href="#assignments" data-toggle="tab">Assignments</a></li>
-            </ul>-->
-            
             <ul class="nav nav-tabs">
-              <li><a ng-click="navController.selectTab('overview')">Overview</a></li>
-              <li><a ng-click="navController.selectTab('lectures')">Lectures</a></li>
-              <li><a ng-click="navController.selectTab('experiments')">Experiments</a></li>
-              <li><a ng-click="navController.selectTab('examples')">Examples</a></li>
-              <li><a ng-click="navController.selectTab('assignments')">Assignments</a></li>
+              <li ng-class="{active : navController.tabSelected == 'overview'}">
+                  <a ng-click="navController.selectTab('overview')">Overview</a>
+              </li>
+              <li ng-class="{active : navController.tabSelected == 'lectures'}">
+                  <a ng-click="navController.selectTab('lectures')">Lectures</a>
+              </li>
+              <li ng-class="{active : navController.tabSelected == 'experiments'}">
+                  <a ng-click="navController.selectTab('experiments')">Experiments</a>
+              </li>
+              <li ng-class="{active : navController.tabSelected == 'examples'}">
+                  <a ng-click="navController.selectTab('examples')">Examples</a>
+              </li>
+              <li ng-class="{active : navController.tabSelected == 'assignments'}">
+                  <a ng-click="navController.selectTab('assignments')">Assignments</a>
+              </li>
             </ul>
 
             <ul class="nav nav-pills">
-              <li ng-repeat="pill in navController.pills">
+              <li ng-repeat="pill in navController.pills" ng-class="{active : pill.title == navController.pillSelected}">
                 <a ng-click="navController.selectPillIndex($index)">{{pill.title}}</a>
               </li>
             </ul>
@@ -138,7 +142,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!--<script src="js/bootstrap.min.js"></script>-->
-    <!--<script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>-->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
   </body>
 </html>

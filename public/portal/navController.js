@@ -11,10 +11,13 @@
       vm.selectModule = selectModule;
       vm.selectTab = selectTab;
       vm.selectPillIndex = selectPillIndex;
+      vm.pills = [];
       vm.selectedModuleIndex = 0;
+      vm.tabSelected = '';
+      vm.pillSelected = '';
       
-      function selectPillIndex(pillIndex)
-      {
+      function selectPillIndex(pillIndex) {
+        vm.pillSelected = vm.pills[pillIndex].title;
         var url = $location.url();
         url = url.slice(0, url.lastIndexOf('/')+1) + pillIndex;
         $location.url(url);
@@ -22,6 +25,7 @@
       
       function selectTab(tabName)
       {
+        vm.tabSelected = tabName;
         if (!(tabName.toLowerCase() === "Overview".toLowerCase())) {
           vm.pills = vm.course.modules[vm.selectedModuleIndex][tabName];
           $location.url("modules/module" + vm.selectedModuleIndex + "/" + tabName + "/0");
@@ -38,7 +42,7 @@
             var matches = url.match(regEx);
             if(matches.length == 1) {
               var moduleNumber = matches[0].match('\\d+');
-              url = "modules/module" + moduleNumber[0];
+              url = "modules/module" + moduleNumber[0] + "/index.html";
               $location.url(url);
             }
           }
