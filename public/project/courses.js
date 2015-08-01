@@ -1,5 +1,5 @@
 ﻿(function () {
-  angular.courses = [
+    angular.courses = [
     {
         title: 'CS5610',
         modules: [
@@ -30,15 +30,8 @@
                     }
                 ],
                 videos: [],
-                slides: [],
-                experiments: [
-                    {
-                        title: 'Experiment 0'
-                    },
-                    {
-                        title: 'Experiment 1'
-                    }
-                ]
+                slides: []
+                ,experiments: []
             }
             ,{
                 title: 'Setting up a Development Environment',
@@ -95,13 +88,6 @@
                 videos: [],
                 slides: [],
                 examples: []
-              title: 'Lecture 0'
-            },
-            {
-              title: 'Lecture 1'
-            },
-            {
-              title: 'Lecture 2'
             }
         ]
     }

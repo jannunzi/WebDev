@@ -29,9 +29,8 @@
     <script src="js/angular-route.min.js"></script>
     <script src="courses.js"></script>
     <script src="app.js"></script>
-    <script src="services/CourseService.js"></script>
     <script src="config.js"></script>
-    <script src="navController.js"></script>
+    <script src="navigation/navController.js"></script>
   </head>
 
   <body ng-app="app">
@@ -74,15 +73,15 @@
             <!-- generates left hand side links to modules -->
             <li ng-repeat="module in navController.course.modules">
                 <a ng-click="navController.selectModule($index)"
-                  href="#/modules/module{{$index}}">{{module.title}}</a>
+                  href="#/modules/{{$index}}">{{module.title}}</a>
             </li>
           </ul>
-          <ul class="nav nav-sidebar">
+          <!--<ul class="nav nav-sidebar">
             <li><a href="">Assignments</a></li>
             <li><a href="">Project</a></li>
             <li><a href="">Videos</a></li>
             <li><a href="">Slides</a></li>
-          </ul>
+          </ul>-->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div>
@@ -97,31 +96,21 @@
             </ul>-->
             
             <ul class="nav nav-tabs">
-              <li ng-class="{active : navController.tabSelected == 'overview'}">
-                  <a ng-click="navController.selectTab('overview')">Overview</a>
-              </li>
-              <li ng-class="{active : navController.tabSelected == 'lectures'}">
-                  <a ng-click="navController.selectTab('lectures')">Lectures</a>
-              </li>
-              <li ng-class="{active : navController.tabSelected == 'experiments'}">
-                  <a ng-click="navController.selectTab('experiments')">Experiments</a>
-              </li>
-              <li ng-class="{active : navController.tabSelected == 'examples'}">
-                  <a ng-click="navController.selectTab('examples')">Examples</a>
-              </li>
-              <li ng-class="{active : navController.tabSelected == 'assignments'}">
-                  <a ng-click="navController.selectTab('assignments')">Assignments</a>
-              </li>
+              <li><a ng-href="#/modules/0">Overview</a></li>
+              <li><a ng-href="#/modules/0/lectures/0">Lectures</a></li>
+              <li><a ng-href="#">Experiments</a></li>
+              <li><a ng-click="navController.selectTab('examples')">Examples</a></li>
+              <li><a ng-click="navController.selectTab('assignments')">Assignments</a></li>
             </ul>
 
             <ul class="nav nav-pills">
-              <li ng-repeat="pill in navController.pills" ng-class="{active : pill.title == navController.pillSelected}">
+              <li ng-repeat="pill in navController.pills">
                 <a ng-click="navController.selectPillIndex($index)">{{pill.title}}</a>
               </li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <!--<div class="tab-content">
               <div class="tab-pane active" id="overview">
               </div>
               <div class="tab-pane" id="lectures">
@@ -136,7 +125,7 @@
               <div class="tab-pane" id="assignments">
               </div>
             </div>
-          </div>
+          </div>-->
           
           <div ng-view></div>
 
@@ -148,7 +137,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <!--<script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>-->
   </body>
 </html>
