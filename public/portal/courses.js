@@ -95,13 +95,7 @@
                 videos: [],
                 slides: [],
                 examples: []
-              title: 'Lecture 0'
-            },
-            {
-              title: 'Lecture 1'
-            },
-            {
-              title: 'Lecture 2'
+
             }
         ]
     }
