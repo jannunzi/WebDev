@@ -55,17 +55,6 @@
                     });
             }
         }
-
-        //$routeProvider
-        //    .when('/modules/0', {
-        //        templateUrl: '/modules/module0/index.html'
-        //    })
-        //    .when('/modules/1', {
-        //        templateUrl: '/modules/module1/index.html'
-        //    })
-        //    .when('/modules/2', {
-        //        templateUrl: '/modules/module2/index.html'
-        //    });
     }
 })();
 

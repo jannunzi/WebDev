@@ -13,7 +13,7 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -74,7 +74,7 @@
             <!-- generates left hand side links to modules -->
             <li ng-repeat="module in navController.course.modules">
                 <a ng-click="navController.selectModule($index)"
-                  href="#/modules/{{$index}}">{{module.title}}</a>
+                  href="#/modules/module{{$index}}">{{module.title}}</a>
             </li>
           </ul>
           <ul class="nav nav-sidebar">

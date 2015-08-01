@@ -24,21 +24,23 @@
       {
         if (!(tabName.toLowerCase() === "Overview".toLowerCase())) {
           vm.pills = vm.course.modules[vm.selectedModuleIndex][tabName];
-          $location.url("modules/" + vm.selectedModuleIndex + "/" + tabName + "/0");
+          $location.url("modules/module" + vm.selectedModuleIndex + "/" + tabName + "/0");
         } else {
           // if overview is clicked
           var url = $location.url();
           if (url.search("module") == -1) {
             // case 1: when no module is selected, default to module 1
-            url = url + "#/modules/0";
+            url = url + "#/modules/module0/index.html";
             $location.url(url);
           } else {
-            // case 2: when module keyword is in url, then fetch the module number and set that as the default modul
-            var startPosn = url.search("module");
-            var slicedUrl = url.slice(startPosn + "module".length + 2);
-            var loadedModule = slicedUrl.slice(0,slicedUrl.indexOf("/"));
-            url = "modules/" + loadedModule;
-            $location.url(url);
+            // case 2: when module keyword is in url, then fetch the module number and set that as the default module
+            var regEx = new RegExp('module\\d+');
+            var matches = url.match(regEx);
+            if(matches.length == 1) {
+              var moduleNumber = matches[0].match('\\d+');
+              url = "modules/module" + moduleNumber[0];
+              $location.url(url);
+            }
           }
         }
       }
