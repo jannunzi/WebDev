@@ -11,10 +11,10 @@
       // variable declaration on scope
       vm.course = angular.courses[0];
       vm.pills = [];
-      vm.selectedModuleIndex = 0;
-      vm.tabSelected = '';
+      vm.selectedModuleIndex = 1;
+      vm.tabSelected = 'overview';
       vm.pillSelected = '';
-      vm.moduleSelected = vm.course.modules[0].title;
+      vm.moduleSelected = vm.course.modules[1].title;
 
       // method declaration on scope
       vm.selectModule = selectModule;
