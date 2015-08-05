@@ -1,0 +1,28 @@
+<link href="https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+	$(init);
+	
+	function init()
+	{
+		alert("Hello from jquery");
+		
+		$("#courses").sortable({
+			axis: "y"
+		});
+	}
+</script>
+
+<div class="container">
+	<h1>Welcome to jQuery UI</h1>
+	
+	<ul id="courses">
+		<li> Java 101</li>
+		<li> NodeJS 101</li>
+		<li> MySQL 101</li>
+		<li> MongoDB</li>
+	</ul>
+	
+</div>

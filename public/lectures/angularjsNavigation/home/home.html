@@ -1,0 +1,11 @@
+<h1>Home</h1>
+
+<div class="panel panel-primary" ng-repeat="course in courses">
+  <div class="panel-heading">{{course.title}}</div>
+  <div class="panel-body">
+  </div>
+	<ul class="list-group">
+		<li class="list-group-item">Seats: {{course.seats}}</li>
+		<li class="list-group-item">Start Date: {{course.start | date: 'short'}}</li>
+	</ul>
+</div>
