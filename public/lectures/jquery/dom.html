@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Manipulating the DOM with jQuery</title>
+		<script src="../../js/jquery-1.11.3.min.js">
+		</script>
+		<style>
+			h1 {background-color: red;}
+		</style>
+		<script>
+			$(init);
+
+			function init()
+			{
+				$("h1").html("Changing HTML content with jQuery");
+				
+				$("body").append("<h2>Appending content with jquery</h2>");
+				
+				var ul = $("<ul>");
+				for(var i = 0; i < 10; i++)
+				{
+					var li = $("<li>");
+					li.append("Line Item " + i);
+					ul.append(li);
+				}
+				$("body").append(ul);
+				
+				$("p")
+					.css("color", "white")
+					.css("background-color", "red");
+					
+				$("#p2")
+					.css({"color" : "white", 	
+						  "background-color":"blue"
+					});
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Manipulating the DOM with jQuery</h1>
+		<p>
+			This is a pragraph
+		</p>
+		<p id="p2">
+			This is a pragraph
+		</p>
+	</body>
+</html>

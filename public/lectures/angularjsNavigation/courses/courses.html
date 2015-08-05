@@ -1,0 +1,47 @@
+<h1>Courses</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Seats Available</th>
+			<th>Start Date</th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			<th><input ng-model="newCourse.title" class="form-control" placeholder="Title"/></th>
+			<th><input ng-model="newCourse.seats" class="form-control" placeholder="Seats Available" type="number"/></th>
+			<th><input ng-model="newCourse.start" class="form-control" type="date"/></th>
+			<th>
+				<button ng-click="addCourse(newCourse)" class="btn btn-primary">
+					Add
+				</button>
+				<button
+					ng-click="updateCourse(newCourse)"
+					class="btn btn-success">
+					Update
+				</button>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="course in courses"
+			ng-class="{'success' : $index == selectedCourseIndex}">
+			<td>{{course.title}}</td>
+			<td>{{course.seats}}</td>
+			<td>{{course.start | date: 'medium'}}</td>
+			<td>
+				<button
+					ng-click="removeCourse(course)"
+					class="btn btn-danger">
+					Remove
+				</button>
+				<button
+					ng-click="selectCourse($index)"
+					class="btn btn-info">
+					Select
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
