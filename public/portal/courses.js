@@ -57,7 +57,9 @@
                 lectures: [
                    { title: "HTML" }
                   ,{ title: "CSS" }
-                  ,{ title: "Bootstrap" }
+                  ,{ title: "Box Model"}
+				  ,{ title: "Layout"}
+				  ,{ title: "Bootstrap"}
                 ],
                 assignments: [],
                 videos: [],
