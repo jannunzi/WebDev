@@ -42,6 +42,7 @@
       
       function selectTab(tabName)
       {
+        vm.pills = null;
         vm.tabSelected = tabName;
         if (!(tabName.toLowerCase() === "Overview".toLowerCase())) {
           vm.pills = vm.course.modules[vm.selectedModuleIndex][tabName];

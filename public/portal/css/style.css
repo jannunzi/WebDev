@@ -114,8 +114,10 @@ h1{
 
 }
 
-
-
 .btn-sm{
 	font-weight:bold;	
+}
+
+a {
+  cursor: default;
 }

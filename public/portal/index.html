@@ -85,7 +85,7 @@
               </li>
             </ul>
 
-            <ul class="nav nav-pills">
+            <ul class="nav nav-pills" style="margin-top: 10px;">
               <li ng-repeat="pill in navController.pills" ng-class="{active : pill.title == navController.pillSelected}">
                 <a ng-click="navController.selectPillIndex($index)">{{pill.title}}</a>
               </li>
