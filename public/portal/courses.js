@@ -45,7 +45,7 @@
                 lectures: [
                    {title: 'GIT'}
                   ,{title: 'Node.js'}
-                  ,{title: 'MongoDB'}
+                  // ,{title: 'MongoDB'}
                 ],
                 assignments: [],
                 videos: [],
