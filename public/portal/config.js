@@ -27,7 +27,7 @@
             for (var j = 0; j < courses[0].modules[i].assignments.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/assignments/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/assignments/assignment' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/assignments/' + j + '/index.html'
                     });
             }
 
@@ -35,7 +35,7 @@
             for (var j = 0; j < courses[0].modules[i].videos.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/videos/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/videos/video' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/videos/' + j + '/index.html'
                     });
             }
 
