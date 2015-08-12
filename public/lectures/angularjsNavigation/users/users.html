@@ -1,0 +1,28 @@
+<h1>Users</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>First</th>
+			<th>Last</th>
+			<th>Username</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr>
+			<td><input ng-model="newUser.first" class="form-control"/></td>
+			<td><input ng-model="newUser.last" class="form-control"/></td>
+			<td><input ng-model="newUser.username" class="form-control"/></td>
+			<td><button ng-click="addNewUser(newUser)" class="btn btn-primary">Add</button>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in users">
+			<td>{{user.first}}</td>
+			<td>{{user.last}}</td>
+			<td>{{user.username}}</td>
+			<td>
+				<button ng-click="removeUser($index)" class="btn btn-danger">Remove</button>
+				<a href="#/profile/{{$index}}" class="btn btn-warning">Details</a>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+  $(init);
+  
+  function init()
+  {
+    $("#findMovieBtn").click(function(){
+      var title = $("#title").val();
+      //findMoviesByTitle(title, renderMovies);
+      findMoviesByTitle(title, renderMoviesByTemplate);
+    });
+  }
+  
+  function findMoviesByTitle(title, callback)
+  {
+    $.ajax({
+      url:"http://www.myapifilms.com/imdb?title="+title+"&format=JSONP&aka=0&business=0&seasons=0&seasonYear=0&technical=0&filter=N&exactFilter=0&limit=5&forceYear=0&lang=en-us&actors=N&biography=0&trailer=0&uniqueName=0&filmography=0&bornDied=0&starSign=0&actorActress=0&actorTrivia=0&movieTrivia=0&awards=0&moviePhotos=N&movieVideos=N&similarMovies=0&adultSearch=0",
+      dataType: "jsonp",
+      success: function(response)
+      {
+        callback(response);
+      }
+    });
+  }
+  
+  var template = null;
+  var container = null;
+  function renderMoviesByTemplate(movies)
+  {
+    if(template == null)
+    {
+      template = $(".template").clone();
+      container = $(".template-container");
+    }    
+    container.empty();
+    for(var m in movies)
+    {
+      var movie = movies[m];
+      console.log(movie);
+      var instance = template.clone();
+      instance
+        .find('.title')
+        .html(movie.title)
+        .attr("href", movie.urlIMDB);
+      instance.find('.plot').html(movie.plot);
+      instance.find('.poster').attr("src", movie.urlPoster);
+      container.append(instance);
+    }
+  }
+  
+  function renderMovies(movies)
+  {
+    $("#result").remove();
+    var table = $("<table class='table' id='result'>");
+    for(var m in movies)
+    {
+      var movie = movies[m];
+      console.log(movie);
+      var tr = $("<tr>");
+      
+      var td = $("<td>");
+      td.append(movie.title);
+      tr.append(td);
+      
+      td = $("<td>");
+      td.append(movie.plot);
+      tr.append(td);
+      
+      table.append(tr);
+    }
+    $(".container").append(table);
+  }
+</script>
+<div class="container">
+  <h1>Welcome to AJAX</h1>
+
+  <a href="http://www.myapifilms.com/imdb?title=Avatar&format=JSON&aka=0&business=0&seasons=0&seasonYear=0&technical=0&filter=N&exactFilter=0&limit=5&forceYear=0&lang=en-us&actors=N&biography=0&trailer=0&uniqueName=0&filmography=0&bornDied=0&starSign=0&actorActress=0&actorTrivia=0&movieTrivia=0&awards=0&moviePhotos=N&movieVideos=N&similarMovies=0&adultSearch=0">Get Movies</a>
+  
+  <input
+    id="title"
+    class="form-control"/>
+  <button
+    class="btn btn-primary"
+    id="findMovieBtn">
+    Find Movie
+  </button>
+  
+  <table class="table template-container">
+    <tr class="template">
+      <td>
+        <a href="#" class="title">
+          Title
+        </a>
+      </td>
+      <td class="plot">
+        Plot
+      </td>
+      <td>
+        <img class="poster" src=""/>
+      </td>
+    </tr>
+  </table>
+    
+    <a href="view-source:http://localhost:8080/experiments/jquery/100-ajax.html">Source Code</a>
+    
+</div>

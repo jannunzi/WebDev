@@ -1,0 +1,25 @@
+<script>
+	function sayHello()
+	{
+		alert("Hello World");
+	}
+	
+	function sayMessage(message)
+	{
+		alert(message);
+	}
+	
+	function sayInput()
+	{
+		var message = document.getElementById("message").value;
+		alert(message);
+	}
+</script>
+
+<h1>On Click Event Handling</h1>
+
+<button onclick="sayHello()">Say Hello</button>
+<button onclick="sayMessage('This is the message')">Say Message</button>
+<input id="message" type="text"/>
+<button onclick="sayInput()">Say Input</button>
+

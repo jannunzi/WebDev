@@ -1,0 +1,35 @@
+<link href="https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+	$(init);
+	
+	function init()
+	{
+		$("#findMovieByTitleBtn").click(findMovieByTitle);
+	}
+	
+	function findMovieByTitle()
+	{
+		var title = $("#movieName").val();
+		
+		$.ajax({
+			url: "http://www.myapifilms.com/imdb?title="+title+"&format=JSONP&aka=0&business=0&seasons=0&seasonYear=0&technical=0&filter=N&exactFilter=0&limit=5&forceYear=0&lang=en-us&actors=N&biography=0&trailer=0&uniqueName=0&filmography=0&bornDied=0&starSign=0&actorActress=0&actorTrivia=0&movieTrivia=0&awards=0&moviePhotos=N&movieVideos=N&similarMovies=0&adultSearch=0",
+			dataType: "jsonp",
+			success: function(response) {
+				console.log(response);
+			}
+		});
+	}
+</script>
+
+<div class="container">
+	<h1>Intro to AJAX</h1>
+	
+	<a href="http://www.myapifilms.com/imdb?title=Avatar&format=JSONP&aka=0&business=0&seasons=0&seasonYear=0&technical=0&filter=N&exactFilter=0&limit=5&forceYear=0&lang=en-us&actors=N&biography=0&trailer=0&uniqueName=0&filmography=0&bornDied=0&starSign=0&actorActress=0&actorTrivia=0&movieTrivia=0&awards=0&moviePhotos=N&movieVideos=N&similarMovies=0&adultSearch=0">Get Avatar</a>
+	
+	<input id="movieName" class="form-control"/>
+	<button id="findMovieByTitleBtn" class="btn btn-primary btn-block">Search</button>
+	
+</div>

@@ -1,0 +1,40 @@
+<html ng-app="WhiteBoardApp">
+  <head>
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../js/angular.min.js"></script>
+    <script src="../app.js"></script>
+    <script src="course.controller.js"></script>
+    <script src="course.service.js"></script>
+  </head>
+  <body ng-controller="CourseController">
+    <div class="container">
+      <h1>Courses</h1>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <td>
+              <input
+                ng-model="course.title"
+                class="form-control"/>
+            </td>
+          </tr>
+        </thead>
+        <tr ng-repeat="course in courses">
+          <td>{{course.title}}</td>
+          <td>
+            <button
+              ng-click="selectCourse(course._id)"
+              class="btn btn-default">
+              Select
+            </button>
+            <button
+              ng-click="deleteCourse(course._id)"
+              class="btn btn-danger">
+              Delete
+            </button>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<script src="../../js/jquery-1.11.3.min.js">
+</script>
+
+<script>
+	$(init);
+	
+	function init()
+	{
+		$("#p1").click(p1Clicked);
+		$("#ADD").click(addAandB);
+	}
+	
+	function addAandB()
+	{
+		var a = $("#A").val();
+		var b = $("#B").val();
+		a = parseInt(a);
+		b = parseInt(b);
+		var c = a + b;
+		$("#C").val(c);
+	}
+	
+	function p1Clicked()
+	{
+		$("body").append("<p>New Pargraph</p>");
+	}
+</script>
+
+<h1>Handling Events with jQuery</h1>
+
+<p id="p1">
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+</p>
+
+<input id="A"/>
+<input id="B"/>
+<button id="ADD">Add A and B</button>
+<input id="C"/>
