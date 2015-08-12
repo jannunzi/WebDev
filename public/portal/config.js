@@ -13,13 +13,18 @@
             $routeProvider
                 .when('/modules/' + i, {
                     templateUrl: '/portal/modules/' + i + '/index.html'
-                });
+                })
+                // .when('/module/:mid/:section/:sid', {
+                //     templateUrl: '/portal/section.html',
+                //     controller: 'NavController'
+                // })
 
             // routes for lectures in modules
             for (var j = 0; j < courses[0].modules[i].lectures.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/lectures/' + j, {
                         templateUrl: '/portal/modules/' + i + '/lectures/' + j + '/index.html'
+                   //     ,controller: 'NavController'
                     });
             }
 
@@ -28,7 +33,8 @@
                 $routeProvider
                     .when('/modules/' + i + '/assignments/' + j, {
                         templateUrl: '/portal/modules/' + i + '/assignments/' + j + '/index.html'
-                    });
+                    //    ,controller: 'NavController'
+                });
             }
 
             // routes for videos in modules
@@ -36,6 +42,7 @@
                 $routeProvider
                     .when('/modules/' + i + '/videos/' + j, {
                         templateUrl: '/portal/modules/' + i + '/videos/' + j + '/index.html'
+                  //      ,controller: 'NavController'
                     });
             }
 
@@ -44,8 +51,8 @@
                 $routeProvider
                     .when('/modules/' + i + '/examples/' + j, {
                         templateUrl: '/portal/modules/' + i + '/examples/' + j + '/index.html'
-                    })
-                    .otherwise({redirectTo:'portal/empty.html'});
+                   //     ,controller: 'NavController'
+                    });
             }
 
             // routes for slides in modules
@@ -53,6 +60,7 @@
                 $routeProvider
                     .when('/modules/' + i + '/slides/' + j, {
                         templateUrl: '/portal/modules/' + i + '/slides/' + j + '/index.html'
+                 //       ,controller: 'NavController'
                     });
             }
         }

@@ -5,6 +5,7 @@
       .controller("NavController", NavController);
 
     function NavController($location){
+      
       var vm = this;
       vm.course = angular.courses[0];
 
@@ -30,8 +31,31 @@
       vm.selectModule = selectModule;
       vm.selectTab = selectTab;
       vm.selectPillIndex = selectPillIndex;
-
-
+      vm.hello = function(){alert("hello");}
+      vm.module = gotoModule;
+      
+      var interface = {
+          lecture: gotoLecture
+      };
+      
+      function gotoModule(index)
+      {
+          selectModule(index);
+          return interface;
+      }
+      
+      function gotoTab(tabName)
+      {
+          selectTab(tabName);
+          return interface;
+      }
+      
+      function gotoLecture(index)
+      {
+          selectTab('lectures');
+          selectPillIndex(index);
+          return interface;
+      }
       
       function selectPillIndex(pillIndex) {
         vm.pillSelected = vm.pills[pillIndex].title;
