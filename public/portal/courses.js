@@ -30,15 +30,15 @@
               }
           ],
           videos: [],
-          slides: [],
-          experiments: [
-              {
-                  title: 'Experiment 0'
-              },
-              {
-                  title: 'Experiment 1'
-              }
-          ]
+          slides: []
+          // ,experiments: [
+          //     {
+          //         title: 'Experiment 0'
+          //     },
+          //     {
+          //         title: 'Experiment 1'
+          //     }
+          // ]
         }
         // ,{
         //     title: 'Setting up a Development Environment',
@@ -88,11 +88,11 @@
           examples: [
             {title: 'Example 1'}
             , {title: 'Example 2'}
-          ],
-          experiments: [
-            {title: 'Experiment 1'}
-            , {title: 'Experiment 2'}
           ]
+          // ,experiments: [
+          //     {title: 'Experiment 1'}
+          //   , {title: 'Experiment 2'}
+          // ]
         }
         , {
           title: 'Designing the Front End',
@@ -120,11 +120,11 @@
           examples: [
             {title: 'Example 1'}
             , {title: 'Example 2'}
-          ],
-          experiments: [
-            {title: 'Experiment 1'}
-            , {title: 'Experiment 2'}
           ]
+          // ,experiments: [
+          //   {title: 'Experiment 1'}
+          //   , {title: 'Experiment 2'}
+          // ]
         }
         , {
           title: 'Client Side Programming',

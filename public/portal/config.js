@@ -43,15 +43,16 @@
             for (var j = 0; j < courses[0].modules[i].examples.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/examples/' + j, {
-                        templateUrl: 'portal/modules/' + i + '/examples/' + j + '/index.html'
-                    });
+                        templateUrl: '/portal/modules/' + i + '/examples/' + j + '/index.html'
+                    })
+                    .otherwise({redirectTo:'portal/empty.html'});
             }
 
             // routes for slides in modules
             for (var j = 0; j < courses[0].modules[i].slides.length; j++) {
                 $routeProvider
                     .when('/modules/' + i + '/slides/' + j, {
-                        templateUrl: 'portal/modules/' + i + '/slides/' + j + '/index.html'
+                        templateUrl: '/portal/modules/' + i + '/slides/' + j + '/index.html'
                     });
             }
         }
