@@ -118,7 +118,14 @@
             , {title: 'Slide 3'}
           ],
           examples: [
-            {title: 'Example 1'}
+              {
+                  title: 'Example 1111'
+                , src: '/experiments/javascript/intro/80-modules.html'
+                , dependencies : {
+                  '80-module1.js': '/experiments/javascript/intro/80-module1.js',
+                  '80-module2.js': '/experiments/javascript/intro/80-module2.js',
+                }
+              }
             , {title: 'Example 2'}
           ]
           // ,experiments: [

@@ -1,0 +1,26 @@
+<div ng-controller="ExampleController as controller">
+  
+  <iframe
+    style="border:none"
+    ng-src="{{controller.example.src}}">
+  </iframe>
+  
+  <h2>Source</h2>
+  <ul class="nav nav-pills">
+    <li>
+      <a target="_blank" href="https://raw.githubusercontent.com/cs5610online/portal/master/public{{controller.example.src}}">HTML</a>
+    </li>
+    <li
+      ng-class="{'active': controller.selectedDependency == value}"
+      ng-repeat="(dependency, value) in controller.example.dependencies">
+      <a ng-click="controller.selectedDependency = value">{{dependency}}</a>
+    </li>
+  </ul>
+  
+  <iframe
+    style="border:none"
+    ng-if="controller.selectedDependency"
+    ng-src="{{controller.selectedDependency}}">
+  </iframe>  
+  
+</div>
