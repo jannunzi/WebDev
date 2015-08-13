@@ -1,14 +1,22 @@
 <div ng-controller="ExampleController as controller">
   
+  <h2>{{controller.example.title}}
+    
+    <a href="{{controller.example.src}}" class="pull-right" target="_blank">
+      <span class="glyphicon glyphicon-fullscreen"></span>
+    </a>
+    
+  </h2>
+  
   <iframe
-    style="border:none"
+    style="border:none;width:100%;height:200px;"
     ng-src="{{controller.example.src}}">
   </iframe>
   
   <h2>Source</h2>
   <ul class="nav nav-pills">
     <li>
-      <a target="_blank" href="https://raw.githubusercontent.com/cs5610online/portal/master/public{{controller.example.src}}">HTML</a>
+      <a ng-click="controller.selectedDependency = null">HTML</a>
     </li>
     <li
       ng-class="{'active': controller.selectedDependency == value}"
@@ -17,10 +25,15 @@
     </li>
   </ul>
   
+  <br/>
+  
   <iframe
-    style="border:none"
+    style="border:none;width:100%;height:300px;background-color: #eee;font-family: monospace;"
     ng-if="controller.selectedDependency"
     ng-src="{{controller.selectedDependency}}">
   </iframe>  
+
+  <textarea style="border:none;width:100%;height:300px;background-color: #eee;font-family: monospace;" id="html" ng-show="controller.selectedDependency == null">
+  </textarea>
   
 </div>

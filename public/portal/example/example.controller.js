@@ -15,6 +15,17 @@
     var exampleIndex = parseInt(urlPartsArray[4]);
     var moduleIndex = parseInt(urlPartsArray[2]);
     vm.example = vm.course.modules[moduleIndex].examples[exampleIndex];
+
     
+    if(vm.example)
+    {
+      $.ajax({
+        url: vm.example.src,
+        success: function(response)
+        {
+          $("#html").val(response);
+        }
+      });
+    }
   }
 })();
