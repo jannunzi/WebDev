@@ -12,7 +12,7 @@
 
     var urlPartsArray = url.split("/");
 
-    var exampleIndex = parseInt(urlPartsArray[4]);
+    var exampleIndex = parseInt(urlPartsArray[4]) | 0;
     var moduleIndex = parseInt(urlPartsArray[2]);
     vm.example = vm.course.modules[moduleIndex].examples[exampleIndex];
 
