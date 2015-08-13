@@ -128,10 +128,7 @@
               }
             , {title: 'Example 2'}
           ]
-          // ,experiments: [
-          //   {title: 'Experiment 1'}
-          //   , {title: 'Experiment 2'}
-          // ]
+
         }
         , {
           title: 'Client Side Programming',
@@ -139,7 +136,23 @@
           assignments: [],
           videos: [],
           slides: [],
-          examples: []
+          examples: [
+            {
+              title: "Draggable",
+              src: "/experiments/jqueryui/50-draggable.html",
+              dependencies: {}
+            }
+            ,{
+              title: "Datepicker",
+              src: "/experiments/jqueryui/110-datepicker.html",
+              dependencies: {}
+            }
+            ,{
+              title: "Accordions",
+              src: "/experiments/jqueryui/120-accordions.html",
+              dependencies: {}
+            }
+          ]
         }
         , {
           title: 'Server Side Programming',
@@ -147,7 +160,15 @@
           assignments: [],
           videos: [],
           slides: [],
-          examples: []
+          examples: [
+            {
+              title: "",
+              src: "",
+              dependencies: {
+                "":""
+              }              
+            }
+          ]
         }
         , {
           title: 'Data Modeling, Persistence and Integration',
@@ -155,7 +176,15 @@
           assignments: [],
           videos: [],
           slides: [],
-          examples: []
+          examples: [
+            {
+              title: "",
+              src: "",
+              dependencies: {
+                "":""
+              }              
+            }
+          ]
         }
         , {
           title: 'Security',
@@ -163,8 +192,15 @@
           assignments: [],
           videos: [],
           slides: [],
-          examples: []
-
+          examples: [
+            {
+              title: "",
+              src: "",
+              dependencies: {
+                "":""
+              }              
+            }
+          ]
         }
       ]
     }
