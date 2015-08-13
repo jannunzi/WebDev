@@ -9,9 +9,9 @@
     var vm = this;
     vm.course = angular.courses[0];
     var url = $location.url();
-    console.log(url);
+
     var urlPartsArray = url.split("/");
-    console.log(urlPartsArray);
+
     var exampleIndex = parseInt(urlPartsArray[4]);
     var moduleIndex = parseInt(urlPartsArray[2]);
     vm.example = vm.course.modules[moduleIndex].examples[exampleIndex];

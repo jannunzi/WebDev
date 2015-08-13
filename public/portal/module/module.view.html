@@ -2,11 +2,15 @@
   <div class="col-sm-3 col-md-2 sidebar">
 
     <ul class="nav nav-sidebar">
-
       <!-- generates left hand side links to modules -->
       <li ng-repeat="module in controller.course.modules"
           ng-class="{active : controller.selectedModuleIndex == $index}">
           <a href="#/modules/{{$index}}">{{module.title}}</a>
+      </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+      <li>
+        <a href="#">Sillabus</a>
       </li>
     </ul>
   </div>
