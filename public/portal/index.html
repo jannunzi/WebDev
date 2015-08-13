@@ -9,13 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../images/favicon.ico">
-
-    <title>Dashboard Template for Bootstrap</title>
-
+    
+    <title>CS5610</title>
+    
   </head>
-
-  <body ng-app="app">
-
+  <body ng-app="WhiteBoardApp">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -41,78 +39,8 @@
       </div>
     </nav>
 
-    <div class="container-fluid" ng-controller="NavController as navController">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li><a href="#">Course Overview<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Syllabus</a></li>
-          </ul>
-
-          <ul class="nav nav-sidebar">
-
-            <!-- generates left hand side links to modules -->
-            <li ng-repeat="module in navController.course.modules"
-                ng-class="{active : module.title == navController.moduleSelected}">
-                <a ng-click="navController.selectModule($index)"
-                  href="#/modules/{{$index}}">{{module.title}}</a>
-            </li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Assignments</a></li>
-            <li><a href="">Project</a></li>
-            <li><a href="">Videos</a></li>
-            <li><a href="">Slides</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <div>
-            <ul class="nav nav-tabs">
-              <li ng-class="{active : navController.tabSelected == 'overview'}">
-                  <a ng-click="navController.selectTab('overview')">Overview</a>
-              </li>
-              <li ng-class="{active : navController.tabSelected == 'lectures'}">
-                  <a ng-click="navController.selectTab('lectures')">Lectures</a>
-              </li>
-              <!--<li ng-class="{active : navController.tabSelected == 'experiments'}">
-                  <a ng-click="navController.selectTab('experiments')">Experiments</a>
-              </li>-->
-              <li ng-class="{active : navController.tabSelected == 'examples'}">
-                  <a ng-click="navController.selectTab('examples')">Examples</a>
-              </li>
-              <li ng-class="{active : navController.tabSelected == 'assignments'}">
-                  <a ng-click="navController.selectTab('assignments')">Assignments</a>
-              </li>
-            </ul>
-
-            <ul class="nav nav-pills" style="margin-top: 10px;">
-              <li ng-repeat="pill in navController.pills" ng-class="{active : pill.title == navController.pillSelected}">
-                <a ng-click="navController.selectPillIndex($index)">{{pill.title}}</a>
-              </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <div class="tab-pane active" id="overview">
-              </div>
-              <div class="tab-pane" id="lectures">
-                Here are the lectures
-              </div>
-              <div class="tab-pane" id="experiments">
-                Here are the experiments
-              </div>
-              <div class="tab-pane" id="examples">
-                Here are the examples
-              </div>
-              <div class="tab-pane" id="assignments">
-              </div>
-            </div>
-          </div>
-
-          <div ng-view></div>
-
-        </div>
-      </div> <!-- .row -->
+    <div class="container-fluid" ng-controller="ModuleController as navController">
+      <div ng-view></div>
     </div> <!-- .container-fluid -->
 
     <!-- Bootstrap core JavaScript
@@ -127,20 +55,14 @@
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!--<link href="../css/module.css" rel="stylesheet">-->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
     <script src="../js/ui-bootstrap-tpls-0.13.0.min.js"></script>
     <script src="courses.js"></script>
     <script src="app.js"></script>
-    <script src="services/CourseService.js"></script>
+    <!--<script src="services/CourseService.js"></script>-->
     <script src="config.js"></script>
     <script src="navController.js"></script>
+    <script src="module/module.controller.js"></script>
   </body>
 </html>

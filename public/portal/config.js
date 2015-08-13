@@ -1,68 +1,29 @@
-﻿(function () {
-    angular
-        .module('app')
-        .config(config);
-
-    function config($routeProvider) {
-
-        var courses = angular.courses;
-
-        for(var i=0; i<courses[0].modules.length; i++)
-        {
-            // routes for modules
-            $routeProvider
-                .when('/modules/' + i, {
-                    templateUrl: '/portal/modules/' + i + '/index.html'
-                })
-                // .when('/module/:mid/:section/:sid', {
-                //     templateUrl: '/portal/section.html',
-                //     controller: 'NavController'
-                // })
-
-            // routes for lectures in modules
-            for (var j = 0; j < courses[0].modules[i].lectures.length; j++) {
-                $routeProvider
-                    .when('/modules/' + i + '/lectures/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/lectures/' + j + '/index.html'
-                   //     ,controller: 'NavController'
-                    });
-            }
-
-            // routes for assignments in modules
-            for (var j = 0; j < courses[0].modules[i].assignments.length; j++) {
-                $routeProvider
-                    .when('/modules/' + i + '/assignments/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/assignments/' + j + '/index.html'
-                    //    ,controller: 'NavController'
-                });
-            }
-
-            // routes for videos in modules
-            for (var j = 0; j < courses[0].modules[i].videos.length; j++) {
-                $routeProvider
-                    .when('/modules/' + i + '/videos/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/videos/' + j + '/index.html'
-                  //      ,controller: 'NavController'
-                    });
-            }
-
-            // routes for examples in modules
-            for (var j = 0; j < courses[0].modules[i].examples.length; j++) {
-                $routeProvider
-                    .when('/modules/' + i + '/examples/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/examples/' + j + '/index.html'
-                   //     ,controller: 'NavController'
-                    });
-            }
-
-            // routes for slides in modules
-            for (var j = 0; j < courses[0].modules[i].slides.length; j++) {
-                $routeProvider
-                    .when('/modules/' + i + '/slides/' + j, {
-                        templateUrl: '/portal/modules/' + i + '/slides/' + j + '/index.html'
-                 //       ,controller: 'NavController'
-                    });
-            }
-        }
+(function(){
+  angular
+    .module("WhiteBoardApp")
+    .config(Config);
+  
+  function Config($routeProvider)
+  {
+    $routeProvider
+      .when("/modules/:index", {
+        templateUrl: "/portal/module/module.view.html"
+        , controller: "ModuleController as controller"
+      })
+      .when("/modules/:index/overview", {
+        templateUrl: "/portal/module/module.view.html"
+        , controller: "ModuleController as controller"
+      })
+      .when("/modules/:index/:tabName", {
+        templateUrl: "/portal/module/module.view.html"
+        , controller: "ModuleController as controller"
+      })
+      .when("/modules/:index/:tabName/:pillIndex", {
+        templateUrl: "/portal/module/module.view.html"
+        , controller: "ModuleController as controller"
+      })
+      .otherwise({
+        redirectTo: "/modules/0"
+      });
     }
 })();

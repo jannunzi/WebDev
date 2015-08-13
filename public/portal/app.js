@@ -1,6 +1,7 @@
-﻿(function () {
-    angular
-        .module('app', [
-            'ngRoute'
-        ]);
+(function(){
+  angular
+    .module("WhiteBoardApp", ['ngRoute'])
+    // .filter("isArray", function(){
+      
+    // });
 })();

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+
+    <ul class="nav nav-sidebar">
+
+      <!-- generates left hand side links to modules -->
+      <li ng-repeat="module in controller.course.modules"
+          ng-class="{active : controller.selectedModuleIndex == $index}">
+          <a href="#/modules/{{$index}}">{{module.title}} {{controller.selectedModuleIndex}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      
+    <h1>{{controller.selectedModule.title}}</h1>
+    
+    <ul class="nav nav-tabs">
+      <li ng-class="{'active' : controller.selectedTabName == 'overview'}">
+        <a href="#/modules/{{controller.selectedModuleIndex}}">Overview</a>
+      </li>
+      <li ng-class="{'active' : controller.selectedTabName == tab.title}"
+          ng-repeat="tab in controller.tabs" style="text-transform: capitalize">
+        <a href="#/modules/{{controller.selectedModuleIndex}}/{{tab.title}}">{{tab.title}}</a>
+      </li>
+    </ul>
+    
+    <br/>
+    
+    <ul class="nav nav-pills">
+      <li ng-class="{'active' : controller.selectedPillIndex == $index}"
+          ng-repeat="pill in controller.selectedTabPills" style="text-transform: capitalize">
+        <a href="#/modules/{{controller.selectedModuleIndex}}/{{controller.selectedTabName}}/{{$index}}">{{pill.title}}</a>
+      </li>
+    </ul>
+
+    <ng-include src="controller.page"/>
+
+  </div>
+</div> <!-- .row -->
