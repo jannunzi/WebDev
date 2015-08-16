@@ -104,8 +104,8 @@
             , {title: "Bootstrap"}
           ],
           assignments: [
-            {title: 'Assignment 1'}
-            , {title: 'Assignment 2'}
+              {title: 'HTML'}
+            , {title: 'CSS & Responsive Design'}
           ],
           videos: [
             {title: 'Video 1'}
