@@ -6,11 +6,9 @@
   function NavController($location, $routeParams)
   {
     var vm = this;
-    vm.course = angular.courses[0];
-
+    vm.course = angular.courses[0];    
     var url = $location.url();
-    
-    console.log(url);
-    console.log($routeParams);
+    vm.selectedModuleIndex = url.split('/')[2];
+    vm.ewq = "syllabus";
   }
 })();

@@ -22,8 +22,11 @@
         templateUrl: "/portal/module/module.view.html"
         , controller: "ModuleController as controller"
       })
-      .when("/course/sillabus", {
-        templateUrl: "/portal/course/sillabus.view.html"
+      .when("/course/syllabus", {
+        templateUrl: "/portal/course/syllabus.view.html"
+      })
+      .when("/course/agenda", {
+        templateUrl: "/portal/course/agenda.view.html"
       })
       .otherwise({
         redirectTo: "/modules/0"

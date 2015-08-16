@@ -39,8 +39,35 @@
       </div>
     </nav>
 
-    <div class="container-fluid" ng-controller="ModuleController as navController">
-      <div ng-view></div>
+    <div class="container-fluid"
+         ng-controller="NavController as controller">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <!-- generates left hand side links to modules -->
+            <li ng-repeat="module in controller.course.modules"
+                ng-class="{active : controller.selectedModuleIndex == $index}"
+                ng-click="controller.selectedModuleIndex = $index">
+                <a href="#/modules/{{$index}}">{{module.title}}</a>
+            </li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li ng-class="{active : controller.selectedModuleIndex == 'syllabus'}">
+              <a href="#/course/syllabus"
+                 ng-click="controller.selectedModuleIndex = 'syllabus'">
+                Syllabus</a>
+            </li>
+            <li ng-class="{active : controller.selectedModuleIndex == 'agenda'}">
+              <a href="#/course/agenda"
+                 ng-click="controller.selectedModuleIndex = 'agenda'">
+                Agenda</a>
+            </li>
+          </ul>
+        </div>
+          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div ng-view></div>
+        </div>
+      </div> <!-- .row -->
     </div> <!-- .container-fluid -->
 
     <!-- Bootstrap core JavaScript
