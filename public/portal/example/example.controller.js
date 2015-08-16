@@ -13,14 +13,19 @@
     var urlPartsArray = url.split("/");
 
     var exampleIndex = parseInt(urlPartsArray[4]) | 0;
+    var exampleLabel = urlPartsArray[3];
     var moduleIndex = parseInt(urlPartsArray[2]);
-    vm.example = vm.course.modules[moduleIndex].examples[exampleIndex];
-
+    vm.example = vm.course.modules[moduleIndex][exampleLabel][exampleIndex];
     
     if(vm.example)
     {
+      if(!vm.example.base)
+      {
+        vm.example.base = "";
+      }
+      var url = vm.example.base + vm.example.src;
       $.ajax({
-        url: vm.example.src,
+        url: url,
         success: function(response)
         {
           $("#html").val(response);

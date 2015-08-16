@@ -117,18 +117,64 @@
             , {title: 'Slide 2'}
             , {title: 'Slide 3'}
           ],
-          examples: [
-              {
-                  title: 'Example 1111'
-                , src: '/experiments/javascript/intro/80-modules.html'
-                , dependencies : {
-                  '80-module1.js': '/experiments/javascript/intro/80-module1.js',
-                  '80-module2.js': '/experiments/javascript/intro/80-module2.js',
-                }
-              }
-            , {title: 'Example 2'}
+          css_examples: [
+              { title: "Box",
+                base: "/experiments/css/",
+                src: "box.html" }
+            , { title: "Centered",
+                base: "/experiments/css/",
+                src: "centered.html" }
+            , { title: "Class",
+                base: "/experiments/css/",
+                src: "class.html" }
+            , { title: "Id",
+                base: "/experiments/css/",
+                src: "id.html" }
+            , { title: "Inheritance",
+                base: "/experiments/css/",
+                src: "inheritance.html" }
+            , { title: "Inline",
+                base: "/experiments/css/",
+                src: "inline.html" }
+            , { title: "Link",
+                base: "/experiments/css/",
+                src: "link.html" }
+            , { title: "Position",
+                base: "/experiments/css/",
+                src: "position.html" }
+            , { title: "Sticky",
+                base: "/experiments/css/",
+                src: "sticky.html" }
+            , { title: "Z Index",
+                base: "/experiments/css/",
+                src: "zindex.html" }
+            , { title: "Specificity",
+                base: "/experiments/css/",
+                src: "specificity.html" }
+            , { title: "Visibility",
+                base: "/experiments/css/",
+                src: "visibility.html" }
+            , { title: "Float",
+                base: "/experiments/css/",
+                src: "float.html" }
+            , { title: "Grid",
+                base: "/experiments/css/",
+                src: "grid.html" }
+          ],
+          bootstrap_examples : [
+              { title: "Forms",
+                base: "/experiments/bootstrap/",
+                src: "forms.html" }
+            , { title: "Jumbotron",
+                base: "/experiments/bootstrap/",
+                src: "jumbotron.html" }
+            , { title: "Tables",
+                base: "/experiments/bootstrap/",
+                src: "tables.html" }
+            , { title: "Blog",
+                base: "/experiments/bootstrap/",
+                src: "webdev.html" }
           ]
-
         }
         , {
           title: 'Client Side Programming',
@@ -136,20 +182,90 @@
           assignments: [],
           videos: [],
           slides: [],
-          examples: [
+          javaScript_examples: [
+            { title: "Hello",
+              base: "/experiments/javascript/",
+              src:"00-script-alert-hello-world.html"}
+            , { title: "Variables",
+              base: "/experiments/javascript/",
+              src:"03-variables-a+b.html"}
+            , { title: "Loops",
+              base: "/experiments/javascript/",
+              src:"05-loops-factorial.html"}
+            , { title: "Arrays",
+              base: "/experiments/javascript/",
+              src:"07-arrays-min-max.html"}
+            , { title: "Document",
+              base: "/experiments/javascript/",
+              src:"10-document-write-ul-table.html"}
+            , { title: "Functions",
+              base: "/experiments/javascript/",
+              src:"13-functions-add.html"}
+            , { title: "Get Elements",
+              base: "/experiments/javascript/",
+              src:"15-getElementById.html"}
+            , { title: "OnClick",
+              base: "/experiments/javascript/",
+              src:"20-onclick-say-hello-message-input.html"}
+            , { title: "Src",
+                base: "/experiments/javascript/",
+                src:"30-script-src.html",
+                dependencies: {
+                  "30.js" : "30.js"
+                }
+              }
+            , { title: "JSON",
+                base: "/experiments/javascript/",
+                src:"32-json.html"}
+            , { title: "Namespaces",
+                base: "/experiments/javascript/",
+                src:"50-namespace.html",
+                dependencies : {
+                  "50-namespace.js" : "50-namespace.js"
+                }
+              }
+            , { title: "Callbacks",
+                base: "/experiments/javascript/",
+                src:"60-passingFunctions.html",
+                dependencies : {
+                  "60.js" : "60.js"
+                }
+              }
+            , { title: "Modules",
+                base: "/experiments/javascript/",
+                src:"70-modules.html",
+                dependencies : {
+                  "70-modules.js" : "70-modules.js",
+                  "70-app.js" : "70-app.js"
+                }
+              }
+            , { title: "Modules 2",
+                base: "/experiments/javascript/",
+                src:"80-modules.html",
+                dependencies : {
+                  "80-module1.js" : "80-module1.js",
+                  "80-module2.js" : "80-module2.js",
+                  "80-app.js" : "80-app.js"
+                }
+              }
+          ],
+          jQueryUi_examples: [
             {
               title: "Draggable",
-              src: "/experiments/jqueryui/50-draggable.html",
+              base: "/experiments/jqueryui/",
+              src: "50-draggable.html",
               dependencies: {}
             }
             ,{
               title: "Datepicker",
-              src: "/experiments/jqueryui/110-datepicker.html",
+              base: "/experiments/jqueryui/",
+              src: "110-datepicker.html",
               dependencies: {}
             }
             ,{
               title: "Accordions",
-              src: "/experiments/jqueryui/120-accordions.html",
+              base: "/experiments/jqueryui/",
+              src: "120-accordions.html",
               dependencies: {}
             }
           ]

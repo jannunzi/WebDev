@@ -12,7 +12,7 @@
       </li>
       <li ng-class="{'active' : controller.selectedTabName == tab.title}"
           ng-repeat="tab in controller.tabs" style="text-transform: capitalize">
-        <a href="#/modules/{{controller.selectedModuleIndex}}/{{tab.title}}">{{tab.title}}</a>
+        <a href="#/modules/{{controller.selectedModuleIndex}}/{{tab.title}}">{{tab.title | underscore2space}}</a>
       </li>
     </ul>
     
@@ -21,7 +21,7 @@
     <ul class="nav nav-pills">
       <li ng-class="{'active' : controller.selectedPillIndex == $index}"
           ng-repeat="pill in controller.selectedTabPills" style="text-transform: capitalize">
-        <a href="#/modules/{{controller.selectedModuleIndex}}/{{controller.selectedTabName}}/{{$index}}">{{pill.title}}</a>
+        <a href="#/modules/{{controller.selectedModuleIndex}}/{{controller.selectedTabName}}/{{$index}}">{{pill.title | underscore2space}}</a>
       </li>
     </ul>
 

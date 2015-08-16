@@ -14,7 +14,7 @@
     vm.selectedTabPills = vm.course.modules[vm.selectedModuleIndex][vm.selectedTabName];
     vm.selectedPillIndex = $routeParams.pillIndex || 0;
 
-    if(vm.selectedTabName == "examples")
+    if(vm.selectedTabName.indexOf("examples") >= 0)
     {
       vm.page = "/portal/example/example.view.html";
     }
