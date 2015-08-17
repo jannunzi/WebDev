@@ -4,6 +4,7 @@
       title: 'CS5610',
       modules: [
         {
+          visible: false,
           title: 'Template Module',
           lectures: [
             {
