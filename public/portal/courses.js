@@ -69,7 +69,6 @@
           lectures: [
             {title: 'GIT'}
             , {title: 'Node.js'}
-            , {title: 'MongoDB'}
           ],
           assignments: [
             {title: 'Assignment 1'}
@@ -178,7 +177,10 @@
         }
         , {
           title: 'Client Side Programming',
-          lectures: [],
+          lectures: [
+            {title: 'Javascript'}
+            , {title: 'JQuery'}
+          ],
           assignments: [],
           videos: [],
           slides: [],

@@ -5,6 +5,9 @@
 	background-color: #334d5c;
 }
 
+.navbar-right{
+	visibility:hidden;
+}
 
 @media (min-width:320px) {
 .jumbotron .container{
