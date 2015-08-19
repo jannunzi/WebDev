@@ -73,22 +73,22 @@
           ],
           assignments: [
             {title: 'Assignment 1'}
-            , {title: 'Assignment 2'}
+//            , {title: 'Assignment 2'}
           ],
-          videos: [
-            {title: 'Video 1'}
-            , {title: 'Video 2'}
-            , {title: 'Video 3'}
-          ],
-          slides: [
-            {title: 'Slide 1'}
-            , {title: 'Slide 2'}
-            , {title: 'Slide 3'}
-          ],
-          examples: [
-            {title: 'Example 1'}
-            , {title: 'Example 2'}
-          ]
+          // videos: [
+          //   {title: 'Video 1'}
+          //   , {title: 'Video 2'}
+          //   , {title: 'Video 3'}
+          // ],
+          // slides: [
+          //   {title: 'Slide 1'}
+          //   , {title: 'Slide 2'}
+          //   , {title: 'Slide 3'}
+          // ],
+          // examples: [
+          //   {title: 'Example 1'}
+          //   , {title: 'Example 2'}
+          // ]
           // ,experiments: [
           //     {title: 'Experiment 1'}
           //   , {title: 'Experiment 2'}
@@ -107,16 +107,16 @@
               {title: 'HTML'}
             , {title: 'CSS & Responsive Design'}
           ],
-          videos: [
-            {title: 'Video 1'}
-            , {title: 'Video 2'}
-            , {title: 'Video 3'}
-          ],
-          slides: [
-            {title: 'Slide 1'}
-            , {title: 'Slide 2'}
-            , {title: 'Slide 3'}
-          ],
+          // videos: [
+          //   {title: 'Video 1'}
+          //   , {title: 'Video 2'}
+          //   , {title: 'Video 3'}
+          // ],
+          // slides: [
+          //   {title: 'Slide 1'}
+          //   , {title: 'Slide 2'}
+          //   , {title: 'Slide 3'}
+          // ],
           css_examples: [
               { title: "Box",
                 base: "/experiments/css/",
