@@ -68,13 +68,12 @@
         ,{
           title: 'Setting up a Development Environment',
           lectures: [
+            {title: 'Node.js'},
             {title: 'GIT'}
-            , {title: 'Node.js'}
           ],
-          assignments: [
-            {title: 'Assignment 1'}
-//            , {title: 'Assignment 2'}
-          ],
+          // assignments: [
+          //   {title: 'Assignment 1'}
+          // ],
           // videos: [
           //   {title: 'Video 1'}
           //   , {title: 'Video 2'}
