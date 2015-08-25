@@ -62,11 +62,38 @@
 <p>
   Today using <code>table</code> elements for laying out a page is
   generally considered a bad practice and outright frowned upon.
-  Tables elements should be used for their intended purpose
-  of displaying tabular data. Instead we rely on other
-  techniques to achieve the same effect. Today we use
-  CSS to control how content renders side by side using
-  CSS properties such as <code>float</code> and <code>clear</code>
+  Tables elements should be used for their intended purpose of
+  displaying tabular data. Instead we rely on other techniques
+  to achieve the same effect. Today we use CSS to control how
+  content renders side by side using CSS properties such as
+  <code>float</code> and <code>clear</code>
+</p>
+
+<p>
+  The industry has been using CSS to layout pages for quite
+  a while now and various design patterns and best practices
+  have been identified. Many of these techniques have been
+  implemented in the last couple of years in an increasing
+  pleathora of CSS frameworks. One of these techniques is to
+  use a standard set of CSS rules to layout the page into a
+  grid system of rows and columns. Essentially achieving the
+  same functionality of tables, but implemented as <code>div</code>
+  elements with a standard set of <code>row</code> and
+  <code>col</code>umn classes. These classes allow
+  
+  <a href="http://getbootstrap.com/css/#grid-example-basic">
+    laying out a page rows and columns.
+  </a>.
+  
+  <a href="http://getbootstrap.com/css/">
+    Bootstrap's documentation
+  </a>
+  
+  has a thorough set of
+  
+  <a href="http://getbootstrap.com/css/#grid">
+    examples illustrating how to use their grid system.
+  </a> 
 </p>
 
 <a class="btn btn-primary btn-sm btn-warning"
@@ -74,8 +101,7 @@
        Example &raquo;
     </a>
 <hr>
-<br/><br/>
-
+<br/>
 
 <h4>Bootstrap Forms</h4>  
 
@@ -84,7 +110,45 @@
 <br/><br/>
 
 <p>
+  Forms allow users to enter data and is the main
+  mechanism by which users interact with Web applications.
+  Users fill out forms and submit them for processing
+  by the server.
+</p>
 
+<p>
+  Bootstrap provides a comprehensive set of classes
+  and HTML templates that makes it easy for a developer
+  to create professional, consistent, responsive forms.
+  One of the more common classes used throughout this
+  course and in the example code is the <code>form-control</code>
+  class. Use this class when declaring <code>input</code>
+  fields and they will render with rounded corners,
+  highlights, and responsive.
+</p>
+
+<p>
+  Buttons and links are one of the primary mechanisms
+  for users to initiate an action such as submitting
+  a form, or navigating to another page. Bootstrap has
+  an extensive set of classes to style buttons and links.
+  Use class <code>btn</code> to style a button or a link
+  as a nice looking button. The <code>btn</code> must be
+  used in conjunction with one of the following classes
+  to style the button with one of several standard look
+  and feels:
+  <ul>
+    <li><button class="btn btn-primary">btn-primary</button></li>
+    <li><button class="btn btn-success">btn-success</button></li>
+    <li><button class="btn btn-info">btn-info</button></li>
+    <li><button class="btn btn-warning">btn-warning</button></li>
+    <li><button class="btn btn-danger">btn-danger</button></li>
+  </ul>
+  
+  Add the class <code>btn-block</code> to configure the
+  button to render the entire width of the containing
+  element. Since this is usually the <code>body</code>
+  element, it is useful when implementing mobile applications.
 </p>
 
 <a class="btn btn-primary btn-sm btn-warning"
