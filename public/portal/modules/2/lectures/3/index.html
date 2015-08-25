@@ -2,8 +2,8 @@
   <h3>Layout</h3>
   <p><strong>OVERVIEW</strong>: 
   
-   A great deal of the concern of displaying content for humans is
-  the way the content is layout. From top to bottom, left to right,
+  A great deal of the concern of displaying content for humans is
+  the way the content is layed out. From top to bottom, left to right,
   columns and rows, indentations and hierarchies - organizing content
   to effectively convey content is crucial to draw attention to
   various portions of a Web page. The
@@ -15,26 +15,51 @@
   covers various techniques of using CSS rules to layout Web pages.
   
   </p>
-    </div>
+</div>
     
 
     
-  <h4>1. Centering Content in HTML</h4>  
-    <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_dfdspi01&flashvars[streamerType]=auto&amp;&wid=1_23a9m6iy" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
+<h4>Centering Content in HTML</h4>  
+
+<iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_dfdspi01&flashvars[streamerType]=auto&amp;&wid=1_23a9m6iy" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
 
 <p>
+  HTML used to provide a <code>center</code> element, but
+  it is no longer supported in HTML 5. The reason is that
+  we now recognize that HTML is not meant for deciding the
+  look and feel of a Web page, but instead it should provide
+  the logical semantic organization of the content in the
+  page and then use a different mechanism, such as CSS, to
+  provide the styling look and feel of the page.
+</p>
+
+<p style="margin: 50px">
+  To center content horizontally use the CSS <code>margin</code>
+  property. Generally <code>margin</code> controls the amount
+  of white space around a content. So for instance this 
+  content has a margin of 50px:
+</p>
+
+<p style="margin: auto; width: 200px;">
+  Content can be centered inside encompasing content by
+  using <code>margin: auto</code> and providing a <code>width</code>
+  for the content. For instance this content has
   
+  <code>margin: auto; width: 200px;</code>
+  
+  Note that it is centered not relative to the page, but
+  relative to the container <code>div</code>
 </p>
 
 <a class="btn btn-primary btn-sm btn-warning"
-       href="#">
+       href="#/modules/2/css_examples/1">
        Example &raquo;
     </a>
 <hr>
 <br/><br/>
 
 
-  <h4>2. CSS Float</h4>  
+  <h4>CSS Float</h4>  
     <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_tqy1vxae&flashvars[streamerType]=auto&amp;&wid=1_zkc32fa2" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
 
 <p>
@@ -42,14 +67,14 @@
 </p>
 
 <a class="btn btn-primary btn-sm btn-warning"
-       href="#">
+       href="#/modules/2/css_examples/12">
        Example &raquo;
     </a>
 <hr>
 <br/><br/>
 
 
-  <h4>3. Creating a CSS Grid Layout</h4>  
+  <h4>Creating a CSS Grid Layout</h4>  
     <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_t26fdiwg&flashvars[streamerType]=auto&amp;&wid=1_em5eq912" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
 
 <p>
@@ -57,7 +82,7 @@
 </p>
 
 <a class="btn btn-primary btn-sm btn-warning"
-       href="#">
+       href="#/modules/2/css_examples/13">
        Example &raquo;
     </a>
 <hr>
