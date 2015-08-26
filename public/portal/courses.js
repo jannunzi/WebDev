@@ -137,7 +137,12 @@
                 src: "inline.html" }
             , { title: "Link",
                 base: "/experiments/css/",
-                src: "link.html" }
+                src: "link.html",
+                dependencies: {
+                  "style1.css" : "css/style1.css",
+                  "style2.css" : "css/style2.css"
+                }
+            }
             , { title: "Position",
                 base: "/experiments/css/",
                 src: "position.html" }

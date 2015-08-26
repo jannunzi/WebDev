@@ -1,15 +1,26 @@
 <div class="alert alert-success">
-  <h3>CSS - Cascading Style Sheets</h3>
-  <p><strong>OVERVIEW</strong>:
+  
+<h3>CSS - Cascading Style Sheets</h3>
+
+<p>
+  
+  <strong>OVERVIEW</strong>:
+  
   CSS, or Cascading Stylesheets, is a simple language used to format the look
   and feel of a Web page. Whereas HTML formats the overall structure and logical
   organization of a Web page, CSS formats how the page looks. CSS formats
   the font to use, the colors of text, background, and borders, the white
-  spaces between various elements, and page layout.</p>
-    </div>
+  spaces between various elements, and page layout.
+
+</p>
+
+</div>
     
-  <h4>CSS Style Attribute</h4>  
-    <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_gkljgx3t&flashvars[streamerType]=auto&amp;&wid=1_0pck4s8d" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
+<h4>CSS Style Attribute</h4>
+  
+<iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_gkljgx3t&flashvars[streamerType]=auto&amp;&wid=1_0pck4s8d" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
+
+<br/><br/>
 
 <p>
   The easiest way to configure the look and feel of content
@@ -24,16 +35,18 @@
   changes.
 </p>
 
-<a class="btn btn-primary btn-sm btn-warning" href="#">
-    Example &raquo;
+<a href="#/modules/2/css_examples/5"
+   class="btn btn-primary btn-sm btn-warning">
+   Example &raquo;
 </a>
 <hr>
-<br/><br/>
-
+<br/>
 
 <h4>CSS Order of Precedence</h4>  
 
 <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_jhxq57j6&flashvars[streamerType]=auto&amp;&wid=1_1oxkdvgh" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
+
+<br/><br/>
 
 <p>
   Content look and feel can be configured in various different ways.
@@ -48,21 +61,39 @@
   final look and feel of the Web page.
 </p>
 <a class="btn btn-primary btn-sm btn-warning"
-       href="#">
+       href="#/modules/2/css_examples/6">
        Example &raquo;
     </a>
 <hr>
+<br/>
+
+<h4>Linking to a CSS Style Sheet</h4>  
+
+<iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_yax1n3ed&flashvars[streamerType]=auto&amp;&wid=1_fr0bbq0p" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
+
 <br/><br/>
 
-
-  <h4>Linking to a CSS Style Sheet</h4>  
-    <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_yax1n3ed&flashvars[streamerType]=auto&amp;&wid=1_fr0bbq0p" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
-
 <p>
-  
+  CSS style can be declared outside of the HTML document using the
+  <code>link</code> element. The example below loads two CSS style
+  files located in a css folder.
 </p>
 
-<a class="btn btn-primary btn-sm btn-warning" href="#">
+<pre>
+&lt;link href=&quot;css/style1.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;link href=&quot;css/style2.css&quot; rel=&quot;stylesheet&quot;/&gt;
+</pre>
+
+<p>
+  The <code>rel</code> attribute establishes the relationship of
+  the file with respect to the HTML document loading the page.
+  It declares the file as the <code>stylesheet</code> for the
+  document
+</p>
+
+<a
+   class="btn btn-primary btn-sm btn-warning"
+   href="#/modules/2/css_examples/6">
 Example &raquo;
 </a>
 
