@@ -63,15 +63,49 @@ p {
        Box &raquo;
     </a>
 <hr>
+
 <br/><br/>
 
 <h4>Controlling Element Position with CSS</h4>  
 
 <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_vlpg7cpw&flashvars[streamerType]=auto&amp;&wid=1_x30f0mny" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
 
+<br/><br/>
+
 <p>
-  
+  Browsers parse HTML documents they download from the Web and render
+  the content as stipulated by the HTML elements and style it based on
+  the CSS style sheet. Elements render from top to bottom
+  and left to right, without overlapping each other. The CSS
+  <code>position</code> property allows overriding the default
+  position behavior of HTML elements. The <code>position</code>
+  property can have one of the following values:
 </p>
+
+<ul>
+  <li>
+    <code>static</code> is the default value for HTML elements
+    and elements are not affected by position properties
+    <code>top</code>, <code>bottom</code>, <code>left</code>,
+    or <code>right</code>
+  </li>
+  <li>
+    <code>relative</code> positions elements relative to their
+    default position. So if an element normally ends up rendering at
+    top : 100px, and left : 200px, then position attributes such
+    as <code>top</code>, <code>bottom</code>, <code>left</code>,
+    or <code>right</code> will nudge the element in that direction
+  </li>
+  <li>
+    <code>fixed</code> positions elements relative to the browser
+    window at particular location
+    and it stays there even if the page scrolls
+  </li>
+  <li>
+    <code>absolute</code> positions elements relative to the
+    nearest parent that is not <code>static</code>
+  </li>
+</ul>
 
 <a class="btn btn-primary btn-sm btn-warning"
        href="#/modules/2/css_examples/7">
@@ -85,8 +119,7 @@ p {
 
 <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_bcu82ucr&flashvars[streamerType]=auto&amp;&wid=1_75kwujgj" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
 
-<p>  
-  
+<p>
 </p>
 
 <a class="btn btn-primary btn-sm btn-warning"
