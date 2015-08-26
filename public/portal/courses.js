@@ -279,7 +279,11 @@
         }
         , {
           title: 'Server Side Programming',
-          lectures: [],
+          lectures: [
+            {title: 'Creating a Node.js Server'}
+            , {title: 'Web Services'}
+			, {title: 'Updating Data'}
+          ],
           assignments: [],
           videos: [],
           slides: [],
