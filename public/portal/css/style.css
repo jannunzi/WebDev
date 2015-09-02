@@ -5,6 +5,9 @@ h1, h2, h3, h4, h5{
 h1{
 	font-size:33px;	
 }
+h4{
+	padding-top:20px;	
+}
 
 #navbar{
 	margin-top:10px;	
@@ -161,8 +164,14 @@ a {
 }
 
 
+#kaltura_player{
+	margin-bottom:15px;	
+}
 
 
+p{
+	line-height:1.7;	
+}
 
 @media (min-width:768px) {
 .navbar-right{
