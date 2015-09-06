@@ -14,6 +14,7 @@
   </p>
   
   <p>
+    
     On the browser, JavaScript allows to create programs that run as part
     of a Web page. JavaScript can be either embedded within a Web page
     or downloaded as a separate JavaScript file referenced by the Web page.
@@ -25,7 +26,9 @@
     can be used to validate forms the user is filling out, giving immediate
     feedback whether the data is valid or not by highlighting form elements,
     showing or hiding icons or alert boxes.
+    
   </p>
+  
 </div>
 
 <h4>Intro to JavaScript</h4>  
@@ -176,13 +179,55 @@ alert("Max: " + max);</pre>
 
 <br/>
 
-<h4>Geting Elements by Id</h4>  
+<h4>Getting Elements by Id</h4>  
 
 <iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1673571/sp/167357100/embedIframeJs/uiconf_id/22492681/partner_id/1673571?iframeembed=true&playerId=kaltura_player&entry_id=1_ovkehej0&flashvars[streamerType]=auto&amp;&wid=1_9wj8ob5s" width="720" height="486" allowfullscreen webkitallowfullscreen mozAllowFullScreen frameborder="0"></iframe>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat.</p>
+<p>
+  
+  Use JavaScript's <code>getElementById</code> to get a hold
+  of a particular HTML element identified by it's <code>ID</code>
+  attribute. First use the <code>ID</code> attribute to
+  uniquely identify an element. For instance the code below
+  identifies a text field as the <code>firstName</code> text field:
+  
+</p>
+
+<pre>
+&lt;input id=&quot;firstName&quot;/&gt;</pre>
+
+<p>
+  
+  The following code retrieves the text field by its ID and
+  stores a reference to it in the <code>firstNameField</code>
+  variable:
+  
+</p>
+
+<pre>
+var firstNameField = document.getElementById("firstName");</pre>
+
+<input id="firstName"/>
+
+<br/>
+
+<p>
+  
+  Once we have a reference to an element in the DOM, we can
+  invoke various methods on them to apply style changes
+  and behaviours. For instance, we can use the <code>value</code>
+  attribute to set the text field's value.
+  
+</p>
+
+<pre>
+var firstNameField = document.getElementById("firstName");
+firstNameField.value = "Alice";</pre>
+
+<script>
+  var firstNameField = document.getElementById("firstName");
+  firstNameField.value = "Alice";
+</script>
 
 <a
   class="btn btn-primary btn-sm btn-warning"
@@ -191,8 +236,8 @@ alert("Max: " + max);</pre>
 </a>
 
 <hr>
+
 <br/>
-    
     
 <h4>JavaScript OnClick Event</h4>  
 

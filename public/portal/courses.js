@@ -278,27 +278,8 @@
           ]
         }
         , {
-          title: 'Server Side Programming',
-          lectures: [
-            {title: 'Creating a Node.js Server'}
-            , {title: 'Web Services'}
-			, {title: 'Updating Data'}
-          ],
-          assignments: [],
-          videos: [],
-          slides: [],
-          examples: [
-            {
-              title: "",
-              src: "",
-              dependencies: {
-                "":""
-              }              
-            }
-          ]
-        }
-        , {
           title: 'Data Modeling, Persistence and Integration',
+          visible: false,
           lectures: [],
           assignments: [],
           videos: [],
@@ -315,7 +296,29 @@
         }
         , {
           title: 'Security',
+          visible: false,
           lectures: [],
+          assignments: [],
+          videos: [],
+          slides: [],
+          examples: [
+            {
+              title: "",
+              src: "",
+              dependencies: {
+                "":""
+              }              
+            }
+          ]
+        }
+        , {
+          title: 'Server Side Programming',
+          visible: false,
+          lectures: [
+              {title: 'Creating a Node.js Server'}
+            , {title: 'Web Services'}
+      			, {title: 'Updating Data'}
+          ],
           assignments: [],
           videos: [],
           slides: [],
