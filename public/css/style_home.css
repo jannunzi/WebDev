@@ -9,6 +9,10 @@
 	visibility:hidden;
 }
 
+p {
+  text-align: justify;
+}
+
 @media (min-width:320px) {
 .jumbotron .container{
 	background: #334d5c url("../images/home_row_bg_graphic_fade.gif") no-repeat left top;	
