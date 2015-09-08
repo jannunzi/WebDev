@@ -48,8 +48,9 @@
             <li ng-repeat="module in controller.course.modules"
                 ng-class="{active : controller.selectedModuleIndex == $index}"
                 ng-hide="controller.course.modules[$index].visible==false"
-                ng-click="controller.selectedModuleIndex = $index">
-                <a href="#/modules/{{$index}}">{{module.title}}</a>
+                ng-click="controller.selectModule($index)">
+                <a href="#/modules/{{$index}}" ng-if="controller.course.modules[$index].available==true">{{module.title}}</a>
+                <a ng-disabled="true" ng-if="controller.course.modules[$index].available==false">{{module.title}}</a>
             </li>
           </ul>
           <ul class="nav nav-sidebar">

@@ -5,6 +5,7 @@
       modules: [
         {
           visible: false,
+          available: true,
           title: 'Template Module',
           lectures: [
             {
@@ -66,7 +67,8 @@
         //     examples: []
         // }
         ,{
-          title: 'Setting up the Development Environment',
+          title: 'Development Environment Setup',
+          available: true,
           lectures: [
             {title: 'Node.js'},
             {title: 'GIT'}
@@ -95,6 +97,7 @@
         }
         , {
           title: 'Designing the Front End',
+          available: true,
           lectures: [
             {title: "HTML"}
             , {title: "CSS"}
@@ -103,7 +106,7 @@
             , {title: "Bootstrap"}
           ],
           assignments: [
-              {title: 'Designing the Front End'}
+              {title: 'User Interface Development'}
           ],
           // videos: [
           //   {title: 'Video 1'}
@@ -181,6 +184,7 @@
         }
         , {
           title: 'Client Side Programming',
+          available: true,
           lectures: [
             {title: 'Javascript'}
             , {title: 'JQuery'}
@@ -277,42 +281,49 @@
           ]
         }
         , {
-          title: 'Data Modeling, Persistence and Integration',
-          visible: false,
-          lectures: [],
-          assignments: [],
-          videos: [],
-          slides: [],
-          examples: [
-            {
-              title: "",
-              src: "",
-              dependencies: {
-                "":""
-              }              
-            }
-          ]
-        }
-        , {
-          title: 'Security',
-          visible: false,
-          lectures: [],
-          assignments: [],
-          videos: [],
-          slides: [],
-          examples: [
-            {
-              title: "",
-              src: "",
-              dependencies: {
-                "":""
-              }              
-            }
-          ]
-        }
-        , {
           title: 'Server Side Programming',
-          visible: false,
+          available: false
+        }
+        , {
+          title: 'Database Programming',
+          visible: true,
+          available: false,
+          lectures: [],
+          assignments: [],
+          videos: [],
+          slides: [],
+          examples: [
+            {
+              title: "",
+              src: "",
+              dependencies: {
+                "":""
+              }              
+            }
+          ]
+        }
+        , {
+          title: 'Securing the Application',
+          visible: true,
+          available: false,
+          lectures: [],
+          assignments: [],
+          videos: [],
+          slides: [],
+          examples: [
+            {
+              title: "",
+              src: "",
+              dependencies: {
+                "":""
+              }              
+            }
+          ]
+        }
+        , {
+          title: 'Dynamic Server Pages',
+          visible: true,
+          available: false,
           lectures: [
               {title: 'Creating a Node.js Server'}
             , {title: 'Web Services'}
