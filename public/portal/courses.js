@@ -66,14 +66,14 @@
         //     examples: []
         // }
         ,{
-          title: 'Setting up a Development Environment',
+          title: 'Setting up the Development Environment',
           lectures: [
             {title: 'Node.js'},
             {title: 'GIT'}
           ],
-          // assignments: [
-          //   {title: 'Assignment 1'}
-          // ],
+          assignments: [
+            {title: 'Environment'}
+          ]
           // videos: [
           //   {title: 'Video 1'}
           //   , {title: 'Video 2'}
@@ -103,8 +103,7 @@
             , {title: "Bootstrap"}
           ],
           assignments: [
-              {title: 'HTML'}
-            , {title: 'CSS & Responsive Design'}
+              {title: 'Designing the Front End'}
           ],
           // videos: [
           //   {title: 'Video 1'}
