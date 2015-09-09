@@ -46,7 +46,7 @@
           ]
         }
         , {
-          title: 'Designing the User Interface',
+          title: 'User Interface Development',
           available: true,
           lectures: [
             {title: "HTML"}
@@ -123,7 +123,7 @@
           ]
         }
         , {
-          title: 'Client Side Programming',
+          title: 'Client Side Development',
           available: false,
           lectures: [
             {title: 'Javascript'}
@@ -221,11 +221,11 @@
           ]
         }
         , {
-          title: 'Server Side Programming',
+          title: 'Server Side Development',
           available: false
         }
         , {
-          title: 'Database Programming',
+          title: 'Database Development',
           visible: true,
           available: false,
           lectures: [],
@@ -243,7 +243,7 @@
           ]
         }
         , {
-          title: 'Securing the Application',
+          title: 'Securing',
           visible: true,
           available: false,
           lectures: [],
