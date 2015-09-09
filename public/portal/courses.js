@@ -5,7 +5,7 @@
       modules: [
         {
           visible: false,
-          available: true,
+          available: false,
           title: 'Template Module',
           lectures: [
             {
@@ -124,7 +124,7 @@
         }
         , {
           title: 'Client Side Programming',
-          available: true,
+          available: false,
           lectures: [
             {title: 'Javascript'}
             , {title: 'JQuery'}
