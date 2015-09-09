@@ -14,6 +14,10 @@
         templateUrl: "/portal/module/module.view.html"
         , controller: "ModuleController as controller"
       })
+      // .when("/modules/:index/map", {
+      //   templateUrl: "/portal/map/map.view.html"
+      //   , controller: "MapController as controller"
+      // })
       .when("/modules/:index/:tabName", {
         templateUrl: "/portal/module/module.view.html"
         , controller: "ModuleController as controller"

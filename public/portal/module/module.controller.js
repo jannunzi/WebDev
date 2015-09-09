@@ -18,9 +18,17 @@
     {
       vm.page = "/portal/example/example.view.html";
     }
+    else if(vm.selectedTabName.indexOf("map") >= 0)
+    {
+      vm.page = "/portal/map/map.view.html";
+    }
     else if(vm.selectedTabName == "overview")
     {
       vm.page = "/portal/modules/"+vm.selectedModuleIndex+"/index.html";
+    }
+    else if(vm.selectedTabName == "map")
+    {
+      vm.page = "/portal/modules/"+vm.selectedModuleIndex+"/map/index.html";
     }
     else
     {

@@ -10,6 +10,9 @@
       <li ng-class="{'active' : controller.selectedTabName == 'overview'}">
         <a href="#/modules/{{controller.selectedModuleIndex}}">Overview</a>
       </li>
+      <li ng-class="{'active' : controller.selectedTabName == 'map'}">
+        <a href="#/modules/{{controller.selectedModuleIndex}}/map">Course Map</a>
+      </li>
       <li ng-class="{'active' : controller.selectedTabName == tab.title}"
           ng-repeat="tab in controller.tabs" style="text-transform: capitalize">
         <a href="#/modules/{{controller.selectedModuleIndex}}/{{tab.title}}">{{tab.title | underscore2space}}</a>
