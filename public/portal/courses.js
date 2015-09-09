@@ -33,41 +33,9 @@
           ],
           videos: [],
           slides: []
-          // ,experiments: [
-          //     {
-          //         title: 'Experiment 0'
-          //     },
-          //     {
-          //         title: 'Experiment 1'
-          //     }
-          // ]
         }
-        // ,{
-        //     title: 'Setting up a Development Environment',
-        //     lectures: [
-        //        {title: 'GIT'}
-        //       ,{title: 'Node.js'}
-        //       // ,{title: 'MongoDB'}
-        //     ],
-        //     assignments: [],
-        //     videos: [],
-        //     slides: [],
-        //     examples: []
-        // }
-        // ,{
-        //     title: 'Designing the Front End',
-        //     lectures: [
-        //        { title: "HTML" }
-        //       ,{ title: "CSS" }
-        //       ,{ title: "Bootstrap" }
-        //     ],
-        //     assignments: [],
-        //     videos: [],
-        //     slides: [],
-        //     examples: []
-        // }
         ,{
-          title: 'Development Environment Setup',
+          title: 'Development Environment',
           available: true,
           lectures: [
             {title: 'Node.js'},
@@ -76,27 +44,9 @@
           assignments: [
             {title: 'Environment'}
           ]
-          // videos: [
-          //   {title: 'Video 1'}
-          //   , {title: 'Video 2'}
-          //   , {title: 'Video 3'}
-          // ],
-          // slides: [
-          //   {title: 'Slide 1'}
-          //   , {title: 'Slide 2'}
-          //   , {title: 'Slide 3'}
-          // ],
-          // examples: [
-          //   {title: 'Example 1'}
-          //   , {title: 'Example 2'}
-          // ]
-          // ,experiments: [
-          //     {title: 'Experiment 1'}
-          //   , {title: 'Experiment 2'}
-          // ]
         }
         , {
-          title: 'Designing the Front End',
+          title: 'Designing the User Interface',
           available: true,
           lectures: [
             {title: "HTML"}
@@ -108,16 +58,6 @@
           assignments: [
               {title: 'User Interface Development'}
           ],
-          // videos: [
-          //   {title: 'Video 1'}
-          //   , {title: 'Video 2'}
-          //   , {title: 'Video 3'}
-          // ],
-          // slides: [
-          //   {title: 'Slide 1'}
-          //   , {title: 'Slide 2'}
-          //   , {title: 'Slide 3'}
-          // ],
           css_examples: [
               { title: "Box",
                 base: "/experiments/css/",

@@ -53,6 +53,9 @@
                 <a ng-disabled="true" ng-if="controller.course.modules[$index].available==false">{{module.title}}</a>
             </li>
           </ul>
+          
+          <hr/>
+          
           <ul class="nav nav-sidebar">
             <li ng-class="{active : controller.selectedModuleIndex == 'syllabus'}">
               <a href="#/course/syllabus"
