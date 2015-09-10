@@ -38,8 +38,9 @@
           title: 'Development Environment',
           available: true,
           lectures: [
-            {title: 'Node.js'},
-            {title: 'GIT'}
+              {title: 'Node.js'}
+            , {title: 'GIT'}
+            , {title: 'OpenShift'}
           ],
           assignments: [
             {title: 'Environment'}
