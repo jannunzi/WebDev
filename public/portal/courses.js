@@ -5,6 +5,7 @@
       modules: [
         {
           visible: false,
+          available: false,
           title: 'Template Module',
           lectures: [
             {
@@ -32,69 +33,22 @@
           ],
           videos: [],
           slides: []
-          // ,experiments: [
-          //     {
-          //         title: 'Experiment 0'
-          //     },
-          //     {
-          //         title: 'Experiment 1'
-          //     }
-          // ]
         }
-        // ,{
-        //     title: 'Setting up a Development Environment',
-        //     lectures: [
-        //        {title: 'GIT'}
-        //       ,{title: 'Node.js'}
-        //       // ,{title: 'MongoDB'}
-        //     ],
-        //     assignments: [],
-        //     videos: [],
-        //     slides: [],
-        //     examples: []
-        // }
-        // ,{
-        //     title: 'Designing the Front End',
-        //     lectures: [
-        //        { title: "HTML" }
-        //       ,{ title: "CSS" }
-        //       ,{ title: "Bootstrap" }
-        //     ],
-        //     assignments: [],
-        //     videos: [],
-        //     slides: [],
-        //     examples: []
-        // }
         ,{
-          title: 'Setting up the Development Environment',
+          title: 'Development Environment',
+          available: true,
           lectures: [
-            {title: 'Node.js'},
-            {title: 'GIT'}
+              {title: 'Node.js'}
+            , {title: 'GIT'}
+            , {title: 'OpenShift'}
           ],
           assignments: [
             {title: 'Environment'}
           ]
-          // videos: [
-          //   {title: 'Video 1'}
-          //   , {title: 'Video 2'}
-          //   , {title: 'Video 3'}
-          // ],
-          // slides: [
-          //   {title: 'Slide 1'}
-          //   , {title: 'Slide 2'}
-          //   , {title: 'Slide 3'}
-          // ],
-          // examples: [
-          //   {title: 'Example 1'}
-          //   , {title: 'Example 2'}
-          // ]
-          // ,experiments: [
-          //     {title: 'Experiment 1'}
-          //   , {title: 'Experiment 2'}
-          // ]
         }
         , {
-          title: 'Designing the Front End',
+          title: 'User Interface Development',
+          available: true,
           lectures: [
             {title: "HTML"}
             , {title: "CSS"}
@@ -103,18 +57,8 @@
             , {title: "Bootstrap"}
           ],
           assignments: [
-              {title: 'Designing the Front End'}
+              {title: 'User Interface Development'}
           ],
-          // videos: [
-          //   {title: 'Video 1'}
-          //   , {title: 'Video 2'}
-          //   , {title: 'Video 3'}
-          // ],
-          // slides: [
-          //   {title: 'Slide 1'}
-          //   , {title: 'Slide 2'}
-          //   , {title: 'Slide 3'}
-          // ],
           css_examples: [
               { title: "Box",
                 base: "/experiments/css/",
@@ -180,7 +124,8 @@
           ]
         }
         , {
-          title: 'Client Side Programming',
+          title: 'Client Side Development',
+          available: false,
           lectures: [
             {title: 'Javascript'}
             , {title: 'JQuery'}
@@ -277,8 +222,36 @@
           ]
         }
         , {
-          title: 'Data Modeling, Persistence and Integration',
-          visible: false,
+          title: 'Server Side Development',
+          available: false
+        }
+        , {
+          title: 'Database Development',
+          visible: true,
+          available: false,
+          lectures: [
+              {title: 'Introduction to MongoDB'}
+            , {title: 'Introduction to Mongoose'}
+            , {title: 'Read Data from MongoDB'}
+			, {title: 'Update Data in MongoDB'}
+          ],
+          assignments: [],
+          videos: [],
+          slides: [],
+          examples: [
+            {
+              title: "",
+              src: "",
+              dependencies: {
+                "":""
+              }              
+            }
+          ]
+        }
+        , {
+          title: 'Securing',
+          visible: true,
+          available: false,
           lectures: [],
           assignments: [],
           videos: [],
@@ -294,25 +267,9 @@
           ]
         }
         , {
-          title: 'Security',
-          visible: false,
-          lectures: [],
-          assignments: [],
-          videos: [],
-          slides: [],
-          examples: [
-            {
-              title: "",
-              src: "",
-              dependencies: {
-                "":""
-              }              
-            }
-          ]
-        }
-        , {
-          title: 'Server Side Programming',
-          visible: false,
+          title: 'Dynamic Server Pages',
+          visible: true,
+          available: false,
           lectures: [
               {title: 'Creating a Node.js Server'}
             , {title: 'Web Services'}

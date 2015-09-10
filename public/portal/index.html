@@ -47,23 +47,42 @@
           <ul class="nav nav-sidebar">
             <!-- generates left hand side links to modules -->
             <li ng-repeat="module in controller.course.modules"
-                ng-class="{active : controller.selectedModuleIndex == $index}"
+                ng-class="{'active' : controller.selectedModuleIndex == $index, 'disabled' : controller.course.modules[$index].available==false}"
                 ng-hide="controller.course.modules[$index].visible==false"
                 ng-click="controller.selectedModuleIndex = $index">
                 <a href="#/modules/{{$index}}">{{$index}}. {{module.title}}</a>
             </li>
           </ul>
-          <hr/>
+          
           <ul class="nav nav-sidebar">
-            <li ng-class="{active : controller.selectedModuleIndex == 'syllabsus'}">
+            <li ng-class="{active : controller.selectedModuleIndex == 'syllabsus'}"
+                ng-click="controller.selectModule($index)">
+                <a href="#/modules/{{$index}}" ng-if="controller.course.modules[$index].available==true">{{module.title}}</a>
+                <a ng-disabled="true" ng-if="controller.course.modules[$index].available==false">{{module.title}}</a>
+            </li>
+          </ul>
+          
+          <hr/>
+          
+          <ul class="nav nav-sidebar">
+            <li
+              ng-class="{active : controller.selectedModuleIndex == 'syllabus'}">
               <a href="#/course/syllabus"
                  ng-click="controller.selectedModuleIndex = 'syllabus'">
-                Syllabus</a>
+                 Syllabus
+              </a>
             </li>
-            <li ng-class="{active : controller.selectedModuleIndex == 'agenda'}">
+            <li
+              ng-class="{active : controller.selectedModuleIndex == 'agenda'}">
               <a href="#/course/agenda"
                  ng-click="controller.selectedModuleIndex = 'agenda'">
-                Agenda</a>
+                 Agenda
+              </a>
+            </li>
+            <li>
+              <a href="https://piazza.com/class/iec2tpd42u4c" target="_blank">
+                 Piazza
+              </a>
             </li>
           </ul>
         </div>
@@ -100,5 +119,6 @@
     <script src="navController.js"></script>
     <script src="module/module.controller.js"></script>
     <script src="example/example.controller.js"></script>
+    <script src="map/map.controller.js"></script>
   </body>
 </html>
