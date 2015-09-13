@@ -4,32 +4,24 @@
       title: 'CS5610',
       modules: [
         {
-          visible: false,
-          available: false,
-          title: 'Template Module',
+          visible: true,
+          available: true,
+          title: 'Fall 2015',
           lectures: [
-            {
-                title: 'Lectura 0'
-            },
-            {
-                title: 'Lectura 1'
-            },
-            {
-                title: 'Lectura 2'
-            }
-          ],
-          assignments: [
-              {
-                  title: 'Tarea 0'
-              },
-              {
-                  title: 'Tarea 1'
-              }
-          ],
-          examples: [
-              {
-                  title: 'Ejemplo 0'
-              }
+            {title: 'Week 1'},
+            {title: 'Week 2'},
+            {title: 'Week 3'},
+            {title: 'Week 4'},
+            {title: 'Week 5'},
+            {title: 'Week 6'},
+            {title: 'Week 7'},
+            {title: 'Week 8'},
+            {title: 'Week 9'},
+            {title: 'Week 10'},
+            {title: 'Week 11'},
+            {title: 'Week 12'},
+            {title: 'Week 13'},
+            {title: 'Week 14'}
           ],
           videos: [],
           slides: []
