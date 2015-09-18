@@ -252,7 +252,16 @@
           title: 'Securing',
           visible: true,
           available: false,
-          lectures: [],
+          lectures: [
+            {title: "Ng-Routing"}
+            , {title: "Register"}
+            , {title: "Profile"}
+            , {title: "Navigation"}
+            , {title: "Update User"}
+			, {title: "Login/Logout"}
+            , {title: "Admin Page"}
+            , {title: "Admin Tasks"}
+          ],
           assignments: [],
           videos: [],
           slides: [],
