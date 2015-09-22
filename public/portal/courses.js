@@ -49,7 +49,8 @@
             , {title: "Bootstrap"}
           ],
           assignments: [
-              {title: 'User Interface Development'}
+              {title: 'User Interface Development'},
+              {title: 'Project Proposal'}
           ],
           css_examples: [
               { title: "Box",
