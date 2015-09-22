@@ -1,0 +1,205 @@
+<style>
+  
+  .container {
+      margin: auto;    
+  }
+  .col-6 {
+    float: left;
+  }
+  .col-3 {
+    float: left;
+  }
+  .col-1 {
+    float: left;
+  }
+  .col-9 {
+    float: left;
+  }
+  .row {
+    clear: both;
+  }
+  .show-lg {
+    display: none;
+  }
+  .show-md {
+    display: none;
+  }
+  .show-sm {
+    display: none;
+  }
+  .show-xs {
+    display: block;
+  }
+  .hide-lg {      display: block;    }
+  .hide-md {      display: block;    }
+  .hide-sm {      display: block;    }
+  .hide-xs {      display: none;    }
+  
+  /* the following is true if the real width is larger than 1200 */
+  @media screen and (min-width: 1000px)
+  {
+    .container {
+      width: 900px;
+    }
+    .col-6 {
+      width: 450px;
+    }
+    .col-3 {
+      width: 225px;
+    }
+    .col-1 {
+      width: 75px;
+    }
+    .col-9 {
+      width: 825px;
+    }
+    .show-lg {
+      display: block;
+    }
+    .show-md {
+      display: none;
+    }
+    .show-sm {
+      display: none;
+    }
+    .show-xs {
+      display: none;
+    }
+    .hide-lg {
+      display: none;
+    }
+    .hide-md {
+      display: block;
+    }
+    .hide-sm {
+      display: block;
+    }
+    .hide-xs {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 800px) and (max-width: 1000px)
+  {
+    .container {
+      width: 700px;
+    }
+    .col-6 {
+      width: 350px;
+    }
+    .col-3 {
+      width: 175px;
+    }
+    .col-1 {
+      width: 58px;
+    }
+    .col-9 {
+      width: 641px;
+    }
+    .show-lg {
+      display: none;
+    }
+    .show-md {
+      display: block;
+    }
+    .show-sm {
+      display: none;
+    }
+    .show-xs {
+      display: none;
+    }
+    .hide-lg {      display: block;    }
+    .hide-md {      display: none;    }
+    .hide-sm {      display: block;    }
+    .hide-xs {      display: block;    }
+  }
+  @media screen and (min-width: 600px) and (max-width: 800px)
+  {
+    .container {
+      width: 500px;
+    }
+    .col-6 {
+      width: 250px;
+    }
+    .col-3 {
+      width: 125px;
+    }
+    .col-1 {
+      width: 41px;
+    }
+    .col-9 {
+      width: 458px;
+    }
+    .show-lg {
+      display: none;
+    }
+    .show-md {
+      display: none;
+    }
+    .show-sm {
+      display: block;
+    }
+    .show-xs {
+      display: none;
+    }
+    .hide-lg {      display: block;    }
+    .hide-md {      display: block;    }
+    .hide-sm {      display: none;    }
+    .hide-xs {      display: block;    }
+  }
+</style>
+
+<div class="container">
+  <h1 class="show-lg">Large</h1>
+  <h1 class="show-md">Medium</h1>
+  <h1 class="show-sm">Small</h1>
+  <h1 class="show-xs">Extra Small</h1>
+  <div class="row">
+    <div class="col-1 hide-xs">
+      <nav>
+        <a href="#">Home</a><br/>
+        <a href="#">Profile</a><br/>
+        <a href="#">Admin</a><br/>
+        <a href="#">Forms</a><br/>
+        <a href="#">Pages</a><br/>
+        <a href="#">Sites</a><br/>
+      </nav>
+    </div>
+    <div class="col-1 show-xs">
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Admin</a>
+        <a href="#">Forms</a>
+        <a href="#">Pages</a>
+        <a href="#">Sites</a>
+      </nav>
+    </div>
+    <div class="col-9">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h3>Col 3</h3>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+    </div>
+    <div class="col-3">
+      <h3>Col 3</h3>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+    </div>
+    <div class="col-6">
+      <h3>Col 6</h3>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h3>Col 6</h3>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div class="col-6">
+      <h3>Col 6</h3>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+  </div>
+</div>
