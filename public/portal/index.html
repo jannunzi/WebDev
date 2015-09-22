@@ -43,11 +43,19 @@
          ng-controller="NavController as controller">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+        <h4>Modules:</h4>
           <ul class="nav nav-sidebar">
             <!-- generates left hand side links to modules -->
             <li ng-repeat="module in controller.course.modules"
                 ng-class="{'active' : controller.selectedModuleIndex == $index, 'disabled' : controller.course.modules[$index].available==false}"
                 ng-hide="controller.course.modules[$index].visible==false"
+                ng-click="controller.selectedModuleIndex = $index">
+                <a href="#/modules/{{$index}}">{{$index}}. {{module.title}}</a>
+            </li>
+          </ul>
+          
+          <ul class="nav nav-sidebar">
+            <li ng-class="{active : controller.selectedModuleIndex == 'syllabsus'}"
                 ng-click="controller.selectModule($index)">
                 <a href="#/modules/{{$index}}" ng-if="controller.course.modules[$index].available==true">{{module.title}}</a>
                 <a ng-disabled="true" ng-if="controller.course.modules[$index].available==false">{{module.title}}</a>
