@@ -12,124 +12,299 @@
     <div class="container">
       
       <h1>Bootstrap Tables</h1>
-      
-      <table class="table table-striped table-bordered table-hover table-condensed">
+
+      <h2>Striped Tables</h2>
+
+      <table class="table table-striped">
         <thead>
           <tr>
-            <th>First</th>
-            <th>Last</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Start Date</th>
+            <th>Role</th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="active">
+          <tr>
             <td>Alice</td>
             <td>Wonderland</td>
+            <td style="text-align: center">12/23/2013</td>
+            <td>User</td>
+            <td>
+              <a href="#">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
           </tr>
-          <tr class="success">
+          <tr>
             <td>Bob</td>
             <td>Marley</td>
+            <td style="text-align: center">11/22/2013</td>
+            <td>Admin</td>
+            <td>
+              <a href="#">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
           </tr>
-          <tr class="danger">
-            <td>Charley</td>
-            <td>Garcia</td>
+          <tr>
+            <td>Charlie</td>
+            <td>Steele</td>
+            <td style="text-align: center">10/21/2013</td>
+            <td>Faculty</td>
+            <td>
+              <a href="#">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
           </tr>
-          <tr class="warning">
-            <td>Charley</td>
-            <td>Garcia</td>
-          </tr>
-          <tr class="info">
-            <td>Charley</td>
-            <td>Garcia</td>
+          <tr>
+            <td>Danny</td>
+            <td>Boyle</td>
+            <td style="text-align: center">9/20/2013</td>
+            <td>Student</td>
+            <td>
+              <a href="#">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
           </tr>
         </tbody>
       </table>
-      
+
+      <h2>Forms in Tables</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Start Date</th>
+            <th>Role</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <td><input class="form-control" type="text" name="firstName" placeholder="First Name"/></td>
+            <td><input class="form-control" type="text" name="lastName" placeholder="Last Name"/></td>
+            <td><input class="form-control" type="date" name="startDate" style="text-align: center"/></td>
+            <td><select class="form-control" type="text" name="role">
+                  <option value="USER">User</option>
+                  <option value="ADMIN">Admin</option>
+                  <option value="STUDENT">Student</option>
+                  <option value="FACULTY">Faculty</option>
+                </select>
+            </td>
+            <td>
+              <a href="#" class="btn btn-success">
+                <scan class="glyphicon glyphicon-ok"></scan>
+              </a>
+              <a href="#" class="btn btn-primary">
+                <scan class="glyphicon glyphicon-plus"></scan>
+              </a>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alice</td>
+            <td>Wonderland</td>
+            <td style="text-align: center">12/23/2013</td>
+            <td>User</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bob</td>
+            <td>Marley</td>
+            <td style="text-align: center">11/22/2013</td>
+            <td>Admin</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Charlie</td>
+            <td>Steele</td>
+            <td style="text-align: center">10/21/2013</td>
+            <td>Faculty</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Danny</td>
+            <td>Boyle</td>
+            <td style="text-align: center">9/20/2013</td>
+            <td>Student</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <h2>Responsive Tables</h2>
-      
+
       <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped">
           <thead>
-            <tr>
-              <th>Col 1</th>
-              <th>Col 2</th>
-              <th>Col 3</th>
-              <th>Col 4</th>
-              <th>Col 5</th>
-              <th>Col 6</th>
-              <th>Col 7</th>              <th>Col 1</th>
-              <th>Col 2</th>
-              <th>Col 3</th>
-              <th>Col 4</th>
-              <th>Col 5</th>
-              <th>Col 6</th>
-              <th>Col 7</th>
-            </tr>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Start Date</th>
+            <th>Role</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <td><input class="form-control" type="text" name="firstName" placeholder="First Name"/></td>
+            <td><input class="form-control" type="text" name="lastName" placeholder="Last Name"/></td>
+            <td><input class="form-control" type="date" name="startDate" style="text-align: center"/></td>
+            <td><select class="form-control" type="text" name="role">
+              <option value="USER">User</option>
+              <option value="ADMIN">Admin</option>
+              <option value="STUDENT">Student</option>
+              <option value="FACULTY">Faculty</option>
+            </select>
+            </td>
+            <td style="white-space: nowrap">
+              <a href="#" class="btn btn-success">
+                <scan class="glyphicon glyphicon-ok"></scan>
+              </a>
+              <a href="#" class="btn btn-primary">
+                <scan class="glyphicon glyphicon-plus"></scan>
+              </a>
+            </td>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>COl 1</td>
-              <td>COl 2</td>
-              <td>COl 3</td>
-              <td>COl 4</td>
-              <td>COl 5</td>
-              <td>COl 6</td>
-              <td>COl 7</td>
-              <th>Col 1</th>
-              <th>Col 2</th>
-              <th>Col 3</th>
-              <th>Col 4</th>
-              <th>Col 5</th>
-              <th>Col 6</th>
-              <th>Col 7</th>            </tr>
-            <tr>
-              <td>COl 1</td>
-              <td>COl 2</td>
-              <td>COl 3</td>
-              <td>COl 4</td>
-              <td>COl 5</td>
-              <td>COl 6</td>
-              <td>COl 7</td>
-            </tr>
-            <tr>
-              <td>COl 1</td>
-              <td>COl 2</td>
-              <td>COl 3</td>
-              <td>COl 4</td>
-              <td>COl 5</td>
-              <td>COl 6</td>
-              <td>COl 7</td>
-            </tr>
-            <tr>
-              <td>COl 1</td>
-              <td>COl 2</td>
-              <td>COl 3</td>
-              <td>COl 4</td>
-              <td>COl 5</td>
-              <td>COl 6</td>
-              <td>COl 7</td>
-            </tr>
-            <tr>
-              <td>COl 1</td>
-              <td>COl 2</td>
-              <td>COl 3</td>
-              <td>COl 4</td>
-              <td>COl 5</td>
-              <td>COl 6</td>
-              <td>COl 7</td>
-            </tr>
-            <tr>
-              <td>COl 1</td>
-              <td>COl 2</td>
-              <td>COl 3</td>
-              <td>COl 4</td>
-              <td>COl 5</td>
-              <td>COl 6</td>
-              <td>COl 7</td>
-            </tr>
+          <tr>
+            <td>Alice</td>
+            <td>Wonderland</td>
+            <td style="text-align: center">12/23/2013</td>
+            <td>User</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bob</td>
+            <td>Marley</td>
+            <td style="text-align: center">11/22/2013</td>
+            <td>Admin</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Charlie</td>
+            <td>Steele</td>
+            <td style="text-align: center">10/21/2013</td>
+            <td>Faculty</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Danny</td>
+            <td>Boyle</td>
+            <td style="text-align: center">9/20/2013</td>
+            <td>Student</td>
+            <td>
+              <a href="#" class="btn btn-warning">
+                <scan class="glyphicon glyphicon-pencil"></scan>
+              </a>
+              <a href="#" class="btn btn-danger">
+                <scan class="glyphicon glyphicon-remove"></scan>
+              </a>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
-      
+
+
+      <h2>Colored &amp; Hover Rows</h2>
+
+      <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+        <tr>
+          <th>First</th>
+          <th>Last</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="active">
+          <td>Alice</td>
+          <td>Wonderland</td>
+        </tr>
+        <tr class="success">
+          <td>Bob</td>
+          <td>Marley</td>
+        </tr>
+        <tr class="danger">
+          <td>Charley</td>
+          <td>Garcia</td>
+        </tr>
+        <tr class="warning">
+          <td>Charley</td>
+          <td>Garcia</td>
+        </tr>
+        <tr class="info">
+          <td>Charley</td>
+          <td>Garcia</td>
+        </tr>
+        </tbody>
+      </table>
+
+
     </div>
   </body>
 </html>

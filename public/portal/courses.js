@@ -117,12 +117,15 @@
               , { title: "Forms",
                   base: "/experiments/bootstrap/",
                   src: "forms.html" }
-            , { title: "Jumbotron",
-                base: "/experiments/bootstrap/",
-                src: "jumbotron.html" }
-            , { title: "Tables",
-                base: "/experiments/bootstrap/",
-                src: "tables.html" }
+              , { title: "Tables",
+                  base: "/experiments/bootstrap/",
+                  src: "tables.html" }
+              , { title: "Jumbotron",
+                  base: "/experiments/bootstrap/",
+                  src: "jumbotron.html" }
+              , { title: "Dashboard",
+                  base: "/experiments/bootstrap/",
+                  src: "dashboard.html" }
             , { title: "Blog",
                 base: "/experiments/bootstrap/",
                 src: "webdev.html" }
