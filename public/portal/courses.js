@@ -102,9 +102,21 @@
                 src: "grid.html" }
           ],
           bootstrap_examples : [
-              { title: "Forms",
-                base: "/experiments/bootstrap/",
-                src: "forms.html" }
+              { title: "Grid Lg",
+                  base: "/experiments/bootstrap/",
+                  src: "gridLg.html" }
+              , { title: "Grid Md",
+                  base: "/experiments/bootstrap/",
+                  src: "gridMd.html" }
+              , { title: "Grid Sm",
+                  base: "/experiments/bootstrap/",
+                  src: "gridSm.html" }
+              , { title: "Grid Xs",
+                  base: "/experiments/bootstrap/",
+                  src: "gridXs.html" }
+              , { title: "Forms",
+                  base: "/experiments/bootstrap/",
+                  src: "forms.html" }
             , { title: "Jumbotron",
                 base: "/experiments/bootstrap/",
                 src: "jumbotron.html" }
