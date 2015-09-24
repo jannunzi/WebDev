@@ -120,6 +120,9 @@
               , { title: "Tables",
                   base: "/experiments/bootstrap/",
                   src: "tables.html" }
+              , { title: "Tabs",
+                  base: "/experiments/bootstrap/",
+                  src: "tabs.html" }
               , { title: "Jumbotron",
                   base: "/experiments/bootstrap/",
                   src: "jumbotron.html" }
