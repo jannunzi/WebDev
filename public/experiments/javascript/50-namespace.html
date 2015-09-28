@@ -3,4 +3,17 @@
 <p id="message">
 </p>
 
-<script src="50-module.js"></script>
+<script src="50-namespace.js"></script>
+
+<p>
+    Use modules to mitigate namespace collision. The script below declares a namespace by using the
+    IIFE (Immediately Invoked Function Expression) pattern. The namespace does not populate the
+    global namespace.
+</p>
+
+<pre>
+(function()
+{
+  var p = document.getElementById("message");
+  p.innerHTML = "Hello World";
+})();</pre>

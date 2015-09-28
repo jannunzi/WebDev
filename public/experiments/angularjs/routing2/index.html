@@ -10,6 +10,7 @@
     <script src="navController.js"></script>
     <script src="profile.js"></script>
     <script src="userService.js"></script>
+    <script src="userController.js"></script>
   </head>
   <body>
     <div class="container">
@@ -20,7 +21,6 @@
         <li ng-class="{'active': selectedTab == 'profile'}"><a ng-click="selectedTab = 'profile'" href="#/profile">Profile</a></li>
         <li ng-class="{'active': selectedTab == 'users'}">  <a ng-click="selectedTab = 'users'"   href="#/users">Users</a></li>
       </ul>
-      
       <div ng-view>
       </div>
       

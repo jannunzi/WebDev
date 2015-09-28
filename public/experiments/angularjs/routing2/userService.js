@@ -7,9 +7,9 @@
   function userService()
   {
     var users = [
-      {username: "qwe"},
-      {username: "wer"},
-      {username: "ert"},
+      {username: "Alex"},
+      {username: "Bob"},
+      {username: "Charlie"},
     ];
     
     var service = {

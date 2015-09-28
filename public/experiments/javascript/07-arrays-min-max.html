@@ -16,3 +16,33 @@
   alert(min);
   alert(max);
 </script>
+
+<h1>Arrays</h1>
+
+<p>
+  Use arrays to represent a collection of data such as
+  a collection of integers or collection of objects.
+  The script below defines a collection of integers and
+  then iterates over the array looking for the maximum
+  and minimum value.
+</p>
+
+<pre>
+&lt;script&gt;
+  var values = [12,32,34,54,56,76,78,98,90,100];
+  var min = 200;
+  var max = -1;
+  for(var i=0; i&lt;values.length; i++)
+  {
+    if(values[i] &lt; min)
+    {
+      min = values[i];
+    }
+    if(values[i] &gt; max)
+    {
+      max = values[i];
+    }
+  }
+  alert(min);
+  alert(max);
+&lt;/script&gt;</pre>

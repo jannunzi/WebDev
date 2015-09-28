@@ -136,9 +136,9 @@
         }
         , {
           title: 'Client Side Development',
-          available: false,
+          available: true,
           lectures: [
-            {title: 'Javascript'}
+            {title: 'JavaScript'}
             , {title: 'JQuery'}
           ],
           assignments: [],
@@ -230,6 +230,76 @@
               src: "120-accordions.html",
               dependencies: {}
             }
+          ],
+          AngularJS_examples: [
+              {
+                  title: "Hello",
+                  base: "/experiments/angularjs/hello/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js"
+                  }
+              },
+              {
+                  title: "NgRepeat",
+                  base: "/experiments/angularjs/ngRepeat/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js",
+                      "example1.controller.js":"example1.controller.js",
+                      "example2.controller.js":"example2.controller.js"
+                  }
+              },
+              {
+                  title: "Courses 1",
+                  base: "/experiments/angularjs/courses2/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js",
+                      "config.js":"config.js",
+                      "courseList.view.html":"courseList/courseList.view.html",
+                      "courseList.controller.js":"courseList/courseList.controller.js",
+                      "courseOverview.view.html":"courseOverview/courseOverview.view.html",
+                      "courseOverview.controller.js":"courseOverview/courseOverview.controller.js"
+                  }
+              },
+              {
+                  title: "Courses 2",
+                  base: "/experiments/angularjs/courses1/",
+                  src: "courses.html",
+                  dependencies: {
+                      "main.js":"main.js",
+                      "courses.js":"courses.js"
+                  }
+              },
+              {
+                  title: "Routing 1",
+                  base: "/experiments/angularjs/routing1/",
+                  src: "index.html",
+                  dependencies: {
+                      "index.html":"index.html",
+                      "app.js":"app.js",
+                      "config.js":"config.js",
+                      "courses.view.html":"courses/courses.view.html"
+                  }
+              },
+              {
+                  title: "Routing 2",
+                  base: "/experiments/angularjs/routing2/",
+                  src: "index.html",
+                  dependencies: {
+                      "index.html":"index.html",
+                      "app.js":"app.js",
+                      "config.js":"config.js",
+                      "home.html":"home.html",
+                      "navController.js":"navController.js",
+                      "profile.html":"profile.html",
+                      "profile.js":"profile.js",
+                      "users.html":"userController.js",
+                      "userController.js":"userController.js",
+                      "userService.js":"userService.js"
+                  }
+              }
           ]
         }
         , {

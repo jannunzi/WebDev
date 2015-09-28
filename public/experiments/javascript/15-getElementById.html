@@ -18,3 +18,38 @@ A = <input id="a"/><br/>
 B = <input id="b"/><button onclick="add()">Add</button><br/>
 C = <input id="c"/>
 
+<h1>Get Element By Id</h1>
+
+<p>
+  Use method <code>document.getElementById()</code> to retrieve HTML elements by their unique ID.
+  Below there are HTML elements with IDs <code>a</code>, <code>b</code>, and <code>c</code>.
+</p>
+
+<pre>
+A = &lt;input id=&quot;a&quot;/&gt;&lt;br/&gt;
+B = &lt;input id=&quot;b&quot;/&gt;&lt;button onclick=&quot;add()&quot;&gt;Add&lt;/button&gt;&lt;br/&gt;
+C = &lt;input id=&quot;c&quot;/&gt;</pre>
+
+<p>
+  The script below gets a hold of the input fields using their IDs and then retrieves their
+  value attribute. The values are strings so we convert them to integers using the <code>parseInt()</code>
+  function. We then add a and b to get the value of c. We use <code>getElementById()</code> again to set
+  the value of input element c.
+</p>
+
+<pre>
+&lt;script&gt;
+  function add()
+  {
+    var a = document.getElementById(&quot;a&quot;).value;
+    var b = document.getElementById(&quot;b&quot;).value;
+
+    a = parseInt(a);
+    b = parseInt(b);
+
+    var c = a + b;
+    document.getElementById(&quot;c&quot;).value = c;
+
+    return false;
+  }
+&lt;/script&gt;</pre>

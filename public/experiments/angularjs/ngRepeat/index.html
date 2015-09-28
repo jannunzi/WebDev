@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="NgRepeatApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="example1.controller.js"></script>
+    <script src="example2.controller.js"></script>
+
+    <title>Ng Repeat</title>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Ng Repeat Examples</h1>
+
+        <h2>Repeat Over a String Array</h2>
+        <div ng-controller="Example1Controller as controller" class="row">
+            <div class="col-md-5">
+                <ul>
+                    <li ng-repeat="courseName in controller.courseNames">
+                        {{courseName}}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-7">
+<pre>
+&lt;ul&gt;
+    &lt;li ng-repeat=&quot;courseName in controller.courseNames&quot;&gt;
+        <code ng-non-bindable>{{courseName}}</code>
+    &lt;/li&gt;
+&lt;/ul&gt;</pre>
+<pre>
+function Example1Controller() {
+    var vm = this;
+    vm.courseNames = ["Course 1", "Course 2", "Course 3"];
+}</pre>
+            </div>
+        </div>
+
+        <h2>Iterate Over Object</h2>
+        <div ng-controller="Example2Controller as controller" class="col">
+            <div class="col-md-5">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Course Title</th>
+                            <th>Seats Available</th>
+                            <th>Start Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="course in controller.courses">
+                            <td>{{course.title}}</td>
+                            <td>{{course.seats}}</td>
+                            <td>{{course.start | date}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-7">
+<pre>
+&lt;tr ng-repeat=&quot;course in controller.courses&quot;&gt;
+    &lt;td&gt;{{course.title}}&lt;/td&gt;
+    &lt;td&gt;{{course.seats}}&lt;/td&gt;
+    &lt;td&gt;{{course.start | date}}&lt;/td&gt;
+&lt;/tr&gt;</pre>
+<pre>
+function Example2Controller() {
+  var vm = this;
+  vm.courses = [
+    {title: "Java 101",  seats: 12, start: new Date()},
+    {title: "C# 101",    seats: 23, start: new Date(2015,8,5)},
+    {title: "Node.js",   seats: 32, start: new Date(2015,9,7)},
+    {title: "AngularJS", seats: 21, start: new Date(2016,0,15)}
+  ];
+}</pre>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

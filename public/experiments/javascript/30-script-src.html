@@ -3,5 +3,22 @@
 
 <h2 id="message"></h2>
 
+<p>
+    Change the content of HTML using the innerHTML attribute. Consider the HTML below
+</p>
+
 <script src="30.js">
 </script>
+
+<pre>
+&lt;h2 id=&quot;message&quot;&gt;&lt;/h2&gt;
+</pre>
+
+<p>
+    The script below modifies the HTML content using getElementById() and then changing
+    the innerHTML attribute.
+</p>
+
+<pre>
+var message = document.getElementById("message");
+message.innerHTML = "Hello";</pre>

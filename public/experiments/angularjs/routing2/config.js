@@ -13,7 +13,8 @@
       })
       .when("/users",
       {
-        templateUrl: "users.html"
+        templateUrl: "users.html",
+        controller: "UserController"
       })
       .when("/profile/:id",
       {

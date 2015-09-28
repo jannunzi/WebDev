@@ -1,0 +1,12 @@
+<h1>Users</h1>
+
+<h2>Users Scope</h2>
+{{users}}
+
+<h2>Ng-Repeat</h2>
+
+<ul>
+    <li ng-repeat="user in users">
+        <a href="#/profile/{{$index}}">{{user.username}}</a>
+    </li>
+</ul>
