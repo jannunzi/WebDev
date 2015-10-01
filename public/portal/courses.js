@@ -270,12 +270,36 @@
               src: "110-datepicker.html",
               dependencies: {}
             }
-            ,{
-              title: "Accordions",
-              base: "/experiments/jqueryui/",
-              src: "120-accordions.html",
-              dependencies: {}
-            }
+              ,{
+                  title: "Accordions",
+                  base: "/experiments/jqueryui/",
+                  src: "120-accordions.html",
+                  dependencies: {}
+              }
+              ,{
+                  title: "Sortable",
+                  base: "/experiments/jqueryui/",
+                  src: "150-sortable.html",
+                  dependencies: {}
+              }
+              ,{
+                  title: "Resizable",
+                  base: "/experiments/jqueryui/",
+                  src: "200-resizable.html",
+                  dependencies: {}
+              }
+              ,{
+                  title: "Dialog",
+                  base: "/experiments/jqueryui/",
+                  src: "250-dialog.html",
+                  dependencies: {}
+              }
+              ,{
+                  title: "Autocomplete",
+                  base: "/experiments/jqueryui/",
+                  src: "300-autocomplete.html",
+                  dependencies: {}
+              }
           ],
           AngularJS_examples: [
               {
