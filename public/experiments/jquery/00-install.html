@@ -11,7 +11,9 @@
 <h1>Install jQuery</h1>
 
 <p>
-  Download from <a href="jQuery.com/download">jquery.com/download</a>.
+  Download from <a href="jQuery.com/download">jquery.com/download</a> or
+  link to the CDN
+  <a href="https://code.jquery.com/jquery-1.11.3.min.js">https://code.jquery.com/jquery-1.11.3.min.js</a>.
 </p>
 
 <h2>1.x</h2>
@@ -26,4 +28,23 @@
   2.x same as 1.x but does not support 6, 7, or 8
 </p>
 
-<script src=""></script>
+<h2>Run jQuery Program On Document Load</h2>
+
+<p>
+  jQuery can manipulate the DOM, but it needs to wait for the browser
+  to parse the HTML text and convert it into a DOM. Use the <code>jQuery()</code>
+  or <code>$()</code> function to be notified when the document is
+  done loading. Pass a function that will be invoked when the DOM
+  is ready. The code below uses the <code>$()</code> function to
+  invoke function <code>main()</code> when the DOM is ready. The
+  function can be called anything you want, e.g., init(), start().
+</p>
+
+<pre>
+  $(main);
+
+  function main()
+  {
+    ... put your jQuery program here ...
+  }
+</pre>

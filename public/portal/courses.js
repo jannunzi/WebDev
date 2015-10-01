@@ -211,6 +211,52 @@
                 }
               }
           ],
+          jQuery_examples: [
+              {
+                  title: "Install",
+                  base: "/experiments/jquery/",
+                  src: "00-install.html",
+                  dependencies: {}
+              }
+              ,{
+                  title: "Main",
+                  base: "/experiments/jquery/",
+                  src: "05-main.html",
+                  dependencies: {
+                      "05-main.js":"05-main.js"
+                  }
+              }
+              ,{
+                  title: "HTML",
+                  base: "/experiments/jquery/",
+                  src: "10-html.html",
+                  dependencies: {
+                      "10-html.js":"10-html.js"
+                  }
+              }
+              ,{
+                  title: "Append",
+                  base: "/experiments/jquery/",
+                  src: "15-append.html",
+                  dependencies: {
+                      "15-append.js":"15-append.js"
+                  }
+              }
+              ,{
+                  title: "Click",
+                  base: "/experiments/jquery/",
+                  src: "20-click.html",
+                  dependencies: {
+                      "20-click.js":"20-click.js"
+                  }
+              }
+              ,{
+                  title: "AJAX",
+                  base: "/experiments/jquery/",
+                  src: "100-ajax.html",
+                  dependencies: {}
+              }
+          ],
           jQueryUi_examples: [
             {
               title: "Draggable",

@@ -7,7 +7,6 @@
   {
     $("#findMovieBtn").click(function(){
       var title = $("#title").val();
-      //findMoviesByTitle(title, renderMovies);
       findMoviesByTitle(title, renderMoviesByTemplate);
     });
   }
@@ -76,20 +75,24 @@
   <h1>Welcome to AJAX</h1>
 
   <a href="http://www.myapifilms.com/imdb?title=Avatar&format=JSON&aka=0&business=0&seasons=0&seasonYear=0&technical=0&filter=N&exactFilter=0&limit=5&forceYear=0&lang=en-us&actors=N&biography=0&trailer=0&uniqueName=0&filmography=0&bornDied=0&starSign=0&actorActress=0&actorTrivia=0&movieTrivia=0&awards=0&moviePhotos=N&movieVideos=N&similarMovies=0&adultSearch=0">Get Movies</a>
-  
-  <input
-    id="title"
-    class="form-control"/>
-  <button
-    class="btn btn-primary"
-    id="findMovieBtn">
-    Find Movie
-  </button>
-  
+
+  <div class="input-group">
+    <input
+      id="title"
+      class="form-control"/>
+    <span class="input-group-btn">
+      <button
+        class="btn btn-primary"
+        id="findMovieBtn">
+        Find Movie
+      </button>
+    </span>
+  </div>
+
   <table class="table template-container">
     <tr class="template">
       <td>
-        <a href="#" class="title">
+        <a href="#" class="title" target="_blank">
           Title
         </a>
       </td>
@@ -101,7 +104,4 @@
       </td>
     </tr>
   </table>
-    
-    <a href="view-source:http://localhost:8080/experiments/jquery/100-ajax.html">Source Code</a>
-    
 </div>
