@@ -1,0 +1,246 @@
+<html ng-app="WhiteBoardApp">
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="courseList/courseList.controller.js"></script>
+    <script src="courseOverview/courseOverview.controller.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <br/>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#/">All Courses</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>
+      <div ng-view>
+      </div>
+
+      <hr/>
+
+      <h1>Example Explained</h1>
+
+      <h2>Declare AngularJS Application</h2>
+
+      <pre>
+&lt;html ng-app=&quot;WhiteBoardApp&quot;&gt;</pre>
+
+      <h2>Link and Load Various Libraries</h2>
+
+    <p>
+      Below we are loading the Bootstrap style sheet using the <code>link</code> element
+      pointing to a public CDN. The angular library is loaded using a <code>script</code>
+      element referencing a public CDN. After loading the AngularJS core library we load
+      AngularJS's routing library implemented in <code>angular-route.js</code>. The
+      Routing library allows implementing navigation functionality within a single
+      page application. That is, it will allow providing the same functionality as
+      navigating between various pages, but without actually reloading the page.
+      Instead partial page contents are loaded dynamically and rendered in place
+      in a designated placeholder parent element, usually a div with an <code>ng-view</code>
+      attribute.
+    </p>
+
+      <pre>
+&lt;link href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;/&gt;
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js&quot;&gt;&lt;/script&gt;</pre>
+
+      <h2>Load Application, Configuration, and Controller Scripts</h2>
+
+    <p>
+      The application is declared and implemented in the <code>app.js</code>
+      file and then configured in the <code>config.js</code> file. This sample
+      application consists of two views. The default view renders a list of
+      courses in a tabular format. The second view renders details of a
+      course when you click the edit button of one of the courses. The data
+      rendered by the views is provided by controllers bound to each of the views.
+      The controllers are implemented in files <code>courseList.controller.js</code>
+      and <code>courseOverview.controller.js</code>.
+    </p>
+
+      <pre>
+&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;config.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;courseList/courseList.controller.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;courseOverview/courseOverview.controller.js&quot;&gt;&lt;/script&gt;</pre>
+
+    <h2>Declare View Placeholder</h2>
+
+    <p>
+      This is where the router will inject the content dynamically
+      as the user navigates between the list of courses and the
+      course details.
+    </p>
+
+    <pre>
+&lt;div ng-view&gt;
+&lt;/div&gt;</pre>
+
+      <h2>Implement Application in app.js</h2>
+
+    <p>
+      The application is implemented as a module with the same name declared
+      by the <code>ng-app</code> attribute in the HTML code "WhiteBoardApp".
+      The application depends on a single other module called <code>ngRoute</code>.
+      This is angular's routing library we loaded earlier. The dependency
+      is provided in the dependency array as the string "ngRoute".
+    </p>
+
+      <pre>
+(function() {
+  angular.module("WhiteBoardApp", ["ngRoute"]);
+})();</pre>
+
+      <h2>Configure Routing in config.js</h2>
+
+    <p>
+      After creating the application, we can configure it using AngularJS's
+      <code>.config()</code> method. For this example we are configuring
+      the routing module telling it what partial HTML snippets to use when
+      navigating to different URLs.
+    </p>
+
+    <p>
+      In the code below <code>angular.module("WhiteBoardApp")</code> retrieves
+      the module called "WhiteBoardApp". A call to <code>.config()</code>
+      allows configuring the application. To configure the application we
+      pass a callback function that can receive configuration objects that
+      can be configured in the function. Here our function is receiving
+      the <code>$routeProvider</code> which allows configuring the routing mechanism.
+      To configure what HTML to dynamically load as we navigate in the application.
+    </p>
+
+    <p>
+      In single page applications the application is implemented all within
+      the page that is first loaded and then pieces are loaded dynamically
+      as we navigate. The URL to the loaded page never changes even as
+      we navigate to different parts of the application. To accomplish
+      navigation in a single page application we use strings after
+      the hash sign, at the end of the URL. We use these are virtual paths
+      to refer to navigation destinations.
+    </p>
+
+    <p>
+      URLs for single page applications are measured after the hash sign.
+      The configuration below says that if the (virtual) path is "/", meaning
+      the root, then the view should render <code>courseList.view.html</code>.
+      If the path is <code>/course/</code> followed by some string, then
+      the view should render <code>courseOverview.view.html</code> instead.
+      The <code>:index</code> after the <code>/course/</code> is a placeholder
+      for a parameter. That is, the path is declared as a pattern that starts
+      with <code>/course/</code> and ends with some content that is bound
+      to a local variable called <code>index</code>. The parameter can then
+      be used by a controller to fetch a particular piece of data, e.g., a
+      particular course whose index is <code>index</code>/.
+    </p>
+<pre>
+(function() {
+  angular
+    .module("WhiteBoardApp")
+    .config(function($routeProvider) {
+      $routeProvider
+        .when("/", {
+          templateUrl: "courseList/courseList.view.html",
+          controller: "courseList.controller"
+        })
+        .when("/course/:index", {
+          templateUrl: "courseOverview/courseOverview.view.html",
+          controller: "courseOverview.controller"
+        })
+    });
+})();</pre>
+
+    <p>
+      The configuration also declares what controller to use for each of the views.
+      For the <code>courseList.view.html</code> view, the <code>courseList.controller</code>
+      will be used. The <code>courseOverview.view.html</code> view will use the
+      <code>courseOverview.controller</code> controller. Controllers are
+      implemented in their own JavaScript file.
+    </p>
+
+    <h2>Implement Course List View</h2>
+
+    <p>
+
+    </p>
+
+    <pre>
+&lt;th&gt;&lt;input <b><u>ng-model=&quot;newCourse.title&quot;</u></b> class=&quot;form-control&quot; placeholder=&quot;Title&quot;/&gt;&lt;/th&gt;
+&lt;th&gt;&lt;input <b><u>ng-model=&quot;newCourse.seats&quot;</u></b> class=&quot;form-control&quot; placeholder=&quot;Seats Available&quot; type=&quot;number&quot;/&gt;&lt;/th&gt;
+&lt;th&gt;&lt;input <b><u>ng-model=&quot;newCourse.start&quot;</u></b> class=&quot;form-control&quot; type=&quot;date&quot;/&gt;&lt;/th&gt;</pre>
+
+    <pre>
+&lt;th&gt;
+  &lt;button <b><u>ng-click=&quot;addCourse(newCourse)&quot;</u></b> class=&quot;btn btn-primary&quot;&gt;
+    Add
+  &lt;/button&gt;
+  &lt;button
+    <b><u>ng-click=&quot;updateCourse(newCourse)&quot;</u></b>
+    class=&quot;btn btn-success&quot;&gt;
+    Update
+  &lt;/button&gt;
+&lt;/th&gt;</pre>
+
+<pre>
+&lt;tr <b><u>ng-repeat=&quot;course in courses&quot;</u></b> <b><u>ng-class=&quot;{&#39;success&#39; : $index == selectedCourseIndex}&quot;</u></b>&gt;
+&lt;td&gt;<b><u><code ng-non-bindable>{{course.title}}</code></u></b>&lt;/td&gt;
+&lt;td&gt;<b><u><code ng-non-bindable>{{course.seats}}</code></u></b>&lt;/td&gt;
+&lt;td&gt;<b><u><code ng-non-bindable>{{course.start | date: &#39;medium&#39;}}</code></u></b>&lt;/td&gt;
+&lt;td&gt;
+	&lt;button
+		ng-click=&quot;removeCourse(course)&quot;
+		class=&quot;btn btn-danger&quot;&gt;
+		Remove
+	&lt;/button&gt;
+	&lt;button
+		ng-click=&quot;selectCourse($index)&quot;
+		class=&quot;btn btn-info&quot;&gt;
+		Select
+	&lt;/button&gt;
+	&lt;a ng-href=&quot;#/course/{{$index}}&quot; class=&quot;btn btn-warning&quot;&gt;
+		Edit
+	&lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;</pre>
+
+    <pre>
+var java101 = {
+  title: "Java 101",
+  seats: 25,
+  start: new Date(2015,9,4)
+};
+
+var courses = [
+  java101,
+  {title: "MEAN", seats: 35, start: new Date()},
+  {title: "C#", seats: 45, start: new Date(2016, 1, 15)}
+];
+
+$scope.courses = courses;
+
+$scope.addCourse = addCourse;
+$scope.updateCourse = updateCourse;
+
+function updateCourse(course)
+{
+  $scope.courses[$scope.selectedCourseIndex].title = course.title;
+  $scope.courses[$scope.selectedCourseIndex].seats = course.seats;
+  $scope.courses[$scope.selectedCourseIndex].start = course.start;
+}
+function addCourse(course)
+{
+  var newCourse = {
+	title: course.title,
+	seats: course.seats,
+	start: course.start
+  };
+
+  $scope.courses.push(newCourse);
+}</pre>
+
+    </div>
+  </body>
+</html>

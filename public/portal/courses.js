@@ -311,6 +311,14 @@
                   }
               },
               {
+                  title: "NgModel",
+                  base: "/experiments/angularjs/ngModel/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js"
+                  }
+              },
+              {
                   title: "NgRepeat",
                   base: "/experiments/angularjs/ngRepeat/",
                   src: "index.html",
@@ -322,7 +330,7 @@
               },
               {
                   title: "Courses 1",
-                  base: "/experiments/angularjs/courses2/",
+                  base: "/experiments/angularjs/courses1/",
                   src: "index.html",
                   dependencies: {
                       "app.js":"app.js",
@@ -335,7 +343,7 @@
               },
               {
                   title: "Courses 2",
-                  base: "/experiments/angularjs/courses1/",
+                  base: "/experiments/angularjs/courses2/",
                   src: "courses.html",
                   dependencies: {
                       "main.js":"main.js",

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WhiteBoardApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="app.js"></script>
+    <title>Ng Click</title>
+</head>
+<body>
+<div class="container" ng-controller="NgModelController">
+    <h1>Ng Click</h1>
+
+    <h2></h2>
+
+    <p>
+        {{lorem}}
+    </p>
+
+    <h2>Model Bound to Template</h2>
+
+    <input ng-model="title" class="form-control"/>
+    <h3>{{title}}</h3>
+
+    <h2>Model Sent Through Event Handler</h2>
+
+    <input ng-model="author" class="form-control"/>
+    <button ng-click="setAuthor(author)"
+            class="btn btn-primary btn-block">
+        Set Author
+    </button>
+    <h3>{{theAuthor}}</h3>
+
+</div>
+</body>
+</html>
