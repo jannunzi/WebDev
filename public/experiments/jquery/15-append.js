@@ -6,7 +6,8 @@
   {
     // simple append
     $("#hello")
-      .append("Hello World!");
+        .append("Hello World!")
+        .append("Is there anyone out there?");
 
     // Example: appending a new element
     // grab list

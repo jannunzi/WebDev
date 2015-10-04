@@ -17,6 +17,200 @@
             {{hello}}
         </h2>
 
+        <hr/>
+
+        <h1>Example Explained</h1>
+
+        <h2>Declare an AngularJS Application</h2>
+
+        <p>
+            AngularJS extends the HTML language by declaring several
+            new attributes called directives.
+
+            AngularJS applications are declared in HTML by using the
+            <code>ng-app</code> directive. This directive declares
+            the HTML document as part of an AngularJS application. The
+            name declared by the directive must match the name of an
+            AngularJS module implemented in a separate JavaScript file.
+        </p>
+
+        <p>
+            Below is an example use of the <code>ng-app</code> directive
+            declaring an application called <code>HelloWorldApp</code>.
+            A separate JavaScript file will implement the application
+            by declaring a module of the same name.
+        </p>
+
+<pre>&lt;html lang=&quot;en&quot; <b><u>ng-app=&quot;HelloWorldApp&quot;</u></b>&gt;
+...
+&lt;/html&gt;</pre>
+
+        <h2>Load the AngularJS Library</h2>
+
+        <p>
+            Use a <code>script</code> element to load the AngularJS library.
+            Here's an example of loading the library from a public CDN.
+        </p>
+
+<pre>&lt;html lang=&quot;en&quot; ng-app=&quot;HelloWorldApp&quot;&gt;
+    ...
+    <b><u>&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js&quot;&gt;&lt;/script&gt;</u></b>
+    ...
+&lt;/html&gt;</pre>
+
+
+        <h2>Implement the AngularJS Application</h2>
+
+        <p>
+            Implement the application is a separate JavaScript file and
+            reference it from the HTML document using the <code>script</code>
+            element. Below is an example <code>script</code> element
+            loading an AngularJS application implemented in a source file
+            called <code>app.js</code>.
+        </p>
+
+<pre>&lt;html lang=&quot;en&quot; ng-app=&quot;HelloWorldApp&quot;&gt;
+    ...
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js&quot;&gt;&lt;/script&gt;
+    <b><u>&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</u></b>
+    ...
+&lt;/html&gt;</pre>
+
+        <p>
+            The AngularJS library declares a global object called <code>angular</code>
+            that allows creating applications, configurations, controllers, and
+            other AngularJS artifacts that constitute an AngularJS application.
+        </p>
+        <p>
+            An AngularJS application is implemented using the <code>.module()</code>
+            method. The <code>.module()</code> method takes two arguments.
+            The first argument is a string denoting the name of the application.
+            The second argument is an array of other modules the application
+            depends on. The array can be empty if the application does not depend
+            on other modules. There can be any number of modules depending on
+            other modules in a dependency hierarchy. The module declared in
+            <code>ng-app</code> is the one module that represents the application.
+        </p>
+        <p>
+            Below is an example use of the <code>.module()</code> function that
+            declares a module called "HelloWorldApp". The empty array
+            denotes that the module does not depend on any other module.
+            Since the name of the module matches the
+            <code>ng-app="HelloWorldApp"</code> declared in the HTML,
+            this module implements the application referred to in the
+            HTML. The code is in <code>app.js</code>
+        </p>
+
+<pre>
+var app = angular.module("HelloWorldApp", []);
+</pre>
+
+        <h2>Declare a Controller for an HTML Area</h2>
+
+        <p>
+            The HTML in an AngularJS application is considered the
+            view of a Web application. AngularJS controllers are
+            responsible for providing data and logic that the a
+            view renders dynamically. Controllers can be responsible
+            for an entire page or a subset of a page. They can be
+            bound to a specific HTML element which will the scope
+            of the controller. HTML outside the element bound to a
+            controller is outside of the scope of the controller.
+        </p>
+
+        <p>
+            Below is an example controller named <code>HelloWorldController</code>
+            bound to a <code>DIV</code> element. The controller can
+            provide data that the view can render dynamically. The controller
+            is implemented as a function declared in a separate JavaScript file.
+        </p>
+
+        <pre>
+&lt;html lang=&quot;en&quot; ng-app=&quot;HelloWorldApp&quot;&gt;
+    ...
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+    ...
+    &lt;div class=&quot;container&quot; <b><u>ng-controller=&quot;HelloWorldController&quot;</u></b>&gt;
+        ...
+    &lt;/div&gt;
+    ...
+&lt;/html&gt;</pre>
+
+
+        <h2>Implement the Controller</h2>
+
+        <p>
+            Use the <code>.controller()</code> method to name and declare a function that implements
+            the controller. The <code>.controller()</code> method takes two arguments. The first
+            argument is a string used to name the controller. The second argument is the function
+            that implements the controller.
+
+            The name of the controller must match the name used in the HTML that references it.
+            In the example below the name of the controller is <code>HelloWorldController</code>
+            which matches the name in the HTML <code>ng-controller="HelloWorldController"</code>.
+        </p>
+
+<pre>
+var app = angular.module("HelloWorldApp", []);
+
+app.controller("<b><u>HelloWorldController</u></b>", <b>TheController</b>);
+
+function <b>TheController</b>() {
+    ...
+}</pre>
+
+    <h2>Controller Sends Data to View</h2>
+
+        <p>
+            The controller is responsible for controlling the view by
+            interacting with user events, implementing client side logic,
+            retrieving data from the client, client side navigation, and
+            retrieving data from the server, and providing data to the client.
+        </p>
+
+        <p>
+            To provide data to the client browser, the controller can request
+            an object representation of the HTML it is responsible for, a
+            representation of its scope of influence. To do this, the function
+            that implements the controller declares a variable specifically
+            called <code>$scope</code>. The function can then refer to
+            named placeholders and objects declared in view. For instance,
+            the code below refers to a variable called <code>hello</code>
+            that is declared in the view.
+        </p>
+<pre>
+var app = angular.module("HelloWorldApp", []);
+
+app.controller("HelloWorldController", TheController);
+
+function TheController() {
+    ...
+    <b>$scope.<u>hello</u> = "Hello World from AngularJS";</b>
+    ...
+}</pre>
+
+        <p>
+            The view in turn can declare the variable with the same name
+            as the controller as a placholder where the value of the
+            variable will render as plain text
+        </p>
+
+        <pre>
+&lt;html lang=&quot;en&quot; ng-app=&quot;HelloWorldApp&quot;&gt;
+    ...
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+    ...
+    &lt;div class=&quot;container&quot; ng-controller=&quot;HelloWorldController&quot;&gt;
+        ...
+        <b><u><code ng-non-bindable>{{hello}}</code></u></b>
+        ...
+    &lt;/div&gt;
+    ...
+&lt;/html&gt;</pre>
+
+
     </div>
 </body>
 </html>
