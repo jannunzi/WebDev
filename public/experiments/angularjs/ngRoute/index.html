@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WhiteBoardApp">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+  <script src="app.js"></script>
+  <title>Ng Route</title>
+</head>
+<body>
+<div class="container">
+  <h1>Ng Route</h1>
+
+  <a href="#/home" class="btn btn-primary">Home</a>
+  <a href="#/profile" class="btn btn-success">Profile</a>
+  <a href="#/admin" class="btn btn-danger">Admin</a>
+
+  <div ng-view>
+  </div>
+
+  <hr/>
+
+  <h1>Example Source Code</h1>
+
+  <h2>HTML</h2>
+
+<pre>
+&lt;a href=&quot;#/home&quot;  class=&quot;btn btn-primary&quot;&gt;Home&lt;/a&gt;
+&lt;a href=&quot;#/profile&quot; class=&quot;btn btn-success&quot;&gt;Profile&lt;/a&gt;
+&lt;a href=&quot;#/admin&quot;   class=&quot;btn btn-danger&quot;&gt;Admin&lt;/a&gt;
+
+&lt;div ng-view&gt;
+&lt;/div&gt;</pre>
+
+  <h2>app.js</h2>
+
+<pre>
+(function(){
+  angular
+    .module("WhiteBoardApp", ["ngRoute"])
+    .config(function($routeProvider){
+      $routeProvider
+        .when("/", {
+          templateUrl: "home.html"
+        })
+        .when("/profile", {
+          templateUrl: "profile.html"
+        })
+        .when("/admin", {
+          templateUrl: "admin.html"
+        })
+        .otherwise({
+          redirectTo: "/"
+        });
+    });
+})();
+
+</pre>
+
+</div>
+</body>
+</html>

@@ -13,24 +13,67 @@
 
         <h2>Model Set by Controller</h2>
 
-        <p>
-            {{lorem}}
-        </p>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3>HTML</h3>
+
+                <code ng-non-bindable>{{lorem}}</code>
+
+                <p>
+                    {{lorem}}
+                </p>
+            </div>
+            <div class="col-xs-6">
+                <h3>app.js</h3>
+<pre>
+function NgModelController($scope) {
+  $scope.lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua";
+}</pre>
+            </div>
+        </div>
+
 
         <h2>Model Bound to Template</h2>
 
-        <input ng-model="title" class="form-control"/>
-        <h3>{{title}}</h3>
+        <div class="row">
+            <div class="col-xs-6">
+                <input ng-model="title" class="form-control"/>
+                <h3>Title: {{title}}</h3>
+            </div>
+            <div class="col-xs-6">
+<pre>
+&lt;input ng-model=&quot;title&quot; class=&quot;form-control&quot;/&gt;
+&lt;h3&gt;<code ng-non-bindable>Title: {{title}}</code>&lt;/h3&gt;</pre>
+            </div>
+        </div>
 
         <h2>Model Sent Through Event Handler</h2>
 
-        <input ng-model="author" class="form-control"/>
-        <button ng-click="setAuthor(author)"
-                class="btn btn-primary btn-block">
-                Set Author
-        </button>
-        <h3>{{theAuthor}}</h3>
+        <div class="row">
+            <div class="col-xs-6">
+                <input ng-model="author" class="form-control"/>
+                <button ng-click="setAuthor(author)"
+                        class="btn btn-primary btn-block">
+                    Set Author
+                </button>
+                <h3>Author: {{theAuthor}}</h3>
+                <br/>
+<pre>
+&lt;input ng-model=&quot;author&quot; class=&quot;form-control&quot;/&gt;
+&lt;button ng-click=&quot;setAuthor(author)&quot;&gt; Set Author &lt;/button&gt;
+&lt;h3&gt;Author: <code ng-non-bindable>{{theAuthor}}</code>&lt;/h3&gt;</pre>
+            </div>
+            <div class="col-xs-6">
+<pre>
+function NgModelController($scope) {
+  $scope.setAuthor = setAuthor;
 
+  function setAuthor(author) {
+    $scope.theAuthor = author;
+  }
+}</pre>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WhiteBoardApp">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+  <script src="app.js"></script>
+  <title>Ng Route Location</title>
+</head>
+<body>
+<div class="container">
+  <h1>Ng Route Location</h1>
+
+  <nav ng-controller="NavController">
+  <a href="#/home"  class="btn" ng-class="{'btn-primary' : $location.url() == '/'}">Home</a>
+  <a href="#/profile" class="btn" ng-class="{'btn-primary' : $location.url() == '/profile'}">Profile</a>
+  <a href="#/admin"   class="btn" ng-class="{'btn-primary' : $location.url() == '/admin'}">Admin</a>
+  <br/>
+  {{$location.url()}}
+  </nav>
+  <div ng-view>
+  </div>
+
+  <hr/>
+
+  <h1>Example Source Code</h1>
+
+  <h2>HTML</h2>
+
+<pre>
+&lt;nav ng-controller=&quot;NavController&quot;&gt;
+  &lt;a href=&quot;#/home&quot;  class=&quot;btn&quot; ng-class=&quot;{&#39;btn-primary&#39; : $location.url() == &#39;/&#39;}&quot;&gt;Home&lt;/a&gt;
+  &lt;a href=&quot;#/profile&quot; class=&quot;btn&quot; ng-class=&quot;{&#39;btn-primary&#39; : $location.url() == &#39;/profile&#39;}&quot;&gt;Profile&lt;/a&gt;
+  &lt;a href=&quot;#/admin&quot;   class=&quot;btn&quot; ng-class=&quot;{&#39;btn-primary&#39; : $location.url() == &#39;/admin&#39;}&quot;&gt;Admin&lt;/a&gt;
+  &lt;br/&gt;
+  <code ng-non-bindable>{{$location.url()}}</code>
+&lt;/nav&gt;</pre>
+
+  <h2>app.js</h2>
+
+<pre>
+(function(){
+  angular
+    .module("WhiteBoardApp", ["ngRoute"])
+    .controller("NavController", function($scope, $location){
+      $scope.$location = $location;
+    });
+    ...
+})();
+</pre>
+
+</div>
+</body>
+</html>

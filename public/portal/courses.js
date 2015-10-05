@@ -311,11 +311,56 @@
                   }
               },
               {
+                  title: "NgClick",
+                  base: "/experiments/angularjs/ngClick/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js"
+                  }
+              },
+              {
                   title: "NgModel",
                   base: "/experiments/angularjs/ngModel/",
                   src: "index.html",
                   dependencies: {
                       "app.js":"app.js"
+                  }
+              },
+              {
+                  title: "NgRoute",
+                  base: "/experiments/angularjs/ngRoute/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js",
+                      "home.html":"home.html",
+                      "profile.html":"profile.html",
+                      "admin.html":"admin.html"
+                  }
+              },
+              {
+                  title: "NgRouteLocation",
+                  base: "/experiments/angularjs/ngRouteLocation/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js",
+                      "home.html":"home.html",
+                      "profile.html":"profile.html",
+                      "admin.html":"admin.html"
+                  }
+              },
+              {
+                  title: "NgRouteControllers",
+                  base: "/experiments/angularjs/ngRouteControllers/",
+                  src: "index.html",
+                  dependencies: {
+                      "app.js":"app.js",
+                      "config.js":"config.js",
+                      "home.view.html":"home/home.view.html",
+                      "home.controller.js":"home/home.controller.js",
+                      "profile.view.html":"profile/profile.view.html",
+                      "profile.controller.js":"profile/profile.controller.js",
+                      "admin.view.html":"admin/admin.view.html",
+                      "admin.controller.js":"admin/admin.controller.js"
                   }
               },
               {
@@ -369,7 +414,7 @@
                       "index.html":"index.html",
                       "app.js":"app.js",
                       "config.js":"config.js",
-                      "home.html":"home.html",
+                      "home.html":"home.view.html",
                       "navController.js":"navController.js",
                       "profile.html":"profile.html",
                       "profile.js":"profile.js",

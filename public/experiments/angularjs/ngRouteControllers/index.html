@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WhiteBoardApp">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="config.js"></script>
+  <script src="home/home.controller.js"></script>
+  <script src="profile/profile.controller.js"></script>
+  <script src="admin/admin.controller.js"></script>
+
+  <title>Ng Route</title>
+</head>
+<body>
+<div class="container">
+  <h1>Ng Route Controllers</h1>
+
+  <a href="#/home" class="btn btn-primary">Home</a>
+  <a href="#/profile" class="btn btn-success">Profile</a>
+  <a href="#/admin" class="btn btn-danger">Admin</a>
+
+  <div ng-view>
+  </div>
+
+  <hr/>
+
+  <h1>Example Source Code</h1>
+
+  <h2>HTML</h2>
+
+<pre>
+&lt;a href=&quot;#/home&quot;  class=&quot;btn btn-primary&quot;&gt;Home&lt;/a&gt;
+&lt;a href=&quot;#/profile&quot; class=&quot;btn btn-success&quot;&gt;Profile&lt;/a&gt;
+&lt;a href=&quot;#/admin&quot;   class=&quot;btn btn-danger&quot;&gt;Admin&lt;/a&gt;
+
+&lt;div ng-view&gt;
+&lt;/div&gt;</pre>
+
+  <h2>app.js</h2>
+
+<pre>
+(function(){
+  angular.module("WhiteBoardApp", ["ngRoute"])
+})();
+</pre>
+
+  <h2>config.js</h2>
+
+<pre>
+(function(){
+  angular
+    .module("WhiteBoardApp")
+    .config(function($routeProvider){
+      $routeProvider
+        .when("/", {
+          templateUrl: "home/home.view.html",
+          controller: "HomeController"
+        })
+        .when("/profile", {
+          templateUrl: "profile/profile.view.html",
+          controller: "ProfileController"
+        })
+        .when("/admin", {
+          templateUrl: "admin/admin.view.html",
+          controller: "AdminController"
+        })
+        .otherwise({
+          redirectTo: "/"
+        });
+    });
+})();
+
+</pre>
+</div>
+</body>
+</html>
