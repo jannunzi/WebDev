@@ -50,7 +50,7 @@
                 ng-class="{'active' : controller.selectedModuleIndex == $index, 'disabled' : controller.course.modules[$index].available==false}"
                 ng-hide="controller.course.modules[$index].visible==false"
                 ng-click="controller.selectedModuleIndex = $index">
-                <a href="#/modules/{{$index}}">{{$index}}. {{module.title}}</a>
+                <a href="#/modules/{{$index}}">{{module.title}}</a>
             </li>
           </ul>
           
