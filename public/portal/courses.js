@@ -253,6 +253,14 @@
                   }
               }
               ,{
+                  title: "IMDB",
+                  base: "/lectures/jquery/",
+                  src: "imdb.html",
+                  dependencies: {
+                      "imdb.js":"imdb.js"
+                  }
+              }
+              ,{
                   title: "AJAX",
                   base: "/experiments/jquery/",
                   src: "100-ajax.html",
