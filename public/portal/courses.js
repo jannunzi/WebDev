@@ -141,7 +141,9 @@
             {title: 'JavaScript'}
             , {title: 'JQuery'}
           ],
-          assignments: [],
+          assignments: [
+              {title: 'Programming the Client'}
+          ],
           videos: [],
           slides: [],
           javaScript_examples: [
