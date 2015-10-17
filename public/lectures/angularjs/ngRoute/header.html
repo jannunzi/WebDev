@@ -1,0 +1,10 @@
+<header>
+    <h4 class="pull-left">WhiteBoard App</h4>
+    <nav class="pull-right">
+        <ul class="list-inline nav nav-pills">
+            <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('logout') != -1}"><a href="#/logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>

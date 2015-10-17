@@ -1,0 +1,27 @@
+<h1>Courses</h1>
+
+{{courses}}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Seats</th>
+            <th>Start</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="course in courses">
+            <td>{{course.title}}</td>
+            <td>{{course.seats}}</td>
+            <td>{{course.start | date}}</td>
+            <td>
+                <button ng-click="removeCourse($index)" class="btn btn-danger">
+                    Remove
+                </button>
+                <a href="#/courseEdit/{{$index}}" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

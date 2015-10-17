@@ -1,0 +1,31 @@
+<h1>Trips</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td><input ng-model="trip.title" class="form-control"/></td>
+            <td><input ng-model="trip.start" class="form-control" type="date"/></td>
+            <td><input ng-model="trip.end"   class="form-control" type="date"/></td>
+            <td>
+                <button ng-click="controller.addTrip(trip)" class="btn btn-success">Add</button>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="trip in controller.trips">
+            <td>{{trip.title}}</td>
+            <td>{{trip.start | date}}</td>
+            <td>{{trip.end | date}}</td>
+            <td>
+                <button ng-click="controller.deleteTrip($index)" class="btn btn-danger">Delete</button>
+                <a href="#/trips/{{$index}}" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -432,6 +432,27 @@
                       "userController.js":"userController.js",
                       "userService.js":"userService.js"
                   }
+              },
+              {
+                  title: "NgRoute 2",
+                  base: "/lectures/angularjs/ngRoute/",
+                  src: "index.html",
+                  dependencies: {
+                      "index.html":"index.html",
+                      "app.js":"app.js",
+                      "config.js":"config.js",
+                      "CourseController.js":"CourseController.js",
+                      "courseEdit.html":"courseEdit.html",
+                      "CourseEditController.js":"CourseEditController.js",
+                      "courses.html":"courses.html",
+                      "CourseService.js":"CourseService.js",
+                      "header.html":"header.html",
+                      "home.html":"home.html",
+                      "login.html":"login.html",
+                      "MainController.js":"MainController.js",
+                      "register.html":"register.html",
+                      "sidebar.html":"sidebar.html"
+                  }
               }
           ]
         }
