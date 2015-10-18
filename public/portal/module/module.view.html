@@ -28,20 +28,23 @@
       </li>
     </ul>
 
-    <div class="dropdown" ng-show="controller.selectedTabName.indexOf('_examples') > -1">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Select {{controller.selectedTabName | underscore2space}} Example
-            <span class="caret"></span>
-        </button> <!-- TLSP - 2079 -->
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li ng-class="{'active' : controller.selectedPillIndex == $index}"
-                ng-repeat="pill in controller.selectedTabPills" style="text-transform: capitalize">
-                <a href="#/modules/{{controller.selectedModuleIndex}}/{{controller.selectedTabName}}/{{$index}}">{{pill.title | underscore2space}}</a>
-            </li>
-        </ul>
+    <div ng-if="controller.selectedTabName.indexOf('_examples') > -1">
+        <h2 class="clearfix">
+            <span class="pull-left">Examples:&nbsp;</span>
+            <div class="dropdown pull-left">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    {{controller.selectedTabPills[controller.selectedPillIndex].title}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-class="{'active' : controller.selectedPillIndex == $index}"
+                        ng-repeat="pill in controller.selectedTabPills" style="text-transform: capitalize">
+                        <a href="#/modules/{{controller.selectedModuleIndex}}/{{controller.selectedTabName}}/{{$index}}">{{pill.title | underscore2space}}</a>
+                    </li>
+                </ul>
+            </div>
+        </h2>
+
     </div>
 
     <ng-include src="controller.page"/>
-
-  
-  

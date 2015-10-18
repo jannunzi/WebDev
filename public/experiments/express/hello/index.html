@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Express</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Express</h1>
+
+        <p>
+            Express is one of the most popular Node.js modules
+            allowing to easily expose server side resources to
+            HTTP clients such as browsers and as APIs.
+        </p>
+
+        <h2>Install Express</h2>
+
+        <p>Use <code>npm</code> to install express as follows:</p>
+
+        <pre>&gt; npm install express</pre>
+
+        <h2>Create and Start a Server Instance</h2>
+
+        <p>
+            Using express it is very simple to create
+            and start a server. Simply load the module
+            with <code>require()</code>, create an instance of the
+            module, and call <code>listen()</code> as shown in the
+            sample file <code>server.js</code> shown below:
+        </p>
+<pre>
+var express = require('express');
+var app = express();
+
+app.listen(3000);</pre>
+
+        <p>
+            To start the server, excute the <code>server.js</code>
+            file with <code>node.js</code> from the command line
+            as follows:
+        </p>
+
+        <pre>&gt; node server.js</pre>
+
+        <h2>Respond to HTTP Requests</h2>
+
+        <p>
+            Express allows mapping HTTP request methods
+            and URLs to backend code. Use functions such
+            as <code>get()</code>, <code>post()</code>,
+            and <code>put()</code> to respond to HTTP
+            requests. These functions accept as parameters
+            URL patterns and function. When an incoming
+            URL matches the URL pattern, the function
+            is invoked. Below is an example of URL
+            <code>/hello</code> that is mapped to a
+            function that returns <code>Hello World from server.js</code>
+        </p>
+
+        <pre>
+var express = require('express');
+var app = express();
+<strong><em>
+app.get('/hello', function(req, res){
+    res.send('Hello World from server.js!');
+});</em></strong>
+
+app.listen(3000);</pre>
+    </div>
+</body>
+</html>

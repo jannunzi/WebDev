@@ -18,7 +18,7 @@ var SampleApp = function() {
     /*  ================================================================  */
 
     /**
-     *  Set up server IP address and port # using env variables/defaults.
+     *  Set up hello IP address and port # using env variables/defaults.
      */
     self.setupVariables = function() {
         //  Set the environment variables we need.
@@ -56,7 +56,7 @@ var SampleApp = function() {
 
     /**
      *  terminator === the termination handler
-     *  Terminate server on receipt of the specified signal.
+     *  Terminate hello on receipt of the specified signal.
      *  @param {string} sig  Signal to terminate on.
      */
     self.terminator = function(sig){
@@ -65,7 +65,7 @@ var SampleApp = function() {
                        Date(Date.now()), sig);
            process.exit(1);
         }
-        console.log('%s: Node server stopped.', Date(Date.now()) );
+        console.log('%s: Node hello stopped.', Date(Date.now()) );
     };
 
 
@@ -86,7 +86,7 @@ var SampleApp = function() {
 
 
     /*  ================================================================  */
-    /*  App server functions (main app logic here).                       */
+    /*  App hello functions (main app logic here).                       */
     /*  ================================================================  */
 
     /**
@@ -108,7 +108,7 @@ var SampleApp = function() {
 
 
     /**
-     *  Initialize the server (express) and create the routes and register
+     *  Initialize the hello (express) and create the routes and register
      *  the handlers.
      */
     self.initializeServer = function() {
@@ -130,18 +130,18 @@ var SampleApp = function() {
         self.populateCache();
         self.setupTerminationHandlers();
 
-        // Create the express server and routes.
+        // Create the express hello and routes.
         self.initializeServer();
     };
 
 
     /**
-     *  Start the server (starts up the sample application).
+     *  Start the hello (starts up the sample application).
      */
     self.start = function() {
         //  Start the app on the specific interface (and port).
         self.app.listen(self.port, self.ipaddress, function() {
-            console.log('%s: Node server started on %s:%d ...',
+            console.log('%s: Node hello started on %s:%d ...',
                         Date(Date.now() ), self.ipaddress, self.port);
         });
     };

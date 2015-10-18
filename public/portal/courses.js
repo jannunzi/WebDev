@@ -458,8 +458,24 @@
         }
         , {
           title: 'Server Side Development',
-          available: false
-        }
+          available: false,
+              express_examples: [
+                  { title: "Hello",
+                      base: "/experiments/express/hello/",
+                      src:"index.html",
+                      dependencies: {
+                          "server.js" : "server.js"
+                      }
+                  },
+                  { title: "Open Shift",
+                      base: "/experiments/express/openshift/",
+                      src:"index.html",
+                      dependencies: {
+                          "server.js" : "server.js"
+                      }
+                  }
+              ]
+          }
         , {
           title: 'Database Development',
           visible: true,

@@ -1,50 +1,57 @@
 
 <div ng-controller="ExampleController as controller">
   
-  <h2>{{controller.example.title}}
+  <h3>{{controller.example.title}}
     
     <a
-      style="position:relative;top:0px;right:3px;"
+      style="position:relative;top:38px;right:3px;"
       href="{{controller.example.base + controller.example.src}}"
       class="pull-right"
+      title="Full screen"
       target="_blank">
       <span class="glyphicon glyphicon-new-window"></span>
     </a>
     
-  </h2>
+  </h3>
   
   <iframe
     style="border:1px solid #ddd;width:100%;height:300px;"
     ng-src="{{controller.example.base + controller.example.src}}">
   </iframe>
   
-  <h2>
-    Source
-    
+  <h3 class="clearfix">
+    <span class="pull-left">Source: &nbsp;</span>
+
+    <div class="dropdown pull-left">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        {{controller.selectedDependency || 'HTML'}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li ng-class="{'active' : controller.selectedDependency == null}">
+          <a ng-click="controller.selectedDependency = null">HTML</a>
+        </li>
+        <li
+                ng-class="{'active': controller.selectedDependency == value}"
+                ng-repeat="(dependency, value) in controller.example.dependencies">
+          <a ng-click="controller.selectedDependency = value">{{dependency}}</a>
+        </li>
+      </ul>
+    </div>
+  </h3>
+  <h3>
+    {{controller.selectedDependency || 'HTML'}}
     <a
-      style="position:relative;top:95px;right:3px;"
+      style="position:relative;top:38px;right:3px;"
       href="{{controller.example.base + controller.selectedDependency}}"
       ng-hide="controller.selectedDependency == null"
       class="pull-right"
+      title="Full screen"
       target="_blank">
       <span class="glyphicon glyphicon-new-window"></span>
     </a>
-  
-  </h2>
+  </h3>
 
-  <ul class="nav nav-pills">
-    <li ng-class="{'active' : controller.selectedDependency == null}">
-      <a ng-click="controller.selectedDependency = null">HTML</a>
-    </li>
-    <li
-      ng-class="{'active': controller.selectedDependency == value}"
-      ng-repeat="(dependency, value) in controller.example.dependencies">
-      <a ng-click="controller.selectedDependency = value">{{dependency}}</a>
-    </li>
-  </ul>
-  
-  <br/>
-  
   <iframe
     style="border:1px solid #ddd;width:100%;height:300px;background-color: #eee;font-family: monospace;"
     ng-if="controller.selectedDependency"
