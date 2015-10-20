@@ -17,7 +17,7 @@
     // append new DOM element to list
     ulElement.append(li);
 
-    // Example: appending to local variables
+    // Example: appending to local exports
     // create DOM element in local variable
     li = $("<li>");
     // append to local variable

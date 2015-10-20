@@ -152,7 +152,7 @@
               src:"00-script-alert-hello-world.html"}
             , { title: "Variables",
               base: "/experiments/javascript/",
-              src:"03-variables-a+b.html"}
+              src:"03-exports-a+b.html"}
             , { title: "Loops",
               base: "/experiments/javascript/",
               src:"05-loops-factorial.html"}
@@ -225,7 +225,7 @@
                   base: "/experiments/jquery/",
                   src: "05-main.html",
                   dependencies: {
-                      "05-main.js":"05-main.js"
+                      "05-main.js":"05-index.js"
                   }
               }
               ,{
@@ -401,7 +401,7 @@
                   base: "/experiments/angularjs/courses2/",
                   src: "courses.html",
                   dependencies: {
-                      "main.js":"main.js",
+                      "main.js":"index.js",
                       "courses.js":"courses.js"
                   }
               },

@@ -19,7 +19,7 @@
         // functions can be passed as arguments
         $("#hoverEvent").hover(hoverEnter, hoverLeave);
 
-        // DOM elements can be assigned to local variables
+        // DOM elements can be assigned to local exports
         var hoverMessageFld = $("#hoverMessage");
 
         function hoverEnter(enterEvent)

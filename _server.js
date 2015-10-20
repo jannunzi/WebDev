@@ -18,10 +18,10 @@ var SampleApp = function() {
     /*  ================================================================  */
 
     /**
-     *  Set up hello IP address and port # using env variables/defaults.
+     *  Set up hello IP address and port # using env exports/defaults.
      */
     self.setupVariables = function() {
-        //  Set the environment variables we need.
+        //  Set the environment exports we need.
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
         self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
