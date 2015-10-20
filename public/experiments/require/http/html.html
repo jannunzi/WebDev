@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../js/jquery-1.11.3.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <h1>HTTP</h1>
+
+        <input name="id" placeholder="ID" class="form-control"/>
+        <input name="title" placeholder="Title" class="form-control"/>
+        <input name="seats" placeholder="Seats" class="form-control"/>
+        <input name="start" class="form-control" type="date"/>
+        <button id="post" type="button" class="btn btn-primary btn-block">Create</button>
+        <button id="put" type="button" class="btn btn-primary btn-block">Update</button>
+
+    </div>
+    <script>
+        $(function(){
+            $('#post').click(function(){
+                $.ajax({
+                    url:'/api/experiments/http/course',
+                    type: 'post',
+                    data: {title: $('input[name="title"]').val()},
+                    success: function(response) {
+                        console.log(response);
+                    }
+                })
+            });
+
+            $('#put').click(function(){
+                $.ajax({
+                    url:'/api/experiments/http/course/'+$('input[name="id"]').val(),
+                    type: 'put',
+                    data: {title: $('input[name="title"]').val()},
+                    success: function(response) {
+                        console.log(response);
+                    }
+                })
+            });
+        });
+    </script>
+</body>
+</html>

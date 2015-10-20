@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <h1>Get Hello</h1>
+
+        <a href="/experiments/express/require/hello">Get Hello</a>
+
+        <pre>
+module.exports = function(app) {
+    app.get("/experiments/express/require/hello", function(req, res){
+        res.send("Hello World from Experiments!");
+    });
+};</pre>
+    </div>
+</body>
+</html>

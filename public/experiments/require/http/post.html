@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../js/jquery-1.11.3.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <h1>HTTP POST</h1>
+
+        <!--<form method="post" action="/experiments/require/http/post123">-->
+        <input name="title" placeholder="Title" class="form-control"/>
+        <input name="seats" placeholder="Seats" class="form-control"/>
+        <input name="start" class="form-control" type="date"/>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        <!--</form>-->
+    </div>
+
+    <script>
+        $(function(){
+            $('.btn').click(function(){
+                $.ajax({
+                    url:'/experiments/require/http/post123',
+                    data: {title: $('input[name="title"]').val()},
+                    success: function(response) {
+
+                    }
+                })
+            });
+        });
+    </script>
+</body>
+</html>
