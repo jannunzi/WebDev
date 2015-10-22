@@ -9,23 +9,37 @@
 </head>
 <body>
     <div class="container" ng-controller="ExpressController">
-
-        <h1>Deleting Using REST Web APIs</h1>
+        <h1>Creating Data with REST Web API</h1>
 
         <div class="alert alert-info">
-            NOTE: The table below might be empty because other students
-            might have removed all the data. Please
-            <a class="btn btn-success btn-xs" href="post.html" target="_blank">add some data</a>
-            before testing the functionality below.
+            NOTE: These courses might have been added
+            by fellow students. Please keep it clean.
+            List of courses will reset to default list
+            next time server restarts. To remove courses
+            use the
+            <a class="btn btn-danger btn-xs" href="delete.html" target="_blank">delete.html example</a>
         </div>
+
+        <h2>All Courses from Server</h2>
 
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Seats</th>
+                    <th>Course Title</th>
+                    <th>Seats Available</th>
                     <th>Start Date</th>
                     <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td><input class="form-control" ng-model="course.title" type="text" placeholder="Java 101"/></td>
+                    <td><input class="form-control" ng-model="course.seats" type="number" placeholder="45" min="0"/></td>
+                    <td><input class="form-control" ng-model="course.start" type="date"/></td>
+                    <td>
+                        <button ng-click="add(course)"
+                                class="btn btn-success pull-right btn-block">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </td>
                 </tr>
             </thead>
             <tbody>
@@ -33,11 +47,7 @@
                     <td>{{course.title}}</td>
                     <td>{{course.seats}}</td>
                     <td>{{course.start | date}}</td>
-                    <td>
-                        <button ng-click="delete(course)" class="btn btn-danger pull-right btn-block">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                    </td>
+                    <td>&nbsp;</td>
                 </tr>
             </tbody>
         </table>
@@ -67,49 +77,39 @@ var courses = [
     res.json(courses);
 });</pre>
 
-        <h2>DELETE a Single Course</h2>
+        <h3>Form to Post New Course</h3>
 
-        <h3>AngularJS HTML Template</h3>
-
-<pre>
-&lt;tr ng-repeat=&quot;course in courses&quot;&gt;
-    &lt;td&gt;<span ng-non-bindable="">{{course.title}}</span>&lt;/td&gt;
-    &lt;td&gt;<span ng-non-bindable="">{{course.seats}}</span>&lt;/td&gt;
-    &lt;td&gt;<span ng-non-bindable="">{{course.start | date}}</span>&lt;/td&gt;
+        <pre>
+&lt;tr&gt;
+    &lt;td&gt;&lt;input class=&quot;form-control&quot; ng-model=&quot;course.title&quot; type=&quot;text&quot;/&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;input class=&quot;form-control&quot; ng-model=&quot;course.seats&quot; type=&quot;number&quot;/&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;input class=&quot;form-control&quot; ng-model=&quot;course.start&quot; type=&quot;date&quot;/&gt;&lt;/td&gt;
     &lt;td&gt;
-        &lt;button <b style="color: #f00;">ng-click=&quot;delete(course)&quot;</b> class=&quot;btn btn-danger pull-right&quot;&gt;
-            &lt;span class=&quot;glyphicon glyphicon-remove&quot;&gt;&lt;/span&gt;
+        &lt;button <b style="color: red;">ng-click=&quot;add(course)&quot;</b>
+                class=&quot;btn btn-success pull-right btn-block&quot;&gt;
+            &lt;span class=&quot;glyphicon glyphicon-plus&quot;&gt;&lt;/span&gt;
         &lt;/button&gt;
     &lt;/td&gt;
 &lt;/tr&gt;</pre>
 
-        <h3>AngularJS Controller delete() Event Handler</h3>
+        <h3>Handling add() Event and Posting to Server</h3>
 
         <pre>
-<b style="color: red;">$scope.delete = function(course) {</b>
-    var index = $scope.courses.indexOf(course);
-    <b style="color: blue;">$http.delete("/api/course/"+index)</b>
+<b style="color: red;">$scope.add = function(course) {</b>
+    <b style="color: blue;">$http.post("/api/course"</b>, course)
         .success(function(response){
             $scope.courses = response;
         });
 }</pre>
-
         <h3>Server</h3>
 
         <pre>
-var courses = [
-    {title: 'Java 101', seats: 12, start: new Date()},
-    {title: 'C# 101', seats: 12, start: new Date()},
-    {title: 'ASP.NET 101', seats: 12, start: new Date()},
-    {title: 'Node.js 101', seats: 12, start: new Date()},
-    {title: 'AngularJS 101', seats: 12, start: new Date()},
-];
-<b style="color: blue;">app.delete('/api/course/:id'</b>, function (req, res) {
-    var index = req.params.id;
-    courses.splice(index, 1);
+<b style="color: blue;">app.post('/api/course'</b>, function (req, res) {
+    var newCourse = req.body;
+    console.log(newCourse);
+    courses.push(newCourse);
     res.json(courses);
 });</pre>
-
     </div>
     <script>
         angular
@@ -122,10 +122,8 @@ var courses = [
                 .success(function(response){
                     $scope.courses = response;
                 });
-
-            $scope.delete = function(course) {
-                var index = $scope.courses.indexOf(course);
-                $http.delete("/api/course/"+index)
+            $scope.add = function(course) {
+                $http.post("/api/course", course)
                     .success(function(response){
                         $scope.courses = response;
                     });

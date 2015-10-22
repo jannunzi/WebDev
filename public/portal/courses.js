@@ -493,6 +493,20 @@
                       "server.js" : "server.js"
                   }
               }
+              ,{ title: "Adding Content Using POST",
+                  base: "/lectures/nodejs/expressjs/",
+                  src:"post.html",
+                  dependencies: {
+                      "server.js" : "server.js"
+                  }
+              }
+              ,{ title: "Removing Content Using DELETE",
+                  base: "/lectures/nodejs/expressjs/",
+                  src:"delete.html",
+                  dependencies: {
+                      "server.js" : "server.js"
+                  }
+              }
           ]
           //    { title: "Open Shift",
           //        base: "/experiments/express/openshift/",
