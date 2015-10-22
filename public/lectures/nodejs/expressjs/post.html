@@ -52,31 +52,6 @@
             </tbody>
         </table>
 
-        <h2>Retrieving all the Courses from Server on Page Load</h2>
-
-        <h3>AngularJS Controller Client</h3>
-
-        <pre>
-$scope.courses = {};
-<b style="color: green;">$http.get("/api/course")</b>
-    .success(function(response){
-        $scope.courses = response;
-    });</pre>
-
-        <h3>Node.js Web Service</h3>
-
-        <pre>
-var courses = [
-    {title: 'Java 101', seats: 12, start: new Date()},
-    {title: 'C# 101', seats: 12, start: new Date()},
-    {title: 'ASP.NET 101', seats: 12, start: new Date()},
-    {title: 'Node.js 101', seats: 12, start: new Date()},
-    {title: 'AngularJS 101', seats: 12, start: new Date()},
-];
-<b style="color: green;">app.get('/api/course'</b>, function (req, res) {
-    res.json(courses);
-});</pre>
-
         <h3>Form to Post New Course</h3>
 
         <pre>
@@ -110,6 +85,33 @@ var courses = [
     courses.push(newCourse);
     res.json(courses);
 });</pre>
+
+        <h2>Retrieving all the Courses from Server on Page Load</h2>
+
+        <h3>AngularJS Controller Client</h3>
+
+        <pre>
+$scope.courses = {};
+<b style="color: green;">$http.get("/api/course")</b>
+    .success(function(response){
+        $scope.courses = response;
+    });</pre>
+
+        <h3>Node.js Web Service</h3>
+
+        <pre>
+var courses = [
+    {title: 'Java 101', seats: 12, start: new Date()},
+    {title: 'C# 101', seats: 12, start: new Date()},
+    {title: 'ASP.NET 101', seats: 12, start: new Date()},
+    {title: 'Node.js 101', seats: 12, start: new Date()},
+    {title: 'AngularJS 101', seats: 12, start: new Date()},
+];
+<b style="color: green;">app.get('/api/course'</b>, function (req, res) {
+    res.json(courses);
+});</pre>
+
+
     </div>
     <script>
         angular

@@ -22,11 +22,11 @@ module.exports = function(app) {
     });
 
     var courses = [
-        {title: 'Java 101', seats: 12, start: new Date()},
-        {title: 'C# 101', seats: 12, start: new Date()},
-        {title: 'ASP.NET 101', seats: 12, start: new Date()},
-        {title: 'Node.js 101', seats: 12, start: new Date()},
-        {title: 'AngularJS 101', seats: 12, start: new Date()},
+        {title: 'Java 101',      seats: 12, start: new Date()},
+        {title: 'C# 101',        seats: 23, start: new Date(2015,1,23)},
+        {title: 'ASP.NET 101',   seats: 34, start: new Date(2015,1,26)},
+        {title: 'Node.js 101',   seats: 45, start: new Date(2015,9,5)},
+        {title: 'AngularJS 101', seats: 56, start: new Date(2015,9,7)},
     ];
 
     app.get('/api/course', function (req, res) {
