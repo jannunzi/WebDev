@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ExpressApp">
+<head>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../js/jquery-1.11.3.min.js"></script>
+    <script src="../../../js/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <title>ExpressApp</title>
+</head>
+<body>
+    <div class="container" ng-controller="ExpressController">
+        <h1>Rendering a Dropdown with Server Data</h1>
+
+        <h2>GET Array from Server</h2>
+
+        <a href="/api/course" target="_blank">/api/course</a>
+
+        <h3>Dropdown Rendered with Server Data</h3>
+        <select ng-model="selectedCourse"
+                ng-options="course.title for course in courses" class="form-control"
+                ng-change="selectCourse()">
+        </select>
+        <h4>Selected Model From Above Dropdown</h4>
+        <div class="row">
+            <div class="col-xs-4">
+                {{selectedCourse.title}}
+            </div>
+            <div class="col-xs-4">
+                {{selectedCourse.seats}}
+            </div>
+            <div class="col-xs-4">
+                {{selectedCourse.start | date}}
+            </div>
+        </div>
+
+        <h3>Server</h3>
+
+        <pre>
+var courses = [
+    {title: 'Java 101', seats: 12, start: new Date()},
+    {title: 'C# 101', seats: 12, start: new Date()},
+    {title: 'ASP.NET 101', seats: 12, start: new Date()},
+    {title: 'Node.js 101', seats: 12, start: new Date()},
+    {title: 'AngularJS 101', seats: 12, start: new Date()},
+];
+app.get('/api/course', function (req, res) {
+    res.json(courses);
+});</pre>
+
+        <h3>AngularJS Client</h3>
+
+        <h4>Fetch Courses for Dropdown from Server</h4>
+
+        <pre>
+$scope.courses = {};
+$http.get("/api/course")
+    .success(function(response){
+        $scope.courses = response;
+    });</pre>
+
+        <h4>Respond to Dropdown Selection</h4>
+
+        <pre>
+$scope.selectCourse = function() {
+    alert("Selected Course: " + $scope.selectedCourse.title);
+    var index = $scope.courses.indexOf($scope.selectedCourse);
+    alert("Index: " + index);
+}</pre>
+    </div>
+    <script>
+        angular
+            .module("ExpressApp", [])
+            .controller("ExpressController", ExpressController);
+
+        function ExpressController($scope, $http) {
+            $scope.courses = {};
+            $http.get("/api/course")
+                .success(function(response){
+                    $scope.courses = response;
+                });
+
+            $scope.selectCourse = function() {
+                alert("Selected Course: " + $scope.selectedCourse.title);
+                var index = $scope.courses.indexOf($scope.selectedCourse);
+                alert("Index: " + index);
+            }
+        }
+    </script>
+</body>
+</html>

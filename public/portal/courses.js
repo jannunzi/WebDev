@@ -464,14 +464,36 @@
               , {title: "Web Services"}
               , {title: "REST Web API"}
           ],
-          //express_examples: [
-          //    { title: "Hello",
-          //        base: "/experiments/express/hello/",
-          //        src:"index.html",
-          //        dependencies: {
-          //            "server.js" : "server.js"
-          //        }
-          //    },
+          "express_examples": [
+              { title: "Hello",
+                  base: "/lectures/nodejs/expressjs/",
+                  src:"hello.html",
+                  dependencies: {
+                      "server.js" : "server.js"
+                  }
+              }
+              ,{ title: "Retrieving a JSON Array",
+                  base: "/lectures/nodejs/expressjs/",
+                  src:"array.html",
+                  dependencies: {
+                      "server.js" : "server.js"
+                  }
+              }
+              ,{ title: "Rendering a Dropdown with Server Data",
+                  base: "/lectures/nodejs/expressjs/",
+                  src:"select.html",
+                  dependencies: {
+                      "server.js" : "server.js"
+                  }
+              }
+              ,{ title: "Passing Path Parameters",
+                  base: "/lectures/nodejs/expressjs/",
+                  src:"parameter.html",
+                  dependencies: {
+                      "server.js" : "server.js"
+                  }
+              }
+          ]
           //    { title: "Open Shift",
           //        base: "/experiments/express/openshift/",
           //        src:"index.html",

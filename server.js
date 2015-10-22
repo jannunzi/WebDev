@@ -20,4 +20,6 @@ app.get('/course', function (req, res) {
 //require("./public/experiments/express/require/get.hello.exp.js")(app);
 //require("./public/experiments/require/experiments.js")(app);
 
+require("./public/lectures/nodejs/expressjs/server.js")(app);
+
 app.listen(port, ipaddress);

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../js/jquery-1.11.3.min.js"></script>
+    <script src="../../../js/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <title>ExpressApp</title>
+</head>
+<body>
+    <div class="container" ng-controller="ExpressController">
+        <h1>Express.js Hello World</h1>
+
+        <h2>GET Text</h2>
+
+        <h3>Simple URL</h3>
+
+        <a href="/api/hello" target="_blank">/api/hello</a>
+
+        <h3>Server</h3>
+
+        <pre>
+app.get('/api/hello', sayHello);
+
+function sayHello(req, res) {
+    console.log('Say Hello');
+    res.send('&lt;h1&gt;Say Hello&lt;/h1&gt;');
+}</pre>
+
+        <h2>GET JSON</h2>
+
+        <h3>Simple URL</h3>
+
+        <a href="/api/json" target="_blank">/api/json</a>
+
+        <h3>Server</h3>
+
+        <pre>
+app.get('/api/json', function (req, res) {
+    var course = {
+        title: 'Java 101',
+        seats: 23,
+        start: new Date()
+    };
+    res.json(course);
+});</pre>
+
+        <h2>GET JSON Array</h2>
+
+        <h3>Simple URL</h3>
+
+        <a href="/api/course" target="_blank">/api/course</a>
+
+        <h3>Server</h3>
+
+        <pre>
+var courses = [
+    {title: 'Java 101', seats: 12, start: new Date()},
+    {title: 'C# 101', seats: 12, start: new Date()},
+    {title: 'ASP.NET 101', seats: 12, start: new Date()},
+    {title: 'Node.js 101', seats: 12, start: new Date()},
+    {title: 'AngularJS 101', seats: 12, start: new Date()},
+];
+
+app.get('/api/course', function (req, res) {
+    res.json(courses);
+});</pre>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ExpressApp">
+<head>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../js/jquery-1.11.3.min.js"></script>
+    <script src="../../../js/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <title>ExpressApp</title>
+</head>
+<body>
+    <div class="container" ng-controller="ExpressController">
+        <h1>Express.js REST API Examples</h1>
+
+        <h2>GET JSON Array</h2>
+
+        <h3>Simple URL</h3>
+
+        <a href="/api/course" target="_blank">/api/course</a>
+
+        <h3>Server</h3>
+
+        <pre>
+var courses = [
+    {title: 'Java 101', seats: 12, start: new Date()},
+    {title: 'C# 101', seats: 12, start: new Date()},
+    {title: 'ASP.NET 101', seats: 12, start: new Date()},
+    {title: 'Node.js 101', seats: 12, start: new Date()},
+    {title: 'AngularJS 101', seats: 12, start: new Date()},
+];
+
+app.get('/api/course', function (req, res) {
+    res.json(courses);
+});</pre>
+
+        <h3>AngularJS Client Using $http Service</h3>
+
+        <pre>
+$http.get("/api/course")
+    .success(function(response){
+        $scope.courses = response;
+    });</pre>
+
+        <h3>AngularJS HTML Template</h3>
+
+        <pre>
+&lt;tr ng-repeat=&quot;course in courses&quot;&gt;
+    &lt;td&gt;{{course.title}}&lt;/td&gt;
+    &lt;td&gt;{{course.seats}}&lt;/td&gt;
+    &lt;td&gt;{{course.start | date}}&lt;/td&gt;
+&lt;/tr&gt;</pre>
+
+        <h3>Rendered HTML Template</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Seats</th>
+                    <th>Start Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in courses">
+                    <td>{{course.title}}</td>
+                    <td>{{course.seats}}</td>
+                    <td>{{course.start | date}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>GET With Parameters</h2>
+
+        <a href="/api/course/0" target="_blank">/api/course/0</a>
+
+        <h3>Select and Fetch</h3>
+        <select ng-model="selectedCourse"
+                ng-options="course.title for course in courses" class="form-control"
+                ng-change="selectCourse()">
+        </select>
+        <h4>Selected Model</h4>
+        <div class="row">
+            <div class="col-xs-4">
+                {{selectedCourse.title}}
+            </div>
+            <div class="col-xs-4">
+                {{selectedCourse.seats}}
+            </div>
+            <div class="col-xs-4">
+                {{selectedCourse.start | date}}
+            </div>
+        </div>
+        <h4>Fetched Model</h4>
+        <div class="row">
+            <div class="col-xs-4">
+                {{fetchedCourse.title}}
+            </div>
+            <div class="col-xs-4">
+                {{fetchedCourse.seats}}
+            </div>
+            <div class="col-xs-3">
+                {{fetchedCourse.start | date}}
+            </div>
+        </div>
+
+
+        <pre>
+app.get('/api/course/:id', function (req, res) {
+    var index = req.params.id;
+    console.log(index);
+    res.json(courses[index]);
+});</pre>
+
+        <h2>DELETE</h2>
+
+        <pre>
+app.delete('/api/course/:id', function (req, res) {
+    var index = req.params.id;
+    courses.splice(index, 1);
+    res.json(courses);
+});</pre>
+    </div>
+    <script>
+        angular
+            .module("ExpressApp", [])
+            .controller("ExpressController", ExpressController);
+
+        function ExpressController($scope, $http) {
+            $scope.courses = {};
+            $http.get("/api/course")
+                .success(function(response){
+                    $scope.courses = response;
+                });
+
+            $scope.selectCourse = function() {
+                var index = $scope.courses.indexOf($scope.selectedCourse);
+                $http.get("/api/course/"+index)
+                    .success(function(response){
+                        $scope.fetchedCourse = response;
+                    });
+            }
+        }
+    </script>
+</body>
+</html>
