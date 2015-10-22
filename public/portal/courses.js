@@ -458,23 +458,28 @@
         }
         , {
           title: 'Server Side Development',
-          available: false,
-              express_examples: [
-                  { title: "Hello",
-                      base: "/experiments/express/hello/",
-                      src:"index.html",
-                      dependencies: {
-                          "server.js" : "server.js"
-                      }
-                  },
-                  { title: "Open Shift",
-                      base: "/experiments/express/openshift/",
-                      src:"index.html",
-                      dependencies: {
-                          "server.js" : "server.js"
-                      }
-                  }
-              ]
+          available: true,
+          lectures: [
+                {title: "Node.JS"}
+              , {title: "Web Services"}
+              , {title: "REST Web API"}
+          ],
+          //express_examples: [
+          //    { title: "Hello",
+          //        base: "/experiments/express/hello/",
+          //        src:"index.html",
+          //        dependencies: {
+          //            "server.js" : "server.js"
+          //        }
+          //    },
+          //    { title: "Open Shift",
+          //        base: "/experiments/express/openshift/",
+          //        src:"index.html",
+          //        dependencies: {
+          //            "server.js" : "server.js"
+          //        }
+          //    }
+          //]
           }
         , {
           title: 'Database Development',
@@ -500,7 +505,7 @@
           ]
         }
         , {
-          title: 'Securing',
+          title: 'Security',
           visible: true,
           available: false,
           lectures: [
