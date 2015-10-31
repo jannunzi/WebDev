@@ -142,7 +142,8 @@
             , {title: 'JQuery'}
           ],
           assignments: [
-              {title: 'Programming the Client'}
+              {title: 'Programming the Client'},
+              {title: 'Project Proof of Concept'}
           ],
           videos: [],
           slides: [],
@@ -459,6 +460,9 @@
         , {
           title: 'Server Side Development',
           available: true,
+          assignments: [
+              {title: 'Programming the Server'}
+          ],
           lectures: [
                 {title: "Node.JS"}
               , {title: "Web Services"}
