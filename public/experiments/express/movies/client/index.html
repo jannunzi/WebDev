@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MovieApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../../js/angular.min.js"></script>
+    <script src="../../../../js/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="login/login.controller.js"></script>
+    <script src="movie/search.controller.js"></script>
+    <script src="profile/profile.controller.js"></script>
+    <script src="services/movie.service.js"></script>
+    <script src="services/user.services.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie App</h1>
+        <a href="#/home">Home</a> |
+        <a href="#/search">Search</a> |
+        <a href="#/login">Login</a>
+        <hr/>
+        <div ng-view>
+
+        </div>
+    </div>
+</body>
+</html>

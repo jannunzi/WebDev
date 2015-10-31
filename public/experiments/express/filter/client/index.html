@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FilterApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../../js/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services/filter.service.js"></script>
+    <script src="filter/filter.controller.js"></script>
+    <title>Filters</title>
+</head>
+<body>
+
+    <div class="container" ng-controller="FilterController as controller">
+
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="panel panel-default" ng-repeat="filter in controller.filters">
+                    <div class="panel-heading">
+                        <span ng-if="filter.subfilters">
+                            <span class="glyphicon glyphicon-minus pull-right" ng-click="filter.show=false" ng-show="filter.show==true"></span>
+                            <span class="glyphicon glyphicon-plus pull-right" ng-click="filter.show=true" ng-show="!filter.show"></span>
+                        </span>
+                        <h3 class="panel-title">{{filter.label}}</h3>
+                    </div>
+                    <ul class="list-group" ng-show="filter.subfilters && filter.show==true">
+                        <li class="list-group-item" ng-repeat="subFilter in filter.subfilters">
+                            <label><input type="checkbox" ng-model="subFilter.selected" ng-change="controller.selectSubSubFilters(subFilter)"/> {{subFilter.label}}</label>
+                            <ul class="list-group" ng-if="subFilter.subfilters">
+                                <li class="list-group-item" ng-repeat="subSubFilter in subFilter.subfilters">
+                                    <label><input type="checkbox" ng-model="subSubFilter.selected"/> {{subSubFilter.label}}</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <button ng-click="controller.applyFilters(controller.filters)" class="btn btn-primary btn-block">Apply Filters</button>
+            </div>
+            <div class="col-xs-8">
+                <ul>
+                    <li ng-repeat="filter in controller.selectedFilters">
+                        {{filter.label}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
