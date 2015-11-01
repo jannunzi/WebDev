@@ -1,0 +1,26 @@
+<h1>
+    Search Movie
+</h1>
+
+<input ng-model="controller.movieTitle" class="form-control" placeholder="Movie Title"/>
+<button ng-click="controller.search(controller.movieTitle)" class="btn btn-primary btn-block">Search</button>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <td>Movie 123</td>
+            <td>
+                <button ng-click="controller.like('123ABC')" class="btn btn-info pull-right">
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </button>
+            </td>
+        </tr>
+        <tr ng-repeat="movie in controller.movies">
+            <td>{{movie.title}}</td>
+            <td>
+                <button class="btn btn-info">
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

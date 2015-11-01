@@ -1,0 +1,27 @@
+<h1>Search Movie</h1>
+
+<input class="form-control" ng-model="title" placeholder="Movie Title"/>
+<button ng-click="model.search(title)" class="btn btn-primary btn-block">Search</button>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <td>Dumb and Dumber</td>
+            <td>
+                <button class="pull-right btn btn-info" ng-click="model.like('123QWE')">
+                    <span class="glyphicon-star-empty glyphicon">
+                    </span>
+                </button>
+            </td>
+        </tr>
+        <tr ng-repeat="movie in model.results">
+            <td>{{movie.title}}</td>
+            <td>
+                <button class="btn btn-info" ng-click="like(movie.idIMDB)">
+                    <span class="glyphicon-star-empty glyphicon">
+                    </span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
