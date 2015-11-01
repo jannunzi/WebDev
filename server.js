@@ -21,5 +21,11 @@ app.get('/course', function (req, res) {
 //require("./public/experiments/require/experiments.js")(app);
 
 require("./public/lectures/nodejs/expressjs/server.js")(app);
+require("./public/lectures/nodejs/angularjsClient/server.js")(app);
+require("./public/experiments/rest/app/model/application.model.test.js");
+require("./public/experiments/rest/app/model/page.model.test.js");
+require("./public/experiments/rest/app/server")(app);
+
+require("./public/lectures/angularjs/jsonp/server/MovieService.js")(app);
 
 app.listen(port, ipaddress);
