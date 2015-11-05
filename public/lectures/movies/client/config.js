@@ -9,7 +9,7 @@
                 templateUrl: "views/movies/search.view.html",
                 controller: "SearchMovieController as model"
             })
-            .when("/details", {
+            .when("/details/:idIMDB", {
                 templateUrl: "views/movies/details.view.html",
                 controller: "MovieDetailsController"
             })

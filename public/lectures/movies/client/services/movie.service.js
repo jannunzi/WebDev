@@ -10,9 +10,9 @@
         };
         return api;
 
-        function likes(idIMDB) {
+        function likes(movie) {
             var deferred = $q.defer();
-            $http.post("/api/lectures/movies/likes/"+idIMDB)
+            $http.post("/api/lectures/movies/likes/"+movie. idIMDB, movie)
                 .success(function(response){
                     deferred.resolve(response);
                 });

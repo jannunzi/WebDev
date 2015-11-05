@@ -5,7 +5,7 @@
 
     function config($routeProvider) {
 
-        var courses = angular.courses;
+//        var courses = angular.courses;
 
         $routeProvider
             .when('/modules', {

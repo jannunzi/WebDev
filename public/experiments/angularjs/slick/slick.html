@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SlickApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link  href="../../../bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
+    <script src="../../../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../../../bower_components/angular/angular.js"></script>
+    <script src="../../../bower_components/slick-carousel/slick/slick.js"></script>
+    <script src="../../../bower_components/angular-slick/dist/slick.js"></script>
+    <script>
+        angular
+                .module('SlickApp', ['slick'])
+                .controller("SlickController", SlickController);
+
+        function SlickController($scope) {
+
+            $scope.movies = [
+                {title: "Movie 1"},
+                {title: "Movie 2"},
+                {title: "Movie 3"},
+                {title: "Movie 4"},
+                {title: "Movie 5"},
+                {title: "Movie 6"},
+                {title: "Movie 7"},
+                {title: "Movie 8"},
+                {title: "Movie 9"},
+                {title: "Movie 10"},
+                {title: "Movie 11"}
+            ];
+        }
+    </script>
+</head>
+<body ng-controller="SlickController">
+    <slick dots="true" infinite="false" speed="300" slides-to-show="5" touch-move="false" slides-to-scroll="1">
+        <div ng-repeat="movie in movies" style="background-color: red; height: 100px; width: 100px;">
+            {{movie.title}}
+        </div>
+    </slick>
+</body>
+</html>

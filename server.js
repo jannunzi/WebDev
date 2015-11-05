@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/cs5610fall2015exmpl1');
+var db = mongoose.connection;
 //var courses = require('./courses')
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
@@ -19,11 +23,13 @@ app.get('/course', function (req, res) {
 
 //require("./public/experiments/express/require/get.hello.exp.js")(app);
 //require("./public/experiments/require/experiments.js")(app);
-
-require("./public/lectures/nodejs/expressjs/server.js")(app);
-require("./public/experiments/express/filter/server/app.js")(app);
-require("./public/experiments/express/movies/server/app.js")(app);
-
-require("./public/lectures/movies/server/app.js")(app);
+//
+//require("./public/lectures/nodejs/expressjs/server.js")(app);
+//require("./public/experiments/express/filter/server/app.js")(app);
+//require("./public/experiments/express/movies/server/app.js")(app);
+//
+//require("./public/lectures/movies/server/app.js")(app);
+//
+//require("./public/experiments/mongodb/intro/server/app.js")(app, db, mongoose);
 
 app.listen(port, ipaddress);

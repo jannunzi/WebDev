@@ -1,0 +1,36 @@
+<div>
+    <h2>Script List</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <td><input ng-model="script.label" class="form-control"/></td>
+                <td>
+                    <button ng-click="model.addScript(script)" class="btn btn-primary pull-right">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="script in model.scripts">
+                <td>
+                    <a href="#/script/script.id">
+                        {{script.label}}
+                    </a>
+                </td>
+                <td>
+                    <button ng-click="model.removeScript(script)" class="btn btn-danger pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{model.scripts}}
+</div>
