@@ -1,0 +1,36 @@
+<div>
+    <h2>Script Details</h2>
+
+    <h3>{{model.script.label}}</h3>
+
+    <table class="table">
+        <tr ng-repeat="statement in model.script.statements">
+            <td>
+                <a href="#/script/{{model.script._id}}/statement/{{$index}}">
+                    {{statement.tipo}}
+                </a>
+            </td>
+            <td>
+                <button ng-click="model.removeOperation($index)" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select ng-model="model.type" class="form-control">
+                    <option>Choose One</option>
+                    <option>Create a Variable</option>
+                    <option>Arithmetic Operation</option>
+                    <option>Date Operation</option>
+                </select>
+            </td>
+            <td>
+                <button ng-click="model.selectOperation(model.type)" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+
+</div>
