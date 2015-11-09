@@ -1,0 +1,32 @@
+<h2>Page Details</h2>
+
+<h3>{{model.page.label}}</h3>
+
+<table class="table">
+    <tr ng-repeat="content in model.page.content" class="table">
+        <td>{{content}}</td>
+        <td>
+            <button ng-click="removeContent(content)" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select ng-model="model.contentType" class="form-control">
+                <option ng-value="HEADING">Heading</option>
+                <option ng-value="LABEL">Label</option>
+                <option ng-value="PARAGRAPH">Paragraph</option>
+                <option ng-value="LIST">List</option>
+                <option ng-value="FORM">Form</option>
+            </select>
+        </td>
+        <td>
+            <button ng-click="addContent(model.contentTyle)" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </td>
+    </tr>
+</table>
+
+{{model.page}}

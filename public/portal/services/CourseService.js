@@ -530,7 +530,7 @@
                     , {
                         title: 'Database Development',
                         visible: true,
-                        available: false,
+                        available: true,
                         lectures: [
                             {title: 'Introduction to MongoDB'}
                             , {title: 'Introduction to Mongoose'}

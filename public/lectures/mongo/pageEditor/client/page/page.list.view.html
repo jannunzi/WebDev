@@ -1,0 +1,22 @@
+<h2>Page List</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            <input ng-model="model.page.label" class="form-control" placeholder="Page Name"/>
+        </td>
+        <td>
+            <button ng-click="model.addPage(model.page)" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </td>
+    </tr>
+    <tr ng-repeat="page in model.pages">
+        <td>
+            <a href="#/page/{{page._id}}/details">
+                {{page.label}}
+            </a>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
