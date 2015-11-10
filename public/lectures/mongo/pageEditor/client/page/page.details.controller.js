@@ -4,7 +4,7 @@
         .controller("PageDetailsController", PageDetailsController);
 
     function PageDetailsController(PageService, $routeParams) {
-        var pageId = $routeParams.pageId;
+        var pageId = $routeParams["pageId"];
 
         var model = this;
         model.addContent = addContent;
@@ -15,13 +15,13 @@
                 .getPageById(pageId)
                 .then(function(page){
                     model.page = page;
-                })
+                });
         }
         init();
 
         function addContent(contentType) {
             PageService
-                .addContent(contentType)
+                .addContent(model.page._id, contentType)
                 .then(function(page){
                     model.page = page;
                 });

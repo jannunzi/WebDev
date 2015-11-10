@@ -7,14 +7,15 @@
         var api = {
             getAllPages: getAllPages,
             getPageById: getPageById,
-            addPage: addPage
+            addPage: addPage,
+            addContent: addContent
         };
         return api;
 
-        function getPageById(id) {
+        function addContent(pageId, contentType) {
             var deferred = $q.defer();
 
-            $http.get("/api/lecture/mongo/pe/page/"+id)
+            $http.post("/api/lecture/mongo/pe/page/" + pageId + "/content/" + contentType)
                 .success(function(page){
                     deferred.resolve(page);
                 });
@@ -39,6 +40,17 @@
             $http.get("/api/lecture/mongo/pe/page")
                 .success(function(pages){
                     deferred.resolve(pages);
+                });
+
+            return deferred.promise;
+        }
+
+        function getPageById(id) {
+            var deferred = $q.defer();
+
+            $http.get("/api/lecture/mongo/pe/page/"+id)
+                .success(function(page){
+                    deferred.resolve(page);
                 });
 
             return deferred.promise;

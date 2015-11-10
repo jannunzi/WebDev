@@ -16,6 +16,12 @@
                 controller: "PageDetailsController",
                 controllerAs: "model"
             })
+            .when("/page/:pageId/details/:index",
+            {
+                templateUrl: "page/page.content.details.view.html",
+                controller: "PageContentEditorController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/page"
             });

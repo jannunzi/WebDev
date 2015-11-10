@@ -21,9 +21,7 @@ module.exports = function(mongoose, db){
             },
             "list" : {
                 "listType" : {type: String, enum: ["ORDERED", "UNORDERED"], default: "ORDERED"},
-                "items": [
-                    "Item 1", "Item 2", "Item 3"
-                ]
+                "items": [String]
             },
             "form" : {
                 "formId" : String
@@ -35,10 +33,28 @@ module.exports = function(mongoose, db){
 
     var api = {
         addPage: addPage,
+        addContent: addContent,
         getAllPages: getAllPages,
         getPageById: getPageById
     };
     return api;
+
+    function addContent(pageId, contentType) {
+        var deferred = q.defer();
+
+        PageModel.findById(pageId, function(err, page){
+            var content = {
+                contentType: contentType,
+                list: {listType: 'ORDERED', items: ["Item 1", "Item 2", "Item 3"]}
+            };
+            page.content.push(content);
+            page.save(function(err, doc){
+                deferred.resolve(doc);
+            });
+        });
+
+        return deferred.promise;
+    }
 
     function getPageById(id) {
         var deferred = q.defer();

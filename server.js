@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-//var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/cs5610fall2015exmpl1');
-//var db = mongoose.connection;
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/cs5610fall2015exmpl1');
+var db = mongoose.connection;
 
 //var courses = require('./courses')
 
@@ -41,6 +41,6 @@ app.get('api/course', function (req, res) {
 
 //require("./public/ds/fc/server/app.js")(app, db, mongoose);
 //
-//require("./public/lectures/mongo/pageEditor/server/app.js")(app, mongoose, db);
+require("./public/lectures/mongo/pageEditor/server/app.js")(app, mongoose, db);
 
 app.listen(port, ipaddress);
