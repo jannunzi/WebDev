@@ -1,4 +1,3 @@
-
 [
   {
     "title": "CS5610",
@@ -671,6 +670,48 @@
           },
           {
             "title": "Update Data in MongoDB"
+          }
+        ],
+        "Page_Editor_examples": [
+          {
+            "title": "Server Side Code",
+            "base": "/lectures/mongo/pageEditor/",
+            "src": "client/index.html",
+            "dependencies": {
+              "server/app.js": "server/app.js",
+              "server/services/page.service.server.js": "server/services/page.service.server.js",
+              "server/models/page.model.js": "server/models/page.model.js"
+            }
+          },
+          {
+            "title": "Client Side Module, Configuration, and Service",
+            "base": "/lectures/mongo/pageEditor/",
+            "src": "client/index.html",
+            "dependencies": {
+              "client/app.js": "client/app.js",
+              "client/config.js": "client/config.js",
+              "client/services/page.service.js": "client/services/page.service.js"
+            }
+          },
+          {
+            "title": "Page List View Template and Controller",
+            "base": "/lectures/mongo/pageEditor/",
+            "src": "client/index.html",
+            "dependencies": {
+              "client/page/page.list.view.html": "client/page/page.list.view.html",
+              "client/page/page.list.controller.js": "client/page/page.list.controller.js",
+              "client/config.js": "client/config.js"
+            }
+          },
+          {
+            "title": "Page Details View Template and Controller",
+            "base": "/lectures/mongo/pageEditor/",
+            "src": "client/#/page/5642b26e0c0a9bc4588af83e/details",
+            "dependencies": {
+              "client/page/page.details.view.html": "client/page/page.details.view.html",
+              "client/page/page.details.controller.js": "client/page/page.details.controller.js",
+              "client/config.js": "client/config.js"
+            }
           }
         ],
         "assignments": [],
