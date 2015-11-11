@@ -14,6 +14,7 @@
                 .getPageById(pageId)
                 .then(function(page){
                     model.page = page;
+                    model.content = model.page.content[contentIndex];
                 });
         }
         init();

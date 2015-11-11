@@ -52,5 +52,6 @@ app.get('api/course', function (req, res) {
 //require("./public/ds/fc/server/app.js")(app, db, mongoose);
 
 require("./public/lectures/mongo/pageEditor/server/app.js")(app, mongoose, db);
+require("./public/portal/server/app.js")(app, db, mongoose);
 
 app.listen(port, ipaddress);

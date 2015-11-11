@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../../js/jsoneditor.js"></script>
+    <title></title>
+
+</head>
+<body>
+
+    <div id="editor_holder" class="container">
+
+    </div>
+
+
+    <script>
+        var element = document.getElementById('editor_holder');
+        var schema = {
+            "title": "Person",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "First and Last name",
+                    "minLength": 4,
+                    "default": "Jeremy Dorn"
+                },
+                "age": {
+                    "type": "integer",
+                    "default": 25,
+                    "minimum": 18,
+                    "maximum": 99
+                },
+                "favorite_color": {
+                    "type": "string",
+                    "format": "color",
+                    "title": "favorite color",
+                    "default": "#ffa500"
+                },
+                "gender": {
+                    "type": "string",
+                    "enum": [
+                        "male",
+                        "female"
+                    ]
+                },
+                "location": {
+                    "type": "object",
+                    "title": "Location",
+                    "properties": {
+                        "city": {
+                            "type": "string",
+                            "default": "San Francisco"
+                        },
+                        "state": {
+                            "type": "string",
+                            "default": "CA"
+                        },
+                        "citystate": {
+                            "type": "string",
+                            "description": "This is generated automatically from the previous two fields",
+                            "template": "{{city}}, {{state}}",
+                            "watch": {
+                                "city": "location.city",
+                                "state": "location.state"
+                            }
+                        }
+                    }
+                },
+                "pets": {
+                    "type": "array",
+                    "format": "table",
+                    "title": "Pets",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "object",
+                        "title": "Pet",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "cat",
+                                    "dog",
+                                    "bird",
+                                    "reptile",
+                                    "other"
+                                ],
+                                "default": "dog"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": [
+                        {
+                            "type": "dog",
+                            "name": "Walter"
+                        }
+                    ]
+                }
+            }
+        };
+        var options = {
+            theme: 'bootstrap2',
+            schema: schema
+        };
+        var editor = new JSONEditor(element, options);
+
+    </script>
+
+</body>
+</html>
