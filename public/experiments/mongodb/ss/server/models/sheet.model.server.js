@@ -7,8 +7,8 @@ module.exports = function(db, mongoose) {
         createSheet: createSheet,
         readAllSheet: readAllSheet,
         readOneSheet: readOneSheet,
+        updateSheet: updateSheet,
         removeSheet: removeSheet,
-        deleteSheet: deleteSheet,
         createCell: createCell,
         removeCell: removeCell,
         updateCell: updateCell
@@ -71,11 +71,11 @@ module.exports = function(db, mongoose) {
     function readAllSheet() {
         var deferred = q.defer();
 
-        SheetModel.find(function(err, sheet){
+        SheetModel.find(function(err, sheets){
             if(err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(sheet);
+                deferred.resolve(sheets);
             }
         });
 
@@ -96,7 +96,7 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
-    function removeSheet(id, sheet) {
+    function updateSheet(id, sheet) {
         var deferred = q.defer();
 
         sheet.delete("_id");
@@ -112,7 +112,7 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
-    function deleteSheet(id) {
+    function removeSheet(id) {
         var deferred = q.defer();
 
         SheetModel.remove({_id: id}, function(err, status) {
