@@ -1,0 +1,112 @@
+<h2>Sheet Details</h2>
+
+<div class="row">
+    <div ng-class="model.leftCol">
+        <table class="table borderless">
+            <tr ng-repeat="cell in model.sheet.cells"
+                ng-class="{'active': $index==model.functionCellIndex}">
+                <td>{{$index}}</td>
+                <td>
+                    <input ng-model="cell.literal"
+                           ng-change="model.updateCell(model.sheet._id, $index, cell)"
+                           tabindex="{{$index}}"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <button ng-click="model.removeCell(model.sheet._id, $index)"
+                            class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove">
+                        </span>
+                    </button>
+                    <button ng-click="model.functionCell($index)"
+                            class="btn btn-info">
+                        <span class="glyphicon glyphicon-pencil">
+                        </span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input ng-model="model.cell.literal"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <button ng-click="model.addCell(model.sheet._id, model.cell)"
+                            class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus">
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-class="model.rightCol" ng-if="model.showFunctionCell" class="form-horizontal">
+
+        <h4>Function Editor</h4>
+
+        <div class="form-group">
+            <label for="if" class="col-sm-2 control-label">If</label>
+            <div class="col-sm-10">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="value1" class="col-sm-2 control-label">Value 1</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="value1"
+                        ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"
+                        ng-model="model.sheet.cells[model.functionCellIndex].if.inputCell1">
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="value1" class="col-sm-2 control-label">Is</label>
+            <div class="col-sm-10">
+                <select class="form-control"
+                        ng-model="model.sheet.cells[model.functionCellIndex].if.operation">
+                    <option ng-value="EQ">Equal</option>
+                    <option ng-value="NEQ">Not equal</option>
+                    <option ng-value="GT">Greater</option>
+                    <option ng-value="GTE">Greater or equal</option>
+                    <option ng-value="LT">Less than</option>
+                    <option ng-value="LTE">Less than or equal</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="value1" class="col-sm-2 control-label">Than</label>
+            <div class="col-sm-10">
+                <select class="form-control"
+                        ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"
+                        ng-model="model.sheet.cells[model.functionCellIndex].if.inputCell2">
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="value1" class="col-sm-2 control-label">Then</label>
+            <div class="col-sm-10">
+                <select class="form-control"
+                        ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"
+                        ng-model="model.sheet.cells[model.functionCellIndex].if.thenCell">
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="value1" class="col-sm-2 control-label">Else</label>
+            <div class="col-sm-10">
+                <select class="form-control"
+                        ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"
+                        ng-model="model.sheet.cells[model.functionCellIndex].if.elseCell">
+                </select>
+            </div>
+        </div>
+
+        <button ng-click="model.functionCellDone()" class="btn btn-block btn-success">Done</button>
+    </div>
+</div>
