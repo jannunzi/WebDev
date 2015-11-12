@@ -714,6 +714,57 @@
             }
           }
         ],
+        "Sheet_Editor_examples": [
+          {
+            "title": "Sheet Server Side Code",
+            "base": "/experiments/mongodb/ss/",
+            "src": "client/index.html",
+            "dependencies": {
+              "server/app.js": "server/app.js",
+              "server/services/sheet.service.server.js": "server/services/sheet.service.server.js",
+              "server/models/sheet.model.server.js": "server/models/sheet.model.server.js"
+            }
+          },
+          {
+            "title": "Cell Server Side Code",
+            "base": "/experiments/mongodb/ss/",
+            "src": "client/index.html",
+            "dependencies": {
+              "server/app.js": "server/app.js",
+              "server/services/cell.service.server.js": "server/services/cell.service.server.js",
+              "server/models/cell.model.server.js": "server/models/cell.model.server.js"
+            }
+          },
+          {
+            "title": "Sheet Client Side Code",
+            "base": "/experiments/mongodb/ss/",
+            "src": "client/index.html",
+            "dependencies": {
+              "client/app.js": "client/app.js",
+              "client/config.js": "client/config.js"
+            }
+          },
+          {
+            "title": "Sheet Editor",
+            "base": "/experiments/mongodb/ss/",
+            "src": "client/index.html",
+            "dependencies": {
+              "client/sheet/sheet.list.view.html": "client/sheet/sheet.list.view.html",
+              "client/sheet/sheet.list.controller.js": "client/sheet/sheet.list.controller.js",
+              "client/services/sheet.service.client.js": "client/services/sheet.service.client.js"
+            }
+          },
+          {
+            "title": "Cell Editor",
+            "base": "/experiments/mongodb/ss/",
+            "src": "client/index.html",
+            "dependencies": {
+              "client/sheet/sheet.details.view.html": "client/sheet/sheet.details.view.html",
+              "client/sheet/sheet.details.controller.js": "client/sheet/sheet.details.controller.js",
+              "client/services/cell.service.client.js": "client/services/cell.service.client.js"
+            }
+          }
+        ],
         "assignments": [],
         "videos": [],
         "slides": [],
