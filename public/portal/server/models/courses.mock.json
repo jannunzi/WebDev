@@ -722,7 +722,8 @@
             "dependencies": {
               "server/app.js": "server/app.js",
               "server/services/sheet.service.server.js": "server/services/sheet.service.server.js",
-              "server/models/sheet.model.server.js": "server/models/sheet.model.server.js"
+              "server/models/sheet.model.server.js": "server/models/sheet.model.server.js",
+              "server/models/sheet.schema.server.js": "server/models/sheet.schema.server.js"
             }
           },
           {
@@ -732,7 +733,8 @@
             "dependencies": {
               "server/app.js": "server/app.js",
               "server/services/cell.service.server.js": "server/services/cell.service.server.js",
-              "server/models/cell.model.server.js": "server/models/cell.model.server.js"
+              "server/models/sheet.model.server.js": "server/models/sheet.model.server.js",
+              "server/models/sheet.schema.server.js": "server/models/sheet.schema.server.js"
             }
           },
           {
