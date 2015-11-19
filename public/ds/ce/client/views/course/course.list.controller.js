@@ -5,7 +5,7 @@
         .module("CourseEditorApp")
         .controller("CourseController", CourseController);
 
-    function CourseController (){
+    function CourseController ($scope, CourseService){
         JSONEditor.defaults.options.theme = 'bootstrap3';
 
         var editor = new JSONEditor(document.getElementById("editor_holder"),{
@@ -129,5 +129,15 @@
 
             }
         );
+
+        CourseService.getAll().then(function(res){
+            editor.setValue(res);
+        });
+
+        $scope.update = function(){
+            CourseService.updateCourses(editor.getValue());
+        }
+
+
     }
 })();
