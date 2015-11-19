@@ -51,7 +51,18 @@
         ],
         "videos": [],
         "slides": [],
-        "examples":[]
+        "examples":[
+          {
+            "title": "css_examples",
+            "ex": [
+              {
+                "title": "Box",
+                "base": "/experiments/css/",
+                "src": "box.html"
+              }
+            ]
+          }
+        ]
       },
       {
         "title": "Development Environment",
