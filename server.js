@@ -2,6 +2,13 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+// passport {
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var cookieParser  = require('cookie-parser');
+var session       = require('express-session');
+// } passport
+
 var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
@@ -24,6 +31,13 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// passport {
+app.use(session({ secret: 'this is the secret' }));
+app.use(cookieParser())
+app.use(passport.initialize());
+app.use(passport.session());
+// } passport
 
 app.get('api/course', function (req, res) {
     var str = '(function(){angular.courses = ';
@@ -61,6 +75,6 @@ require("./public/ds/fc/server/app.js")(app, db, mongoose);
 require("./public/ds/ce/server/app.js")(app, db, mongoose);
 require("./public/ds/pe/server/app.js")(app, db, mongoose);
 
-
+//require()(app, db, mongoose, passport);
 
 app.listen(port, ipaddress);
