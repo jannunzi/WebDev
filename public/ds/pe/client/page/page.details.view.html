@@ -1,0 +1,62 @@
+<h2>Page Details</h2>
+
+<h3>{{model.page.label}}</h3>
+
+<table class="table">
+    <tr ng-repeat="content in model.page.content" class="table">
+        <td>
+            <h1 ng-if="content.contentType=='HEADING' && content.heading.size==1">
+                {{content.heading.content}}
+            </h1>
+            <h2 ng-if="content.contentType=='HEADING' && content.heading.size==2">
+                {{content.heading.content}}
+            </h2>
+            <h3 ng-if="content.contentType=='HEADING' && content.heading.size==3">
+                {{content.heading.content}}
+            </h3>
+            <label ng-if="content.contentType=='LABEL'">
+                {{content.label.content}}
+            </label>
+            <p ng-if="content.contentType=='PARAGRAPH'">
+                {{content.paragraph.content}}
+            </p>
+            <ul ng-if="content.contentType=='LIST' && content.list.listType == 'UNORDERED'">
+                <li ng-repeat="item in content.list.items">
+                    {{item}}
+                </li>
+            </ul>
+            <ol ng-if="content.contentType=='LIST' && content.list.listType == 'ORDERED'">
+                <li ng-repeat="item in content.list.items">
+                    {{item}}
+                </li>
+            </ol>
+        </td>
+        <td>
+            <button ng-click="removeContent(content)" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <a href="#/page/{{model.page._id}}/details/{{$index}}" class="btn btn-warning">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select ng-model="model.contentType" class="form-control">
+                <option ng-value="HEADING">HEADING</option>
+                <option ng-value="LABEL">LABEL</option>
+                <option ng-value="PARAGRAPH">PARAGRAPH</option>
+                <option ng-value="LIST">LIST</option>
+                <option ng-value="FORM">FORM</option>
+            </select>
+        </td>
+        <td>
+            <button ng-click="model.addContent(model.contentType)" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </td>
+    </tr>
+</table>
+
+{{model.page}}

@@ -1,0 +1,35 @@
+<h4>Page Content Details</h4>
+
+<div ng-if="model.content.contentType=='HEADING'">
+    <h5>Heading Editor</h5>
+    <input class="form-control"/>
+</div>
+
+<div ng-if="model.content.contentType=='LABEL'">
+    <h5>Label Editor</h5>
+    <input class="form-control" />
+</div>
+
+<div ng-if="model.content.contentType=='PARAGRAPH'">
+    <h5>Paragraph Editor</h5>
+    <textarea class="form-control"></textarea>
+</div>
+
+<div ng-if="model.content.contentType=='LIST'">
+    <h5>List Editor</h5>
+    <select class="form-control">
+        <option>Ordered</option>
+        <option>Unordered</option>
+    </select>
+    <textarea class="form-control">
+        Item 1
+        Item 2
+        Item 3
+    </textarea>
+</div>
+
+<button class="btn btn-primary btn-block">Save</button>
+
+{{model.content}}
+
+{{model.page}}
