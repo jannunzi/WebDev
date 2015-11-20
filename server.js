@@ -3,8 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 
 // passport {
-var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var passport      = require('passport');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 // } passport
@@ -35,8 +35,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // passport {
 app.use(session({ secret: 'this is the secret' }));
 app.use(cookieParser())
+
+passport.use(new LocalStrategy(
+    function(username, password, done)
+    {
+        UserModel.findOne({username: username, password: password}, function(err, user)
+        {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            return done(null, user);
+        })
+    }));
+
 app.use(passport.initialize());
 app.use(passport.session());
+
 // } passport
 
 app.get('api/course', function (req, res) {
@@ -45,6 +58,146 @@ app.get('api/course', function (req, res) {
     str += '})();';
     res.send(str);
 });
+
+var UserSchema = new mongoose.Schema(
+    {
+        username: String,
+        password: String,
+        firstName: String,
+        lastName: String,
+        email: String,
+        roles: [String]
+    }, {collection: "experiments.passport.exp2.user"});
+
+var UserModel = mongoose.model('UserModel', UserSchema);
+
+passport.serializeUser(function(user, done)
+{
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done)
+{
+    UserModel.findById(user._id, function(err, user)
+    {
+        done(err, user);
+    });
+});
+
+app.post("/api/experiments/passport/exp2/login", passport.authenticate('local'), function(req, res)
+{
+    var user = req.user;
+    res.json(user);
+});
+
+app.get('/api/experiments/passport/exp2/loggedin', function(req, res)
+{
+    res.send(req.isAuthenticated() ? req.user : '0');
+});
+
+app.post('/api/experiments/passport/exp2/logout', function(req, res)
+{
+    req.logOut();
+    res.send(200);
+});
+
+app.post('/api/experiments/passport/exp2/register', function(req, res)
+{
+    var newUser = req.body;
+    newUser.roles = ['student'];
+    UserModel.findOne({username: newUser.username}, function(err, user)
+    {
+        if(err) { return next(err); }
+        if(user)
+        {
+            res.json(null);
+            return;
+        }
+        var newUser = new UserModel(req.body);
+        newUser.save(function(err, user)
+        {
+            req.login(user, function(err)
+            {
+                if(err) { return next(err); }
+                res.json(user);
+            });
+        });
+    });
+});
+
+var auth = function(req, res, next)
+{
+    if (!req.isAuthenticated())
+    {
+        res.send(401);
+    }
+    else
+    {
+        next();
+    }
+};
+
+app.get("/api/experiments/passport/exp2/user", auth, function(req, res)
+{
+    UserModel.find(function(err, users)
+    {
+        res.json(users);
+    });
+});
+
+app.delete("/api/experiments/passport/exp2/user/:id", auth, function(req, res)
+{
+    UserModel.findById(req.params.id, function(err, user)
+    {
+        user.remove(function(err, count)
+        {
+            UserModel.find(function(err, users)
+            {
+                res.json(users);
+            });
+        });
+    });
+});
+
+app.put("/api/experiments/passport/exp2/user/:id", auth, function(req, res)
+{
+    UserModel.findById(req.params.id, function(err, user)
+    {
+        user.update(req.body, function(err, count)
+        {
+            UserModel.find(function(err, users)
+            {
+                res.json(users);
+            });
+        });
+    });
+});
+
+app.post("/api/experiments/passport/exp2/user", auth, function(req, res)
+{
+    UserModel.findOne({username: req.body.username}, function(err, user)
+    {
+        if(user == null)
+        {
+            user = new UserModel(req.body);
+            user.save(function(err, user)
+            {
+                UserModel.find(function(err, users)
+                {
+                    res.json(users);
+                });
+            });
+        }
+        else
+        {
+            UserModel.find(function(err, users)
+            {
+                res.json(users);
+            });
+        }
+    });
+});
+
 
 //require("./public/experiments/express/require/get.hello.exp.js")(app);
 //require("./public/experiments/require/experiments.js")(app);
@@ -75,6 +228,7 @@ require("./public/ds/fc/server/app.js")(app, db, mongoose);
 require("./public/ds/ce/server/app.js")(app, db, mongoose);
 require("./public/ds/pe/server/app.js")(app, db, mongoose);
 
-//require()(app, db, mongoose, passport);
+require("./public/experiments/passport/exp1/server/app.js")(app, db, mongoose, passport);
+//require("./public/experiments/passport/exp2/server/app.js")(app, db, mongoose, passport);
 
 app.listen(port, ipaddress);

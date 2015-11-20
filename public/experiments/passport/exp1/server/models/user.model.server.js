@@ -10,7 +10,7 @@ module.exports = function(mongoose)
             roles:     [String]
         }, {collection: "user"});
 
-    var User = mongoose.model("User", UserSchema);
+    var UserModel = mongoose.model("experiments.passport.exp1.user", UserSchema);
 
-    return User;
+    return UserModel;
 }
