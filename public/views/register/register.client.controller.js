@@ -3,9 +3,33 @@
         .module("WhiteBoardApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController() {
+    function RegisterController($rootScope, UserService, $location) {
         var model = this;
 
-        model.hello = "Hello";
+        model.register = register;
+
+        function register (user)
+        {
+            if(user.password != user.password2 || !user.password || !user.password2)
+            {
+                $rootScope.danger = "Your passwords don't match";
+            }
+            else
+            {
+                UserService
+                    .register(user)
+                    .then(function(response) {
+                        if(response != null)
+                        {
+                            $rootScope.currentUser = response;
+                            $location.url("/profile");
+                        }
+                        else
+                        {
+                            $rootScope.danger = "Unable to register";
+                        }
+                    });
+            }
+        }
     }
 })();

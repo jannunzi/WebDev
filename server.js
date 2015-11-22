@@ -67,7 +67,7 @@ var UserSchema = new mongoose.Schema(
         lastName: String,
         email: String,
         roles: [String]
-    }, {collection: "experiments.passport.exp2.user"});
+    }, {collection: "portal.user"});
 
 var UserModel = mongoose.model('UserModel', UserSchema);
 
@@ -83,6 +83,33 @@ passport.deserializeUser(function(user, done)
         done(err, user);
     });
 });
+
+app.post('/api/portal/register', function(req, res)
+{
+    var newUser = req.body;
+    newUser.roles = ['student'];
+    UserModel.findOne({username: newUser.username}, function(err, user)
+    {
+        if(err) { return next(err); }
+        if(user)
+        {
+            res.json(null);
+            return;
+        }
+        var newUser = new UserModel(req.body);
+        newUser.save(function(err, user)
+        {
+            req.login(user, function(err)
+            {
+                if(err) { return next(err); }
+                res.json(user);
+            });
+        });
+    });
+});
+
+
+
 
 app.post("/api/experiments/passport/exp2/login", passport.authenticate('local'), function(req, res)
 {
