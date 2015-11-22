@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WhiteBoardApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +10,13 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>CS5610 - MEAN Stack Web Development</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
+    <!--<link href="jumbotron.css" rel="stylesheet">-->
     <link href="css/style_home.css" rel="stylesheet">
 
     <style>
@@ -46,98 +46,39 @@
           <a class="navbar-brand" href="#">&nbsp;</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+
+
+          <ul class="nav navbar-nav  navbar-right">
+            <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+            <li><a href="#/login">Login</a></li>
+            <!--<li class="dropdown">-->
+              <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+              <!--<ul class="dropdown-menu">-->
+                <!--<li><a href="#">Action</a></li>-->
+                <!--<li><a href="#">Another action</a></li>-->
+                <!--<li><a href="#">Something else here</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="#">Separated link</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="#">One more separated link</a></li>-->
+              <!--</ul>-->
+            <!--</li>-->
+          </ul>
+
+          <!--<form class="navbar-form navbar-right">-->
+            <!--<div class="form-group">-->
+              <!--<input type="text" placeholder="Email" class="form-control">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<input type="password" placeholder="Password" class="form-control">-->
+            <!--</div>-->
+            <!--<button type="submit" class="btn btn-success">Sign in</button>-->
+          <!--</form>-->
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-      	<p>Northeastern University | College of Computer and Information Science</p>
-        <h2>CS5610</h2>
-        <h1>Web Development</h1>
-        <!--<p></p>
-        <p><a class="btn btn-primary btn-lg" href="portal/index.html" role="button">Learn more &raquo;</a></p>-->
-      </div>
-    </div>
-
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <!--<h2>Week 1</h2>-->
-          <!--<p><img src="images/github.gif" width="99" height="99" alt="Github" align="left">GitHub is a web-based Git repository hosting services, which offers all of the distributed revision control and source code management functionality of Git as well as adding its own features.</p>-->
-          <!--<p><a class="btn btn-default" href="portal/index.html#/modules/1" role="button">view more &raquo;</a></p>-->
-
-
-          <!--<h2>Week 2</h2>
-          <p><img src="images/HTML5.png" width="99" height="99" alt="Github" align="left">
-            HTML is a markup language that describes how Web pages
-            render in browsers. HTML 5 recognizes the Web as a
-            framework for building ever more interactive Web
-            applications.
-          </p>
-          <p><a class="btn btn-default" href="portal/index.html#/modules/2" role="button">view more &raquo;</a></p>-->
-
-          <!--<h2>Week 3</h2>-->
-          <!--<p><img src="images/css.png" width="99" height="99" alt="Github" align="left">-->
-            <!--CSS is a language for describing the look and feel of Web pages.-->
-            <!--This week we use CSS to layout and style Web-->
-            <!--pages for a variety of Web devices such as phones, tablets, and-->
-            <!--desktops.-->
-          <!--</p>-->
-          <!--<p><a class="btn btn-default" href="portal/index.html#/modules/2/lectures/1" role="button">view more &raquo;</a></p>-->
-
-          <!--<h2>Weeks 4-5</h2>-->
-          <!--<p><img src="images/jQuery.gif" width="99" height="99" alt="Github" align="left">-->
-            <!--JavaScript is the programming language of the browser and is-->
-            <!--increasingly the programming language across the whole stack.-->
-            <!--We'll first explore how we can use JavaScript to create-->
-            <!--Web applications that dynamically render content in the-->
-            <!--browser, handle user interaction, and talk back to the server-->
-            <!--to store and fetch new data.-->
-          <!--</p>-->
-          <!--<p><a class="btn btn-default" href="portal/index.html#/modules/3/lectures/1" role="button">view more &raquo;</a></p>-->
-
-          <h2>Weeks 6-8</h2>
-          <p><a href="portal/index.html#/modules/4" role="button">
-            <img src="images/node.png" width="99" height="69" alt="Github" align="left" style="border:none;"></a>
-            We have been using Node.js and Express.js
-            to host content meant for human consumption.
-            That is content such as HTML, and CSS is
-            meant for laying out page content meant
-            to be read by humans, and styling to please
-            subjective human tastes. Express.js can be
-            used for so much more. In particular this
-            module covers serving and manipulating data
-            through a Web service interacting with a data
-            model hosted by the server.
-          </p>
-          <p><a class="btn btn-default" href="portal/index.html#/modules/4/lectures/1" role="button">view more &raquo;</a></p>
-
-        </div>
-        <div class="col-md-4">
-          <h2>Agenda</h2>
-          <p><img src="images/overview2.gif" width="99" height="99" alt="Overview" align="left">This course discusses Web development for sites that are dynamic, data driven. It focuses on the software development issues of assorted data technologies, and Web interaction. </p>
-          <p><a class="btn btn-default" href="/portal/index.html#/course/agenda" role="button">view agenda &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Instructor</h2>
-          <p><img src="images/jose.jpg" width="99" height="99" alt="Jose Annunziato" align="left">Prof. Jose Annunziato has been a software developer for the last 20 years, he has been teaching in various Universities around the Boston area for 15 years.</p>
-          <p><a class="btn btn-default" href="/portal/index.html#/course/syllabus" role="button">read more &raquo;</a></p>
-        </div>
-      </div>
-
-      <hr>
+    <div ng-view></div>
 
       <footer>
         <p>&copy; Northeastern University | College of Computer and Information Science</p>
@@ -148,7 +89,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/login/login.client.controller.js"></script>
   </body>
 </html>
