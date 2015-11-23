@@ -7,9 +7,43 @@
 
         var api = {
             createCourse: createCourse,
-            getAllCourses: getAllCourses
+            getAllCourses: getAllCourses,
+            getCoursesForUserId: getCoursesForUserId,
+            getCourseById: getCourseById
         };
         return api;
+
+        function getCourseById(courseId) {
+            var deferred = $q.defer();
+
+            $http.get("/api/portal/course/"+courseId)
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
+        }
+
+        function getCoursesForUserId(userId) {
+            var deferred = $q.defer();
+
+            $http.get("/api/portal/course?userId="+userId)
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
+        }
 
         function getAllCourses() {
             var deferred = $q.defer();

@@ -13,6 +13,7 @@
         model.removeUser = removeUser;
         model.selectUser = selectUser;
         model.createCourse = createCourse;
+        model.createMyCourse = createMyCourse;
 
         function init() {
             UserService
@@ -30,6 +31,11 @@
                 .then(function(allCourses){
                     model.allCourses = allCourses;
                 });
+            CourseService
+                .getCoursesForUserId($routeParams.userId)
+                .then(function(myCourses){
+                    model.myCourses = myCourses;
+                });
         }
         init();
 
@@ -42,6 +48,19 @@
                         .getAllCourses()
                         .then(function(allCourses){
                             model.allCourses = allCourses;
+                        });
+                });
+        }
+
+        function createMyCourse(course) {
+            course.userId = $rootScope.currentUser._id;
+            CourseService
+                .createCourse(course)
+                .then(function(response){
+                    CourseService
+                        .getCoursesForUserId($routeParams.userId)
+                        .then(function(myCourses){
+                            model.myCourses = myCourses;
                         });
                 });
         }

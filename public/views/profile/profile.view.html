@@ -65,7 +65,34 @@
                 </tbody>
             </table>
         </uib-tab>
-        <uib-tab heading="All Courses">
+        <uib-tab ng-if="currentUser.roles.indexOf('faculty')>-1" heading="My Courses">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td><input ng-model="model.myCourse.title" class="form-control" placeholder="Course Title"/></td>
+                    <td>
+                        <button ng-click="model.createMyCourse(model.myCourse)" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="course in model.myCourses">
+                    <td>
+                        <a href="#/course/{{course._id}}">
+                            {{course.title}}
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </uib-tab>
+        <uib-tab ng-if="currentUser.roles.indexOf('admin')>-1" heading="All Courses">
             <table class="table">
                 <thead>
                     <tr>
@@ -83,7 +110,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="course in model.allCourses">
-                        <td>{{course.title}}</td>
+                        <td>
+                            <a href="#/course/{{course._id}}">
+                                {{course.title}}
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

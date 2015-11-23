@@ -1,13 +1,30 @@
 module.exports = function(app, CourseModel) {
     app.post("/api/portal/course", createCourse);
-    app.get("/api/portal/course", getAllCourses);
+    app.get("/api/portal/course", getCourses);
+    app.get("/api/portal/course/:courseId", getCourseById);
 
-    function getAllCourses(req, res) {
+    function getCourseById(req, res) {
         CourseModel
-            .getAllCourses()
-            .then(function(courses){
-                res.json(courses);
+            .getCourseById(req.params.courseId)
+            .then(function(course){
+                res.json(course);
             });
+    }
+
+    function getCourses(req, res) {
+        if(req.query.userId) {
+            CourseModel
+                .getCoursesForUserId(req.query.userId)
+                .then(function(courses){
+                    res.json(courses);
+                });
+        } else {
+            CourseModel
+                .getAllCourses()
+                .then(function(courses){
+                    res.json(courses);
+                });
+        }
     }
 
     function createCourse(req, res) {

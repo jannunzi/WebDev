@@ -5,9 +5,27 @@ module.exports = function(mongoose) {
     var CourseModel = mongoose.model("CourseModel", CourseSchema);
     var api = {
         createCourse: createCourse,
-        getAllCourses: getAllCourses
+        getAllCourses: getAllCourses,
+        getCourseById: getCourseById,
+        getCoursesForUserId: getCoursesForUserId
     };
     return api;
+
+    function getCourseById(courseId) {
+        var deferred = q.defer();
+        CourseModel.findById(courseId, function(err,course){
+            deferred.resolve(course);
+        })
+        return deferred.promise;
+    }
+
+    function getCoursesForUserId(userId) {
+        var deferred = q.defer();
+        CourseModel.find({userId: userId}, function(err,courses){
+            deferred.resolve(courses);
+        })
+        return deferred.promise;
+    }
 
     function getAllCourses() {
         var deferred = q.defer();

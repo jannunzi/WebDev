@@ -8,6 +8,11 @@
             .when("/", {
                 templateUrl: "views/home/home.view.html"
             })
+            .when("/course/:courseId", {
+                templateUrl: "views/course/course.view.html",
+                controller: "CourseController",
+                controllerAs: "model"
+            })
             .when("/profile/:userId", {
                 templateUrl: "views/profile/profile.view.html",
                 controller: "ProfileController",
