@@ -8,7 +8,7 @@
             .when("/", {
                 templateUrl: "views/home/home.view.html"
             })
-            .when("/profile", {
+            .when("/profile/:userId", {
                 templateUrl: "views/profile/profile.view.html",
                 controller: "ProfileController",
                 controllerAs: "model",

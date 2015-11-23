@@ -4,7 +4,7 @@
         .module("WhiteBoardApp")
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, UserService)
+    function ProfileController($rootScope, UserService, $routeParams)
     {
         $rootScope.danger = null;
 
@@ -18,6 +18,12 @@
                 .getAllUsers()
                 .then(function(users){
                     model.users = users;
+                });
+            console.log($routeParams.userId);
+            UserService
+                .getUserById($routeParams.userId)
+                .then(function(user){
+                    model.user = user;
                 });
         }
         init();

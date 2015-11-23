@@ -10,9 +10,26 @@
             logout: logout,
             updateUser: updateUser,
             getAllUsers: getAllUsers,
+            getUserById: getUserById,
             removeUser: removeUser
         };
         return api;
+
+        function getUserById(id) {
+            var deferred = $q.defer();
+
+            $http.get("/api/portal/user/"+id)
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
+        }
 
         function updateUser(user) {
             var deferred = $q.defer();

@@ -1,6 +1,7 @@
 <br/>
 <br/>
 <div class="container">
+
     <h1>Profile</h1>
 
     <uib-tabset>
@@ -8,17 +9,19 @@
             <form style="margin-bottom: 10px;margin-top:10px">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input ng-model="currentUser.username" readonly type="email" class="form-control input-lg" id="email" placeholder="Email">
+                    <input ng-model="model.user.username" readonly type="email" class="form-control input-lg" id="email" placeholder="Email">
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input ng-model="currentUser.password" type="password" class="form-control input-lg" id="password" placeholder="Password">
+                <div ng-if="model.user._id == currentUser._id">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input ng-model="model.user.password" type="password" class="form-control input-lg" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Verify Password</label>
+                        <input ng-model="model.user.password2" type="password" class="form-control input-lg" id="verify-password" placeholder="Verify Password">
+                    </div>
+                    <button ng-click="model.updateUser(model.user)" class="btn btn-success btn-block btn-lg">Update</button>
                 </div>
-                <div class="form-group">
-                    <label for="password">Verify Password</label>
-                    <input ng-model="currentUser.password2" type="password" class="form-control input-lg" id="verify-password" placeholder="Verify Password">
-                </div>
-                <button ng-click="model.updateUser(currentUser)" class="btn btn-success btn-block btn-lg">Update</button>
             </form>
         </uib-tab>
         <uib-tab ng-if="currentUser.roles.indexOf('admin')>-1" heading="Users">
@@ -44,7 +47,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="user in model.users">
-                        <td>{{user.username}}</td>
+                        <td>
+                            <a href="#/profile/{{user._id}}">
+                                {{user.username}}
+                            </a>
+                        </td>
                         <td>{{user.roles}}</td>
                         <td>
                             <button ng-click="model.removeUser(user._id)" class="btn btn-danger">

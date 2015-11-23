@@ -17,7 +17,7 @@
                     console.log("Login succeeded");
                     $rootScope.currentUser = response;
                     $rootScope.danger = null;
-                    $location.url("/profile");
+                    $location.url("/profile/" + response.data._id);
                 },
                 function(error) {
                     console.log("Login failed");

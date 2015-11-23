@@ -22,7 +22,7 @@
                         if(response != null)
                         {
                             $rootScope.currentUser = response;
-                            $location.url("/profile");
+                            $location.url("/profile/" + response.data._id);
                         }
                         else
                         {

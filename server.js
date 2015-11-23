@@ -130,6 +130,16 @@ app.get("/api/portal/user", ensureAdmin, function(req, res){
         });
 });
 
+app.get("/api/portal/user/:userId", ensureAuthenticated, function(req, res){
+    UserModel
+        .findById(req.params.userId, function(err, user){
+            if(user) {
+                user.password = null;
+            }
+            res.json(user);
+        });
+});
+
 app.delete("/api/portal/user/:id", ensureAdmin, function(req, res){
     UserModel
         .remove({_id: req.params.id}, function(err, status){
