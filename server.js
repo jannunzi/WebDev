@@ -116,10 +116,17 @@ app.post('/api/portal/register', function(req, res)
     });
 });
 
-app.get("/api/portal/user", function(req, res){
+app.get("/api/portal/user", ensureAdmin, function(req, res){
     UserModel
         .find(function(err, users){
             res.json(users);
+        });
+});
+
+app.delete("/api/portal/user/:id", ensureAdmin, function(req, res){
+    UserModel
+        .remove({_id: req.params.id}, function(err, status){
+            res.send(status);
         });
 });
 

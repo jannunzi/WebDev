@@ -9,12 +9,29 @@
             login: login,
             logout: logout,
             updateUser: updateUser,
-            getAllUsers: getAllUsers
+            getAllUsers: getAllUsers,
+            removeUser: removeUser
         };
         return api;
 
         function updateUser(user) {
 
+        }
+
+        function removeUser(id) {
+            var deferred = $q.defer();
+
+            $http.delete("/api/portal/user/" + id)
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
         }
 
         function getAllUsers() {

@@ -21,22 +21,33 @@
                 <button ng-click="model.update(user)" class="btn btn-success btn-block btn-lg">Update</button>
             </form>
         </uib-tab>
-        <uib-tab heading="Users">
+        <uib-tab ng-if="currentUser.roles.indexOf('admin')>-1" heading="Users">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Username</th>
                         <th>Roles</th>
+                        <th>&nbsp;</th>
                     </tr>
                     <tr>
                         <td><input ng-model="user.username" class="form-control"/></td>
                         <td><input ng-model="user.roles" class="form-control"/></td>
+                        <td>
+                            <button class="btn btn-success">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="user in model.users">
                         <td>{{user.username}}</td>
                         <td>{{user.roles}}</td>
+                        <td>
+                            <button ng-click="model.removeUser(user._id)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
