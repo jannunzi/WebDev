@@ -43,10 +43,10 @@
             return deferred.promise;
         }
 
-        function logout(user) {
+        function logout() {
             var deferred = $q.defer();
 
-            $http.post("/api/portal/logout", user)
+            $http.post("/api/portal/logout")
                 .then(
                 function(response) {
                     deferred.resolve(response);
