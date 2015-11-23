@@ -11,13 +11,14 @@
             <form style="margin-bottom: 10px;">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control input-lg" id="email" placeholder="Email">
+                    <input ng-model="user.username" value="ooo@ooo.com" type="email" class="form-control input-lg" id="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control input-lg" id="password" placeholder="Password">
+                    <input ng-model="user.password" value="ooo" type="password" class="form-control input-lg" id="password" placeholder="Password">
                 </div>
-                <button class="btn btn-success btn-block btn-lg">Login</button>
+                <button ng-click="model.login(user)"
+                        class="btn btn-success btn-block btn-lg">Login</button>
             </form>
 
             <a class="btn btn-block btn-social btn-facebook btn-lg">

@@ -1,13 +1,12 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-
-// passport {
-var LocalStrategy = require('passport-local').Strategy;
+var express       = require('express');
+var app           = express();
+var bodyParser    = require('body-parser');
+var multer        = require('multer');
 var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
-// } passport
+var mongoose      = require('mongoose');
 
 var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
 
@@ -19,45 +18,19 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_APP_NAME;
 }
 
-var mongoose = require('mongoose');
-mongoose.connect(connectionString);
-var db = mongoose.connection;
-
-//var courses = require('./courses')
+var db = mongoose.connect(connectionString);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// passport {
+app.use(multer());
 app.use(session({ secret: 'this is the secret' }));
 app.use(cookieParser())
-
-passport.use(new LocalStrategy(
-    function(username, password, done)
-    {
-        UserModel.findOne({username: username, password: password}, function(err, user)
-        {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            return done(null, user);
-        })
-    }));
-
 app.use(passport.initialize());
 app.use(passport.session());
-
-// } passport
-
-app.get('api/course', function (req, res) {
-    var str = '(function(){angular.courses = ';
-    str += JSON.stringify(courses);
-    str += '})();';
-    res.send(str);
-});
+app.use(express.static(__dirname + '/public'));
 
 var UserSchema = new mongoose.Schema(
     {
@@ -71,6 +44,17 @@ var UserSchema = new mongoose.Schema(
 
 var UserModel = mongoose.model('UserModel', UserSchema);
 
+passport.use(new LocalStrategy(
+    function(username, password, done)
+    {
+        UserModel.findOne({username: username, password: password}, function(err, user)
+        {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            return done(null, user);
+        })
+    }));
+
 passport.serializeUser(function(user, done)
 {
     done(null, user);
@@ -82,6 +66,19 @@ passport.deserializeUser(function(user, done)
     {
         done(err, user);
     });
+});
+
+app.get('api/course', function (req, res) {
+    var str = '(function(){angular.courses = ';
+    str += JSON.stringify(courses);
+    str += '})();';
+    res.send(str);
+});
+
+app.post("/api/portal/login", passport.authenticate('local'), function(req, res)
+{
+    var user = req.user;
+    res.json(user);
 });
 
 app.get('/api/portal/loggedin', function(req, res)
@@ -272,7 +269,7 @@ require("./public/ds/fc/server/app.js")(app, db, mongoose);
 require("./public/ds/ce/server/app.js")(app, db, mongoose);
 require("./public/ds/pe/server/app.js")(app, db, mongoose);
 
-require("./public/experiments/passport/exp1/server/app.js")(app, db, mongoose, passport);
+//require("./public/experiments/passport/exp1/server/app.js")(app, db, mongoose, passport);
 //require("./public/experiments/passport/exp2/server/app.js")(app, db, mongoose, passport);
 
 app.listen(port, ipaddress);
