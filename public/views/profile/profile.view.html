@@ -18,7 +18,7 @@
                     <label for="password">Verify Password</label>
                     <input ng-model="currentUser.password2" type="password" class="form-control input-lg" id="verify-password" placeholder="Verify Password">
                 </div>
-                <button ng-click="model.update(user)" class="btn btn-success btn-block btn-lg">Update</button>
+                <button ng-click="model.updateUser(currentUser)" class="btn btn-success btn-block btn-lg">Update</button>
             </form>
         </uib-tab>
         <uib-tab ng-if="currentUser.roles.indexOf('admin')>-1" heading="Users">

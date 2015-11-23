@@ -51,7 +51,7 @@ passport.use(new LocalStrategy(
         {
             if (err) { return done(err); }
             if (!user) { return done(null, false); }
-            user.password = null;
+            //user.password = null;
             return done(null, user);
         })
     }));
@@ -113,7 +113,7 @@ app.post('/api/portal/register', function(req, res)
             req.login(user, function(err)
             {
                 if(err) { return next(err); }
-                delete user.password;
+                user.password = null;
                 res.json(user);
             });
         });
@@ -141,11 +141,16 @@ app.put("/api/portal/user/:id", ensureAuthenticated, function(req, res){
     UserModel
         .findById(req.params.id, function(err, user)
     {
-        var newUser = req.body;
-        if(newUser.roles && newUser.roles.indexOf(",")>-1) {
-            newUser.roles = newUser.roles.split(",");
+        var newUser = {};
+        if(req.body.password)
+            newUser = req.body.password;
+        if(req.body.roles){
+            if(req.body.roles && req.body.roles .indexOf(",")>-1) {
+                req.body.roles = req.body.roles .split(",");
+            }
+            newUser.roles = req.body.roles;
         }
-        user.update(req.body, function(err, status)
+        user.update(newUser, function(err, status)
         {
             res.send(status);
         });
