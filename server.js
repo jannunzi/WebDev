@@ -32,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-require("./services/user.server.service.js")(app, db, mongoose, passport, LocalStrategy);
+require("./app.js")(app, db, mongoose, passport, LocalStrategy);
 
 app.post("/api/experiments/passport/exp2/login", passport.authenticate('local'), function(req, res)
 {

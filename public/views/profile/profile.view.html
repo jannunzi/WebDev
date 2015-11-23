@@ -65,5 +65,28 @@
                 </tbody>
             </table>
         </uib-tab>
+        <uib-tab heading="Courses">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td><input ng-model="model.course.title" class="form-control" placeholder="Course Title"/></td>
+                        <td>
+                            <button ng-click="model.createCourse(model.course)" class="btn btn-success">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="course in model.courses">
+                        <td>{{course.title}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </uib-tab>
     </uib-tabset>
 </div>

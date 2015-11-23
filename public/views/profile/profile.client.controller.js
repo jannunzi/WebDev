@@ -4,7 +4,7 @@
         .module("WhiteBoardApp")
         .controller('ProfileController', ProfileController);
 
-    function ProfileController($rootScope, UserService, $routeParams)
+    function ProfileController($rootScope, UserService, CourseService, $routeParams)
     {
         $rootScope.danger = null;
 
@@ -12,6 +12,7 @@
         model.updateUser = updateUser;
         model.removeUser = removeUser;
         model.selectUser = selectUser;
+        model.createCourse = createCourse;
 
         function init() {
             UserService
@@ -27,6 +28,15 @@
                 });
         }
         init();
+
+        function createCourse(course) {
+            course.userId = $rootScope.currentUser._id;
+            CourseService
+                .createCourse(course)
+                .then(function(response){
+                    console.log(response);
+                });
+        }
 
         function selectUser(index) {
             model.selectedIndex = index;
