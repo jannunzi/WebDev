@@ -20,11 +20,15 @@
                 .then(function(users){
                     model.users = users;
                 });
-            console.log($routeParams.userId);
             UserService
                 .getUserById($routeParams.userId)
                 .then(function(user){
                     model.user = user;
+                });
+            CourseService
+                .getAllCourses()
+                .then(function(allCourses){
+                    model.allCourses = allCourses;
                 });
         }
         init();
@@ -34,7 +38,11 @@
             CourseService
                 .createCourse(course)
                 .then(function(response){
-                    console.log(response);
+                    CourseService
+                        .getAllCourses()
+                        .then(function(allCourses){
+                            model.allCourses = allCourses;
+                        });
                 });
         }
 
