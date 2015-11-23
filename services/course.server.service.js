@@ -2,6 +2,15 @@ module.exports = function(app, CourseModel) {
     app.post("/api/portal/course", createCourse);
     app.get("/api/portal/course", getCourses);
     app.get("/api/portal/course/:courseId", getCourseById);
+    app.put("/api/portal/course/:courseId", updateCourse);
+
+    function updateCourse(req, res) {
+        CourseModel
+            .updateCourse(req.params.courseId, req.body)
+            .then(function(course){
+                res.json(course);
+            });
+    }
 
     function getCourseById(req, res) {
         CourseModel

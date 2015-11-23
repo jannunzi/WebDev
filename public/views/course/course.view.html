@@ -3,6 +3,12 @@
 <div class="container">
     <h1>Course</h1>
 
-    {{model.course}}
+    <form>
+        <div class="form-group">
+            <label for="courseTitle">Course Title</label>
+            <input ng-model="model.course.title" type="text" class="form-control" id="courseTitle" placeholder="Course Title">
+        </div>
+        <button ng-click="model.updateCourse(model.course)" class="btn btn-primary btn-block">Update Course</button>
+    </form>
 
 </div>

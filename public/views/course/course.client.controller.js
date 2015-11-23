@@ -6,6 +6,7 @@
     function CourseController($routeParams, CourseService) {
         console.log($routeParams.courseId);
         var model = this;
+        model.updateCourse = updateCourse;
 
         function init() {
             CourseService
@@ -15,5 +16,11 @@
                 });
         }
         init();
+
+        function updateCourse(course) {
+            CourseService
+                .updateCourse(course)
+                .then(function(){});
+        }
     }
 })();

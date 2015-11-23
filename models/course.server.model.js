@@ -7,9 +7,21 @@ module.exports = function(mongoose) {
         createCourse: createCourse,
         getAllCourses: getAllCourses,
         getCourseById: getCourseById,
-        getCoursesForUserId: getCoursesForUserId
+        getCoursesForUserId: getCoursesForUserId,
+        updateCourse: updateCourse
     };
     return api;
+
+    function updateCourse(courseId, course) {
+        var deferred = q.defer();
+        CourseModel.findById(courseId, function(err, doc){
+            doc.title = course.title;
+            doc.save(function(err, doc){
+                deferred.resolve(doc);
+            })
+        })
+        return deferred.promise;
+    }
 
     function getCourseById(courseId) {
         var deferred = q.defer();

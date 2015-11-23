@@ -9,9 +9,26 @@
             createCourse: createCourse,
             getAllCourses: getAllCourses,
             getCoursesForUserId: getCoursesForUserId,
-            getCourseById: getCourseById
+            getCourseById: getCourseById,
+            updateCourse: updateCourse
         };
         return api;
+
+        function updateCourse(course) {
+            var deferred = $q.defer();
+
+            $http.put("/api/portal/course/"+course._id, course)
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
+        }
 
         function getCourseById(courseId) {
             var deferred = $q.defer();
