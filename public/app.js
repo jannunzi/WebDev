@@ -1,4 +1,4 @@
 (function(){
     angular
-        .module("WhiteBoardApp", ["ngRoute"]);
+        .module("WhiteBoardApp", ["ngRoute", "ui.bootstrap"]);
 })();
