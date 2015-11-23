@@ -51,12 +51,14 @@ passport.use(new LocalStrategy(
         {
             if (err) { return done(err); }
             if (!user) { return done(null, false); }
+            user.password = null;
             return done(null, user);
         })
     }));
 
 passport.serializeUser(function(user, done)
 {
+    user.password = null;
     done(null, user);
 });
 
@@ -64,6 +66,7 @@ passport.deserializeUser(function(user, done)
 {
     UserModel.findById(user._id, function(err, user)
     {
+        user.password = null;
         done(err, user);
     });
 });
@@ -110,6 +113,7 @@ app.post('/api/portal/register', function(req, res)
             req.login(user, function(err)
             {
                 if(err) { return next(err); }
+                delete user.password;
                 res.json(user);
             });
         });
@@ -119,6 +123,9 @@ app.post('/api/portal/register', function(req, res)
 app.get("/api/portal/user", ensureAdmin, function(req, res){
     UserModel
         .find(function(err, users){
+            for(var u in users) {
+                users[u].password = null;
+            }
             res.json(users);
         });
 });
@@ -140,6 +147,7 @@ function ensureAdmin(req, res, next) {
         UserModel
             .findById(req.user._id)
             .then(function(user){
+                delete user.password;
                 if(user.roles.indexOf("admin") > -1) {
                     return next();
                 } else {
