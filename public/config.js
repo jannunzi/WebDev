@@ -8,6 +8,12 @@
             .when("/", {
                 templateUrl: "views/home/home.view.html"
             })
+            .when("/profile", {
+                templateUrl: "views/profile/profile.view.html",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
             .when("/login", {
                 templateUrl: "views/login/login.view.html",
                 controller:  "LoginController",
@@ -20,4 +26,72 @@
             })
         ;
     }
+
+    var checkAdmin = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/portal/loggedin').success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0' && user.roles.indexOf('admin') != -1)
+            {
+                $rootScope.currentUser = user;
+                deferred.resolve();
+            }
+            // User is Not Authenticated
+            else
+            {
+                deferred.reject();
+                $location.url('/login');
+            }
+        });
+
+        return deferred.promise;
+    };
+
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/portal/loggedin').success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0')
+            {
+                $rootScope.currentUser = user;
+                deferred.resolve();
+            }
+            // User is Not Authenticated
+            else
+            {
+                $rootScope.errorMessage = 'You need to log in.';
+                deferred.reject();
+                $location.url('/login');
+                $rootScope.danger = "Unable to login";
+            }
+        });
+
+        return deferred.promise;
+    };
+
+    var checkCurrentUser = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/portal/loggedin').success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user !== '0')
+            {
+                $rootScope.currentUser = user;
+            }
+            deferred.resolve();
+        });
+
+        return deferred.promise;
+    };
 })();

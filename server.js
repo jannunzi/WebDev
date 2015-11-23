@@ -84,6 +84,17 @@ passport.deserializeUser(function(user, done)
     });
 });
 
+app.get('/api/portal/loggedin', function(req, res)
+{
+    res.send(req.isAuthenticated() ? req.user : '0');
+});
+
+app.post('/api/portal/logout', function(req, res)
+{
+    req.logOut();
+    res.send(200);
+});
+
 app.post('/api/portal/register', function(req, res)
 {
     var newUser = req.body;
@@ -107,6 +118,12 @@ app.post('/api/portal/register', function(req, res)
         });
     });
 });
+
+
+
+
+
+
 
 
 
