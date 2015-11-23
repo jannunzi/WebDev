@@ -5,13 +5,35 @@
 
     function UserService($http, $q) {
         var api = {
-            register: register,
+            register: registerUser,
             login: login,
-            logout: logout
+            logout: logout,
+            updateUser: updateUser,
+            getAllUsers: getAllUsers
         };
         return api;
 
-        function register(user) {
+        function updateUser(user) {
+
+        }
+
+        function getAllUsers() {
+            var deferred = $q.defer();
+
+            $http.get("/api/portal/user")
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
+        }
+
+        function registerUser(user) {
             var deferred = $q.defer();
 
             $http.post("/api/portal/register", user)

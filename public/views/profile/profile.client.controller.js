@@ -2,17 +2,29 @@
 {
     angular
         .module("WhiteBoardApp")
-        .controller('ProfileCtrl', ProfileCtrl);
+        .controller('ProfileController', ProfileController);
 
-    function ProfileCtrl($scope, $http, $rootScope)
+    function ProfileController($rootScope, UserService)
     {
         $rootScope.danger = null;
-        $scope.update = function(user)
-        {
-            $http.put('/api/portal/user/'+user._id, user)
-                .success(function(users)
-                {
-                    $scope.users = users;
+
+        var model = this;
+        model.updateUser = updateUser;
+
+        function init() {
+            UserService
+                .getAllUsers()
+                .then(function(users){
+                    model.users = users;
+                });
+        }
+        init();
+
+        function updateUser(user) {
+            UserService
+                .updateUser(user)
+                .then(function(users){
+                    model.users = users;
                 });
         }
     }

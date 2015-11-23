@@ -116,8 +116,31 @@ app.post('/api/portal/register', function(req, res)
     });
 });
 
+app.get("/api/portal/user", function(req, res){
+    UserModel
+        .find(function(err, users){
+            res.json(users);
+        });
+});
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/#/login');
+}
 
+function ensureAdmin(req, res, next) {
+    if (req.isAuthenticated()) {
+        UserModel
+            .findById(req.user._id)
+            .then(function(user){
+                if(user.roles.indexOf("admin") > -1) {
+                    return next();
+                } else {
+                    res.redirect('/#/login');
+                }
+            })
+    }
+}
 
 
 
