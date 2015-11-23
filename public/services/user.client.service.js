@@ -15,7 +15,19 @@
         return api;
 
         function updateUser(user) {
+            var deferred = $q.defer();
 
+            $http.put("/api/portal/user/" + user._id, user)
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
         }
 
         function removeUser(id) {

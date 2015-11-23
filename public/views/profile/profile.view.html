@@ -30,11 +30,14 @@
                         <th>&nbsp;</th>
                     </tr>
                     <tr>
-                        <td><input ng-model="user.username" class="form-control"/></td>
-                        <td><input ng-model="user.roles" class="form-control"/></td>
+                        <td><input ng-model="model.user.username" class="form-control"/></td>
+                        <td><input ng-model="model.user.roles" class="form-control"/></td>
                         <td>
-                            <button class="btn btn-success">
+                            <button ng-click="model.createUser(model.user)" class="btn btn-success">
                                 <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button ng-click="model.updateUser(model.user)" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-ok"></span>
                             </button>
                         </td>
                     </tr>
@@ -46,6 +49,9 @@
                         <td>
                             <button ng-click="model.removeUser(user._id)" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button ng-click="model.selectUser($index)" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                         </td>
                     </tr>

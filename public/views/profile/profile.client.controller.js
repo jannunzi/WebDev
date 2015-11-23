@@ -11,6 +11,7 @@
         var model = this;
         model.updateUser = updateUser;
         model.removeUser = removeUser;
+        model.selectUser = selectUser;
 
         function init() {
             UserService
@@ -20,6 +21,11 @@
                 });
         }
         init();
+
+        function selectUser(index) {
+            model.selectedIndex = index;
+            model.user = model.users[index];
+        }
 
         function removeUser(id) {
             UserService
@@ -37,7 +43,11 @@
             UserService
                 .updateUser(user)
                 .then(function(users){
-                    model.users = users;
+                    UserService
+                        .getAllUsers()
+                        .then(function(users){
+                            model.users = users;
+                        });
                 });
         }
     }

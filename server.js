@@ -137,6 +137,21 @@ app.delete("/api/portal/user/:id", ensureAdmin, function(req, res){
         });
 });
 
+app.put("/api/portal/user/:id", ensureAuthenticated, function(req, res){
+    UserModel
+        .findById(req.params.id, function(err, user)
+    {
+        var newUser = req.body;
+        if(newUser.roles && newUser.roles.indexOf(",")>-1) {
+            newUser.roles = newUser.roles.split(",");
+        }
+        user.update(req.body, function(err, status)
+        {
+            res.send(status);
+        });
+    });
+});
+
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
     res.redirect('/#/login');
