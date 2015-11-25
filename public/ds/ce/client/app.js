@@ -1,5 +1,5 @@
 (function(){
     "use strict";
-    angular.module("CourseEditorApp", ["ngRoute"]);
+    angular.module("CourseEditorApp", ["ngRoute","ngAnimate", "ui.bootstrap"]);
 
 })();
