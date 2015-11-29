@@ -1,5 +1,5 @@
-var model = require('../models/course.model.js')();
-module.exports = function(app){
+//var model = require('../models/course.model.js')();
+module.exports = function(app, model){
 //module.exports = function(app, model){
     app.get("/api/course", getAllCourses);
     app.put("/api/course", updateCourses);
@@ -7,18 +7,21 @@ module.exports = function(app){
 
     function getAllCourses(req, res){
 
-        //model.getAll().then(function(res){
-        //    res.json(res);
-        //});
+        model.getAllCourses().then(function(res){
+            res.json(res);
+        });
 
-        res.json(model.getAll());
+        //res.json(model.getAll());
 
 
     }
 
     function updateCourses(req, res){
         var courses = req.body;
-        res.json(model.update(courses));
+        model.updateCourses(courses).then(function(res){
+            res.json(res);
+        });
+        //res.json(model.update(courses));
     }
 
     function addCourse(req, res){

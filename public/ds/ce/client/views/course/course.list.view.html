@@ -125,6 +125,23 @@
                                 <input class="form-control" ng-model="e.base" placeholder="Base URL"><br>
                                 <label>Source</label>
                                 <input class="form-control" ng-model="e.src"  placeholder="Source URL">
+                                <h4>Dependencies
+                                    <a class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                                    <a ng-hide="editingDependencies" class="btn btn-xs btn-warning" ng-click="editingDependencies = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a ng-show="editingDependencies" class="btn btn-xs btn-success" ng-click="editingDependencies = false"><span class="glyphicon glyphicon-ok"></span></a>
+                                </h4>
+
+                                <uib-accordion>
+                                    <uib-accordion-group ng-repeat="dependency in e.dependencies">
+                                        <uib-accordion-heading>
+                                            <div ng-hide="editingDependencies">{{dependency.title}}</div>
+                                            <input ng-show="editingDependencies" ng-model="dependency.title" placeholder="Title">
+                                            <a ng-show="editingEx" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </uib-accordion-heading>
+                                        <label>Source</label>
+                                        <input class="form-control" ng-model="dependency.src" placeholder="Source URL">
+                                    </uib-accordion-group>
+                                </uib-accordion>
                             </uib-accordion-group>
                         </uib-accordion>
                     </uib-accordion-group>

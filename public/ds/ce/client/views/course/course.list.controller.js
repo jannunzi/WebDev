@@ -8,7 +8,7 @@
     function CourseController ($scope, CourseService){
 
         CourseService.getAll().then(function(res){
-            console.log(res);
+            //console.log(res);
             $scope.courses = res;
         });
 
