@@ -1,3 +1,29 @@
 <h2>Sheet List</h2>
 
-{{model.sheets}}
+<table class="table">
+    <tr>
+        <td>
+            <input ng-model="sheet.name" class="form-control"/>
+        </td>
+        <td>
+            <button ng-click="model.createSheet(sheet)" class="btn btn-success">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </td>
+    </tr>
+    <tr ng-repeat="sheet in model.sheets">
+        <td>
+            <a href="#/sheet/{{sheet._id}}">
+                {{sheet.name}}
+            </a>
+        </td>
+        <td>
+            <button ng-click="model.deleteSheet(sheet._id)"
+                    class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </td>
+    </tr>
+</table>
+
+{{model.sheet}}
