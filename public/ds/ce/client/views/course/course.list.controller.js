@@ -27,6 +27,22 @@
             $scope.editingCourses = true;
         }
 
+        $scope.addModule = function (course){
+            course.modules.push({
+                "title": "",
+                "available": false,
+                "visible": false,
+                "lectures": [],
+                "videos": [],
+                "slides": [],
+                "examples": []
+
+            });
+
+            $scope.editingModules = true;
+        }
+
+
 
     }
 })();

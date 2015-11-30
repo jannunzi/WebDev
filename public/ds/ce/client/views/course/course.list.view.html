@@ -23,7 +23,7 @@
 
         </uib-accordion-heading>
         <h4>Modules
-            <a class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+            <a ng-click="addModule(course)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
             <a ng-hide="editingModules" class="btn btn-xs btn-warning" ng-click="editingModules = true"><span class="glyphicon glyphicon-pencil"></span></a>
             <a ng-show="editingModules" class="btn btn-xs btn-success" ng-click="editingModules = false"><span class="glyphicon glyphicon-ok"></span></a>
         </h4>

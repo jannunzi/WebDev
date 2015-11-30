@@ -16,7 +16,6 @@ module.exports = function(db, mongoose) {
     return api;
 
     function getAllCourses(){
-        //return courses;
 
         var deferred = q.defer();
 
@@ -36,22 +35,13 @@ module.exports = function(db, mongoose) {
                 deferred.resolve(created);
             })
         });
-        //courses = course;
 
         return deferred.promise;
 
     }
 
     function addCourse(course){
-        //var deferred = q.defer();
-        //
-        //Course.insert(course, function(err, course){
-        //    Course.find(function(err, courses){
-        //        deferred.resolve(courses);
-        //    })
-        //})
-        //
-        //return deferred.promise;
+        //TODO
     }
 
 

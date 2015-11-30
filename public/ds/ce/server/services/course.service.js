@@ -6,8 +6,8 @@ module.exports = function(app, model){
 
     function getAllCourses(req, res){
 
-        model.getAllCourses().then(function(response){
-            res.json(response);
+        model.getAllCourses().then(function(courses){
+            res.json(courses);
         });
 
         //res.json(model.getAll());
