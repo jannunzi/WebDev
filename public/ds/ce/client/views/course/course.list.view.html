@@ -127,8 +127,8 @@
                                 <input class="form-control" ng-model="demo.src"  placeholder="Source URL">
                                 <h4>Dependencies
                                     <a ng-click="addDependency(demo)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                                    <a ng-hide="editingDependencies || example.dependencies.length < 1" class="btn btn-xs btn-warning" ng-click="editingDependencies = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a ng-show="editingDependencies && example.dependencies.length > 0" class="btn btn-xs btn-success" ng-click="editingDependencies = false"><span class="glyphicon glyphicon-ok"></span></a>
+                                    <a ng-hide="editingDependencies || demo.dependencies.length < 1" class="btn btn-xs btn-warning" ng-click="editingDependencies = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a ng-show="editingDependencies && demo.dependencies.length > 0" class="btn btn-xs btn-success" ng-click="editingDependencies = false"><span class="glyphicon glyphicon-ok"></span></a>
                                 </h4>
 
                                 <uib-accordion>
