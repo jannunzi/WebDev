@@ -9,7 +9,7 @@
 <body>
 <h1>Admin Tool</h1>
 <h2>Courses
-    <a class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+    <a ng-click="addCourse()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
     <a ng-hide="editingCourses" class="btn btn-xs btn-warning" ng-click="editingCourses = true"><span class="glyphicon glyphicon-pencil"></span></a>
     <a ng-show="editingCourses" class="btn btn-xs btn-success" ng-click="editingCourses = false"><span class="glyphicon glyphicon-ok"></span></a>
 </h2>
@@ -19,7 +19,7 @@
         <uib-accordion-heading>
             <div ng-hide="editingCourses">{{course.title}}</div>
             <input ng-show="editingCourses" ng-model="course.title" placeholder="Title">
-            <a ng-show="editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+            <a ng-click="courses.splice($index, 1)" ng-show="editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 
         </uib-accordion-heading>
         <h4>Modules

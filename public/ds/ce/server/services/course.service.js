@@ -1,14 +1,13 @@
 //var model = require('../models/course.model.js')();
 module.exports = function(app, model){
-//module.exports = function(app, model){
-    app.get("/api/course", getAllCourses);
-    app.put("/api/course", updateCourses);
-    app.post("/api/course", addCourse);
+    app.get("/api/ds/ce/course", getAllCourses);
+    app.put("/api/ds/ce/course", updateCourses);
+    app.post("/api/ds/ce/course", addCourse);
 
     function getAllCourses(req, res){
 
-        model.getAllCourses().then(function(res){
-            res.json(res);
+        model.getAllCourses().then(function(response){
+            res.json(response);
         });
 
         //res.json(model.getAll());
@@ -18,8 +17,8 @@ module.exports = function(app, model){
 
     function updateCourses(req, res){
         var courses = req.body;
-        model.updateCourses(courses).then(function(res){
-            res.json(res);
+        model.updateCourses(courses).then(function(response){
+            res.json(response);
         });
         //res.json(model.update(courses));
     }

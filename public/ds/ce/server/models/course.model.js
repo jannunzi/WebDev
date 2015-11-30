@@ -32,8 +32,8 @@ module.exports = function(db, mongoose) {
         var deferred = q.defer();
 
         CourseModel.remove({}, function(err, res){
-            CourseMode.create(courses, function(err, courses){
-                deferred.resolve(courses);
+            CourseModel.create(courses, function(err, created){
+                deferred.resolve(created);
             })
         });
         //courses = course;
