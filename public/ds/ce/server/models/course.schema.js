@@ -30,7 +30,7 @@ module.exports = function(mongoose){
                     examples: [
                         {
                             title: String,
-                            ex: [
+                            demos: [
                                 {
                                     title: String,
                                     base: String,

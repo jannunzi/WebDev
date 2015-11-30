@@ -10,13 +10,13 @@
         $scope.courses = [];
 
         CourseService.getAll().then(function(res){
-
-            console.log("request finished");
            $scope.courses = res;
         });
 
         $scope.update = function(){
-            CourseService.updateCourses($scope.courses);
+            CourseService.updateCourses($scope.courses).then(function(res){
+                $scope.courses = res;
+            });
         }
 
         $scope.addCourse = function(){
@@ -40,6 +40,69 @@
             });
 
             $scope.editingModules = true;
+        }
+
+        $scope.addLecture = function(module){
+
+            module.lectures.push({
+                "title": ""
+            });
+            $scope.editingLectures = true;
+        }
+
+        $scope.addSlide = function(module){
+            module.slides.push({
+                "title":""
+            });
+            $scope.editingSlides = true;
+        }
+
+        $scope.addVideo = function(module){
+            module.videos.push({
+                "title": "",
+                "base": "",
+                "src": ""
+            });
+
+            $scope.editingVideos = true;
+        }
+
+        $scope.addExample = function(module){
+            module.examples.push({
+                "title": "",
+                "demos": []
+            });
+
+            $scope.editingExamples = true;
+        }
+
+        $scope.addDemo = function(example){
+
+            example.demos.push({
+                "title": "",
+                "base": "",
+                "src": "",
+                "dependencies": []
+            });
+
+            $scope.editingDemos = true;
+        }
+
+        $scope.addDependency = function(demo){
+            demo.dependencies.push({
+                "title": "",
+                "src": ""
+            });
+
+            $scope.editingDependencies = true;
+        }
+
+        $scope.addAssignment = function(module){
+            module.assignments.push({
+                "title": ""
+            });
+
+            $scope.editingAssignments = true;
         }
 
 
