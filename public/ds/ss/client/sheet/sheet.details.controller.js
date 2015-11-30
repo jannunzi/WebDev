@@ -156,7 +156,6 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                                 new ArithmeticSchema(operation, cell1.literal, cell2.literal),
                                 false,
                                 cellStyle);
-            //console.log("Cell value "+cell.arithmetic.operation);
 
             addCell(sheetId, cell)
             .then(function()
@@ -168,7 +167,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                     cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
                     //updating refrence in old cell
                     cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
-                    updateCell(sheetId, cellIndex, cell);
+                    updateCell(sheetId, cellIndex, cell, true);
                 }
                 else {
                     if (cell1.reference === undefined) {
@@ -182,11 +181,11 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
 
                     //updating refrence in old cell
                     cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
-                    updateCell(sheetId, cellIndex, cell);
+                    updateCell(sheetId, cellIndex, cell, true);
 
                     //updating refrence in old cell
                     cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, false, cellStyle);
-                    updateCell(sheetId, cellIndex, cell);
+                    updateCell(sheetId, cellIndex, cell, true);
                 }
             });
             model.functionCellIndex = -1;
@@ -207,7 +206,8 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                                        cells[cellIndex].ifObj,
                                        cells[cellIndex].arithmetic,
                                        cells[cellIndex].editable,
-                                       cells[cellIndex].cellStyle));
+                                       cells[cellIndex].cellStyle),
+                              false);
         }
 
         $scope.updateReferences = function(sheetId, cellIndex, cell) {
@@ -222,7 +222,8 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                                 cells[cellIndex].ifObj,
                                 cells[cellIndex].arithmetic,
                                 cells[cellIndex].editable,
-                                cells[cellIndex].cellStyle))
+                                cells[cellIndex].cellStyle),
+                       true)
             .then(function() {
                 for (var i = 0; i < cells.length; i++) {
                     console.log(cell.reference.indexOf(cells[i]._id));
@@ -231,14 +232,13 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                         promises.push(updateReference(sheetId, i, cell));
                     }
                 }
+                $q.all(promises).then(function(res)
+                {
+                    readOneSheet(sheetId);
+                    deferred.resolve();
+                });
+                return deferred.promise;
             });
-
-            $q.all(promises).then(function(res)
-            {
-                readOneSheet(sheetId);
-                deferred.resolve();
-            });
-            return deferred.promise;
         }
 
 
@@ -246,7 +246,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
             var newString = (cell1.literal).replace(replace,replaceBy);
 
             cell1.literal= newString;
-            updateCell(sheetId,Index,cell1);
+            updateCell(sheetId,Index,cell1,true);
             model.functionCellIndex = -1;
             model.leftCol = "col-sm-12";
             model.rightCol = "";
@@ -274,12 +274,14 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
             return deferred.promise;
         }
 
-        function updateCell(sheetId, cellIndex, cell) {
+        function updateCell(sheetId, cellIndex, cell, refreshFlag) {
             var deferred = $q.defer();
             CellService
                 .updateCell(sheetId, cellIndex, cell)
                 .then(function(sheet){
-                    model.sheet = sheet;
+                    if(refreshFlag) {
+                        model.sheet = sheet;
+                    }
                     deferred.resolve();
                 });
             return deferred.promise;
