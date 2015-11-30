@@ -156,7 +156,12 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                     res = (val1 < val2) ? val1 : val2;
                     break;
                 case "Date":
-                    res = Math.abs(Math.floor((Date.parse(cell1) - Date.parse(cell2)) / 86400000));
+                    var dateParts1 = cell1.literal.split("/");
+                    var date1 = new Date(dateParts1[2], (dateParts1[1] - 1), dateParts1[0]);
+                    var dateParts2 = cell2.literal.split("/");
+                    var date2 = new Date(dateParts2[2], (dateParts2[1] - 1), dateParts2[0]);
+
+                    res = Math.abs(Math.floor(date1 - date2) / 86400000);
                     break;
                 case "Length":
                     res = cell1.literal.length;

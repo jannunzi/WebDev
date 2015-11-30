@@ -1,9 +1,10 @@
 module.exports = function(mongoose) {
     var IfSchema = mongoose.Schema({
-        operation: {
-            type: String,
-            enum: ["EQ", "NEQ", "LT", "LTE", "GT", "GTE"]
-        },
+        //operation: {
+        //    type: String,
+        //    enum: ["EQ", "NEQ", "LT", "LTE", "GT", "GTE"]
+        //},
+        operation : String,
         inputCell1: String,
         inputCell2: String,
         thenCell  : String,
