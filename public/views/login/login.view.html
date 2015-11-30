@@ -1,0 +1,34 @@
+<br/>
+<br/>
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+
+            <h1>Login</h1>
+
+            <form style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input ng-model="user.username" value="ooo@ooo.com" type="email" class="form-control input-lg" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input ng-model="user.password" value="ooo" type="password" class="form-control input-lg" id="password" placeholder="Password">
+                </div>
+                <button ng-click="model.login(user)"
+                        class="btn btn-success btn-block btn-lg">Login</button>
+            </form>
+
+            <a class="btn btn-block btn-social btn-facebook btn-lg">
+                <span class="fa fa-facebook"></span> Sign in with Facebook
+            </a>
+
+            <a class="btn btn-block btn-social btn-google btn-lg">
+                <span class="fa fa-google-plus"></span> Sign in with Google
+            </a>
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
+</div>

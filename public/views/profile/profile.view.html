@@ -1,0 +1,123 @@
+<br/>
+<br/>
+<div class="container">
+
+    <h1>Profile</h1>
+
+    <uib-tabset>
+        <uib-tab heading="Personal">
+            <form style="margin-bottom: 10px;margin-top:10px">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input ng-model="model.user.username" readonly type="email" class="form-control input-lg" id="email" placeholder="Email">
+                </div>
+                <div ng-if="model.user._id == currentUser._id">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input ng-model="model.user.password" type="password" class="form-control input-lg" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Verify Password</label>
+                        <input ng-model="model.user.password2" type="password" class="form-control input-lg" id="verify-password" placeholder="Verify Password">
+                    </div>
+                    <button ng-click="model.updateUser(model.user)" class="btn btn-success btn-block btn-lg">Update</button>
+                </div>
+            </form>
+        </uib-tab>
+        <uib-tab ng-if="currentUser.roles.indexOf('admin')>-1" heading="Users">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Roles</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td><input ng-model="model.user.username" class="form-control"/></td>
+                        <td><input ng-model="model.user.roles" class="form-control"/></td>
+                        <td>
+                            <button ng-click="model.createUser(model.user)" class="btn btn-success">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button ng-click="model.updateUser(model.user)" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in model.users">
+                        <td>
+                            <a href="#/profile/{{user._id}}">
+                                {{user.username}}
+                            </a>
+                        </td>
+                        <td>{{user.roles}}</td>
+                        <td>
+                            <button ng-click="model.removeUser(user._id)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button ng-click="model.selectUser($index)" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </uib-tab>
+        <uib-tab ng-if="currentUser.roles.indexOf('faculty')>-1" heading="My Courses">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td><input ng-model="model.myCourse.title" class="form-control" placeholder="Course Title"/></td>
+                    <td>
+                        <button ng-click="model.createMyCourse(model.myCourse)" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="course in model.myCourses">
+                    <td>
+                        <a href="#/course/{{course._id}}">
+                            {{course.title}}
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </uib-tab>
+        <uib-tab ng-if="currentUser.roles.indexOf('admin')>-1" heading="All Courses">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td><input ng-model="model.course.title" class="form-control" placeholder="Course Title"/></td>
+                        <td>
+                            <button ng-click="model.createCourse(model.course)" class="btn btn-success">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="course in model.allCourses">
+                        <td>
+                            <a href="#/course/{{course._id}}">
+                                {{course.title}}
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </uib-tab>
+    </uib-tabset>
+</div>
