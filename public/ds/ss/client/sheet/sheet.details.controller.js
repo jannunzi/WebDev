@@ -1,3 +1,13 @@
+/* Constants */
+OP_IF      = "";
+OP_SUM     = "Sum";
+OP_AVERAGE = "Avg";
+OP_MAXIMUM = "Max";
+OP_MINIMUM = "Min";
+OP_DATE    = "Date";
+OP_LENGTH  = "Length";
+OP_REPLACE = "";
+
 /* If schema constructor */
 function IfSchema(type, inputCell1, inputCell2, thenCell, elseCell) {
     operation = {
@@ -62,6 +72,15 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
             model.rightCol = "col-sm-6";
             model.showFunctionCell = true;
             model.showSheetCell = false;
+        }
+
+        function cellIdxById(id) {
+            var cells = model.sheet.cells;
+            for(var i = 0; i < cells.length; i++) {
+                if(cells[i]._id == id) {
+                    return i;
+                }
+            }
         }
 
         function functionCellIfDone(sheetId, cell1, cell2, isCell, thenCell, elseCell) {
@@ -149,44 +168,40 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
         /* Invoked when the "Done" button is clicked - Arithmetic functions. */
         function functionCellDone(sheetId, cellIndex, cell1, cell2, operation, cellStyle) {
             var res = evalArithmeticFunction(cell1, cell2, operation);
+            var cell1Idx = cellIdxById(cell1._id);
+            var cell2Idx = "-1";
+            if(cell2 != "") {
+                cell2Idx = cellIdxById(cell2._id);
+            }
             var cell = new Cell("",
                                 res,
                                 "",
                                 undefined,
-                                new ArithmeticSchema(operation, cell1.literal, cell2.literal),
+                                new ArithmeticSchema(operation, cell1Idx, cell2Idx),
                                 false,
                                 cellStyle);
 
             addCell(sheetId, cell)
             .then(function()
             {
-                if(cell2 == "") {
-                    if (cell1.reference === undefined) {
-                        cell1.reference = "";
-                    }
-                    cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
-                    //updating refrence in old cell
-                    cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
-                    updateCell(sheetId, cellIndex, cell, true);
+                /* Update the first source cell. */
+                if (cell1.reference === undefined) {
+                    cell1.reference = "";
                 }
-                else {
-                    if (cell1.reference === undefined) {
-                        cell1.reference = "";
+                cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
+                updateCell(sheetId, cell1Idx, cell, true)
+                .then(function() {
+                    /* Update the second source cell. */
+                    if(cell2 != "") {
+                        if (cell2.reference === undefined) {
+                            cell2.reference = "";
+                        }
+                        cell2.reference = cell2.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                        cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, false, cellStyle);
+                        updateCell(sheetId, cell2Idx, cell, true);
                     }
-                    if (cell2.reference === undefined) {
-                        cell2.reference = "";
-                    }
-                    cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
-                    cell2.reference = cell2.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
-
-                    //updating refrence in old cell
-                    cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
-                    updateCell(sheetId, cellIndex, cell, true);
-
-                    //updating refrence in old cell
-                    cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, false, cellStyle);
-                    updateCell(sheetId, cellIndex, cell, true);
-                }
+                });
             });
             model.functionCellIndex = -1;
             model.leftCol = "col-sm-12";
@@ -197,14 +212,22 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
 
         function updateReference(sheetId, cellIndex, cell) {
             var cells = model.sheet.cells;
-            if(cells[cellIndex].arithmetic.operation == "Length")
+            var arithmetic = cells[cellIndex].arithmetic;
+            var cell1 = model.sheet.cells[arithmetic.inputCell1];
+            var cell2 = arithmetic.inputCell2;
+            if(cell2 != -1) {
+                cell2 = model.sheet.cells[cell2];
+            }
+
             return updateCell(sheetId,
                               cellIndex,
                               new Cell(cells[cellIndex].label,
-                                       cell.literal.length,
+                                       evalArithmeticFunction(cell1,
+                                                              cell2,
+                                                              arithmetic.operation),
                                        cells[cellIndex].reference,
                                        cells[cellIndex].ifObj,
-                                       cells[cellIndex].arithmetic,
+                                       arithmetic,
                                        cells[cellIndex].editable,
                                        cells[cellIndex].cellStyle),
                               false);
@@ -214,6 +237,8 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
             var deferred = $q.defer();
             var promises = [];
             var cells = model.sheet.cells;
+
+            /* Update the source cell. */
             updateCell(sheetId,
                        cellIndex,
                        new Cell(cells[cellIndex].label,
@@ -225,13 +250,13 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                                 cells[cellIndex].cellStyle),
                        true)
             .then(function() {
+                /* Update the reference cells. */
                 for (var i = 0; i < cells.length; i++) {
-                    console.log(cell.reference.indexOf(cells[i]._id));
-                    console.log(cell);
                     if (cell.reference.indexOf(cells[i]._id) > -1) {
                         promises.push(updateReference(sheetId, i, cell));
                     }
                 }
+                /* Update the current sheet. */
                 $q.all(promises).then(function(res)
                 {
                     readOneSheet(sheetId);
