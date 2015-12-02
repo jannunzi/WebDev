@@ -1,0 +1,32 @@
+<h1>Scriptlets</h1>
+
+<h2>For Loops</h2>
+
+<ul>
+<%  for(var i = 0; i < 10; i++) { %>
+    <li>Loop i = <%= i %></li>
+<%  }  %>
+</ul>
+
+<pre>
+&lt;%  for(var i = 0; i &lt; 10; i++) { %&gt;
+&lt;li&gt;Loop i = &lt;%= i %&gt;&lt;/li&gt;
+&lt;%  }  %&gt;
+</pre>
+
+<h2>Functions</h2>
+
+<%
+    function add(a, b) {
+        return a + b;
+    }
+%>
+
+12 + 23 = <%= 12 + 23%><br/>
+12 + 23 = <%= add(12, 23)%>
+
+<pre>
+function add(a, b) {
+    return a + b;
+}
+</pre>

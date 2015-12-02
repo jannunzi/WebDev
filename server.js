@@ -23,6 +23,8 @@ var db = mongoose.connect(connectionString);
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
@@ -148,6 +150,37 @@ app.post("/api/experiments/passport/exp2/user", auth, function(req, res)
     });
 });
 
+app.get('/hello', function(req, res) {
+    res.render('hello.ejs');
+});
+
+app.get('/lecture/ejs/hello', function(req, res){
+    res.render('lecture/hello.ejs');
+})
+
+var faculty = [
+    {username: "edward"},
+    {username: "frank"},
+    {username: "greg"},
+    {username: "herbert"}
+];
+
+var data = {
+    faculty: faculty
+};
+
+app.get('/lecture/ejs/intro', function(req, res){
+
+    res.render('lecture/intro.ejs', data);
+});
+
+app.post("/lecture/ejs/form", function(req, res){
+    var course = req.body;
+    console.log(course);
+    res.render("lecture/intro.ejs", data);
+});
+
+require("./lectures/ejs/mongo/app.js")(app, mongoose);
 
 //require("./public/experiments/express/require/get.hello.exp.js")(app);
 //require("./public/experiments/require/experiments.js")(app);
@@ -180,5 +213,9 @@ require("./public/ds/pe/server/app.js")(app, db, mongoose);
 
 //require("./public/experiments/passport/exp1/server/app.js")(app, db, mongoose, passport);
 //require("./public/experiments/passport/exp2/server/app.js")(app, db, mongoose, passport);
+
+require("./public/experiments/ejs/app.js")(app);
+require("./public/experiments/ejs/courses/app.js")(app, mongoose);
+require("./experiments/ejs/directory/app.js")(app);
 
 app.listen(port, ipaddress);

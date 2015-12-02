@@ -1,0 +1,62 @@
+<h1>Intro to EJS</h1>
+
+<%
+    var a = 123;
+    var b = 234;
+    var age = 23;
+%>
+
+<h2>Variables</h2>
+
+<h3>Evaluate Expression</h3>
+a + b = <%= a + b%>
+
+<h3>Conditionals</h3>
+
+<%  if(age >= 21) {
+%>     Alice can drink
+<%  } else {
+%>     Alice can not drink
+<%  }
+%>
+
+<h3>Arrays</h3>
+
+<%
+    var students = [
+        {username: "alice"},
+        {username: "bob"},
+        {username: "charlie"},
+        {username: "dan"}
+    ];
+%>
+
+<h4>Students</h4>
+
+<ul>
+<%  for(var s=0; s<students.length; s++) {
+%>      <li><%= students[s].username%></li>
+<%  }
+%>
+</ul>
+
+<h2>Data From Server</h2>
+
+<%= faculty.length %>
+
+<table>
+    <% for(var f in faculty) {%>
+    <tr>
+        <td><%= faculty[f].username %></td>
+    </tr>
+    <% } %>
+</table>
+
+<h2>Forms</h2>
+
+<form action="/lecture/ejs/form" method="post">
+    <input name="title" type="text"/>
+    <input name="seats" type="number"/>
+    <input name="start" type="date"/>
+    <button type="submit">Submit</button>
+</form>
