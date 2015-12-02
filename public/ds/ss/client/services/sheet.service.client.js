@@ -14,6 +14,7 @@
         return api;
 
         function createSheet(sheet) {
+            console.log("sheet client",sheet);
             var deferred = $q.defer();
 
             $http.post("/ds/ss/sheet", sheet)
@@ -25,6 +26,7 @@
         }
 
         function readAllSheet() {
+            console.log("in client read all sheets");
             var deferred = $q.defer();
 
             $http.get("/ds/ss/sheet")

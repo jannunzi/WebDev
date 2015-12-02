@@ -23,6 +23,7 @@
         }
 
         function createSheet(sheet) {
+            console.log("sheet",sheet);
             SheetService
                 .createSheet(sheet)
                 .then(function(sheet){
