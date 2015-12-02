@@ -2,7 +2,12 @@
 
 <div ng-if="model.content.contentType=='HEADING'">
     <h5>Heading Editor</h5>
-    <input class="form-control"/>
+    <input class="form-control" placeholder="Header Text" ng-model="model.content.heading.content"/>
+    <select class="form-control" ng-model="model.content.heading.size">
+        <option>H1</option>
+        <option>H2</option>
+        <option>H3</option>
+    </select>
 </div>
 
 <div ng-if="model.content.contentType=='LABEL'">
@@ -28,7 +33,7 @@
     </textarea>
 </div>
 
-<button class="btn btn-primary btn-block">Save</button>
+<button ng-click="model.saveContent(mode.content)" class="btn btn-primary btn-block">Save</button>
 
 {{model.content}}
 

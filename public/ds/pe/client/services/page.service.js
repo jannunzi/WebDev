@@ -8,9 +8,22 @@
             getAllPages: getAllPages,
             getPageById: getPageById,
             addPage: addPage,
-            addContent: addContent
+            addContent: addContent,
+            saveContent: saveContent
         };
         return api;
+
+        function saveContent(pageId, contentIndex, content) {
+            var deferred = $q.defer();
+
+            // TODO: Shiva to create server side Web service to handle this HTTP request
+            $http.put("/api/lecture/mongo/pe/page/" + pageId + "/content/" + contentIndex, content)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
+        }
 
         function addContent(pageId, contentType) {
             var deferred = $q.defer();
