@@ -217,5 +217,7 @@ require("./public/ds/pe/server/app.js")(app, db, mongoose);
 require("./public/experiments/ejs/app.js")(app);
 require("./public/experiments/ejs/courses/app.js")(app, mongoose);
 require("./experiments/ejs/directory/app.js")(app);
+require("./experiments/ejs/explorer/app.js")(app, mongoose, __dirname);
+require("./views/experiments/ejs/wam/app.js")(app, mongoose);
 
 app.listen(port, ipaddress);

@@ -1,0 +1,36 @@
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+<div class="container">
+
+    <h1>Page Details</h1>
+
+    <%  if(page.widgets){
+            for(var w=0; w<page.widgets.length; w++){%>
+                <%if(page.widgets[w].widgetType=="Heading"){%>
+                    <h<%=page.widgets[w].heading.size%>><%=page.widgets[w].heading.content%></h<%=page.widgets[w].heading.size%>>
+                <%} else if(page.widgets[w].widgetType=="Label"){%>
+                    <label><%=page.widgets[w].label.content%></label>
+                <%}%>
+    <%      }
+        }
+    %>
+    <form action="/experiments/ejs/wam/page/<%=page._id%>/widget" method="post">
+        <select class="form-control" name="widgetType">
+            <option>Heading</option>
+            <option>Label</option>
+        </select>
+        <button class="btn btn-success btn-block">Add Widget</button>
+    </form>
+
+    <form action="/experiments/ejs/wam/page/<%=page._id%>" method="post">
+        <div class="input-group">
+            <input class="form-control" value="<%=page.title%>" name="title"/>
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">
+                    Update Title
+                </button>
+            </div>
+        </div>
+    </form>
+    <button class="btn btn-danger  btn-block">Remove Page</button>
+</div>
