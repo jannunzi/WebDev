@@ -36,8 +36,8 @@
             </form>
         </span>
         <form action="/lectures/ejs/mongo/register" method="post">
-            <!--<div class="table-responsive">-->
-                <table class="table">
+            <div>
+                <table width="1000px" class="table table-condensed" style="table-layout: fixed;word-wrap: break-word;">
                     <thead>
                         <tr>
                             <th style="vertical-align: middle">Order</th>
@@ -59,11 +59,27 @@
                         <%for(var s=0; s<students.length; s++){%>
                         <tr>
                             <td style="text-align:center"><%=students[s].order%></td>
-                            <td><%=students[s].firstName%></td>
-                            <td><%=students[s].lastName%></td>
-                            <td><a href="mailto:<%=students[s].email%>"><%=students[s].email%></a></td>
-                            <td><%=students[s].phone%></td>
-                            <td>
+                            <td style="white-space: nowrap">
+                                <%=students[s].firstName%>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <%=students[s].lastName%>
+                            </td>
+                            <td style="white-space: nowrap;">
+                                <a href="mailto:<%=students[s].email%>">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    <%=students[s].email%>
+                                </a>
+                            </td>
+                            <td style="white-space: nowrap;">
+                                <a href="tel:<%=students[s].phone%>">
+                                    <span class="glyphicon glyphicon-phone-alt"></span>
+                                </a>
+                                <a href="sms:<%=students[s].phone%>">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+                            <td style="white-space: nowrap">
                                 <%if(students[s].openShiftUrl){%>
                                 <a href="<%=students[s].openShiftUrl%>" target="_blank">
                                     <%=students[s].openShiftUrl%>
@@ -71,7 +87,7 @@
                                 </a>
                                 <%}%>
                             </td>
-                            <td>
+                            <td style="white-space: nowrap">
                                 <%if(students[s].gitHubUrl){%>
                                 <a href="<%=students[s].gitHubUrl%>" target="_blank">
                                     <%=students[s].gitHubUrl%>
@@ -79,14 +95,19 @@
                                 </a>
                                 <%}%>
                             </td>
-                            <td><a href="/lectures/ejs/mongo/remove/<%=students[s]._id%>" class="btn btn-danger">
+                            <td style="white-space: nowrap">
+                                <!--<a href="/lectures/ejs/mongo/remove/<%=students[s]._id%>" class="btn btn-primary">-->
+                                    <!--Update-->
+                                <!--</a>-->
+                                <a href="/lectures/ejs/mongo/remove/<%=students[s]._id%>" class="btn btn-danger">
                                     Remove
-                                </a> </td>
+                                </a>
+                            </td>
                         </tr>
                         <%}%>
                     </tbody>
                     <%}%>
                 </table>
-            <!--</div>-->
+            </div>
         </form>
     </div>

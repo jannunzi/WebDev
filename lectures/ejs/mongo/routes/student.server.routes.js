@@ -1,4 +1,4 @@
-module.exports = function(app, UserModel) {
+module.exports = function(app, StudentModel) {
     app.get("/lectures/ejs/mongo", index);
     app.post("/lectures/ejs/mongo/register", register);
     app.get("/lectures/ejs/mongo/randomize", randomize);
@@ -6,7 +6,7 @@ module.exports = function(app, UserModel) {
 
     function remove(req, res) {
         var id = req.params.id;
-        UserModel
+        StudentModel
             .remove(id)
             .then(
                 function() {
@@ -27,7 +27,7 @@ module.exports = function(app, UserModel) {
             res.redirect("/lectures/ejs/mongo");
             return;
         }
-        UserModel
+        StudentModel
             .randomize()
             .then(
                 function() {
@@ -43,7 +43,7 @@ module.exports = function(app, UserModel) {
     }
 
     function register(req, res) {
-        UserModel
+        StudentModel
             .createStudent(req.body)
             .then(
                 function() {
@@ -60,7 +60,7 @@ module.exports = function(app, UserModel) {
     }
 
     function index(req, res) {
-        UserModel
+        StudentModel
             .getAllStudents()
             .then(
                 function(students) {
