@@ -65,7 +65,7 @@
                             <td style="white-space: nowrap">
                                 <%=students[s].lastName%>
                             </td>
-                            <td style="white-space: nowrap;">
+                            <td style="white-space: nowrap;overflow: hidden;">
                                 <a href="mailto:<%=students[s].email%>">
                                     <span class="glyphicon glyphicon-envelope"></span>
                                     <%=students[s].email%>
@@ -79,7 +79,7 @@
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
                             </td>
-                            <td style="white-space: nowrap">
+                            <td style="white-space: nowrap;overflow: hidden;">
                                 <%if(students[s].openShiftUrl){%>
                                 <a href="<%=students[s].openShiftUrl%>" target="_blank">
                                     <%=students[s].openShiftUrl%>
@@ -87,7 +87,7 @@
                                 </a>
                                 <%}%>
                             </td>
-                            <td style="white-space: nowrap">
+                            <td style="white-space: nowrap;overflow: hidden;">
                                 <%if(students[s].gitHubUrl){%>
                                 <a href="<%=students[s].gitHubUrl%>" target="_blank">
                                     <%=students[s].gitHubUrl%>
