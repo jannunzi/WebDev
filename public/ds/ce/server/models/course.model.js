@@ -6,7 +6,7 @@ module.exports = function(db, mongoose) {
 
     var CourseSchema = require("./course.schema.js")(mongoose);
 
-    var CourseModel = mongoose.model("CourseModel", CourseSchema);
+    var CourseModel = mongoose.model("CoursesModel", CourseSchema);
     var api = {
         getAllCourses: getAllCourses,
         updateCourses: updateCourses,

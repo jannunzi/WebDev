@@ -8,17 +8,18 @@
     function CourseController ($scope, CourseService){
 
         $scope.courses = [];
+        $scope.editingModules = false;
+        $scope.editingAssignments = false;
+        $scope.editingVideos = false;
+        $scope.editingCourses = false;
+        $scope.editingExamples = false;
+        $scope.editingDemos = false;
+        $scope.editingSlides = false;
+        $scope.editingDependencies = false;
 
         CourseService.getAll().then(function(res){
            $scope.courses = res;
-            $scope.editingModules = false;
-            $scope.editingAssignments = false;
-            $scope.editingVideos = false;
-            $scope.editingCourses = false;
-            $scope.editingExamples = false;
-            $scope.editingDemos = false;
-            $scope.editingSlides = false;
-            $scope.editingDependencies = false;
+
         });
 
         $scope.update = function(){

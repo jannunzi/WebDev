@@ -15,7 +15,10 @@
     <title></title>
 </head>
 
-<body style="padding:30px" ng-app="CourseEditorApp">
+<body style="padding:50px" ng-app="CourseEditorApp">
+
+    <div ng-include src="'views/header/header.view.html'">
+    </div>
 
  <div ng-view ></div>
 
@@ -25,6 +28,7 @@
 <script src="app.js"></script>
 <script src="config.js"></script>
 <script src="views/course/course.list.controller.js"></script>
+<script src="views/header/header.controller.js"></script>
 
 <!--Services-->
 <script src="services/CourseService.js"></script>
