@@ -1,0 +1,45 @@
+<h1>Explorer</h1>
+
+<%= path %>
+<br/>
+
+<form action="/experiments/ejs/explorer/explore">
+    <input type="hidden" name="path" value="<%=path%>"/>
+    <select name="file" onchange="this.form.submit()">
+        <%for(var f=0; f<files.length; f++) {
+            if(isFile(files[f].name)) {
+        %>
+            <option><%=files[f].name%></option>
+        <%}}%>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+
+<pre><%= fileContent %></pre>
+
+<table>
+<%for(var f=0; f<files.length; f++){%>
+    <tr>
+        <%if(isFile(files[f].name)){%>
+        <td>
+            <a href="<%=files[f].name%>">
+                <%=files[f].name%>
+            </a>
+        </td>
+        <%} else {%>
+        <td><%=files[f].name%></td>
+        <%}%>
+        <td><%=files[f].size%></td>
+        <td><%=files[f].birthtime%></td>
+        <td><%=files[f].mtime%></td>
+    </tr>
+<%}%>
+</table>
+
+<%
+function isFile(fileName) {
+    return fileName.indexOf(".html") > -1
+            || fileName.indexOf(".txt") > -1
+            || fileName.indexOf(".js") > -1;
+}
+%>

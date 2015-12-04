@@ -1,0 +1,42 @@
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+<div class="container">
+    <h1>Pages</h1>
+
+    <form action="/experiments/ejs/wam/page" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Page Title</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="title" class="form-control"/>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-success">
+                            Add Page
+                        </button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <%for(var p=0; p<pages.length; p++){%>
+                <tr>
+                    <td>
+                        <a href="/experiments/ejs/wam/page/<%=pages[p]._id%>">
+                            <%=pages[p].title%>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/experiments/ejs/wam/page/<%=pages[p]._id%>" class="btn btn-warning">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </form>
+</div>
