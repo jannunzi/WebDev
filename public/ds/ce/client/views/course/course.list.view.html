@@ -10,43 +10,31 @@
 <!--<body>-->
 <!--<h1>Editor</h1>-->
 <h2>Courses
-    <a ng-click="model.addCourse()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-    <a ng-hide="model.editingCourses || model.courses.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingCourses = true"><span class="glyphicon glyphicon-pencil"></span></a>
-    <a ng-show="model.editingCourses && model.courses.length > 0" class="btn btn-xs btn-success" ng-click="model.editingCourses = false"><span class="glyphicon glyphicon-ok"></span></a>
+    <a ng-click="addCourse()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+    <a ng-hide="editingCourses || courses.length < 1" class="btn btn-xs btn-warning" ng-click="editingCourses = true"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a ng-show="editingCourses && courses.length > 0" class="btn btn-xs btn-success" ng-click="editingCourses = false"><span class="glyphicon glyphicon-ok"></span></a>
 </h2>
 <uib-accordion>
-    <uib-accordion-group ng-repeat="course in model.courses" is-disabled="true" is-open="course.open">
+    <uib-accordion-group ng-repeat="course in courses">
 
         <uib-accordion-heading>
-            <div ng-hide="model.editingCourses">
-                <a style="padding-right:10px" ng-click="course.open = !course.open">
-                    <span ng-hide="course.open" class="glyphicon glyphicon-menu-down"></span>
-                    <span ng-show="course.open" class="glyphicon glyphicon-menu-up"></span>
-                </a>
-                {{course.title}}
-            </div>
-            <input ng-show="model.editingCourses" ng-model="course.title" placeholder="Title">
-            <a ng-click="model.courses.splice($index, 1)" ng-show="model.editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+            <div ng-hide="editingCourses">{{course.title}}</div>
+            <input ng-show="editingCourses" ng-model="course.title" placeholder="Title">
+            <a ng-click="courses.splice($index, 1)" ng-show="editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 
         </uib-accordion-heading>
         <h4>Modules
-            <a ng-click="model.addModule(course)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-            <a ng-hide="model.editingModules || course.modules.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingModules = true"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a ng-show="model.editingModules && course.modules.length > 0" class="btn btn-xs btn-success" ng-click="model.editingModules = false"><span class="glyphicon glyphicon-ok"></span></a>
+            <a ng-click="addModule(course)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+            <a ng-hide="editingModules || course.modules.length < 1" class="btn btn-xs btn-warning" ng-click="editingModules = true"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a ng-show="editingModules && course.modules.length > 0" class="btn btn-xs btn-success" ng-click="editingModules = false"><span class="glyphicon glyphicon-ok"></span></a>
         </h4>
 
         <uib-accordion>
-            <uib-accordion-group ng-repeat="module in course.modules" is-disabled="true" is-open="module.open">
+            <uib-accordion-group ng-repeat="module in course.modules">
                 <uib-accordion-heading>
-                    <div ng-hide="model.editingModules">
-                        <a style="padding-right:10px" ng-click="module.open = !module.open">
-                            <span ng-hide="module.open" class="glyphicon glyphicon-menu-down"></span>
-                            <span ng-show="module.open" class="glyphicon glyphicon-menu-up"></span>
-                        </a>
-                        {{module.title}}
-                    </div>
-                    <input ng-show="model.editingModules" ng-model="module.title" placeholder="Title">
-                    <a ng-click="course.modules.splice($index, 1)" ng-show="model.editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                    <div ng-hide="editingModules">{{module.title}}</div>
+                    <input ng-show="editingModules" ng-model="module.title" placeholder="Title">
+                    <a ng-click="course.modules.splice($index, 1)" ng-show="editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                 </uib-accordion-heading>
 
                 <label>Visible</label>
@@ -55,45 +43,33 @@
                 <input type="checkbox" ng-model="module.available"><br>
 
                 <h4>Lectures
-                    <a ng-click="model.addLecture(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a ng-hide="model.editingLectures || module.lectures.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingLectures = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a ng-show="model.editingLectures && module.lectures.length > 0" class="btn btn-xs btn-success" ng-click="model.editingLectures = false"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a ng-click="addLecture(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a ng-hide="editingLectures || module.lectures.length < 1" class="btn btn-xs btn-warning" ng-click="editingLectures = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a ng-show="editingLectures && module.lectures.length > 0" class="btn btn-xs btn-success" ng-click="editingLectures = false"><span class="glyphicon glyphicon-ok"></span></a>
                 </h4>
                 <uib-accordion>
-                    <uib-accordion-group ng-repeat="lecture in module.lectures" is-disabled="true" is-open="lecture.open">
+                    <uib-accordion-group ng-repeat="lecture in module.lectures">
                         <uib-accordion-heading>
-                            <div ng-hide="model.editingLectures">
-                                <a style="padding-right:10px" ng-click="lecture.open = !lecture.open">
-                                    <span ng-hide="lecture.open" class="glyphicon glyphicon-menu-down"></span>
-                                    <span ng-show="lecture.open" class="glyphicon glyphicon-menu-up"></span>
-                                </a>
-                                {{lecture.title}}
-                            </div>
-                            <input ng-show="model.editingLectures" ng-model="lecture.title" placeholder="Title">
-                            <a ng-click="module.lectures.splice($index, 1)" ng-show="model.editingLectures" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <div ng-hide="editingLectures">{{lecture.title}}</div>
+                            <input ng-show="editingLectures" ng-model="lecture.title" placeholder="Title">
+                            <a ng-click="module.lectures.splice($index, 1)" ng-show="editingLectures" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                     </uib-accordion-group>
                 </uib-accordion>
 
 
                 <h4>Slides
-                    <a ng-click="model.addSlide(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a ng-hide="model.editingSlides || module.slides.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingSlides = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a ng-show="model.editingSlides && module.slides.length > 0" class="btn btn-xs btn-success" ng-click="model.editingSlides = false"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a ng-click="addSlide(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a ng-hide="editingSlides || module.slides.length < 1" class="btn btn-xs btn-warning" ng-click="editingSlides = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a ng-show="editingSlides && module.slides.length > 0" class="btn btn-xs btn-success" ng-click="editingSlides = false"><span class="glyphicon glyphicon-ok"></span></a>
                 </h4>
 
                 <uib-accordion>
-                    <uib-accordion-group ng-repeat="slide in module.slides" is-disabled="true" is-open="slide.open">
+                    <uib-accordion-group ng-repeat="slide in module.slides">
                         <uib-accordion-heading>
-                            <div ng-hide="model.editingSlides">
-                                <a style="padding-right:10px" ng-click="slide.open = !slide.open">
-                                    <span ng-hide="slide.open" class="glyphicon glyphicon-menu-down"></span>
-                                    <span ng-show="slide.open" class="glyphicon glyphicon-menu-up"></span>
-                                </a>
-                                {{slide.title}}
-                            </div>
-                            <input ng-show="model.editingSlides" ng-model="slide.title" placeholder="Title">
-                            <a ng-click="module.slides.splice($index, 1)" ng-show="model.editingSlides" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <div ng-hide="editingSlides">{{slide.title}}</div>
+                            <input ng-show="editingSlides" ng-model="slide.title" placeholder="Title">
+                            <a ng-click="module.slides.splice($index, 1)" ng-show="editingSlides" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                         <label>Base</label>
                         <input class="form-control" ng-model="slide.base" placeholder="Base URL"><br>
@@ -103,23 +79,17 @@
                 </uib-accordion>
 
                 <h4>Videos
-                    <a ng-click = "model.addVideo(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a ng-hide="model.editingVideos || module.videos.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingVideos = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a ng-show="model.editingVideos && module.videos.length > 0" class="btn btn-xs btn-success" ng-click="model.editingVideos = false"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a ng-click = "addVideo(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a ng-hide="editingVideos || module.videos.length < 1" class="btn btn-xs btn-warning" ng-click="editingVideos = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a ng-show="editingVideos && module.videos.length > 0" class="btn btn-xs btn-success" ng-click="editingVideos = false"><span class="glyphicon glyphicon-ok"></span></a>
                 </h4>
 
                 <uib-accordion>
-                    <uib-accordion-group ng-repeat="video in module.videos" is-disabled="true" is-open="video.open">
+                    <uib-accordion-group ng-repeat="video in module.videos">
                         <uib-accordion-heading>
-                            <div ng-hide="model.editingVideos">
-                                <a style="padding-right:10px" ng-click="video.open = !video.open">
-                                    <span ng-hide="video.open" class="glyphicon glyphicon-menu-down"></span>
-                                    <span ng-show="video.open" class="glyphicon glyphicon-menu-up"></span>
-                                </a>
-                                {{video.title}}
-                            </div>
-                            <input ng-show="model.editingVideos" ng-model="video.title" placeholder="Title">
-                            <a ng-click="module.videos.splice($index,1)" ng-show="model.editingVideos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <div ng-hide="editingVideos">{{video.title}}</div>
+                            <input ng-show="editingVideos" ng-model="video.title" placeholder="Title">
+                            <a ng-click="module.videos.splice($index,1)" ng-show="editingVideos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                         <label>Base</label>
                         <input class="form-control" ng-model="video.base" placeholder="Base URL"><br>
@@ -129,64 +99,46 @@
                 </uib-accordion>
 
                 <h4>Examples
-                    <a ng-click="model.addExample(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a ng-hide="model.editingExamples || module.examples.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingExamples = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a ng-show="model.editingExamples && module.examples.length > 0" class="btn btn-xs btn-success" ng-click="model.editingExamples = false"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a ng-click="addExample(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a ng-hide="editingExamples || module.examples.length < 1" class="btn btn-xs btn-warning" ng-click="editingExamples = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a ng-show="editingExamples && module.examples.length > 0" class="btn btn-xs btn-success" ng-click="editingExamples = false"><span class="glyphicon glyphicon-ok"></span></a>
                 </h4>
 
                 <uib-accordion>
-                    <uib-accordion-group ng-repeat="example in module.examples" is-disabled="true" is-open="example.open">
+                    <uib-accordion-group ng-repeat="example in module.examples">
                         <uib-accordion-heading>
-                            <div ng-hide="model.editingExamples">
-                                <a style="padding-right:10px" ng-click="example.open = !example.open">
-                                    <span ng-hide="example.open" class="glyphicon glyphicon-menu-down"></span>
-                                    <span ng-show="example.open" class="glyphicon glyphicon-menu-up"></span>
-                                </a>
-                                {{example.title}}
-                            </div>
-                            <input ng-show="model.editingExamples" ng-model="example.title" placeholder="Title">
-                            <a ng-click="module.examples.splice($index,1)" ng-show="model.editingExamples" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <div ng-hide="editingExamples">{{example.title}} </div>
+                            <input ng-show="editingExamples" ng-model="example.title" placeholder="Title">
+                            <a ng-click="module.examples.splice($index,1)" ng-show="editingExamples" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                         <h4>Demos
-                            <a ng-click="model.addDemo(example)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a ng-hide="model.editingDemos || example.demos.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingDemos = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a ng-show="model.editingDemos && example.demos.length > 0" class="btn btn-xs btn-success" ng-click="model.editingDemos = false"><span class="glyphicon glyphicon-ok"></span></a>
+                            <a ng-click="addDemo(example)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a ng-hide="editingDemos || example.demos.length < 1" class="btn btn-xs btn-warning" ng-click="editingDemos = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a ng-show="editingDemos && example.demos.length > 0" class="btn btn-xs btn-success" ng-click="editingDemos = false"><span class="glyphicon glyphicon-ok"></span></a>
                         </h4>
                         <uib-accordion>
-                            <uib-accordion-group ng-repeat="demo in example.demos" is-disabled="true" is-open="demo.open">
+                            <uib-accordion-group ng-repeat="demo in example.demos">
                                 <uib-accordion-heading>
-                                    <div ng-hide="model.editingDemos">
-                                        <a style="padding-right:10px" ng-click="demo.open = !demo.open">
-                                            <span ng-hide="demo.open" class="glyphicon glyphicon-menu-down"></span>
-                                            <span ng-show="demo.open" class="glyphicon glyphicon-menu-up"></span>
-                                        </a>
-                                        {{demo.title}}
-                                    </div>
-                                    <input ng-show="model.editingDemos" ng-model="demo.title" placeholder="Title">
-                                    <a ng-click="example.demos.splice($index, 1)" ng-show="model.editingDemos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                    <div ng-hide="editingDemos">{{demo.title}}</div>
+                                    <input ng-show="editingDemos" ng-model="demo.title" placeholder="Title">
+                                    <a ng-click="example.demos.splice($index, 1)" ng-show="editingDemos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                 </uib-accordion-heading>
                                 <label>Base</label>
                                 <input class="form-control" ng-model="demo.base" placeholder="Base URL"><br>
                                 <label>Source</label>
                                 <input class="form-control" ng-model="demo.src"  placeholder="Source URL">
                                 <h4>Dependencies
-                                    <a ng-click="model.addDependency(demo)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                                    <a ng-hide="model.editingDependencies || demo.dependencies.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingDependencies = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a ng-show="model.editingDependencies && demo.dependencies.length > 0" class="btn btn-xs btn-success" ng-click="model.editingDependencies = false"><span class="glyphicon glyphicon-ok"></span></a>
+                                    <a ng-click="addDependency(demo)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                                    <a ng-hide="editingDependencies || demo.dependencies.length < 1" class="btn btn-xs btn-warning" ng-click="editingDependencies = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a ng-show="editingDependencies && demo.dependencies.length > 0" class="btn btn-xs btn-success" ng-click="editingDependencies = false"><span class="glyphicon glyphicon-ok"></span></a>
                                 </h4>
 
                                 <uib-accordion>
-                                    <uib-accordion-group ng-repeat="dependency in demo.dependencies" is-disabled="true" is-open="dependency.open">
+                                    <uib-accordion-group ng-repeat="dependency in demo.dependencies">
                                         <uib-accordion-heading>
-                                            <div ng-hide="model.editingDependencies">
-                                                <a style="padding-right:10px" ng-click="dependency.open = !dependency.open">
-                                                    <span ng-hide="dependency.open" class="glyphicon glyphicon-menu-down"></span>
-                                                    <span ng-show="dependency.open" class="glyphicon glyphicon-menu-up"></span>
-                                                </a>
-                                                {{dependency.title}}
-                                            </div>
-                                            <input ng-show="model.editingDependencies" ng-model="dependency.title" placeholder="Title">
-                                            <a ng-click = "demo.dependencies.splice($index, 1)" ng-show="model.editingDependencies" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                            <div ng-hide="editingDependencies">{{dependency.title}}</div>
+                                            <input ng-show="editingDependencies" ng-model="dependency.title" placeholder="Title">
+                                            <a ng-click = "demo.dependencies.splice($index, 1)" ng-show="editingDependencies" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                         </uib-accordion-heading>
                                         <label>Source</label>
                                         <input class="form-control" ng-model="dependency.src" placeholder="Source URL">
@@ -198,23 +150,17 @@
                 </uib-accordion>
 
                 <h4>Assignments
-                    <a ng-click="model.addAssignment(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                    <a ng-hide="model.editingAssignments || module.assignments.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingAssignments = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a ng-show="model.editingAssignments && module.assignments.length > 0" class="btn btn-xs btn-success" ng-click="model.editingAssignments = false"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a ng-click="addAssignment(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a ng-hide="editingAssignments || module.assignments.length < 1" class="btn btn-xs btn-warning" ng-click="editingAssignments = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a ng-show="editingAssignments && module.assignments.length > 0" class="btn btn-xs btn-success" ng-click="editingAssignments = false"><span class="glyphicon glyphicon-ok"></span></a>
                 </h4>
 
                 <uib-accordion>
-                    <uib-accordion-group ng-repeat="assignment in module.assignments" is-disabled="true" is-open="assignment.open">
+                    <uib-accordion-group ng-repeat="assignment in module.assignments">
                         <uib-accordion-heading>
-                            <div ng-hide="model.editingAssignments">
-                                <a style="padding-right:10px" ng-click="assignment.open = !assignment.open">
-                                    <span ng-hide="assignment.open" class="glyphicon glyphicon-menu-down"></span>
-                                    <span ng-show="assignment.open" class="glyphicon glyphicon-menu-up"></span>
-                                </a>
-                                {{assignment.title}}
-                            </div>
-                            <input ng-show="model.editingAssignments" ng-model="assignment.title" placeholder="Title">
-                            <a ng-click="module.assignments.splice($index, 1)" ng-show="model.editingAssignments" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <div ng-hide="editingAssignments">{{assignment.title}}</div>
+                            <input ng-show="editingAssignments" ng-model="assignment.title" placeholder="Title">
+                            <a ng-click="module.assignments.splice($index, 1)" ng-show="editingAssignments" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                     </uib-accordion-group>
 
@@ -227,7 +173,7 @@
     </uib-accordion-group>
 
 </uib-accordion>
-<a ng-click="model.update()" class="btn btn-warning">
+<a ng-click="update()" class="btn btn-warning">
     <span class="glyphicon glyphicon-pencil"></span>
     Update
 </a>

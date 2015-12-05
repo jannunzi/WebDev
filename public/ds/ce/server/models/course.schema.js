@@ -3,41 +3,22 @@ module.exports = function(mongoose){
                 title: String,
                 modules: [{
                     title: String,
-                    //overview: String,//html
                     available: Boolean,
                     visible: Boolean,
                     lectures: [
                         {
                             title: String
-                            //overview: String,//html
-                            //learningElements: [
-                            //    {
-                            //        elementType: {
-                            //            type: String,
-                            //            enum: [
-                            //                'PDF',
-                            //                'VIDEO',
-                            //                'LINK',
-                            //                'HTML',
-                            //                'IFRAME'
-                            //            ]
-                            //        }
-                            //    }
-                            //]
                         }
                     ],
                     assignments: [
                         {
-                            title: String,
-                            link: String
+                            title: String
                         }
                     ],
                     videos: [
                         {
                             title: String,
                             src: String
-                            //width: String,
-                            //height: String
                         }
                     ],
                     slides: [
