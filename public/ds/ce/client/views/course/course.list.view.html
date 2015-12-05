@@ -48,6 +48,7 @@
                     <input ng-show="model.editingModules" ng-model="module.title" placeholder="Title">
                     <a ng-click="course.modules.splice($index, 1)" ng-show="model.editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                 </uib-accordion-heading>
+
                 <label>Visible</label>
                 <input type="checkbox" ng-model="module.visible"><br>
                 <label>Available</label>
