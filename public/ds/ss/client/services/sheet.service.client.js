@@ -14,7 +14,6 @@
         return api;
 
         function createSheet(sheet) {
-            console.log("sheet client",sheet);
             var deferred = $q.defer();
 
             $http.post("/ds/ss/sheet", sheet)

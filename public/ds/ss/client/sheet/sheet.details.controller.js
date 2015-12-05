@@ -179,35 +179,35 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                 cell2Idx = cellIdxById(cell2._id);
             }
             var cell = new Cell("",
-                                res,
-                                "",
-                                undefined,
-                                new ArithmeticSchema(operation, cell1Idx, cell2Idx),
-                                false,
-                                cellStyle);
+                res,
+                "",
+                undefined,
+                new ArithmeticSchema(operation, cell1Idx, cell2Idx),
+                false,
+                cellStyle);
 
             addCell(sheetId, cell)
-            .then(function()
-            {
-                /* Update the first source cell. */
-                if (cell1.reference === undefined) {
-                    cell1.reference = "";
-                }
-                cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
-                cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
-                updateCell(sheetId, cell1Idx, cell, true)
-                .then(function() {
-                    /* Update the second source cell. */
-                    if(cell2 != "") {
-                        if (cell2.reference === undefined) {
-                            cell2.reference = "";
-                        }
-                        cell2.reference = cell2.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
-                        cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, false, cellStyle);
-                        updateCell(sheetId, cell2Idx, cell, true);
+                .then(function()
+                {
+                    /* Update the first source cell. */
+                    if (cell1.reference === undefined) {
+                        cell1.reference = "";
                     }
+                    cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                    cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
+                    updateCell(sheetId, cell1Idx, cell, true)
+                        .then(function() {
+                            /* Update the second source cell. */
+                            if(cell2 != "") {
+                                if (cell2.reference === undefined) {
+                                    cell2.reference = "";
+                                }
+                                cell2.reference = cell2.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                                cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, false, cellStyle);
+                                updateCell(sheetId, cell2Idx, cell, true);
+                            }
+                        });
                 });
-            });
             model.functionCellIndex = -1;
             model.leftCol = "col-sm-12";
             model.rightCol = "";
@@ -225,17 +225,17 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
             }
 
             return updateCell(sheetId,
-                              cellIndex,
-                              new Cell(cells[cellIndex].label,
-                                       evalArithmeticFunction(cell1,
-                                                              cell2,
-                                                              arithmetic.operation),
-                                       cells[cellIndex].reference,
-                                       cells[cellIndex].ifObj,
-                                       arithmetic,
-                                       cells[cellIndex].editable,
-                                       cells[cellIndex].cellStyle),
-                              false);
+                cellIndex,
+                new Cell(cells[cellIndex].label,
+                    evalArithmeticFunction(cell1,
+                        cell2,
+                        arithmetic.operation),
+                    cells[cellIndex].reference,
+                    cells[cellIndex].ifObj,
+                    arithmetic,
+                    cells[cellIndex].editable,
+                    cells[cellIndex].cellStyle),
+                false);
         }
 
         $scope.updateReferences = function(sheetId, cellIndex, cell) {
@@ -245,33 +245,31 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
 
             /* Update the source cell. */
             updateCell(sheetId,
-                       cellIndex,
-                       new Cell(cells[cellIndex].label,
-                                cell.literal,
-                                cells[cellIndex].reference,
-                                cells[cellIndex].ifObj,
-                                cells[cellIndex].arithmetic,
-                                cells[cellIndex].editable,
-                                cells[cellIndex].cellStyle),
-                       true)
-            .then(function() {
-                /* Update the reference cells. */
-                for (var i = 0; i < cells.length; i++) {
-                    console.log("cell.reference");
-                    console.log(cell.reference);
-                    if(cell.reference != undefined)
-                        if (cell.reference.indexOf(cells[i]._id) > -1) {
-                            promises.push(updateReference(sheetId, i, cell));
-                        }
-                }
-                /* Update the current sheet. */
-                $q.all(promises).then(function(res)
-                {
-                    readOneSheet(sheetId);
-                    deferred.resolve();
+                cellIndex,
+                new Cell(cells[cellIndex].label,
+                    cell.literal,
+                    cells[cellIndex].reference,
+                    cells[cellIndex].ifObj,
+                    cells[cellIndex].arithmetic,
+                    cells[cellIndex].editable,
+                    cells[cellIndex].cellStyle),
+                true)
+                .then(function() {
+                    /* Update the reference cells. */
+                    for (var i = 0; i < cells.length; i++) {
+                        if(cell.reference != undefined)
+                            if (cell.reference.indexOf(cells[i]._id) > -1) {
+                                promises.push(updateReference(sheetId, i, cell));
+                            }
+                    }
+                    /* Update the current sheet. */
+                    $q.all(promises).then(function(res)
+                    {
+                        readOneSheet(sheetId);
+                        deferred.resolve();
+                    });
+                    return deferred.promise;
                 });
-                return deferred.promise;
-            });
         }
 
 

@@ -6,7 +6,6 @@ module.exports = function(app, model) {
     app.delete("/ds/ss/sheet/:id", removeSheet);
 
     function createSheet(req, res) {
-        console.log("req",req.body);
         model
             .createSheet(req.body)
             .then(function(sheet){
@@ -15,7 +14,6 @@ module.exports = function(app, model) {
     }
 
     function readAllSheet(req, res) {
-        console.log("in read all sheet");
         model
             .readAllSheet()
             .then(function(sheet){

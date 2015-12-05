@@ -7,7 +7,7 @@
                 <td>{{$index}}</td>
                 <td ng-if="cell.editable==false">
                     <input ng-model="cell.literal"
-                          id={{cell.cellStyle}}
+                           id={{cell.cellStyle}}
                            ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
                            ng-readonly="true"
                            tabindex="{{$index}}"
@@ -47,11 +47,28 @@
                         <span class="glyphicon glyphicon-plus">
                         </span>
                     </button>
+                    <button ng-click="model.functionCell($index)"
+                            class="btn btn-info">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>
+                    </button>
                 </td>
             </tr>
         </table>
     </div>
+
     <div ng-class="model.rightCol" ng-if="model.showFunctionCell" class="form-horizontal">
+        <div>
+            <h4>Style Editor</h4>
+            <select ng-model="model.styleEditor" class="form-control">
+                <option value="None">--None--</option>
+                <option value="h1">H1</option>
+                <option value="h2">H2</option>
+                <option value="h3">H3</option>
+                <option value="p">P</option>
+            </select>
+            </br>
+        </div>
 
         <h4>Function Editor</h4>
 
@@ -121,17 +138,6 @@
                     </select>
                 </div>
             </div>
-            <div>
-                <h5>Style Editor</h5>
-                <select ng-model="model.styleEditor" class="form-control">
-                    <option value="None">--None--</option>
-                    <option value="h1">H1</option>
-                    <option value="h2">H2</option>
-                    <option value="h3">H3</option>
-                    <option value="p">P</option>
-                </select>
-                </br>
-            </div>
 
             <button ng-click="model.functionCellDone(model.sheet._id, model.functionCellIndex, model.sheet.cells[model.functionCellIndex].length.inputCell1,'','Length',model.styleEditor)" class="btn btn-block btn-success">Done</button>
         </div>
@@ -161,17 +167,6 @@
                             ng-model="model.sheet.cells[model.functionCellIndex].date.inputCell2">
                     </select>
                 </div>
-            </div>
-            <div> 
-                <h5>Style Editor</h5> 
-                <select ng-model="model.styleEditor" class="form-control"> 
-                    <option value="None">--None--</option> 
-                    <option value="h1">H1</option> 
-                    <option value="h2">H2</option> 
-                    <option value="h3">H3</option> 
-                    <option value="p">P</option> 
-                </select> 
-                </br>
             </div>
 
             <button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].date.inputCell1,model.sheet.cells[model.functionCellIndex].date.inputCell2,'Date',model.styleEditor)" class="btn btn-block btn-success">Done</button>
@@ -203,17 +198,7 @@
                     </select>
                 </div>
             </div>
-            <div> 
-                <h5>Style Editor</h5> 
-                <select ng-model="model.styleEditor" class="form-control"> 
-                    <option value="None">--None--</option> 
-                    <option value="h1">H1</option> 
-                    <option value="h2">H2</option> 
-                    <option value="h3">H3</option> 
-                    <option value="p">P</option> 
-                </select> 
-                </br>
-             </div>
+
             <button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].min.inputCell1,model.sheet.cells[model.functionCellIndex].min.inputCell2,'Min',model.styleEditor)" class="btn btn-block btn-success">Done</button>
         </div>
 
@@ -244,17 +229,7 @@
                     </select>
                 </div>
             </div>
-            <div> 
-                <h5>Style Editor</h5> 
-                <select ng-model="model.styleEditor" class="form-control"> 
-                    <option value="None">--None--</option> 
-                    <option value="h1">H1</option> 
-                    <option value="h2">H2</option> 
-                    <option value="h3">H3</option> 
-                    <option value="p">P</option> 
-                </select> 
-                </br>
-                 </div>
+
             <button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].max.inputCell1,model.sheet.cells[model.functionCellIndex].max.inputCell2,'Max',model.styleEditor)" class="btn btn-block btn-success">Done</button>
         </div>
 
@@ -284,17 +259,6 @@
                     </select>
                 </div>
             </div>
-            <div> 
-            <h5>Style Editor</h5> 
-            <select ng-model="model.styleEditor" class="form-control"> 
-                <option value="None">--None--</option> 
-                <option value="h1">H1</option> 
-                <option value="h2">H2</option> 
-                <option value="h3">H3</option> 
-                <option value="p">P</option> 
-            </select> 
-            </br>
-             </div>
 
             <button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].average.inputCell1,model.sheet.cells[model.functionCellIndex].average.inputCell2,'Avg',model.styleEditor)" class="btn btn-block btn-success">Done</button>
 
@@ -326,17 +290,6 @@
                             ng-model="model.sheet.cells[model.functionCellIndex].sum.inputCell2">
                     </select>
                 </div>
-            </div>
-            <div> 
-                <h5>Style Editor</h5> 
-                <select ng-model="model.styleEditor" class="form-control"> 
-                    <option value="None">--None--</option> 
-                    <option value="h1">H1</option> 
-                    <option value="h2">H2</option> 
-                    <option value="h3">H3</option> 
-                    <option value="p">P</option> 
-                </select> 
-                </br>
             </div>
 
             <button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].sum.inputCell1,model.sheet.cells[model.functionCellIndex].sum.inputCell2,'Sum',model.styleEditor)" class="btn btn-block btn-success">Done</button>
