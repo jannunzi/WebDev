@@ -1,0 +1,15 @@
+<%
+    var courses = [
+        {title: "Course a1", seats: 12},
+        {title: "Course s2", seats: 23},
+        {title: "Course d3", seats: 34},
+        {title: "Course f4", seats: 45},
+        {title: "Course g5", seats: 56}
+    ];
+%>
+
+<%- include header.html%>
+
+<% for(var i=0; i<courses.length; i++){%>
+    <%- include course.ejs%>
+<% } %>

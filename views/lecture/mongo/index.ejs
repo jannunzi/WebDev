@@ -1,0 +1,127 @@
+<link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+
+    <div class="container">
+        <!--<h1>EJS Mongo Lecture</h1>-->
+        <h1>
+            Register for Final Project Grading
+        </h1>
+        <p style="text-align: justify">
+            Please register below for final project grading.
+            Provide the URL of your project hosted on OpenShift,
+            and the URL of the GitHub repository where you
+            have the source code of your project.
+            Make sure the project is always at a stable usable
+            state.
+            You will be texted/emailed shortly before we start
+            grading
+            your project. Please stop all development when you
+            receive the text/email.
+            The final grading order will be settled on midnight
+            Sunday EST,
+            before grading actually starts.
+            Anyone not registered by midnight Sunday EST will be
+            graded before the ones that register in no particular
+            order.
+        </p>
+        <!--<span class="pull-right">-->
+            <!--<form action="/lectures/ejs/mongo/randomize" method="get">-->
+                <!--<div class="input-group">-->
+                    <!--<input name="secret" type="password" placeholder="Instructor Password" class="form-control"/>-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button class="btn btn-primary">-->
+                            <!--Randomize Order-->
+                        <!--</button>-->
+                    <!--</span>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</span>-->
+        <form action="/lectures/ejs/mongo/register" method="post">
+            <div>
+                <table width="1000px" class="table table-condensed" style="table-layout: fixed;word-wrap: break-word;">
+                    <thead>
+                        <tr>
+                            <th style="vertical-align: middle">Order</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>OpenShift URL</th>
+                            <th>GitHub URL</th>
+                            <th style="white-space: nowrap">
+                                <!--<button class="btn btn-success">-->
+                                <!--Register-->
+                                <!--</button>-->
+                            </th>
+                        </tr>
+                        <!--<tr>-->
+                            <!--<th style="vertical-align: middle">Order</th>-->
+                            <!--<th><input class="form-control" name="firstName" placeholder="First Name"/></th>-->
+                            <!--<th><input class="form-control" name="lastName" placeholder="Last Name"/></th>-->
+                            <!--<th><input class="form-control" name="email" placeholder="Email"/></th>-->
+                            <!--<th><input class="form-control" name="phone" placeholder="Phone"/></th>-->
+                            <!--<th><input class="form-control" name="openShiftUrl" placeholder="OpenShift URL"/></th>-->
+                            <!--<th><input class="form-control" name="gitHubUrl" placeholder="GitHub URL"/></th>-->
+                            <!--<th style="white-space: nowrap">-->
+                                <!--<button class="btn btn-success">-->
+                                    <!--Register-->
+                                <!--</button>-->
+                            <!--</th>-->
+                        <!--</tr>-->
+                    </thead>
+                    <%if(students) {%>
+                    <tbody>
+                        <%for(var s=0; s<students.length; s++){%>
+                        <tr>
+                            <td style="text-align:center"><%=students[s].order%></td>
+                            <td style="white-space: nowrap">
+                                <%=students[s].firstName%>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <%=students[s].lastName%>
+                            </td>
+                            <td style="white-space: nowrap;overflow: hidden;">
+                                <a href="mailto:<%=students[s].email%>">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    <%=students[s].email%>
+                                </a>
+                            </td>
+                            <td style="white-space: nowrap;">
+                                <a href="tel:<%=students[s].phone%>">
+                                    <span class="glyphicon glyphicon-phone-alt"></span>
+                                </a>
+                                <a href="sms:<%=students[s].phone%>">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+                            <td style="white-space: nowrap;overflow: hidden;">
+                                <%if(students[s].openShiftUrl){%>
+                                <a href="<%=students[s].openShiftUrl%>" target="_blank">
+                                    <%=students[s].openShiftUrl%>
+                                    <span class="glyphicon glyphicon-new-window"></span>
+                                </a>
+                                <%}%>
+                            </td>
+                            <td style="white-space: nowrap;overflow: hidden;">
+                                <%if(students[s].gitHubUrl){%>
+                                <a href="<%=students[s].gitHubUrl%>" target="_blank">
+                                    <%=students[s].gitHubUrl%>
+                                    <span class="glyphicon glyphicon-new-window"></span>
+                                </a>
+                                <%}%>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <!--<a href="/lectures/ejs/mongo/remove/<%=students[s]._id%>" class="btn btn-primary">-->
+                                    <!--Update-->
+                                <!--</a>-->
+                                <!--<a href="/lectures/ejs/mongo/remove/<%=students[s]._id%>" class="btn btn-danger">-->
+                                    <!--Remove-->
+                                <!--</a>-->
+                            </td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                    <%}%>
+                </table>
+            </div>
+        </form>
+    </div>

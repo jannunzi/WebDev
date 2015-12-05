@@ -1,0 +1,42 @@
+<%- include header.html%>
+<%for(var c=0; c<courses.length; c++){
+    var course = courses[c];
+    var modules = course.modules;
+%>
+<%= courses[c].title%>
+<ul>
+    <%for(var m=0; m<modules.length; m++){
+        var module = modules[m];
+        var lectures = module.lectures;
+        var assignments = module.assignments;
+    %>
+    <li>
+        <%=module.title%>
+        <%if(lectures && lectures.length>0){%>
+        <ul>
+            <h3>Lectures</h3>
+            <%for(var l=0; l<lectures.length; l++){
+                var lecture = lectures[l];
+            %>
+            <li>
+                <%=lecture.title%>
+            </li>
+            <%}%>
+        </ul>
+        <%}%>
+        <%if(assignments && assignments.length > 0) {%>
+        <ul>
+            <h3>Assignments</h3>
+            <%for(var a=0; a<assignments.length; a++){
+                var assignment = assignments[a];
+            %>
+            <li>
+                <%=assignment.title%>
+            </li>
+            <%}%>
+        </ul>
+        <%}%>
+    </li>
+    <% } %>
+</ul>
+<% } %>

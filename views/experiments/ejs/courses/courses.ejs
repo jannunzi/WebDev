@@ -1,0 +1,33 @@
+<link href="../../../../css/bootstrap.css" rel="stylesheet"/>
+
+<div class="container">
+<h1>Courses</h1>
+
+<form action="/experiments/ejs/courses/courses" method="post">
+<table class="table">
+    <thead>
+        <tr>
+            <td><input value="<%=course.title%>" name="title" class="form-control"/></td>
+            <td><input value="<%=course.seats%>" name="seats" class="form-control" type="number" min="0" max="100"/></td>
+            <td><input value="<%=course.start%>" name="start" class="form-control" type="date"/></td>
+            <td><button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+    <%for(var i=0; i<courses.length; i++){%>
+        <tr>
+            <td><%= courses[i].title%></td>
+            <td><%= courses[i].seats%></td>
+            <td><%= courses[i].start%></td>
+            <td><a href="/experiments/ejs/courses/courses/delete/<%= courses[i]._id%>" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a></td>
+        </tr>
+    <%}%>
+    </tbody>
+</table>
+</form>
+</div>
