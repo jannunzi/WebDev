@@ -257,9 +257,12 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
             .then(function() {
                 /* Update the reference cells. */
                 for (var i = 0; i < cells.length; i++) {
-                    if (cell.reference.indexOf(cells[i]._id) > -1) {
-                        promises.push(updateReference(sheetId, i, cell));
-                    }
+                    console.log("cell.reference");
+                    console.log(cell.reference);
+                    if(cell.reference != undefined)
+                        if (cell.reference.indexOf(cells[i]._id) > -1) {
+                            promises.push(updateReference(sheetId, i, cell));
+                        }
                 }
                 /* Update the current sheet. */
                 $q.all(promises).then(function(res)
