@@ -8,7 +8,7 @@
         $routeProvider
             .when("/editor", {
                 templateUrl: "views/course/course.list.view.html",
-                controller: "CourseController"
+                controller: "CourseController as model"
             })
             .otherwise({
                 redirectTo: "editor"
