@@ -12,7 +12,6 @@
             <option><%=files[f].name%></option>
         <%}}%>
     </select>
-    <button type="submit">Submit</button>
 </form>
 
 <pre><%= fileContent %></pre>
@@ -27,7 +26,11 @@
             </a>
         </td>
         <%} else {%>
-        <td><%=files[f].name%></td>
+        <td>
+            <a href="/experiments/ejs/explorer/explore?path=<%=path + files[f].name%>">
+            <%=files[f].name%>
+            </a>
+        </td>
         <%}%>
         <td><%=files[f].size%></td>
         <td><%=files[f].birthtime%></td>

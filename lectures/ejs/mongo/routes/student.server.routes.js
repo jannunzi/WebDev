@@ -1,8 +1,8 @@
 module.exports = function(app, StudentModel) {
     app.get("/lectures/ejs/mongo", index);
-    app.post("/lectures/ejs/mongo/register", register);
+    //app.post("/lectures/ejs/mongo/register", register);
     app.get("/lectures/ejs/mongo/randomize", randomize);
-    app.get("/lectures/ejs/mongo/remove/:id", remove);
+    //app.get("/lectures/ejs/mongo/remove/:id", remove);
 
     function remove(req, res) {
         var id = req.params.id;
@@ -23,7 +23,7 @@ module.exports = function(app, StudentModel) {
 
     function randomize(req, res) {
         var secret = req.query.secret;
-        if(secret != "321") {
+        if(secret != "saltoangel11") {
             res.redirect("/lectures/ejs/mongo");
             return;
         }
