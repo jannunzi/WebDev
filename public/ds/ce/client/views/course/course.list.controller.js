@@ -32,10 +32,10 @@
 
         model.addCourse = function(){
             model.addingType = "course";
-            showDialog(function(name){
+            showAddDialog(function(title){
 
                 var course = {
-                    "title": name,
+                    "title": title,
                     "modules": []
                 };
 
@@ -47,9 +47,9 @@
         model.addModule = function (course){
             model.addingType = "module";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var module = {
-                    "title": name,
+                    "title": title,
                     "available": false,
                     "visible": false,
                     "lectures": [],
@@ -67,9 +67,9 @@
         model.addLecture = function(module){
             model.addingType = "lecture";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var lecture = {
-                    "title": name
+                    "title": title
                 };
                 module.lectures.push(lecture);
 
@@ -80,9 +80,9 @@
         model.addSlide = function(module){
             model.addingType = "slides";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var slide = {
-                    "title": name
+                    "title": title
                 };
                 module.slides.push(slide);
 
@@ -93,9 +93,9 @@
         model.addVideo = function(module){
             model.addingType = "video";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var video = {
-                    "title": name,
+                    "title": title,
                     "base": "",
                     "src": ""
                 };
@@ -111,9 +111,9 @@
 
             model.addingType = "example";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var example = {
-                    "title": name,
+                    "title": title,
                     "demos": []
                 };
 
@@ -128,9 +128,9 @@
 
             model.addingType = "demo";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var demo = {
-                    "title": name,
+                    "title": title,
                     "base": "",
                     "src": "",
                     "dependencies": []
@@ -146,9 +146,9 @@
 
             model.addingType = "dependency";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var dependency = {
-                    "title": name,
+                    "title": title,
                     "src": ""
                 };
 
@@ -162,9 +162,9 @@
 
             model.addingType = "assignment";
 
-            showDialog(function(name){
+            showAddDialog(function(title){
                 var assignment = {
-                    "title": name
+                    "title": title
                 };
 
                 module.assignments.push(assignment);
@@ -173,13 +173,91 @@
             })
         }
 
-        function showDialog(confirm, cancel){
+        model.removeCourse = function (courses, index){
+            model.title = courses[index].title;
+            showRemoveDialog(function(){
+                courses.splice(index, 1);
+            });
+
+        }
+
+        model.removeModule = function(modules, index){
+            model.title = modules[index].title;
+            showRemoveDialog(function(){
+                modules.splice(index, 1);
+            });
+        }
+
+        model.removeLecture = function(lectures, index){
+            model.title = lectures[index].title;
+            showRemoveDialog(function(){
+                lectures.splice(index, 1);
+            });
+        }
+
+        model.removeSlide = function(slides, index){
+            model.title = slides[index].title;
+
+            showRemoveDialog(function(){
+                slides.splice(index, 1);
+            });
+        }
+
+        model.removeVideo = function(videos, index){
+            model.title = videos[index].title;
+
+            showRemoveDialog(function(){
+                videos.splice(index, 1);
+            });
+        }
+
+        model.removeExample = function(examples, index){
+            model.title = examples[index].title;
+
+            showRemoveDialog(function(){
+                examples.splice(index, 1);
+            });
+        }
+
+        model.removeDemo = function(demos, index){
+            model.title = demos[index].title;
+
+            showRemoveDialog(function(){
+               demos.splice(index, 1);
+            });
+        }
+
+        model.removeDependency = function(dependencies, index){
+            model.title = dependencies[index].title;
+
+            showRemoveDialog(function(){
+                dependencies.splice(index, 1);
+            });
+
+        }
+
+        model.removeAssignment = function(assignments, index){
+            model.title = assignments[index].title;
+
+            showRemoveDialog(function(){
+               assignments.splice(index, 1);
+            });
+        }
+
+        function showAddDialog(confirm, cancel){
 
             ngDialog.openConfirm({template: 'views/course/add.html',
                 scope: $scope //Pass the scope object if you need to access in the template
             }).then(confirm,
             cancel);
 
+        }
+
+        function showRemoveDialog(confirm, cancel){
+            ngDialog.openConfirm({template: 'views/course/delete.html',
+                scope: $scope //Pass the scope object if you need to access in the template
+            }).then(confirm,
+                cancel);
         }
 
 

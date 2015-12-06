@@ -26,7 +26,7 @@
                 {{course.title}}
             </div>
             <input ng-show="model.editingCourses" ng-model="course.title" placeholder="Title">
-            <a ng-click="model.courses.splice($index, 1)" ng-show="model.editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+            <a ng-click="model.removeCourse(model.courses, $index)" ng-show="model.editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 
         </uib-accordion-heading>
         <h4>Modules
@@ -46,7 +46,7 @@
                         {{module.title}}
                     </div>
                     <input ng-show="model.editingModules" ng-model="module.title" placeholder="Title">
-                    <a ng-click="course.modules.splice($index, 1)" ng-show="model.editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a ng-click="model.removeModule(course.modules, $index)" ng-show="model.editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                 </uib-accordion-heading>
                 <label>Visible</label>
                 <input type="checkbox" ng-model="module.visible"><br>
@@ -69,7 +69,7 @@
                                 {{lecture.title}}
                             </div>
                             <input ng-show="model.editingLectures" ng-model="lecture.title" placeholder="Title">
-                            <a ng-click="module.lectures.splice($index, 1)" ng-show="model.editingLectures" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="model.removeLecture(module.lectures, $index)" ng-show="model.editingLectures" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                     </uib-accordion-group>
                 </uib-accordion>
@@ -92,7 +92,7 @@
                                 {{slide.title}}
                             </div>
                             <input ng-show="model.editingSlides" ng-model="slide.title" placeholder="Title">
-                            <a ng-click="module.slides.splice($index, 1)" ng-show="model.editingSlides" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="model.removeSlide(module.slides, $index)" ng-show="model.editingSlides" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                         <label>Base</label>
                         <input class="form-control" ng-model="slide.base" placeholder="Base URL"><br>
@@ -118,7 +118,7 @@
                                 {{video.title}}
                             </div>
                             <input ng-show="model.editingVideos" ng-model="video.title" placeholder="Title">
-                            <a ng-click="module.videos.splice($index,1)" ng-show="model.editingVideos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="model.removeVideo(module.videos, $index)" ng-show="model.editingVideos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                         <label>Base</label>
                         <input class="form-control" ng-model="video.base" placeholder="Base URL"><br>
@@ -144,7 +144,7 @@
                                 {{example.title}}
                             </div>
                             <input ng-show="model.editingExamples" ng-model="example.title" placeholder="Title">
-                            <a ng-click="module.examples.splice($index,1)" ng-show="model.editingExamples" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="model.removeExample(module.examples, $index)" ng-show="model.editingExamples" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                         <h4>Demos
                             <a ng-click="model.addDemo(example)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
@@ -162,7 +162,7 @@
                                         {{demo.title}}
                                     </div>
                                     <input ng-show="model.editingDemos" ng-model="demo.title" placeholder="Title">
-                                    <a ng-click="example.demos.splice($index, 1)" ng-show="model.editingDemos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                    <a ng-click="model.removeDemo(example.demos, $index)" ng-show="model.editingDemos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                 </uib-accordion-heading>
                                 <label>Base</label>
                                 <input class="form-control" ng-model="demo.base" placeholder="Base URL"><br>
@@ -185,7 +185,7 @@
                                                 {{dependency.title}}
                                             </div>
                                             <input ng-show="model.editingDependencies" ng-model="dependency.title" placeholder="Title">
-                                            <a ng-click="demo.dependencies.splice($index, 1)" ng-show="model.editingDependencies" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                            <a ng-click="model.removeDependency(demo.dependencies, $index)" ng-show="model.editingDependencies" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                         </uib-accordion-heading>
                                         <label>Source</label>
                                         <input class="form-control" ng-model="dependency.src" placeholder="Source URL">
@@ -213,7 +213,7 @@
                                 {{assignment.title}}
                             </div>
                             <input ng-show="model.editingAssignments" ng-model="assignment.title" placeholder="Title">
-                            <a ng-click="module.assignments.splice($index, 1)" ng-show="model.editingAssignments" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="model.removeAssignment(module.assignments, $index)" ng-show="model.editingAssignments" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         </uib-accordion-heading>
                     </uib-accordion-group>
 
