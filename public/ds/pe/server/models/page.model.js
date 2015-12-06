@@ -87,4 +87,32 @@ module.exports = function(mongoose, db){
 
         return deferred.promise;
     }
+
+    /* Edit a page's label. */
+    function updatePageLabel(page)
+    {
+        var deferred = q.defer();
+        Page.update({_id: page.id}, {$set: {label: page.label}}, function(err, doc)
+        {
+            Page.find(function(err, pages)
+            {
+                deferred.resolve();
+            });
+        });
+        return deferred.promise;
+    }
+
+    /* Delete a page. */
+    function deletePage(page)
+    {
+        var deferred = q.defer();
+        Page.remove({_id: page.id}, function(err, doc)
+        {
+            Page.find(function(err, pages)
+            {
+                deferred.resolve();
+            });
+        });
+        return deferred.promise;
+    }
 };

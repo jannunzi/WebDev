@@ -13,10 +13,16 @@
     </tr>
     <tr ng-repeat="page in model.pages">
         <td>
-            <a href="#/page/{{page._id}}/details">
-                {{page.label}}
-            </a>
+            <a href="#/page/{{page._id}}/details">{{page.label}}</a>
+            <button ng-click="" type="button" class="btn btn-xs btn-default pull-right" style="margin-left: 10px;">
+                <span class="glyphicon glyphicon-sort"/>
+            </button>
+            <button ng-click="model.deletePage(page)" type="button" class="btn btn-xs btn-danger pull-right" style="margin-left: 10px;">
+                <span class="glyphicon glyphicon-remove"/>
+            </button>
+            <button ng-click="model.updatePageLabel(page)" type="button" class="btn btn-xs btn-warning pull-right">
+                <span class="glyphicon glyphicon-pencil"/>
+            </button>
         </td>
-        <td>&nbsp;</td>
     </tr>
 </table>

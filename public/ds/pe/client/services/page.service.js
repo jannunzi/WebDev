@@ -5,11 +5,13 @@
 
     function PageService($http, $q) {
         var api = {
-            getAllPages: getAllPages,
-            getPageById: getPageById,
-            addPage: addPage,
-            addContent: addContent,
-            saveContent: saveContent
+            getAllPages    : getAllPages,
+            getPageById    : getPageById,
+            addPage        : addPage,
+            updatePageLabel: updatePageLabel,
+            deletePage     : deletePage,
+            addContent     : addContent,
+            saveContent    : saveContent
         };
         return api;
 
@@ -44,6 +46,28 @@
                     deferred.resolve(pages);
                 });
 
+            return deferred.promise;
+        }
+
+        function updatePageLabel(page)
+        {
+            var deferred = $q.defer();
+            $http.put("/api/lecture/mongo/pe/page/" + page._id + "/" + page.label)
+            .success(function(pages)
+            {
+                deferred.resolve(pages);
+            });
+            return deferred.promise;
+        }
+
+        function deletePage(page)
+        {
+            var deferred = $q.defer();
+            $http.delete("/api/lecture/mongo/pe/page/" + page._id)
+            .success(function(pages)
+            {
+                deferred.resolve(pages);
+            });
             return deferred.promise;
         }
 

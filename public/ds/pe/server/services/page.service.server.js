@@ -1,5 +1,7 @@
 module.exports = function(app, model){
     app.post("/api/lecture/mongo/pe/page", addPage);
+    app.put("/api/lecture/mongo/pe/page/:id/:label", updatePageLabel);
+    app.delete("/api/lecture/mongo/pe/page/:id", deletePage);
     app.get("/api/lecture/mongo/pe/page", getAllPages);
     app.get("/api/lecture/mongo/pe/page/:id", getPageById);
     app.post("/api/lecture/mongo/pe/page/:pageId/content/:contentType", addContent);
@@ -37,5 +39,25 @@ module.exports = function(app, model){
             .then(function(pages){
                 res.json(pages);
             });
+    }
+
+    /* Edit a page's label. */
+    function updatePageLabel(req, res)
+    {
+        model.updatePageLabel(req.params)
+        .then(function(pages)
+        {
+            res.json(pages);
+        });
+    }
+
+    /* Delete a page. */
+    function deletePage(req, res)
+    {
+        model.deletePage(req.params)
+        .then(function(pages)
+        {
+            res.json(pages);
+        });
     }
 };
