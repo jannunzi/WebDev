@@ -30,6 +30,7 @@
     "express-session": "^1.11.3",
     "mongoose": "^4.2.3",
     "multer": "^1.0.6",
+    "ng-dialog": "^0.5.5",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
     "q": "^1.4.1"

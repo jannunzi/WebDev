@@ -111,7 +111,7 @@
                     <uib-accordion-group ng-repeat="video in module.videos" is-disabled="true" is-open="video.open">
                         <uib-accordion-heading>
                             <div ng-hide="model.editingVideos">
-                                <a ng-click="video.open=!slide.open">
+                                <a ng-click="video.open=!video.open">
                                     <span ng-hide="video.open" class="glyphicon glyphicon-menu-down"></span>
                                     <span ng-show="video.open" class="glyphicon glyphicon-menu-up"></span>
                                 </a>
@@ -137,7 +137,7 @@
                     <uib-accordion-group ng-repeat="example in module.examples" is-disabled="true" is-open="example.open">
                         <uib-accordion-heading>
                             <div ng-hide="model.editingExamples">
-                                <a ng-click="example.open=!slide.open">
+                                <a ng-click="example.open=!example.open">
                                     <span ng-hide="example.open" class="glyphicon glyphicon-menu-down"></span>
                                     <span ng-show="example.open" class="glyphicon glyphicon-menu-up"></span>
                                 </a>
@@ -155,7 +155,7 @@
                             <uib-accordion-group ng-repeat="demo in example.demos" is-disabled="true" is-open="demo.open">
                                 <uib-accordion-heading>
                                     <div ng-hide="model.editingDemos">
-                                        <a ng-click="demo.open=!slide.open">
+                                        <a ng-click="demo.open=!demo.open">
                                             <span ng-hide="demo.open" class="glyphicon glyphicon-menu-down"></span>
                                             <span ng-show="demo.open" class="glyphicon glyphicon-menu-up"></span>
                                         </a>
@@ -178,7 +178,7 @@
                                     <uib-accordion-group ng-repeat="dependency in demo.dependencies" is-disabled="true" is-open="dependency.open">
                                         <uib-accordion-heading>
                                             <div ng-hide="model.editingDependencies">
-                                                <a ng-click="dependency.open=!slide.open">
+                                                <a ng-click="dependency.open=!dependency.open">
                                                     <span ng-hide="dependency.open" class="glyphicon glyphicon-menu-down"></span>
                                                     <span ng-show="dependency.open" class="glyphicon glyphicon-menu-up"></span>
                                                 </a>
@@ -206,7 +206,7 @@
                     <uib-accordion-group ng-repeat="assignment in module.assignments" is-disabled="true" is-open="assignment.open">
                         <uib-accordion-heading>
                             <div ng-hide="model.editingAssignments">
-                                <a ng-click="assignment.open=!slide.open">
+                                <a ng-click="assignment.open=!assignment.open">
                                     <span ng-hide="assignment.open" class="glyphicon glyphicon-menu-down"></span>
                                     <span ng-show="assignment.open" class="glyphicon glyphicon-menu-up"></span>
                                 </a>

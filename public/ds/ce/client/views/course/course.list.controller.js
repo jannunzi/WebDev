@@ -5,7 +5,7 @@
         .module("CourseEditorApp")
         .controller("CourseController", CourseController);
 
-    function CourseController (CourseService){
+    function CourseController ($scope, ngDialog, CourseService){
 
         var model = this;
 
@@ -31,89 +31,155 @@
         }
 
         model.addCourse = function(){
-            model.courses.push({
-                "title": "",
-                "modules": []
+            model.addingType = "course";
+            showDialog(function(name){
+
+                var course = {
+                    "title": name,
+                    "modules": []
+                };
+
+                model.courses.push(course);
+                course.open = true;
             });
-            model.editingCourses = true;
         }
 
         model.addModule = function (course){
-            course.modules.push({
-                "title": "",
-                "available": false,
-                "visible": false,
-                "lectures": [],
-                "videos": [],
-                "slides": [],
-                "examples": []
+            model.addingType = "module";
 
+            showDialog(function(name){
+                var module = {
+                    "title": name,
+                    "available": false,
+                    "visible": false,
+                    "lectures": [],
+                    "videos": [],
+                    "slides": [],
+                    "examples": []
+
+                };
+                course.modules.push(module);
+                module.open = true;
             });
 
-            model.editingModules = true;
         }
 
         model.addLecture = function(module){
+            model.addingType = "lecture";
 
-            module.lectures.push({
-                "title": ""
+            showDialog(function(name){
+                var lecture = {
+                    "title": name
+                };
+                module.lectures.push(lecture);
+
+                lecture = true;
             });
-            model.editingLectures = true;
         }
 
         model.addSlide = function(module){
-            module.slides.push({
-                "title":""
+            model.addingType = "slides";
+
+            showDialog(function(name){
+                var slide = {
+                    "title": name
+                };
+                module.slides.push(slide);
+
+                slide.open = true;
             });
-            model.editingSlides = true;
         }
 
         model.addVideo = function(module){
-            module.videos.push({
-                "title": "",
-                "base": "",
-                "src": ""
-            });
+            model.addingType = "video";
 
-            model.editingVideos = true;
+            showDialog(function(name){
+                var video = {
+                    "title": name,
+                    "base": "",
+                    "src": ""
+                };
+
+                module.videos.push(video);
+
+                video.open = true;
+
+            });
         }
 
         model.addExample = function(module){
-            module.examples.push({
-                "title": "",
-                "demos": []
-            });
 
-            model.editingExamples = true;
+            model.addingType = "example";
+
+            showDialog(function(name){
+                var example = {
+                    "title": name,
+                    "demos": []
+                };
+
+                module.examples.push(example);
+
+                example.open = true;
+
+            });
         }
 
         model.addDemo = function(example){
 
-            example.demos.push({
-                "title": "",
-                "base": "",
-                "src": "",
-                "dependencies": []
-            });
+            model.addingType = "demo";
 
-            model.editingDemos = true;
+            showDialog(function(name){
+                var demo = {
+                    "title": name,
+                    "base": "",
+                    "src": "",
+                    "dependencies": []
+                };
+
+                example.demos.push(demo);
+
+                demo.open = true;
+            });
         }
 
         model.addDependency = function(demo){
-            demo.dependencies.push({
-                "title": "",
-                "src": ""
-            });
 
-            model.editingDependencies = true;
+            model.addingType = "dependency";
+
+            showDialog(function(name){
+                var dependency = {
+                    "title": name,
+                    "src": ""
+                };
+
+                demo.dependencies.push(dependency);
+
+                dependency.open = true;
+            });
         }
 
         model.addAssignment = function(module){
-            module.assignments.push({
-                "title": ""
-            });
 
-            model.editingAssignments = true;
+            model.addingType = "assignment";
+
+            showDialog(function(name){
+                var assignment = {
+                    "title": name
+                };
+
+                module.assignments.push(assignment);
+
+                assignment.open = true;
+            })
+        }
+
+        function showDialog(confirm, cancel){
+
+            ngDialog.openConfirm({template: 'views/course/add.html',
+                scope: $scope //Pass the scope object if you need to access in the template
+            }).then(confirm,
+            cancel);
+
         }
 
 
