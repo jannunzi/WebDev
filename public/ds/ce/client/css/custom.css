@@ -1,0 +1,13 @@
+.right-padding {
+    padding-right: 10px
+}
+
+
+a {
+    text-decoration: none !important;
+}
+a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
