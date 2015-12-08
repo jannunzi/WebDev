@@ -40,11 +40,11 @@
                 <table width="1000px" class="table table-condensed" style="table-layout: fixed;word-wrap: break-word;">
                     <thead>
                         <tr>
-                            <th style="vertical-align: middle">Order</th>
+                            <th style="vertical-align: middle" width="60px">Order</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
+                            <th width="55px">Email</th>
+                            <th width="60px">Phone</th>
                             <th>OpenShift URL</th>
                             <th>GitHub URL</th>
                             <th style="white-space: nowrap">
@@ -79,23 +79,22 @@
                             <td style="white-space: nowrap">
                                 <%=students[s].lastName%>
                             </td>
-                            <td style="white-space: nowrap;overflow: hidden;">
-                                <a href="mailto:<%=students[s].email%>">
+                            <td style="white-space: nowrap;overflow: hidden;text-align: center">
+                                <a href="mailto:<%=students[s].email%>" title="Send Email">
                                     <span class="glyphicon glyphicon-envelope"></span>
-                                    <%=students[s].email%>
                                 </a>
                             </td>
-                            <td style="white-space: nowrap;">
-                                <a href="tel:<%=students[s].phone%>">
+                            <td style="white-space: nowrap;text-align: center;">
+                                <a href="tel:<%=students[s].phone%>" title="Call">
                                     <span class="glyphicon glyphicon-phone-alt"></span>
                                 </a>
-                                <a href="sms:<%=students[s].phone%>">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                <a href="sms:<%=students[s].phone%>" title="Send Text">
+                                    <span class="glyphicon glyphicon-comment"></span>
                                 </a>
                             </td>
                             <td style="white-space: nowrap;overflow: hidden;">
                                 <%if(students[s].openShiftUrl){%>
-                                <a href="<%=students[s].openShiftUrl%>" target="_blank">
+                                <a href="<%=students[s].openShiftUrl%>" target="_blank" title="Open in new window">
                                     <%=students[s].openShiftUrl%>
                                     <span class="glyphicon glyphicon-new-window"></span>
                                 </a>
@@ -103,7 +102,7 @@
                             </td>
                             <td style="white-space: nowrap;overflow: hidden;">
                                 <%if(students[s].gitHubUrl){%>
-                                <a href="<%=students[s].gitHubUrl%>" target="_blank">
+                                <a href="<%=students[s].gitHubUrl%>" target="_blank" title="Open in new window">
                                     <%=students[s].gitHubUrl%>
                                     <span class="glyphicon glyphicon-new-window"></span>
                                 </a>
