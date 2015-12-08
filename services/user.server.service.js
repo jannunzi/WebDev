@@ -1,3 +1,5 @@
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function(app, db, mongoose, passport, LocalStrategy) {
 
     var UserSchema = new mongoose.Schema(
@@ -15,12 +17,15 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
     passport.use(new LocalStrategy(
         function(username, password, done)
         {
-            UserModel.findOne({username: username, password: password}, function(err, user)
+            UserModel.findOne({username: username}, function(err, user)
             {
                 if (err) { return done(err); }
                 if (!user) { return done(null, false); }
-                //user.password = null;
-                return done(null, user);
+                if(bcrypt.compareSync(password, user.password)) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
             })
         }));
 
@@ -96,6 +101,7 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
                 return;
             }
             var newUser = new UserModel(req.body);
+            newUser.password = bcrypt.hashSync(newUser.password);
             newUser.save(function(err, user)
             {
                 req.login(user, function(err)
@@ -131,7 +137,7 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
             {
                 var newUser = {};
                 if(req.body.password)
-                    newUser.password = req.body.password;
+                    newUser.password = bcrypt.hashSync(req.body.password);
                 if(newUser.password) {
                     user.update({$set: {password: newUser.password}}, function(err, status)
                     {
@@ -159,7 +165,7 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
             {
                 var newUser = {};
                 if(req.body.password)
-                    newUser = req.body.password;
+                    newUser = bcrypt.hashSync(req.body.password);
                 if(req.body.roles){
                     if(req.body.roles && req.body.roles .indexOf(",")>-1) {
                         req.body.roles = req.body.roles .split(",");
