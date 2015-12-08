@@ -31,7 +31,6 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
 
     passport.serializeUser(function(user, done)
     {
-        user.password = null;
         done(null, user);
     });
 
@@ -39,7 +38,6 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
     {
         UserModel.findById(user._id, function(err, user)
         {
-            user.password = null;
             done(err, user);
         });
     });
@@ -107,7 +105,6 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
                 req.login(user, function(err)
                 {
                     if(err) { return next(err); }
-                    user.password = null;
                     res.json(user);
                 });
             });
@@ -124,9 +121,6 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
     function getUserByUserId(req, res) {
         UserModel
             .findById(req.params.userId, function(err, user){
-                if(user) {
-                    user.password = null;
-                }
                 res.json(user);
             });
     }
@@ -152,9 +146,6 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
     function getAllUsers(req, res){
         UserModel
             .find(function(err, users){
-                for(var u in users) {
-                    users[u].password = null;
-                }
                 res.json(users);
             });
     }
