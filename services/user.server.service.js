@@ -39,32 +39,52 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
         });
     });
 
-    app.get('api/course', function (req, res) {
-        var str = '(function(){angular.courses = ';
-        str += JSON.stringify(courses);
-        str += '})();';
-        res.send(str);
-    });
+    app.get('api/course', getAllCourses);
+    app.post("/api/portal/login", passport.authenticate('local'), login);
+    app.get('/api/portal/loggedin', loggedin);
+    app.post('/api/portal/logout', logout);
+    app.post('/api/portal/register', register);
+    app.get("/api/portal/user/:userId", ensureAuthenticated, getUserByUserId);
+    app.put("/api/portal/user/:id", ensureAuthenticated, updateUser);
+    app.get("/api/portal/admin/user", ensureAdmin, getAllUsers);
+    app.put("/api/portal/admin/user/:id", ensureAdmin, updateUserAsAdmin);
+    app.delete("/api/portal/admin/user/:id", ensureAdmin, removeUserAsAdmin);
 
-    app.post("/api/portal/login", passport.authenticate('local'), function(req, res)
-    {
+    function ensureAuthenticated(req, res, next) {
+        if (req.isAuthenticated()) { return next(); }
+        res.redirect('/#/login');
+    }
+
+    function ensureAdmin(req, res, next) {
+        if (req.isAuthenticated()) {
+            UserModel
+                .findById(req.user._id)
+                .then(function(user){
+                    delete user.password;
+                    if(user.roles.indexOf("admin") > -1) {
+                        return next();
+                    } else {
+                        res.redirect('/#/login');
+                    }
+                })
+        }
+    }
+
+    function login(req, res) {
         var user = req.user;
         res.json(user);
-    });
+    }
 
-    app.get('/api/portal/loggedin', function(req, res)
-    {
+    function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
-    });
+    }
 
-    app.post('/api/portal/logout', function(req, res)
-    {
+    function logout(req, res) {
         req.logOut();
         res.send(200);
-    });
+    }
 
-    app.post('/api/portal/register', function(req, res)
-    {
+    function register(req, res) {
         var newUser = req.body;
         newUser.roles = ['student'];
         UserModel.findOne({username: newUser.username}, function(err, user)
@@ -86,19 +106,16 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
                 });
             });
         });
-    });
+    }
 
-    app.get("/api/portal/user", ensureAdmin, function(req, res){
-        UserModel
-            .find(function(err, users){
-                for(var u in users) {
-                    users[u].password = null;
-                }
-                res.json(users);
-            });
-    });
+    function getAllCourses(req, res) {
+        var str = '(function(){angular.courses = ';
+        str += JSON.stringify(courses);
+        str += '})();';
+        res.send(str);
+    }
 
-    app.get("/api/portal/user/:userId", ensureAuthenticated, function(req, res){
+    function getUserByUserId(req, res) {
         UserModel
             .findById(req.params.userId, function(err, user){
                 if(user) {
@@ -106,16 +123,37 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
                 }
                 res.json(user);
             });
-    });
+    }
 
-    app.delete("/api/portal/user/:id", ensureAdmin, function(req, res){
+    function updateUser(req, res){
         UserModel
-            .remove({_id: req.params.id}, function(err, status){
-                res.send(status);
+            .findById(req.params.id, function(err, user)
+            {
+                var newUser = {};
+                if(req.body.password)
+                    newUser.password = req.body.password;
+                if(newUser.password) {
+                    user.update({$set: {password: newUser.password}}, function(err, status)
+                    {
+                        res.send(status);
+                    });
+                } else {
+                    res.send(200);
+                }
             });
-    });
+    }
 
-    app.put("/api/portal/user/:id", ensureAuthenticated, function(req, res){
+    function getAllUsers(req, res){
+        UserModel
+            .find(function(err, users){
+                for(var u in users) {
+                    users[u].password = null;
+                }
+                res.json(users);
+            });
+    }
+
+    function updateUserAsAdmin(req, res){
         UserModel
             .findById(req.params.id, function(err, user)
             {
@@ -133,25 +171,12 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
                     res.send(status);
                 });
             });
-    });
-
-    function ensureAuthenticated(req, res, next) {
-        if (req.isAuthenticated()) { return next(); }
-        res.redirect('/#/login');
     }
 
-    function ensureAdmin(req, res, next) {
-        if (req.isAuthenticated()) {
-            UserModel
-                .findById(req.user._id)
-                .then(function(user){
-                    delete user.password;
-                    if(user.roles.indexOf("admin") > -1) {
-                        return next();
-                    } else {
-                        res.redirect('/#/login');
-                    }
-                })
-        }
+    function removeUserAsAdmin(req, res){
+        UserModel
+            .remove({_id: req.params.id}, function(err, status){
+                res.send(status);
+            });
     }
 };

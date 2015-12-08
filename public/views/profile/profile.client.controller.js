@@ -84,7 +84,7 @@
 
         function updateUser(user) {
             UserService
-                .updateUser(user)
+                .updateUserAsAdmin(user)
                 .then(function(users){
                     UserService
                         .getAllUsers()

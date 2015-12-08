@@ -45,8 +45,8 @@
                             <th>Last Name</th>
                             <th width="55px">Email</th>
                             <th width="60px">Phone</th>
-                            <th>OpenShift URL</th>
                             <th>GitHub URL</th>
+                            <th>OpenShift URL</th>
                             <th style="white-space: nowrap">
                                 <!--<button class="btn btn-success">-->
                                 <!--Register-->
@@ -93,17 +93,17 @@
                                 </a>
                             </td>
                             <td style="white-space: nowrap;overflow: hidden;">
-                                <%if(students[s].openShiftUrl){%>
-                                <a href="<%=students[s].openShiftUrl%>" target="_blank" title="Open in new window">
-                                    <%=students[s].openShiftUrl%>
+                                <%if(students[s].gitHubUrl){%>
+                                <a href="<%=students[s].gitHubUrl%>" target="_blank" title="Open in new window">
+                                    <%=students[s].gitHubUrl%>
                                     <span class="glyphicon glyphicon-new-window"></span>
                                 </a>
                                 <%}%>
                             </td>
                             <td style="white-space: nowrap;overflow: hidden;">
-                                <%if(students[s].gitHubUrl){%>
-                                <a href="<%=students[s].gitHubUrl%>" target="_blank" title="Open in new window">
-                                    <%=students[s].gitHubUrl%>
+                                <%if(students[s].openShiftUrl){%>
+                                <a href="<%=students[s].openShiftUrl%>" target="_blank" title="Open in new window">
+                                    <%=students[s].openShiftUrl%>
                                     <span class="glyphicon glyphicon-new-window"></span>
                                 </a>
                                 <%}%>
