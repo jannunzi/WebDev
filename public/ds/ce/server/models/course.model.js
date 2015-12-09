@@ -73,7 +73,7 @@ module.exports = function(db, mongoose) {
     function removeCourse(id){
         var deferred = q.defer();
 
-        
+
         return deferred.promise;
     }
 
