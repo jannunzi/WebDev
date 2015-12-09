@@ -11,7 +11,7 @@
                     <label for="email">Email address</label>
                     <input ng-model="model.user.username" readonly type="email" class="form-control input-lg" id="email" placeholder="Email">
                 </div>
-                <div ng-if="model.user._id == currentUser._id">
+                <div ng-if="model.user._id == currentUser._id || currentUser.roles.indexOf('admin')>-1">
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input ng-model="model.user.password" type="password" class="form-control input-lg" id="password" placeholder="Password">
@@ -28,54 +28,101 @@
                         <label for="gitHubUrl">GitHub URL <a href="{{model.user.gitHubUrl}}" target="_blank"><span class="glyphicon glyphicon-new-window"></span></a></label>
                         <input ng-model="model.user.gitHubUrl" class="form-control input-lg" id="gitHubUrl" placeholder="GitHub URL">
                     </div>
+                    <div class="form-group">
+                        <label for="phone">Phone
+                            <a href="tel:{{model.user.phone}}"><span class="glyphicon glyphicon-phone-alt"></span></a>
+                            <a href="sms:{{model.user.phone}}"><span class="glyphicon glyphicon-comment"></span></a>
+                        </label>
+                        <input ng-model="model.user.phone" class="form-control input-lg" id="phone" placeholder="Phone Number">
+                    </div>
                     <button ng-click="model.updateUser(model.user)" class="btn btn-success btn-block btn-lg">Update</button>
                 </div>
             </form>
         </uib-tab>
         <uib-tab ng-if="currentUser.roles.indexOf('admin')>-1" heading="Users">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Roles</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    <tr>
-                        <td><input ng-model="model.user.username" class="form-control"/></td>
-                        <td><input ng-model="model.user.roles" class="form-control"/></td>
-                        <td>OpenShift</td>
-                        <td>GitHub</td>
-                        <td>
-                            <button ng-click="model.createUser(model.user)" class="btn btn-success">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                            <button ng-click="model.updateUserAsAdmin(model.user)" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="user in model.users">
-                        <td>
-                            <a href="#/profile/{{user._id}}">
-                                {{user.username}}
-                            </a>
-                        </td>
-                        <td>{{user.roles}}</td>
-                        <td>{{user.openShiftUrl}}</td>
-                        <td>{{user.gitHubUrl}}</td>
-                        <td>
-                            <button ng-click="model.removeUser(user._id)" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                            <button ng-click="model.selectUser($index)" class="btn btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>First</th>
+                            <th>Last</th>
+                            <th>Username/Email</th>
+                            <th>Roles</th>
+                            <th>Phone</th>
+                            <th>OpenShift</th>
+                            <th>GitHub</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <td><input ng-model="model.user.order" class="form-control"/></td>
+                            <td><input ng-model="model.user.firstName" class="form-control"/></td>
+                            <td><input ng-model="model.user.lastName" class="form-control"/></td>
+                            <td><input ng-model="model.user.username" class="form-control"/></td>
+                            <td><input ng-model="model.user.roles" class="form-control"/></td>
+                            <td><input ng-model="model.user.phone" class="form-control"/></td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <button ng-click="model.createUser(model.user)" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <button ng-click="model.updateUserAsAdmin(model.user)" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in model.users | orderBy: 'order'">
+                            <td>{{user.order}}</td>
+                            <td>
+                                <a href="#/profile/{{user._id}}">
+                                    {{user.firstName}}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#/profile/{{user._id}}">
+                                    {{user.lastName}}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="mailto:{{user.username||user.email}}">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </a>
+                            </td>
+                            <td>{{user.roles}}</td>
+                            <td>
+                                <a href="tel:{{user.phone}}" target="_blank">
+                                    <span class="glyphicon glyphicon-phone-alt"></span>
+                                </a>
+                                <a href="sms:{{user.phone}}" target="_blank">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{user.openShiftUrl}}" target="_blank">
+                                    <span class="glyphicon glyphicon-new-window"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{user.gitHubUrl}}" target="_blank">
+                                    <span class="glyphicon glyphicon-new-window"></span>
+                                </a>
+
+                            </td>
+                            <td>
+                                <button ng-click="model.removeUser(user._id)" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                                <button ng-click="model.selectUser($index)" class="btn btn-warning">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </uib-tab>
         <uib-tab ng-if="currentUser.roles.indexOf('faculty')>-1" heading="My Courses">
             <table class="table">

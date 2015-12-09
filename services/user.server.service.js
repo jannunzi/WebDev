@@ -142,17 +142,14 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
         UserModel
             .findById(req.params.id, function(err, user)
             {
-                var newUser = {};
+                delete req.body.order;
+                var newUser = req.body;
                 if(req.body.password)
                     newUser.password = bcrypt.hashSync(req.body.password);
-                if(newUser.password) {
-                    user.update({$set: {password: newUser.password}}, function(err, status)
-                    {
-                        res.send(status);
-                    });
-                } else {
-                    res.send(200);
-                }
+                user.update(newUser, function(err, status)
+                {
+                    res.send(status);
+                });
             });
     }
 
@@ -165,11 +162,10 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
 
     function updateUserAsAdmin(req, res){
         UserModel
-            .findById(req.params.id, function(err, user)
-            {
-                var newUser = {};
+            .findById(req.params.id, function(err, user) {
+                var newUser = req.body;
                 if(req.body.password)
-                    newUser = bcrypt.hashSync(req.body.password);
+                    newUser.password = bcrypt.hashSync(req.body.password);
                 if(req.body.roles){
                     if(req.body.roles && req.body.roles .indexOf(",")>-1) {
                         req.body.roles = req.body.roles .split(",");
