@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="phone">Phone
                             <a href="tel:{{model.user.phone}}"><span class="glyphicon glyphicon-phone-alt"></span></a>
-                            <a href="sms:{{model.user.phone}}?body=Hi {{model.user.firstName}},\n\n\nThanks, Jose"><span class="glyphicon glyphicon-comment"></span></a>
+                            <a href="sms:{{model.user.phone}}"><span class="glyphicon glyphicon-comment"></span></a>
                         </label>
                         <input ng-model="model.user.phone" class="form-control input-lg" id="phone" placeholder="Phone Number">
                     </div>
