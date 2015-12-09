@@ -20,6 +20,14 @@
                         <label for="password">Verify Password</label>
                         <input ng-model="model.user.password2" type="password" class="form-control input-lg" id="verify-password" placeholder="Verify Password">
                     </div>
+                    <div class="form-group">
+                        <label for="openShiftUrl">OpenShift URL <a href="{{model.user.openShiftUrl}}" target="_blank"><span class="glyphicon glyphicon-new-window"></span></a></label>
+                        <input ng-model="model.user.openShiftUrl" class="form-control input-lg" id="openShiftUrl" placeholder="OpenShift URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="gitHubUrl">GitHub URL <a href="{{model.user.gitHubUrl}}" target="_blank"><span class="glyphicon glyphicon-new-window"></span></a></label>
+                        <input ng-model="model.user.gitHubUrl" class="form-control input-lg" id="gitHubUrl" placeholder="GitHub URL">
+                    </div>
                     <button ng-click="model.updateUser(model.user)" class="btn btn-success btn-block btn-lg">Update</button>
                 </div>
             </form>
@@ -35,6 +43,8 @@
                     <tr>
                         <td><input ng-model="model.user.username" class="form-control"/></td>
                         <td><input ng-model="model.user.roles" class="form-control"/></td>
+                        <td>OpenShift</td>
+                        <td>GitHub</td>
                         <td>
                             <button ng-click="model.createUser(model.user)" class="btn btn-success">
                                 <span class="glyphicon glyphicon-plus"></span>
@@ -53,6 +63,8 @@
                             </a>
                         </td>
                         <td>{{user.roles}}</td>
+                        <td>{{user.openShiftUrl}}</td>
+                        <td>{{user.gitHubUrl}}</td>
                         <td>
                             <button ng-click="model.removeUser(user._id)" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
