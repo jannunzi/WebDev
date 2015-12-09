@@ -1,53 +1,11 @@
 module.exports = function(mongoose){
+
+    //var LearningElement = require('./learningElement.schema.js')(mongoose);
+    var Module = require('./module.schema.js')(mongoose);
     var CourseSchema = mongoose.Schema({
                 title: String,
-                modules: [{
-                    title: String,
-                    available: Boolean,
-                    visible: Boolean,
-                    lectures: [
-                        {
-                            title: String
-                        }
-                    ],
-                    assignments: [
-                        {
-                            title: String
-                        }
-                    ],
-                    videos: [
-                        {
-                            title: String,
-                            src: String
-                        }
-                    ],
-                    slides: [
-                        {
-                            title: String,
-                            src: String
-                        }
-                    ],
-                    examples: [
-                        {
-                            title: String,
-                            demos: [
-                                {
-                                    title: String,
-                                    base: String,
-                                    src: String,
-                                    dependencies: [
-                                        {
-                                            title: String,
-                                            src: String
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-
-
-                }]
+                overview: String,
+                modules: [Module]
             }, {collection: "ds.ce.course"});
     return CourseSchema;
 }

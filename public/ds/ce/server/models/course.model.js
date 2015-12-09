@@ -10,7 +10,26 @@ module.exports = function(db, mongoose) {
     var api = {
         getAllCourses: getAllCourses,
         updateCourses: updateCourses,
-        addCourse: addCourse
+        //updateCourse: updateCourse,
+        addCourse: addCourse,
+
+        //updateCourse: updateCourse,
+        //getCourseById: getCourseById,
+        removeCourse: removeCourse
+        //
+        //getAllModules: getAllModules,
+        //addModule: addModule,
+        //updateModule: updateModule,
+        //getModuleById: getModuleById,
+        //removeModule: removeModule
+
+        //getAllLearningElements: getAllLearningElements,
+        //addLearningElement: addLearningElement,
+        //updateLearningElement: updateLearningElement,
+        //getLearningElementById: getLearningElementById,
+        //
+        //getAllVideos: getAllVideos,
+        //getAllSlides: getAllSlides,
     }
 
     return api;
@@ -41,7 +60,21 @@ module.exports = function(db, mongoose) {
     }
 
     function addCourse(course){
-        //TODO
+
+        var deferred = q.defer();
+
+        CourseModel.create(course, function(err, response){
+            deferred.resolve(response);
+        });
+
+        return deferred.promise;
+    }
+
+    function removeCourse(id){
+        var deferred = q.defer();
+
+        
+        return deferred.promise;
     }
 
 

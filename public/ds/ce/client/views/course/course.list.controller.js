@@ -36,11 +36,17 @@
 
                 var course = {
                     "title": title,
+                    "overview": "",
                     "modules": []
                 };
 
-                model.courses.push(course);
-                course.open = true;
+                CourseService.addCourse(course).then(function(res){
+                    model.courses.push(res);
+                    res.open = true;
+                });
+
+                //model.courses.push(course);
+                //course.open = true;
             });
         }
 
@@ -58,6 +64,7 @@
                     "examples": []
 
                 };
+
                 course.modules.push(module);
                 module.open = true;
             });

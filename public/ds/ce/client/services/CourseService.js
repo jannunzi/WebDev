@@ -7,7 +7,8 @@
 
         var service = {
             getAll: getAll,
-            updateCourses: updateCourses
+            updateCourses: updateCourses,
+            addCourse: addCourse
         }
 
         return service;
@@ -25,6 +26,16 @@
             var deferred = $q.defer();
             $http.get("/api/ds/ce/course").success(function(response){
                 console.log("got courses");
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function addCourse(course){
+            var deferred = $q.defer();
+
+            $http.post("/api/ds/ce/course", course).success(function(response){
                 deferred.resolve(response);
             });
 

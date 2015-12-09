@@ -24,6 +24,10 @@ module.exports = function(app, model){
     }
 
     function addCourse(req, res){
-        //var course = req.body;
+        var course = req.body;
+
+        model.addCourse(course).then(function(createdCourse){
+            res.json(createdCourse);
+        });
     }
 }
