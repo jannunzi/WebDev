@@ -9,19 +9,32 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
             firstName: String,
             lastName: String,
             email: String,
-            roles: [String]
-        }, {collection: "portal.user"});
+            roles: [String],
+            gitHubUrl: String,
+            openShiftUrl: String,
+            phone: String,
+            order: Number
+        }, {collection: "lectures.ejs.mongo.student"});
+        //}, {collection: "portal.user"});
 
     var UserModel = mongoose.model('UserModel', UserSchema);
 
     passport.use(new LocalStrategy(
         function(username, password, done)
         {
-            UserModel.findOne({username: username}, function(err, user)
-            {
-                if (err) { return done(err); }
-                if (!user) { return done(null, false); }
-                if(bcrypt.compareSync(password, user.password)) {
+            UserModel.findOne({$or: [{username: username}, {email: username}]}, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (!user) {
+                    return done(null, false);
+                } else if(!user.password) {
+                    user.username = user.email;
+                    user.password = bcrypt.hashSync(user.username);
+                    user.save(function(){
+                        return done(null, user);
+                    });
+                } else if(bcrypt.compareSync(password, user.password)) {
                     return done(null, user);
                 } else {
                     return done(null, false);
@@ -176,4 +189,5 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
                 res.send(status);
             });
     }
+
 };
