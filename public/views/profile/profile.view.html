@@ -9,16 +9,16 @@
             <form style="margin-bottom: 10px;margin-top:10px">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input ng-model="model.user.username" readonly type="email" class="form-control input-lg" id="email" placeholder="Email">
+                    <input ng-model="model.user.email" readonly type="email" class="form-control input-lg" id="email" placeholder="Email">
                 </div>
                 <div ng-if="model.user._id == currentUser._id || currentUser.roles.indexOf('admin')>-1">
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input ng-model="model.user.password" type="password" class="form-control input-lg" id="password" placeholder="Password">
+                        <input ng-model="model.changePassword" type="password" class="form-control input-lg" id="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                         <label for="password">Verify Password</label>
-                        <input ng-model="model.user.password2" type="password" class="form-control input-lg" id="verify-password" placeholder="Verify Password">
+                        <input ng-model="model.changePassword2" type="password" class="form-control input-lg" id="verify-password" placeholder="Verify Password">
                     </div>
                     <div class="form-group">
                         <label for="openShiftUrl">OpenShift URL <a href="{{model.user.openShiftUrl}}" target="_blank"><span class="glyphicon glyphicon-new-window"></span></a></label>
@@ -111,7 +111,7 @@
                                 </a>
 
                             </td>
-                            <td>
+                            <td style="white-space: nowrap">
                                 <button ng-click="model.removeUser(user._id)" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>

@@ -84,6 +84,11 @@
         }
 
         function updateUser(user) {
+            if(model.changePassword && model.changePassword == model.changePassword2) {
+                user.password = model.changePassword;
+            } else {
+                delete user.password;
+            }
             UserService
                 .updateUser(user)
                 .then(function(users){
