@@ -20,17 +20,20 @@
         <uib-accordion-group ng-repeat="course in model.courses" is-disabled="true" is-open="course.open">
 
             <uib-accordion-heading>
-                <div ng-hide="model.editingCourses">
+                <div ng-hide="course.editing">
                     <a class="right-padding" ng-click="course.open=!course.open">
                         <span ng-hide="course.open" class="glyphicon glyphicon-menu-down"></span>
                         <span ng-show="course.open" class="glyphicon glyphicon-menu-up"></span>
                     </a>
                     {{course.title}}
+                    <a ng-hide="course.editing" class="btn btn-xs btn-warning" ng-click="course.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
+
                 </div>
-                <input ng-show="model.editingCourses" ng-model="course.title" placeholder="Title">
-                <a ng-click="model.removeCourse(model.courses, $index)" ng-show="model.editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
-                <a ng-hide="course.editing" class="btn btn-xs btn-warning" ng-click="course.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                <input ng-show="course.editing" ng-model="course.title" placeholder="Title">
                 <a ng-show="course.editing" class="btn btn-xs btn-success" ng-click="model.updateCourse(course)"><span class="glyphicon glyphicon-ok"></span></a>
+                <a ng-click="model.removeCourse(model.courses, $index)" ng-show="course.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+
+
 
             </uib-accordion-heading>
 

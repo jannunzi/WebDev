@@ -14,7 +14,7 @@ module.exports = function(db, mongoose) {
         addCourse: addCourse,
 
         updateCourse: updateCourse,
-        //getCourseById: getCourseById,
+        getCourseById: getCourseById,
         removeCourse: removeCourse,
         //
         getModulesByCourseId: getModulesByCourseId,
@@ -98,8 +98,8 @@ module.exports = function(db, mongoose) {
 
         CourseModel.update({_id: id}, course, function(err, response){
 
-            getAllCourses().then(function(courses){
-                deferred.resolve(courses);
+            getCourseById(id).then(function(course){
+                deferred.resolve(course);
             });
             //deferred.resolve(response);
         });
@@ -142,6 +142,17 @@ module.exports = function(db, mongoose) {
                 });
             });
         });
+        return deferred.promise;
+    }
+
+    function getCourseById(id){
+
+        var deferred = q.defer();
+
+        CourseModel.findById(id, function(err, course){
+            deferred.resolve(course);
+        });
+
         return deferred.promise;
     }
 

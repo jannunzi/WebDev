@@ -49,8 +49,8 @@ module.exports = function(app, model){
         var id = req.params.id;
         var course = req.body;
 
-        model.updateCourse(id, course).then(function(courses){
-            res.json(courses);
+        model.updateCourse(id, course).then(function(course){
+            res.json(course);
         });
     }
 

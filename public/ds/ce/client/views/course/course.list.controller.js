@@ -270,9 +270,8 @@
         model.updateCourse = function(course){
             var id = course._id;
 
-            CourseService.updateCourse(id, course).then(function(courses){
-                model.courses = courses;
-                course.open = true;
+            CourseService.updateCourse(id, course).then(function(modifiedCourse){
+                //model.courses = course;
                 course.editing = false;
             });
 
