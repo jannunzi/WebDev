@@ -52,7 +52,7 @@
             <uib-accordion>
                 <uib-accordion-group ng-repeat="module in course.modules" is-disabled="true" is-open="module.open">
                     <uib-accordion-heading>
-                        <div ng-hide="model.editingModules">
+                        <div ng-hide="module.editing">
                             <a ng-click="module.open=!module.open">
                                 <span ng-hide="module.open" class="glyphicon glyphicon-menu-down"></span>
                                 <span ng-show="module.open" class="glyphicon glyphicon-menu-up"></span>
@@ -61,7 +61,7 @@
                             <a ng-hide="module.editing" class="btn btn-xs btn-warning" ng-click="module.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
                         </div>
                         <input ng-show="module.editing" ng-model="module.title" placeholder="Title">
-                        <a ng-show="module.editing" class="btn btn-xs btn-success" ng-click="model.updateModule(course._id, module)"><span class="glyphicon glyphicon-ok"></span></a>
+                        <a ng-show="module.editing" class="btn btn-xs btn-success" ng-click="model.updateModule(course._id, course.modules, module)"><span class="glyphicon glyphicon-ok"></span></a>
                         <a ng-click="model.removeModule(course, module)" ng-show="module.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     </uib-accordion-heading>
                     <label>Visible</label>

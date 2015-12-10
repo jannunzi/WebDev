@@ -112,8 +112,8 @@ module.exports = function(db, mongoose) {
 
         CourseModel.findById(courseId, function(err, course){
             course.modules.push(module);
-            course.save(function(err, course){
-                getModulesByCourseId(course._id).then(function(modules){
+            course.save(function(err, saved){
+                getModulesByCourseId(saved._id).then(function(modules){
                     deferred.resolve(modules);
                 });
             });
@@ -157,20 +157,32 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
-    function updateModule(courseId, moduleId, module){
+    function updateModule(courseId, modules){
         var deferred = q.defer();
 
-        delete module._id;
+        //delete module._id;
 
         getCourseById(courseId).then(function(course){
-            course.modules.update({_id: moduleId}, module);
+            //course.modules.id(moduleId)
+            course.modules = modules;
 
-            course.save(function(err, course){
+            course.save(function(err, savedCourse){
                 getModulesByCourseId(courseId).then(function(modules){
                     deferred.resolve(modules);
                 });
             });
         });
+
+        //CourseModel.findOne({'_id': courseId, 'modules._id': moduleId}).then(function(course){
+        //    console.log(course.modules);
+        //    course.modules[0] = module;
+        //
+        //    course.save(function(err){
+        //        getModulesByCourseId(courseId).then(function(modules){
+        //                        deferred.resolve(modules);
+        //        });
+        //    });
+        //});
 
         return deferred.promise;
     }

@@ -277,10 +277,10 @@
 
         }
 
-        model.updateModule = function(courseId, module) {
-            var moduleId = module._id;
+        model.updateModule = function(courseId, modules, module) {
+            //var moduleId = module._id;
 
-            CourseService.updateModule(courseId, moduleId, module).then(function(modifiedModule){
+            CourseService.updateModule(courseId, modules).then(function(modifiedModule){
                 //module = modifiedModule;
                 module.editing = false;
             });

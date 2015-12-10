@@ -102,10 +102,10 @@
             return deferred.promise;
         }
 
-        function updateModule(courseId, moduleId, module) {
+        function updateModule(courseId, modules) {
             var deferred = $q.defer();
-            $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId, module).success(function(module){
-                deferred.resolve(module);
+            $http.put("/api/ds/ce/course/" + courseId + "/module", modules).success(function(saved){
+                deferred.resolve(saved);
             });
 
             return deferred.promise;
