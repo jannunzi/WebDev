@@ -30,8 +30,8 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone
-                            <a href="tel:{{model.user.phone}}"><span class="glyphicon glyphicon-phone-alt"></span></a>
-                            <a href="sms:{{model.user.phone}}"><span class="glyphicon glyphicon-comment"></span></a>
+                            <a href="tel:{{model.user.phone}}" class="btn btn-default"><span class="glyphicon glyphicon-phone-alt"></span></a>
+                            <a href="sms:{{model.user.phone}}" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span></a>
                         </label>
                         <input ng-model="model.user.phone" class="form-control input-lg" id="phone" placeholder="Phone Number">
                     </div>
@@ -87,26 +87,26 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="mailto:{{user.username||user.email}}">
+                                <a href="mailto:{{user.username||user.email}}" class="btn btn-default btn-block">
                                     <span class="glyphicon glyphicon-envelope"></span>
                                 </a>
                             </td>
                             <td>{{user.roles}}</td>
-                            <td>
-                                <a href="tel:{{user.phone}}" target="_blank">
+                            <td style="white-space: nowrap">
+                                <a href="tel:{{user.phone}}" target="_blank" class="btn btn-default">
                                     <span class="glyphicon glyphicon-phone-alt"></span>
                                 </a>
-                                <a href="sms:{{user.phone}}" target="_blank">
+                                <a href="sms:{{user.phone}}" target="_blank" class="btn btn-default">
                                     <span class="glyphicon glyphicon-comment"></span>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{user.openShiftUrl}}" target="_blank">
+                                <a href="{{user.openShiftUrl}}" target="_blank" class="btn btn-default btn-block">
                                     <span class="glyphicon glyphicon-new-window"></span>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{user.gitHubUrl}}" target="_blank">
+                                <a href="{{user.gitHubUrl}}" target="_blank" class="btn btn-default btn-block">
                                     <span class="glyphicon glyphicon-new-window"></span>
                                 </a>
 
