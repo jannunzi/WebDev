@@ -170,7 +170,7 @@
             });
         }
 
-        model.addAssignment = function(module){
+        model.addAssignment = function(courseId, module){
 
             model.addingType = "assignment";
 
@@ -179,9 +179,13 @@
                     "title": title
                 };
 
-                module.assignments.push(assignment);
+                CourseService.addAssignment(courseId, module._id, assignment).then(function(assignments){
+                    //assignment.open = true;
+                    module.assignments = assignments;
+                });
+                //module.assignments.push(assignment);
 
-                assignment.open = true;
+                //assignment.open = true;
             })
         }
 
@@ -259,11 +263,17 @@
 
         }
 
-        model.removeAssignment = function(assignments, index){
-            model.title = assignments[index].title;
+        model.removeAssignment = function(courseId, module, assignment){
+            model.title = assignment.title;
+
+            var moduleId = module._id;
+            var assignmentId = assignment._id;
 
             showRemoveDialog(function(){
-               assignments.splice(index, 1);
+               //assignments.splice(index, 1);
+                CourseService.removeAssignment(courseId, moduleId, assignmentId).then(function(assignments){
+                    module.assignments = assignments;
+                });
             });
         }
 

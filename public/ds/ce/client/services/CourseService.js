@@ -15,7 +15,10 @@
             addModule: addModule,
             getModulesByCourseId: getModulesByCourseId,
             removeModule: removeModule,
-            updateModule: updateModule
+            updateModule: updateModule,
+
+            addAssignment: addAssignment,
+            removeAssignment: removeAssignment
         }
 
         return service;
@@ -108,6 +111,25 @@
                 deferred.resolve(saved);
             });
 
+            return deferred.promise;
+        }
+
+        function addAssignment(courseId, moduleId, assignment){
+            var deferred = $q.defer();
+
+            $http.post("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/assignment", assignment).success(function(assignments){
+                deferred.resolve(assignments);
+            });
+            return deferred.promise;
+        }
+
+        function removeAssignment(courseId, moduleId, assignmentId){
+            var deferred = $q.defer();
+
+            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/assignment/" + assignmentId).success(function(assignments){
+
+                deferred.resolve(assignments);
+            });
             return deferred.promise;
         }
 

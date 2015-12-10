@@ -246,7 +246,7 @@
                     </uib-accordion>
 
                     <h4>Assignments
-                        <a ng-click="model.addAssignment(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a ng-click="model.addAssignment(course._id, module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
                         <a ng-hide="model.editingAssignments || module.assignments.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingAssignments = true"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a ng-show="model.editingAssignments && module.assignments.length > 0" class="btn btn-xs btn-success" ng-click="model.editingAssignments = false"><span class="glyphicon glyphicon-ok"></span></a>
                     </h4>
@@ -262,7 +262,7 @@
                                     {{assignment.title}}
                                 </div>
                                 <input ng-show="model.editingAssignments" ng-model="assignment.title" placeholder="Title">
-                                <a ng-click="model.removeAssignment(module.assignments, $index)" ng-show="model.editingAssignments" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a ng-click="model.removeAssignment(course._id, module, assignment)" ng-show="model.editingAssignments" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             </uib-accordion-heading>
                             <label>Source</label>
                             <input class="form-control" ng-model="assignment.src" placeholder="URL (Eg. Google Docs, Dropbox, etc.)">

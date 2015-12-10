@@ -20,7 +20,7 @@ module.exports = function(db, mongoose) {
         getModulesByCourseId: getModulesByCourseId,
         addModule: addModule,
         updateModule: updateModule,
-        removeModule: removeModule
+        removeModule: removeModule,
         //updateModule: updateModule,
         //getModuleById: getModuleById,
         //removeModule: removeModule
@@ -32,6 +32,11 @@ module.exports = function(db, mongoose) {
         //
         //getAllVideos: getAllVideos,
         //getAllSlides: getAllSlides,
+
+        addAssignment: addAssignment,
+        getAssignemnts: getAssignments,
+        removeAssignment: removeAssignment
+
     }
 
     return api;
@@ -163,7 +168,7 @@ module.exports = function(db, mongoose) {
         //delete module._id;
 
         getCourseById(courseId).then(function(course){
-            //course.modules.id(moduleId)
+            //course.modules.id(moduleId).update(course);
             course.modules = modules;
 
             course.save(function(err, savedCourse){
@@ -184,6 +189,47 @@ module.exports = function(db, mongoose) {
         //    });
         //});
 
+        return deferred.promise;
+    }
+
+    function addAssignment(courseId, moduleId, assignment){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).assignments.push(assignment);
+
+            course.save(function(err){
+                getAssignments(courseId, moduleId).then(function(assignments){
+                    deferred.resolve(assignments);
+                });
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function getAssignments(courseId, moduleId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            deferred.resolve(course.modules.id(moduleId).assignments);
+        });
+        return deferred.promise;
+    }
+
+    function removeAssignment(courseId, moduleId, assignmentId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).assignments.id(assignmentId).remove();
+
+            course.save(function(err){
+                console.log(err);
+                getAssignments(courseId, moduleId).then(function(found){
+                    deferred.resolve(found);
+                });
+            });
+        });
         return deferred.promise;
     }
 
