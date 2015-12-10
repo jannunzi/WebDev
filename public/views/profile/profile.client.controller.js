@@ -10,6 +10,7 @@
 
         var model = this;
         model.updateUser = updateUser;
+        model.updateUserAsAdmin = updateUserAsAdmin;
         model.removeUser = removeUser;
         model.selectUser = selectUser;
         model.createCourse = createCourse;
@@ -83,8 +84,25 @@
         }
 
         function updateUser(user) {
+            if(model.changePassword && model.changePassword == model.changePassword2) {
+                user.password = model.changePassword;
+            } else {
+                delete user.password;
+            }
             UserService
                 .updateUser(user)
+                .then(function(users){
+                    UserService
+                        .getAllUsers()
+                        .then(function(users){
+                            model.users = users;
+                        });
+                });
+        }
+
+        function updateUserAsAdmin(user) {
+            UserService
+                .updateUserAsAdmin(user)
                 .then(function(users){
                     UserService
                         .getAllUsers()

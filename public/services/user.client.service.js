@@ -9,6 +9,7 @@
             login: login,
             logout: logout,
             updateUser: updateUser,
+            updateUserAsAdmin: updateUserAsAdmin,
             getAllUsers: getAllUsers,
             getUserById: getUserById,
             removeUser: removeUser
@@ -47,10 +48,27 @@
             return deferred.promise;
         }
 
+
+        function updateUserAsAdmin(user) {
+            var deferred = $q.defer();
+
+            $http.put("/api/portal/admin/user/" + user._id, user)
+                .then(
+                function(response) {
+                    deferred.resolve(response.data);
+                },
+                function(error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
+        }
+
         function removeUser(id) {
             var deferred = $q.defer();
 
-            $http.delete("/api/portal/user/" + id)
+            $http.delete("/api/portal/admin/user/" + id)
                 .then(
                 function(response) {
                     deferred.resolve(response.data);
@@ -66,7 +84,7 @@
         function getAllUsers() {
             var deferred = $q.defer();
 
-            $http.get("/api/portal/user")
+            $http.get("/api/portal/admin/user")
                 .then(
                 function(response) {
                     deferred.resolve(response.data);

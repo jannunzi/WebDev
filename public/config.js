@@ -3,7 +3,8 @@
         .module("WhiteBoardApp")
         .config(Configuration);
 
-    function Configuration($routeProvider) {
+    function Configuration($routeProvider, $compileProvider) {
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|sms|tel):/);
         $routeProvider
             .when("/", {
                 templateUrl: "views/home/home.view.html"
