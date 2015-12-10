@@ -27,7 +27,9 @@
                     </a>
                     {{course.title}}
                     <a ng-hide="course.editing" class="btn btn-xs btn-warning" ng-click="course.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
-
+                    <a ng-show="course.changed" ng-click = "model.updateCourse(course); course.changed = false" class="btn btn-xs btn-primary" ng-click="course.editing = true"><span class="glyphicon glyphicon glyphicon-floppy-disk
+"></span></a>
+                    <p ng-show="course.changed" style="color:red"> <strong>Changes have been made, please save.</strong></p>
                 </div>
                 <input ng-show="course.editing" ng-model="course.title" placeholder="Title">
                 <a ng-show="course.editing" class="btn btn-xs btn-success" ng-click="model.updateCourse(course)"><span class="glyphicon glyphicon-ok"></span></a>
@@ -38,7 +40,7 @@
             </uib-accordion-heading>
 
             <h4>Overview</h4>
-            <div text-angular ng-model="course.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
+            <div ng-change="course.changed = true" text-angular ng-model="course.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
 
             <!--<div text-angular ng-model="model.htmlContent" name="demo-editor" ta-text-editor-class="border-around" ta-html-editor-class="border-around" class="ta-root"></div>-->
 
@@ -59,15 +61,19 @@
                             </a>
                             {{module.title}}
                             <a ng-hide="module.editing" class="btn btn-xs btn-warning" ng-click="module.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a ng-show="module.changed" ng-click = "model.updateModule(course._id, course.modules, module); module.changed = false" class="btn btn-xs btn-primary" ng-click="module.editing = true"><span class="glyphicon glyphicon glyphicon-floppy-disk
+"></span></a>
+                            <p ng-show="module.changed" style="color:red"> <strong>Changes have been made, please save.</strong></p>
+
                         </div>
                         <input ng-show="module.editing" ng-model="module.title" placeholder="Title">
                         <a ng-show="module.editing" class="btn btn-xs btn-success" ng-click="model.updateModule(course._id, course.modules, module)"><span class="glyphicon glyphicon-ok"></span></a>
                         <a ng-click="model.removeModule(course, module)" ng-show="module.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     </uib-accordion-heading>
                     <label>Visible</label>
-                    <input type="checkbox" ng-model="module.visible"><br>
+                    <input ng-change = "module.changed = true" type="checkbox" ng-model="module.visible"><br>
                     <label>Available</label>
-                    <input type="checkbox" ng-model="module.available"><br>
+                    <input ng-change = "module.changed = true" type="checkbox" ng-model="module.available"><br>
 
                     <h4>Lectures
                         <a ng-click="model.addLecture(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
