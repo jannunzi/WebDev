@@ -14,7 +14,8 @@
 
             addModule: addModule,
             getModulesByCourseId: getModulesByCourseId,
-            removeModule: removeModule
+            removeModule: removeModule,
+            updateModule: updateModule
         }
 
         return service;
@@ -98,6 +99,15 @@
             $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId).success(function(modules){
                 deferred.resolve(modules);
             });
+            return deferred.promise;
+        }
+
+        function updateModule(courseId, moduleId, module) {
+            var deferred = $q.defer();
+            $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId, module).success(function(module){
+                deferred.resolve(module);
+            });
+
             return deferred.promise;
         }
 

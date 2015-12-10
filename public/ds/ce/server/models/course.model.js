@@ -19,6 +19,7 @@ module.exports = function(db, mongoose) {
         //
         getModulesByCourseId: getModulesByCourseId,
         addModule: addModule,
+        updateModule: updateModule,
         removeModule: removeModule
         //updateModule: updateModule,
         //getModuleById: getModuleById,
@@ -151,6 +152,24 @@ module.exports = function(db, mongoose) {
 
         CourseModel.findById(id, function(err, course){
             deferred.resolve(course);
+        });
+
+        return deferred.promise;
+    }
+
+    function updateModule(courseId, moduleId, module){
+        var deferred = q.defer();
+
+        delete module._id;
+
+        getCourseById(courseId).then(function(course){
+            course.modules.update({_id: moduleId}, module);
+
+            course.save(function(err, course){
+                getModulesByCourseId(courseId).then(function(modules){
+                    deferred.resolve(modules);
+                });
+            });
         });
 
         return deferred.promise;

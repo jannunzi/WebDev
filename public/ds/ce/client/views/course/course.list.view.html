@@ -45,8 +45,8 @@
 
             <h4>Modules
                 <a ng-click="model.addModule(course)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                <a ng-hide="model.editingModules || course.modules.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingModules = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a ng-show="model.editingModules && course.modules.length > 0" class="btn btn-xs btn-success" ng-click="model.editingModules = false"><span class="glyphicon glyphicon-ok"></span></a>
+                <!--<a ng-hide="model.editingModules || course.modules.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingModules = true"><span class="glyphicon glyphicon-pencil"></span></a>-->
+                <!--<a ng-show="model.editingModules && course.modules.length > 0" class="btn btn-xs btn-success" ng-click="model.editingModules = false"><span class="glyphicon glyphicon-ok"></span></a>-->
             </h4>
 
             <uib-accordion>
@@ -58,9 +58,11 @@
                                 <span ng-show="module.open" class="glyphicon glyphicon-menu-up"></span>
                             </a>
                             {{module.title}}
+                            <a ng-hide="module.editing" class="btn btn-xs btn-warning" ng-click="module.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
                         </div>
-                        <input ng-show="model.editingModules" ng-model="module.title" placeholder="Title">
-                        <a ng-click="model.removeModule(course, module)" ng-show="model.editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        <input ng-show="module.editing" ng-model="module.title" placeholder="Title">
+                        <a ng-show="module.editing" class="btn btn-xs btn-success" ng-click="model.updateModule(course._id, module)"><span class="glyphicon glyphicon-ok"></span></a>
+                        <a ng-click="model.removeModule(course, module)" ng-show="module.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     </uib-accordion-heading>
                     <label>Visible</label>
                     <input type="checkbox" ng-model="module.visible"><br>

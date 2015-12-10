@@ -9,6 +9,7 @@ module.exports = function(app, model){
     app.post("/api/ds/ce/course/:id", addModule);
     app.get("/api/ds/ce/course/:id/module", getModulesByCourseId);
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId", removeModule);
+    app.put("/api/ds/ce/course/:courseId/module/:moduleId", updateModule);
 
     function getAllCourses(req, res){
 
@@ -79,4 +80,16 @@ module.exports = function(app, model){
             res.json(modules);
         });
     }
+
+    function updateModule(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var module = req.body;
+
+        model.updateModule(courseId, moduleId, module).then(function(module){
+            res.json(module);
+        });
+    }
+
+
 }

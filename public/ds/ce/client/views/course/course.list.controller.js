@@ -271,10 +271,19 @@
             var id = course._id;
 
             CourseService.updateCourse(id, course).then(function(modifiedCourse){
-                //model.courses = course;
+                //course = modifiedCourse;
                 course.editing = false;
             });
 
+        }
+
+        model.updateModule = function(courseId, module) {
+            var moduleId = module._id;
+
+            CourseService.updateModule(courseId, moduleId, module).then(function(modifiedModule){
+                //module = modifiedModule;
+                module.editing = false;
+            });
         }
 
         function showAddDialog(confirm, cancel){
