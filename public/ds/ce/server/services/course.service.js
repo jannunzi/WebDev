@@ -4,6 +4,11 @@ module.exports = function(app, model){
     app.put("/api/ds/ce/course", updateCourses);
     app.post("/api/ds/ce/course", addCourse);
     app.delete("/api/ds/ce/course/:id", removeCourse);
+    app.put("/api/ds/ce/course/:id", updateCourse);
+
+    app.post("/api/ds/ce/course/:id", addModule);
+    app.get("/api/ds/ce/course/:id/module", getModulesByCourseId);
+    app.delete("/api/ds/ce/course/:courseId/module/:moduleId", removeModule);
 
     function getAllCourses(req, res){
 
@@ -37,6 +42,41 @@ module.exports = function(app, model){
 
         model.removeCourse(id).then(function(response){
             res.json(response);
+        });
+    }
+
+    function updateCourse(req, res){
+        var id = req.params.id;
+        var course = req.body;
+
+        model.updateCourse(id, course).then(function(response){
+            res.json(response);
+        });
+    }
+
+    function addModule(req, res){
+        var courseId = req.params.id;
+        var module = req.body;
+
+        model.addModule(courseId, module).then(function(modules){
+            res.json(modules);
+        });
+    }
+
+    function getModulesByCourseId(req, res){
+        var courseId = req.params.id;
+
+        model.getModulesByCourseId(courseId).then(function(modules){
+            res.json(modules);
+        });
+    }
+
+    function removeModule(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+
+        model.removeModule(courseId, moduleId).then(function(modules){
+            res.json(modules);
         });
     }
 }

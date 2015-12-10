@@ -9,7 +9,12 @@
             getAll: getAll,
             updateCourses: updateCourses,
             addCourse: addCourse,
-            removeCourse: removeCourse
+            removeCourse: removeCourse,
+            updateCourse: updateCourse,
+
+            addModule: addModule,
+            getModulesByCourseId: getModulesByCourseId,
+            removeModule: removeModule
         }
 
         return service;
@@ -52,6 +57,46 @@
                         deferred.resolve(courses);
                     });
                 }
+            });
+            return deferred.promise;
+        }
+
+        function updateCourse(id, course) {
+            var deferred = $q.defer();
+
+            $http.put("/api/ds/ce/course/" + id, course).success(function(res){
+                deferred.resolve(res);
+            });
+            return deferred.promise;
+        }
+
+        function addModule(courseId, module) {
+            var deferred = $q.defer();
+
+            $http.post("/api/ds/ce/course/" + courseId, module).success(function(modules){
+
+                deferred.resolve(modules);
+            });
+            return deferred.promise;
+        }
+
+        function getModulesByCourseId(courseId){
+
+            var deferred = $q.defer();
+
+            $http.get("/api/ds/ce/course/" + courseId + "/module").success(function(modules){
+                deferred.resolve(modules);
+            });
+
+            return deferred.promise;
+        }
+
+        function removeModule(courseId, moduleId){
+
+            var deferred = $q.defer();
+
+            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId).success(function(modules){
+                deferred.resolve(modules);
             });
             return deferred.promise;
         }

@@ -13,12 +13,13 @@ module.exports = function(db, mongoose) {
         //updateCourse: updateCourse,
         addCourse: addCourse,
 
-        //updateCourse: updateCourse,
+        updateCourse: updateCourse,
         //getCourseById: getCourseById,
-        removeCourse: removeCourse
+        removeCourse: removeCourse,
         //
-        //getAllModules: getAllModules,
-        //addModule: addModule,
+        getModulesByCourseId: getModulesByCourseId,
+        addModule: addModule,
+        removeModule: removeModule
         //updateModule: updateModule,
         //getModuleById: getModuleById,
         //removeModule: removeModule
@@ -70,6 +71,16 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
+//    FormModel.find(
+//        { fields:
+//        $elemMatch: {
+//        someField: someValue,
+//            someOtherField: someOtherValue
+//    }
+//},
+//    function(err, fieldsThatMatch) {...}
+//    );
+
     function removeCourse(id){
         var deferred = q.defer();
 
@@ -77,6 +88,56 @@ module.exports = function(db, mongoose) {
             deferred.resolve(response);
         });
 
+        return deferred.promise;
+    }
+
+    function updateCourse(id, course){
+        var deferred = q.defer();
+
+        delete course._id;
+
+        CourseModel.update({_id: id}, course, function(err, response){
+            deferred.resolve(response);
+        });
+        return deferred.promise;
+    }
+
+    function addModule(courseId, module) {
+        var deferred = q.defer();
+
+        CourseModel.findById(courseId, function(err, course){
+            course.modules.push(module);
+            course.save(function(err, course){
+                getModulesByCourseId(course._id).then(function(modules){
+                    deferred.resolve(modules);
+                });
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function getModulesByCourseId(id){
+        var deferred = q.defer();
+
+        CourseModel.findById(id, function(err, course){
+            deferred.resolve(course.modules);
+        });
+        return deferred.promise;
+    }
+
+    function removeModule(courseId, moduleId){
+
+        var deferred = q.defer();
+
+        CourseModel.findById(courseId, function(err, course){
+            course.modules.id(moduleId).remove();
+            course.save(function(err, course){
+                getModulesByCourseId(course._id).then(function(modules){
+                    deferred.resolve(modules);
+                });
+            });
+        });
         return deferred.promise;
     }
 

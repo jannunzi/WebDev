@@ -65,8 +65,13 @@
 
                 };
 
-                course.modules.push(module);
-                module.open = true;
+                CourseService.addModule(course._id, module).then(function(modules){
+                    course.modules = modules;
+                    module.open = true;
+                });
+
+                //course.modules.push(module);
+
             });
 
         }
@@ -194,10 +199,15 @@
 
         }
 
-        model.removeModule = function(modules, index){
-            model.title = modules[index].title;
+        model.removeModule = function(course, module){
+            var courseId = course._id;
+            var moduleId = module._id;
+            model.title = module.title;
             showRemoveDialog(function(){
-                modules.splice(index, 1);
+                //modules.splice(index, 1);
+                CourseService.removeModule(courseId, moduleId).then(function(modules){
+                    course.modules = modules;
+                });
             });
         }
 

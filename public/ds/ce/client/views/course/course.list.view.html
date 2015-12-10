@@ -55,7 +55,7 @@
                             {{module.title}}
                         </div>
                         <input ng-show="model.editingModules" ng-model="module.title" placeholder="Title">
-                        <a ng-click="model.removeModule(course.modules, $index)" ng-show="model.editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a ng-click="model.removeModule(course, module)" ng-show="model.editingModules" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     </uib-accordion-heading>
                     <label>Visible</label>
                     <input type="checkbox" ng-model="module.visible"><br>

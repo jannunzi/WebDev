@@ -53,7 +53,7 @@ module.exports = function(mongoose) {
         ]
 
 
-    }, {collection: "ds.ce.course.module"});
+    });
 
     return moduleSchema;
 }
