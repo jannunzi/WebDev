@@ -73,6 +73,9 @@ module.exports = function(db, mongoose) {
     function removeCourse(id){
         var deferred = q.defer();
 
+        CourseModel.remove({_id: id}, function(err, response){
+            deferred.resolve(response);
+        });
 
         return deferred.promise;
     }

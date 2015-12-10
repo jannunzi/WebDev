@@ -8,7 +8,8 @@
         var service = {
             getAll: getAll,
             updateCourses: updateCourses,
-            addCourse: addCourse
+            addCourse: addCourse,
+            removeCourse: removeCourse
         }
 
         return service;
@@ -39,6 +40,19 @@
                 deferred.resolve(response);
             });
 
+            return deferred.promise;
+        }
+
+        function removeCourse(id){
+            var deferred = $q.defer();
+
+            $http.delete("/api/ds/ce/course/" + id).success(function(res){
+                if(res.ok==1){
+                    $http.get("/api/ds/ce/course").success(function(courses){
+                        deferred.resolve(courses);
+                    });
+                }
+            });
             return deferred.promise;
         }
 

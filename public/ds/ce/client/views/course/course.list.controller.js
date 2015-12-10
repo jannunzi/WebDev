@@ -181,9 +181,15 @@
         }
 
         model.removeCourse = function (courses, index){
-            model.title = courses[index].title;
+            var course = courses[index];
+            var id = course._id;
+            model.title = course.title;
             showRemoveDialog(function(){
-                courses.splice(index, 1);
+                //courses.splice(index, 1);
+                CourseService.removeCourse(id).then(function(response){
+                    model.courses = response;
+                });
+
             });
 
         }
