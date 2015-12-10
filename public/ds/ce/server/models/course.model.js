@@ -10,7 +10,7 @@ module.exports = function(db, mongoose) {
     var api = {
         getAllCourses: getAllCourses,
         updateCourses: updateCourses,
-        //updateCourse: updateCourse,
+        updateCourse: updateCourse,
         addCourse: addCourse,
 
         updateCourse: updateCourse,
@@ -97,7 +97,11 @@ module.exports = function(db, mongoose) {
         delete course._id;
 
         CourseModel.update({_id: id}, course, function(err, response){
-            deferred.resolve(response);
+
+            getAllCourses().then(function(courses){
+                deferred.resolve(courses);
+            });
+            //deferred.resolve(response);
         });
         return deferred.promise;
     }

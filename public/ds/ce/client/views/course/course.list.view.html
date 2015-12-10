@@ -13,8 +13,8 @@
 <div class="container">
     <h2>Courses
         <a ng-click="model.addCourse()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-        <a ng-hide="model.editingCourses || model.courses.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingCourses = true"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a ng-show="model.editingCourses && model.courses.length > 0" class="btn btn-xs btn-success" ng-click="model.editingCourses = false"><span class="glyphicon glyphicon-ok"></span></a>
+        <!--<a ng-hide="model.editingCourses || model.courses.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingCourses = true"><span class="glyphicon glyphicon-pencil"></span></a>-->
+        <!--<a ng-show="model.editingCourses && model.courses.length > 0" class="btn btn-xs btn-success" ng-click="model.editingCourses = false"><span class="glyphicon glyphicon-ok"></span></a>-->
     </h2>
     <uib-accordion>
         <uib-accordion-group ng-repeat="course in model.courses" is-disabled="true" is-open="course.open">
@@ -29,6 +29,8 @@
                 </div>
                 <input ng-show="model.editingCourses" ng-model="course.title" placeholder="Title">
                 <a ng-click="model.removeCourse(model.courses, $index)" ng-show="model.editingCourses" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                <a ng-hide="course.editing" class="btn btn-xs btn-warning" ng-click="course.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a ng-show="course.editing" class="btn btn-xs btn-success" ng-click="model.updateCourse(course)"><span class="glyphicon glyphicon-ok"></span></a>
 
             </uib-accordion-heading>
 

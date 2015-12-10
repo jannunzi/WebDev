@@ -267,6 +267,17 @@
             });
         }
 
+        model.updateCourse = function(course){
+            var id = course._id;
+
+            CourseService.updateCourse(id, course).then(function(courses){
+                model.courses = courses;
+                course.open = true;
+                course.editing = false;
+            });
+
+        }
+
         function showAddDialog(confirm, cancel){
 
             ngDialog.openConfirm({template: 'views/course/add.html',

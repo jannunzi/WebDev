@@ -64,8 +64,8 @@
         function updateCourse(id, course) {
             var deferred = $q.defer();
 
-            $http.put("/api/ds/ce/course/" + id, course).success(function(res){
-                deferred.resolve(res);
+            $http.put("/api/ds/ce/course/" + id, course).success(function(courses){
+                deferred.resolve(courses);
             });
             return deferred.promise;
         }
