@@ -31,6 +31,8 @@ module.exports = function(db, mongoose) {
         removeLecture: removeLecture,
         updateLecture: updateLecture,
 
+        addLearningElement: addLearningElement,
+
         addExample: addExample,
         getExamples: getExamples,
         removeExample: removeExample,
@@ -472,6 +474,29 @@ module.exports = function(db, mongoose) {
 
         });
 
+        return deferred.promise;
+    }
+
+    function getLearningElements(courseId, moduleId, lectureId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            deferred.resolve(course.modules.id(moduleId).lectures.id(lectureId).learningElements);
+        });
+        return deferred.promise;
+    }
+
+    function addLearningElement(courseId, moduleId, lectureId, le){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).lectures.id(lectureId).learningElements.push(le);
+            course.save(function(err){
+                getLearningElements(courseId, moduleId, lectureId).then(function(learningElements){
+                    deferred.resolve(learningElements);
+                });
+            });
+        });
         return deferred.promise;
     }
 

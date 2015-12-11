@@ -1,0 +1,18 @@
+<div class="ngdialog-message">
+    <h4>Choose a name for {{model.addingType}}:</h4>
+    <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="info.name" /><br>
+    <select class="form-control" ng-model="info.type">
+        <option value=''> Select Type</option>
+        <option value="PDF"> PDF Document</option>
+        <option value="VIDEO"> Video </option>
+        <option value="SLIDE"> Slides </option>
+        <option value="LINK"> Link </option>
+        <option value="HTML"> HTML </option>
+        <option value="IFRAME">iFrame </option>
+    </select>
+</div>
+<div class="ngdialog-buttons" style="padding-top:20px;">
+    <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+    <button ng-disabled="info.name==undefined || info.name.length==0 || info.type==undefined || info.type ==''" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(info)>Add</button>
+</div>
+

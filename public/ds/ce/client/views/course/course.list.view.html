@@ -99,6 +99,40 @@
 
                             <h4>Overview</h4>
                             <div ng-change="lecture.changed = true" text-angular ng-model="lecture.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
+                            <h4>Learning Elements
+                                <a ng-click="model.addLearningElement(course._id, module._id, lecture)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                            </h4>
+                            <uib-accordion>
+                                <uib-accordion-group ng-repeat="le in lecture.learningElements" is-disabled="true" is-open="le.open">
+                                    <uib-accordion-heading>
+                                        <div ng-hide="le.editing">
+                                            <a ng-click="le.open=!le.open">
+                                                <span ng-hide="le.open" class="glyphicon glyphicon-menu-down"></span>
+                                                <span ng-show="le.open" class="glyphicon glyphicon-menu-up"></span>
+                                            </a>
+                                            {{le.title}}   ({{le.type}})
+                                            <a ng-hide="le.editing" class="btn btn-xs btn-warning" ng-click="le.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <a ng-show="le.changed" ng-click = "model.updateLearningElement(course._id, module, lecture)" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon glyphicon-floppy-disk
+"></span></a>
+                                            <p ng-show="le.changed" style="color:red"> <strong>Changes have been made, please save.</strong></p>
+                                        </div>
+                                        <input ng-show="le.editing" ng-model="le.title" placeholder="Title">
+                                        <a ng-show="le.editing" class="btn btn-xs btn-success" ng-click="model.updateLecture(course._id, module, lecture)"><span class="glyphicon glyphicon-ok"></span></a>
+                                        <a ng-click="model.removeLearningElement(course._id, module, lecture)" ng-show="le.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </uib-accordion-heading>
+
+                                    <label ng-hide="le.type==='HTML'">Source</label>
+                                    <input ng-hide="le.type==='HTML'" ng-change="le.changed = true" class="form-control" ng-model="le.src"  placeholder="Source URL">
+
+                                    <label ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'">Height</label>
+                                    <input type="number" ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'" ng-change="le.changed = true" class="form-control" ng-model="le.height"  placeholder="Height">
+
+                                    <label ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'">Width</label>
+                                    <input type="number" ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'" ng-change="le.changed = true" class="form-control" ng-model="le.width"  placeholder="Width">
+
+                                    <div ng-show="le.type==='HTML'"ng-change="le.changed = true" text-angular ng-model="le.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
+                                </uib-accordion-group>
+                            </uib-accordion>
                         </uib-accordion-group>
                     </uib-accordion>
 

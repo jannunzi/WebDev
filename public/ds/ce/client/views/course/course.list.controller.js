@@ -390,6 +390,43 @@
             });
         }
 
+        model.addLearningElement = function (courseId, moduleId, lecture){
+
+            model.addingType = "learning element";
+
+            var lectureId = lecture._id;
+            showAddLearningElementDialog(function(info){
+                var learningElement = {
+                    title: info.name,
+                    type: info.type
+                }
+
+                if(info.type==="PDF" || info.type==="LINK"){
+                    learningElement.src = "";
+                }
+                else if(info.type==="VIDEO" || info.type==="SLIDE" || info.type==="IFRAME"){
+                    learningElement.src = "";
+                    learningElement.width = 50;
+                    learningElement.height = 50;
+                }
+                else if(info.type==="HTML"){
+                    learningElement.html = "";
+                }
+
+                CourseService.addLearningElement(courseId, moduleId, lectureId, learningElement).then(function(learningElements){
+                    lecture.learningElements = learningElements;
+                });
+            });
+
+        }
+
+        function showAddLearningElementDialog(confirm, cancel){
+            ngDialog.openConfirm({template: 'views/course/add.learningElement.html',
+                scope: $scope //Pass the scope object if you need to access in the template
+            }).then(confirm,
+                cancel);
+        }
+
         function showAddDialog(confirm, cancel){
 
             ngDialog.openConfirm({template: 'views/course/add.html',
