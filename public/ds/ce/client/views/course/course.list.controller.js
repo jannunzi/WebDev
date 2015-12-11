@@ -357,6 +357,16 @@
 
         }
 
+        model.updateDependency = function(courseId, moduleId, exampleId, demo, dependency){
+            var demoId = demo._id;
+            var dependencyId = dependency._id;
+
+            CourseService.updateDependency(courseId, moduleId, exampleId, demoId, dependencyId, dependency).then(function(dependencies){
+                dependency.editing = false;
+                dependency.changed = false;
+            });
+        }
+
         function showAddDialog(confirm, cancel){
 
             ngDialog.openConfirm({template: 'views/course/add.html',

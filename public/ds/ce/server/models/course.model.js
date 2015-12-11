@@ -37,7 +37,8 @@ module.exports = function(db, mongoose) {
         updateDemo: updateDemo,
 
         addDependency: addDependency,
-        removeDependency: removeDependency
+        removeDependency: removeDependency,
+        updateDependency: updateDependency
 
     }
 
@@ -392,6 +393,25 @@ module.exports = function(db, mongoose) {
 
         getCourseById(courseId).then(function(course){
             course.modules.id(moduleId).examples.id(exampleId).demos.id(demoId).dependencies.id(dependencyId).remove();
+            course.save(function(err){
+                getDependencies(courseId, moduleId, exampleId, demoId).then(function(dependencies){
+                    deferred.resolve(dependencies);
+                });
+            });
+        });
+        return deferred.promise;
+    }
+
+    function updateDependency(courseId, moduleId, exampleId, demoId, dependencyId, dependency){
+        var deferred = q.defer();
+
+
+        getCourseById(courseId).then(function(course){
+            var depend = course.modules.id(moduleId).examples.id(exampleId).demos.id(demoId).dependencies.id(dependencyId);
+
+            depend.title = dependency.title;
+            depend.src = dependency.src;
+
             course.save(function(err){
                 getDependencies(courseId, moduleId, exampleId, demoId).then(function(dependencies){
                     deferred.resolve(dependencies);

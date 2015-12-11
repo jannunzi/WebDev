@@ -25,6 +25,7 @@ module.exports = function(app, model){
 
     app.post("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency", addDependency);
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency/:dependencyId", removeDependency);
+    app.put("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency/:dependencyId", updateDependency);
 
 
     function getAllCourses(req, res){
@@ -226,6 +227,18 @@ module.exports = function(app, model){
         var dependencyId = req.params.dependencyId;
 
         model.removeDependency(courseId, moduleId, exampleId, demoId, dependencyId).then(function(dependencies){
+            res.json(dependencies);
+        });
+    }
+
+    function updateDependency(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var exampleId = req.params.exampleId;
+        var demoId = req.params.demoId;
+        var dependencyId = req.params.dependencyId;
+        var dependency = req.body;
+        model.updateDependency(courseId, moduleId, exampleId, demoId, dependencyId, dependency).then(function(dependencies){
             res.json(dependencies);
         });
     }
