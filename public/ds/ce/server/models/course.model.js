@@ -40,7 +40,8 @@ module.exports = function(db, mongoose) {
 
         addExample: addExample,
         getExamples: getExamples,
-        removeExample: removeExample
+        removeExample: removeExample,
+        updateExample: updateExample
 
     }
 
@@ -183,17 +184,6 @@ module.exports = function(db, mongoose) {
             });
         });
 
-        //CourseModel.findOne({'_id': courseId, 'modules._id': moduleId}).then(function(course){
-        //    console.log(course.modules);
-        //    course.modules[0] = module;
-        //
-        //    course.save(function(err){
-        //        getModulesByCourseId(courseId).then(function(modules){
-        //                        deferred.resolve(modules);
-        //        });
-        //    });
-        //});
-
         return deferred.promise;
     }
 
@@ -291,6 +281,23 @@ module.exports = function(db, mongoose) {
 
         getCourseById(courseId).then(function(course){
             course.modules.id(moduleId).examples.id(exampleId).remove();
+
+            course.save(function(err){
+                getExamples(courseId, moduleId).then(function(examples){
+                    deferred.resolve(examples);
+                });
+            });
+        });
+        return deferred.promise;
+    }
+
+    function updateExample(courseId, moduleId, exampleId, example){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            var ex = course.modules.id(moduleId).examples.id(exampleId);
+            ex.title = example.title;
+            ex.demos = example.demos;
 
             course.save(function(err){
                 getExamples(courseId, moduleId).then(function(examples){

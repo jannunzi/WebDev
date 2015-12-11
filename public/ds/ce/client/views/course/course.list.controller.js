@@ -318,6 +318,17 @@
 
         }
 
+        model.updateExample = function(courseId, module, example){
+            var moduleId = module._id;
+            var exampleId = example._id;
+
+            CourseService.updateExample(courseId, moduleId, exampleId, example).then(function(examples){
+                //module.examples = examples;
+                example.editing = false;
+                example.changed = false;
+            });
+        }
+
         function showAddDialog(confirm, cancel){
 
             ngDialog.openConfirm({template: 'views/course/add.html',

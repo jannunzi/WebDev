@@ -190,12 +190,12 @@
                                     </a>
                                     {{example.title}}
                                     <a ng-hide="example.editing " class="btn btn-xs btn-warning" ng-click="example.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a ng-show="example.changed" ng-click ="example.changed = false" class="btn btn-xs btn-primary" ng-click="example.changed = false"><span class="glyphicon glyphicon glyphicon-floppy-disk
+                                    <a ng-show="example.changed" ng-click ="model.updateExample(course._id, module, example)" class="btn btn-xs btn-primary" ng-click="example.changed = false"><span class="glyphicon glyphicon glyphicon-floppy-disk
 "></span></a>
                                     <p ng-show="example.changed" style="color:red"> <strong>Changes have been made, please save.</strong></p>
                                 </div>
                                 <input ng-show="example.editing" ng-model="example.title" placeholder="Title">
-                                <a ng-show="example.editing" class="btn btn-xs btn-success" ng-click="example.editing = false"><span class="glyphicon glyphicon-ok"></span></a>
+                                <a ng-show="example.editing" class="btn btn-xs btn-success" ng-click="model.updateExample(course._id, module, example)"><span class="glyphicon glyphicon-ok"></span></a>
                                 <a ng-click="model.removeExample(course._id, module, example)" ng-show="example.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             </uib-accordion-heading>
                             <h4>Demos
