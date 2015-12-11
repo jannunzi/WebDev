@@ -119,19 +119,23 @@
             });
         }
 
-        model.addExample = function(module){
+        model.addExample = function(courseId, module, example){
 
             model.addingType = "example";
 
             showAddDialog(function(title){
                 var example = {
                     "title": title,
-                    "demos": []
+                    "demos": [],
+                    "open": true
                 };
+                var moduleId = module._id;
 
-                module.examples.push(example);
+                CourseService.addExample(courseId, moduleId, example).then(function(updatedExamples){
+                    module.examples = updatedExamples;
+                });
 
-                example.open = true;
+                //module.examples.push(example);
 
             });
         }
@@ -301,8 +305,8 @@
             var assignmentId = assignment._id;
 
             CourseService.updateAssignment(courseId, moduleId, assignmentId, assignment).then(function(response){
-                console.log("I UPDATED");
-                assignment.editing = false
+                assignment.editing = false;
+                assignment.changed = false;
             });
 
         }

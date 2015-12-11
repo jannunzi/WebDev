@@ -3,7 +3,7 @@
     angular.module("CourseEditorApp")
         .factory("CourseService", CourseService);
 
-    function CourseService($http, $q){
+    function CourseService($http, $q) {
 
         var service = {
             getAll: getAll,
@@ -19,23 +19,25 @@
 
             addAssignment: addAssignment,
             removeAssignment: removeAssignment,
-            updateAssignment: updateAssignment
-        }
+            updateAssignment: updateAssignment,
+
+            addExample: addExample
+        };
 
         return service;
 
-        function updateCourses(courses){
+        function updateCourses(courses) {
             var deferred = $q.defer();
-            $http.put("/api/ds/ce/course", courses).success(function(response){
+            $http.put("/api/ds/ce/course", courses).success(function (response) {
                 deferred.resolve(response);
             });
             return deferred.promise;
 
         }
 
-        function getAll(){
+        function getAll() {
             var deferred = $q.defer();
-            $http.get("/api/ds/ce/course").success(function(response){
+            $http.get("/api/ds/ce/course").success(function (response) {
                 console.log("got courses");
                 deferred.resolve(response);
             });
@@ -43,22 +45,22 @@
             return deferred.promise;
         }
 
-        function addCourse(course){
+        function addCourse(course) {
             var deferred = $q.defer();
 
-            $http.post("/api/ds/ce/course", course).success(function(response){
+            $http.post("/api/ds/ce/course", course).success(function (response) {
                 deferred.resolve(response);
             });
 
             return deferred.promise;
         }
 
-        function removeCourse(id){
+        function removeCourse(id) {
             var deferred = $q.defer();
 
-            $http.delete("/api/ds/ce/course/" + id).success(function(res){
-                if(res.ok==1){
-                    $http.get("/api/ds/ce/course").success(function(courses){
+            $http.delete("/api/ds/ce/course/" + id).success(function (res) {
+                if (res.ok == 1) {
+                    $http.get("/api/ds/ce/course").success(function (courses) {
                         deferred.resolve(courses);
                     });
                 }
@@ -69,7 +71,7 @@
         function updateCourse(id, course) {
             var deferred = $q.defer();
 
-            $http.put("/api/ds/ce/course/" + id, course).success(function(course){
+            $http.put("/api/ds/ce/course/" + id, course).success(function (course) {
                 deferred.resolve(course);
             });
             return deferred.promise;
@@ -78,29 +80,29 @@
         function addModule(courseId, module) {
             var deferred = $q.defer();
 
-            $http.post("/api/ds/ce/course/" + courseId, module).success(function(modules){
+            $http.post("/api/ds/ce/course/" + courseId, module).success(function (modules) {
 
                 deferred.resolve(modules);
             });
             return deferred.promise;
         }
 
-        function getModulesByCourseId(courseId){
+        function getModulesByCourseId(courseId) {
 
             var deferred = $q.defer();
 
-            $http.get("/api/ds/ce/course/" + courseId + "/module").success(function(modules){
+            $http.get("/api/ds/ce/course/" + courseId + "/module").success(function (modules) {
                 deferred.resolve(modules);
             });
 
             return deferred.promise;
         }
 
-        function removeModule(courseId, moduleId){
+        function removeModule(courseId, moduleId) {
 
             var deferred = $q.defer();
 
-            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId).success(function(modules){
+            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId).success(function (modules) {
                 deferred.resolve(modules);
             });
             return deferred.promise;
@@ -108,41 +110,52 @@
 
         function updateModule(courseId, modules) {
             var deferred = $q.defer();
-            $http.put("/api/ds/ce/course/" + courseId + "/module", modules).success(function(saved){
+            $http.put("/api/ds/ce/course/" + courseId + "/module", modules).success(function (saved) {
                 deferred.resolve(saved);
             });
 
             return deferred.promise;
         }
 
-        function addAssignment(courseId, moduleId, assignment){
+        function addAssignment(courseId, moduleId, assignment) {
             var deferred = $q.defer();
 
-            $http.post("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/assignment", assignment).success(function(assignments){
+            $http.post("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/assignment", assignment).success(function (assignments) {
                 deferred.resolve(assignments);
             });
             return deferred.promise;
         }
 
-        function removeAssignment(courseId, moduleId, assignmentId){
+        function removeAssignment(courseId, moduleId, assignmentId) {
             var deferred = $q.defer();
 
-            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/assignment/" + assignmentId).success(function(assignments){
+            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/assignment/" + assignmentId).success(function (assignments) {
 
                 deferred.resolve(assignments);
             });
             return deferred.promise;
         }
 
-        function updateAssignment(courseId, moduleId, assignmentId, assignment){
+        function updateAssignment(courseId, moduleId, assignmentId, assignment) {
             var deferred = $q.defer();
 
-            $http.put("/api/ds/ce/course/" + courseId+"/module/"+ moduleId + "/assignment/"+assignmentId, assignment).success(function(course){
+            $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/assignment/" + assignmentId, assignment).success(function (course) {
                 deferred.resolve(course);
             });
 
             return deferred.promise;
         }
 
+        function addExample(courseId, moduleId, example) {
+            var deferred = $q.defer();
+
+            $http.post("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/example", example).success(function (examples) {
+                deferred.resolve(examples);
+            });
+            return deferred.promise;
+        }
+
     }
+
+
 })();

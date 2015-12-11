@@ -36,7 +36,10 @@ module.exports = function(db, mongoose) {
         addAssignment: addAssignment,
         getAssignemnts: getAssignments,
         removeAssignment: removeAssignment,
-        updateAssignment: updateAssignment
+        updateAssignment: updateAssignment,
+
+        addExample: addExample,
+        getExamples: getExamples
 
     }
 
@@ -242,7 +245,10 @@ module.exports = function(db, mongoose) {
         delete assignment.open;
 
         getCourseById(courseId).then(function(course){
-            course.modules.id(moduleId).assignments.id(assignmentId).title = assignment.title;
+
+            var assig = course.modules.id(moduleId).assignments.id(assignmentId);
+            assig.title = assignment.title;
+            assig.src = assignment.src;
 
             course.save(function(err, saved){
                 getAssignments(courseId, moduleId).then(function(assignments){
@@ -250,6 +256,32 @@ module.exports = function(db, mongoose) {
                 });
             });
         });
+        return deferred.promise;
+    }
+
+    function getExamples(courseId, moduleId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            deferred.resolve(course.modules.id(moduleId).examples);
+        });
+
+        return deferred.promise;
+    }
+
+    function addExample(courseId, moduleId, example){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).examples.push(example);
+
+            course.save(function(err, saved){
+                getExamples(courseId, moduleId).then(function(examples){
+                    deferred.resolve(examples);
+                });
+            });
+        });
+
         return deferred.promise;
     }
 
