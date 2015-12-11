@@ -39,7 +39,8 @@ module.exports = function(db, mongoose) {
         updateAssignment: updateAssignment,
 
         addExample: addExample,
-        getExamples: getExamples
+        getExamples: getExamples,
+        removeExample: removeExample
 
     }
 
@@ -282,6 +283,21 @@ module.exports = function(db, mongoose) {
             });
         });
 
+        return deferred.promise;
+    }
+
+    function removeExample(courseId, moduleId, exampleId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).examples.id(exampleId).remove();
+
+            course.save(function(err){
+                getExamples(courseId, moduleId).then(function(examples){
+                    deferred.resolve(examples);
+                });
+            });
+        });
         return deferred.promise;
     }
 
