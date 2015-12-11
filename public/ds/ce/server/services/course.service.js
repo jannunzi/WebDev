@@ -144,7 +144,6 @@ module.exports = function(app, model){
         var moduleId = req.params.moduleId;
         var exampleId = req.params.exampleId;
 
-        console.log("I CAM HERE BITCHES");
 
         model.removeExample(courseId, moduleId, exampleId).then(function(examples){
             res.json(examples);
