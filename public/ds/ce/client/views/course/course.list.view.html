@@ -91,7 +91,7 @@
                                     {{lecture.title}}
                                 </div>
                                 <input ng-show="model.editingLectures" ng-model="lecture.title" placeholder="Title">
-                                <a ng-click="model.removeLecture(module.lectures, $index)" ng-show="model.editingLectures" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a ng-click="model.removeLecture(course._id, module, lecture)" ng-show="model.editingLectures" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             </uib-accordion-heading>
 
                             <h4>Overview</h4>

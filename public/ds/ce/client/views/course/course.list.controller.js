@@ -231,10 +231,18 @@
             });
         }
 
-        model.removeLecture = function(lectures, index){
-            model.title = lectures[index].title;
+        model.removeLecture = function(courseId, module, lecture){
+            model.title = lecture.title;
+
+            var moduleId = module._id;
+            var lectureId = lecture._id;
             showRemoveDialog(function(){
-                lectures.splice(index, 1);
+                //lectures.splice(index, 1);
+
+                CourseService.removeLecture(courseId, moduleId, lectureId).then(function(lectures){
+                    module.lectures = lectures;
+                });
+
             });
         }
 

@@ -28,6 +28,7 @@ module.exports = function(db, mongoose) {
         updateAssignment: updateAssignment,
 
         addLecture: addLecture,
+        removeLecture: removeLecture,
 
         addExample: addExample,
         getExamples: getExamples,
@@ -81,16 +82,6 @@ module.exports = function(db, mongoose) {
 
         return deferred.promise;
     }
-
-//    FormModel.find(
-//        { fields:
-//        $elemMatch: {
-//        someField: someValue,
-//            someOtherField: someOtherValue
-//    }
-//},
-//    function(err, fieldsThatMatch) {...}
-//    );
 
     function removeCourse(id){
         var deferred = q.defer();
@@ -447,5 +438,19 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
+    function removeLecture(courseId, moduleId, lectureId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).lectures.id(lectureId).remove();
+
+            course.save(function(err){
+                getLectures(courseId, moduleId).then(function(lectures){
+                    deferred.resolve(lectures);
+                });
+            });
+        });
+        return deferred.promise;
+    }
 
 }
