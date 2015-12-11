@@ -140,9 +140,10 @@
             });
         }
 
-        model.addDemo = function(example){
+        model.addDemo = function(courseId, moduleId, example){
 
             model.addingType = "demo";
+            var exampleId = example._id;
 
             showAddDialog(function(title){
                 var demo = {
@@ -152,9 +153,12 @@
                     "dependencies": []
                 };
 
-                example.demos.push(demo);
+                CourseService.addDemo(courseId, moduleId, exampleId, demo).then(function(demos){
+                    example.demos = demos;
+                })
+                //example.demos.push(demo);
 
-                demo.open = true;
+                //demo.open = true;
             });
         }
 

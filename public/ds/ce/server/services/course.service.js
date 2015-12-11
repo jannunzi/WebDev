@@ -19,6 +19,8 @@ module.exports = function(app, model){
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId", removeExample);
     app.put("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId", updateExample);
 
+    app.post("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo", addDemo);
+
 
     function getAllCourses(req, res){
 
@@ -161,6 +163,18 @@ module.exports = function(app, model){
             res.json(examples);
         });
 
+    }
+
+    function addDemo(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var exampleId = req.params.exampleId;
+        var demo = req.body;
+        console.log("COMING IN HERE");
+        model.addDemo(courseId, moduleId, exampleId, demo).then(function(demos){
+
+           res.json(demos);
+        });
     }
 
 

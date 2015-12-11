@@ -199,7 +199,7 @@
                                 <a ng-click="model.removeExample(course._id, module, example)" ng-show="example.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             </uib-accordion-heading>
                             <h4>Demos
-                                <a ng-click="model.addDemo(example)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                                <a ng-click="model.addDemo(course._id, module._id, example)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
                                 <a ng-hide="model.editingDemos || example.demos.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingDemos = true"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a ng-show="model.editingDemos && example.demos.length > 0" class="btn btn-xs btn-success" ng-click="model.editingDemos = false"><span class="glyphicon glyphicon-ok"></span></a>
                             </h4>

@@ -23,7 +23,9 @@
 
             addExample: addExample,
             removeExample: removeExample,
-            updateExample: updateExample
+            updateExample: updateExample,
+
+            addDemo: addDemo
         };
 
         return service;
@@ -171,6 +173,15 @@
 
             $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/example/" + exampleId, example).success(function(examples){
                 deferred.resolve(examples);
+            });
+            return deferred.promise;
+        }
+
+        function addDemo(courseId, moduleId, exampleId, demo){
+            var deferred = $q.defer();
+
+            $http.post("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/example/" + exampleId + "/demo", demo).success(function(demos){
+                deferred.resolve(demos);
             });
             return deferred.promise;
         }

@@ -16,22 +16,11 @@ module.exports = function(db, mongoose) {
         updateCourse: updateCourse,
         getCourseById: getCourseById,
         removeCourse: removeCourse,
-        //
+
         getModulesByCourseId: getModulesByCourseId,
         addModule: addModule,
         updateModule: updateModule,
         removeModule: removeModule,
-        //updateModule: updateModule,
-        //getModuleById: getModuleById,
-        //removeModule: removeModule
-
-        //getAllLearningElements: getAllLearningElements,
-        //addLearningElement: addLearningElement,
-        //updateLearningElement: updateLearningElement,
-        //getLearningElementById: getLearningElementById,
-        //
-        //getAllVideos: getAllVideos,
-        //getAllSlides: getAllSlides,
 
         addAssignment: addAssignment,
         getAssignemnts: getAssignments,
@@ -41,7 +30,9 @@ module.exports = function(db, mongoose) {
         addExample: addExample,
         getExamples: getExamples,
         removeExample: removeExample,
-        updateExample: updateExample
+        updateExample: updateExample,
+
+        addDemo: addDemo
 
     }
 
@@ -302,6 +293,30 @@ module.exports = function(db, mongoose) {
             course.save(function(err){
                 getExamples(courseId, moduleId).then(function(examples){
                     deferred.resolve(examples);
+                });
+            });
+        });
+        return deferred.promise;
+    }
+
+    function getDemos(courseId, moduleId, exampleId){
+        var deferred = q.defer();
+        getCourseById(courseId).then(function(course){
+            deferred.resolve(course.modules.id(moduleId).examples.id(exampleId).demos);
+        });
+
+        return deferred.promise;
+    }
+
+    function addDemo(courseId, moduleId, exampleId, demo){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).examples.id(exampleId).demos.push(demo);
+
+            course.save(function(err){
+                getDemos(courseId, moduleId, exampleId).then(function(demos){
+                    deferred.resolve(demos);
                 });
             });
         });
