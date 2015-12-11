@@ -29,6 +29,7 @@ module.exports = function(db, mongoose) {
 
         addLecture: addLecture,
         removeLecture: removeLecture,
+        updateLecture: updateLecture,
 
         addExample: addExample,
         getExamples: getExamples,
@@ -450,6 +451,27 @@ module.exports = function(db, mongoose) {
                 });
             });
         });
+        return deferred.promise;
+    }
+
+    function updateLecture(courseId, moduleId, lectureId, lecture){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            var lect = course.modules.id(moduleId).lectures.id(lectureId);
+
+            lect.title = lecture.title;
+            lect.overview = lecture.overview;
+            lect.learningElements = lecture.learningElements;
+
+            course.save(function(err){
+                getLectures(courseId, moduleId).then(function(lectures){
+                    deferred.resolve(lectures);
+                });
+            });
+
+        });
+
         return deferred.promise;
     }
 

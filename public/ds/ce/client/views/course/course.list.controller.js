@@ -380,6 +380,16 @@
             });
         }
 
+        model.updateLecture = function(courseId, module, lecture){
+            var moduleId = module._id;
+            var lectureId = lecture._id;
+
+            CourseService.updateLecture(courseId, moduleId, lectureId, lecture).then(function(lectures){
+                lecture.editing = false;
+                lecture.changed = false;
+            });
+        }
+
         function showAddDialog(confirm, cancel){
 
             ngDialog.openConfirm({template: 'views/course/add.html',

@@ -23,6 +23,7 @@
 
             addLecture: addLecture,
             removeLecture: removeLecture,
+            updateLecture: updateLecture,
 
             addExample: addExample,
             removeExample: removeExample,
@@ -253,6 +254,15 @@
             var deferred = $q.defer();
 
             $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/lecture/" + lectureId).success(function(lectures){
+                deferred.resolve(lectures);
+            });
+            return deferred.promise;
+        }
+
+        function updateLecture(courseId, moduleId, lectureId, lecture){
+            var deferred = $q.defer();
+
+            $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/lecture/" + lectureId, lecture).success(function(lectures){
                 deferred.resolve(lectures);
             });
             return deferred.promise;
