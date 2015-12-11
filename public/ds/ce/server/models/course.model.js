@@ -33,6 +33,7 @@ module.exports = function(db, mongoose) {
 
         addLearningElement: addLearningElement,
         removeLearningElement: removeLearningElement,
+        updateLearningElement: updateLearningElement,
 
         addExample: addExample,
         getExamples: getExamples,
@@ -515,5 +516,34 @@ module.exports = function(db, mongoose) {
         });
         return deferred.promise;
     }
+
+    function updateLearningElement(courseId, moduleId, lectureId, leId, le){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            var learning = course.modules.id(moduleId).lectures.id(lectureId).learningElements.id(leId);
+
+            learning.title = le.title;
+            if(learning.type==="PDF" || learning.type==="LINK"){
+                learning.src = le.src;
+            }
+            else if(learning.type==="VIDEO" || learning.type==="SLIDE" || learning.type==="IFRAME"){
+                learning.src = le.src;
+                learning.width = le.width;
+                learning.height = le.height;
+            }
+            else if(learning.type==="HTML"){
+                learning.html = le.html;
+            }
+            course.save(function(err){
+                getLearningElements(courseId, moduleId, lectureId).then(function(learningElements){
+                    deferred.resolve(learningElements);
+                });
+            });
+
+        });
+        return deferred.promise;
+    }
+
 
 }

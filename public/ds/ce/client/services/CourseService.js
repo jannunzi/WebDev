@@ -27,6 +27,7 @@
 
             addLearningElement: addLearningElement,
             removeLearningElement: removeLearningElement,
+            updateLearningElement: updateLearningElement,
 
             addExample: addExample,
             removeExample: removeExample,
@@ -284,6 +285,16 @@
             var deferred = $q.defer();
 
             $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/lecture/" + lectureId + "/le/" + leId).success(function(learningElements){
+                deferred.resolve(learningElements);
+            });
+
+            return deferred.promise;
+        }
+
+        function updateLearningElement(courseId, moduleId, lectureId, leId, le){
+            var deferred = $q.defer();
+
+            $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/lecture/" + lectureId + "/le/" + leId, le).success(function(learningElements){
                 deferred.resolve(learningElements);
             });
 

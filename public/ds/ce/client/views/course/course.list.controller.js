@@ -434,6 +434,16 @@
             });
         }
 
+        model.updateLearningElement = function(courseId, moduleId, lecture, le){
+            var lectureId = lecture._id;
+            var leId = le._id;
+
+            CourseService.updateLearningElement(courseId, moduleId, lectureId, leId, le).then(function(learningElements){
+                le.changed = false;
+                le.editing = false;
+            });
+        }
+
         function showAddLearningElementDialog(confirm, cancel){
             ngDialog.openConfirm({template: 'views/course/add.learningElement.html',
                 scope: $scope //Pass the scope object if you need to access in the template

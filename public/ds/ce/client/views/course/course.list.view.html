@@ -112,12 +112,12 @@
                                             </a>
                                             {{le.title}}   ({{le.type}})
                                             <a ng-hide="le.editing" class="btn btn-xs btn-warning" ng-click="le.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                                            <a ng-show="le.changed" ng-click = "model.updateLearningElement(course._id, module, lecture)" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon glyphicon-floppy-disk
+                                            <a ng-show="le.changed" ng-click = "model.updateLearningElement(course._id, module._id, lecture, le)" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon glyphicon-floppy-disk
 "></span></a>
                                             <p ng-show="le.changed" style="color:red"> <strong>Changes have been made, please save.</strong></p>
                                         </div>
                                         <input ng-show="le.editing" ng-model="le.title" placeholder="Title">
-                                        <a ng-show="le.editing" class="btn btn-xs btn-success" ng-click="model.updateLecture(course._id, module, lecture)"><span class="glyphicon glyphicon-ok"></span></a>
+                                        <a ng-show="le.editing" class="btn btn-xs btn-success" ng-click="model.updateLearningElement(course._id, module._id, lecture, le)"><span class="glyphicon glyphicon-ok"></span></a>
                                         <a ng-click="model.removeLearningElement(course._id, module._id, lecture, le)" ng-show="le.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                     </uib-accordion-heading>
 
