@@ -27,6 +27,8 @@ module.exports = function(db, mongoose) {
         removeAssignment: removeAssignment,
         updateAssignment: updateAssignment,
 
+        addLecture: addLecture,
+
         addExample: addExample,
         getExamples: getExamples,
         removeExample: removeExample,
@@ -415,6 +417,30 @@ module.exports = function(db, mongoose) {
             course.save(function(err){
                 getDependencies(courseId, moduleId, exampleId, demoId).then(function(dependencies){
                     deferred.resolve(dependencies);
+                });
+            });
+        });
+        return deferred.promise;
+    }
+
+    function getLectures(courseId, moduleId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            deferred.resolve(course.modules.id(moduleId).lectures);
+        });
+        return deferred.promise;
+    }
+
+    function addLecture(courseId, moduleId, lecture){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).lectures.push(lecture);
+
+            course.save(function(err){
+                getLectures(courseId, moduleId).then(function(lectures){
+                    deferred.resolve(lectures);
                 });
             });
         });

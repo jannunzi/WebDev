@@ -76,7 +76,7 @@
                     <input ng-change = "module.changed = true" type="checkbox" ng-model="module.available"><br>
 
                     <h4>Lectures
-                        <a ng-click="model.addLecture(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a ng-click="model.addLecture(course._id, module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
                         <a ng-hide="model.editingLectures || module.lectures.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingLectures = true"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a ng-show="model.editingLectures && module.lectures.length > 0" class="btn btn-xs btn-success" ng-click="model.editingLectures = false"><span class="glyphicon glyphicon-ok"></span></a>
                     </h4>
@@ -293,10 +293,6 @@
         </uib-accordion-group>
 
     </uib-accordion>
-    <a ng-click="model.update()" class="btn btn-warning">
-        <span class="glyphicon glyphicon-pencil"></span>
-        Update
-    </a>
 </div>
 
 <!--</body>-->

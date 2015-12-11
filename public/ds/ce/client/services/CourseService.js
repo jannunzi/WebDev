@@ -21,6 +21,8 @@
             removeAssignment: removeAssignment,
             updateAssignment: updateAssignment,
 
+            addLecture: addLecture,
+
             addExample: addExample,
             removeExample: removeExample,
             updateExample: updateExample,
@@ -233,6 +235,15 @@
 
             $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/example/" + exampleId + "/demo/" + demoId + "/dependency/" + dependencyId, dependency).success(function(dependencies){
                 deferred.resolve(dependencies);
+            });
+            return deferred.promise;
+        }
+
+        function addLecture(courseId, moduleId, lecture){
+            var deferred = $q.defer();
+
+            $http.post("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/lecture", lecture).success(function(lectures){
+                deferred.resolve(lectures);
             });
             return deferred.promise;
         }

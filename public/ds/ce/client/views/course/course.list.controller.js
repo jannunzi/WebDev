@@ -76,16 +76,21 @@
 
         }
 
-        model.addLecture = function(module){
+        model.addLecture = function(courseId, module){
             model.addingType = "lecture";
+
+            var moduleId = module._id;
 
             showAddDialog(function(title){
                 var lecture = {
-                    "title": title
+                    "title": title,
+                    learningElements: []
                 };
-                module.lectures.push(lecture);
+                //module.lectures.push(lecture);
 
-                lecture = true;
+                CourseService.addLecture(courseId, moduleId, lecture).then(function(lectures){
+                    module.lectures = lectures;
+                });
             });
         }
 

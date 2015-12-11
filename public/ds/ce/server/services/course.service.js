@@ -15,6 +15,8 @@ module.exports = function(app, model){
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/assignment/:assignmentId", removeAssignment);
     app.put("/api/ds/ce/course/:courseId/module/:moduleId/assignment/:assignmentId", updateAssignment);
 
+    app.post("/api/ds/ce/course/:courseId/module/:moduleId/lecture", addLecture);
+
     app.post("/api/ds/ce/course/:courseId/module/:moduleId/example", addExample);
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId", removeExample);
     app.put("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId", updateExample);
@@ -240,6 +242,16 @@ module.exports = function(app, model){
         var dependency = req.body;
         model.updateDependency(courseId, moduleId, exampleId, demoId, dependencyId, dependency).then(function(dependencies){
             res.json(dependencies);
+        });
+    }
+
+    function addLecture(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var lecture = req.body;
+
+        model.addLecture(courseId, moduleId, lecture).then(function(lectures){
+            res.json(lectures);
         });
     }
 
