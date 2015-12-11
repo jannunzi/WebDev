@@ -33,7 +33,8 @@ module.exports = function(db, mongoose) {
         updateExample: updateExample,
 
         addDemo: addDemo,
-        removeDemo: removeDemo
+        removeDemo: removeDemo,
+        updateDemo: updateDemo
 
     }
 
@@ -329,13 +330,34 @@ module.exports = function(db, mongoose) {
 
         getCourseById(courseId).then(function(course){
             course.modules.id(moduleId).examples.id(exampleId).demos.id(demoId).remove();
-            
+
             course.save(function(err){
                 getDemos(courseId, moduleId, exampleId).then(function(demos){
                     deferred.resolve(demos);
                 });
             });
         });
+        return deferred.promise;
+    }
+
+    function updateDemo(courseId, moduleId, exampleId, demoId, demo){
+        var deferred = q.defer();
+        getCourseById(courseId).then(function(course){
+            var d = course.modules.id(moduleId).examples.id(exampleId).demos.id(demoId);
+
+            d.title = demo.title;
+            d.base = demo.base;
+            d.src = demo.src;
+            d.dependencies = demo.dependencies;
+
+            course.save(function(err){
+                getDemos(courseId, moduleId, exampleId).then(function(demos){
+                    deferred.resolve(demos);
+                });
+            });
+
+        });
+
         return deferred.promise;
     }
 

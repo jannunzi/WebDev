@@ -339,6 +339,17 @@
             });
         }
 
+        model.updateDemo = function(courseId, moduleId, example, demo){
+            var exampleId = example._id;
+            var demoId = demo._id;
+
+            CourseService.updateDemo(courseId, moduleId, exampleId, demoId, demo).then(function(demoms){
+                demo.editing = false;
+                demo.changed = false;
+            });
+
+        }
+
         function showAddDialog(confirm, cancel){
 
             ngDialog.openConfirm({template: 'views/course/add.html',

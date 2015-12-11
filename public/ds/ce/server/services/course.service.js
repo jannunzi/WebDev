@@ -21,6 +21,7 @@ module.exports = function(app, model){
 
     app.post("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo", addDemo);
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId", removeDemo);
+    app.put("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId", updateDemo);
 
 
     function getAllCourses(req, res){
@@ -189,6 +190,19 @@ module.exports = function(app, model){
         });
 
     }
+
+    function updateDemo(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var exampleId = req.params.exampleId;
+        var demoId = req.params.demoId;
+        var demo = req.body;
+
+        model.updateDemo(courseId, moduleId, exampleId, demoId, demo).then(function(demos){
+            res.json(demos);
+        });
+    }
+
 
 
 }
