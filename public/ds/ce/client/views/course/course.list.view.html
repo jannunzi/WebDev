@@ -247,22 +247,26 @@
 
                     <h4>Assignments
                         <a ng-click="model.addAssignment(course._id, module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                        <a ng-hide="model.editingAssignments || module.assignments.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingAssignments = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a ng-show="model.editingAssignments && module.assignments.length > 0" class="btn btn-xs btn-success" ng-click="model.editingAssignments = false"><span class="glyphicon glyphicon-ok"></span></a>
+                        <!--<a ng-hide="model.editingAssignments || module.assignments.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingAssignments = true"><span class="glyphicon glyphicon-pencil"></span></a>-->
+                        <!--<a ng-show="model.editingAssignments && module.assignments.length > 0" class="btn btn-xs btn-success" ng-click="model.editingAssignments = false"><span class="glyphicon glyphicon-ok"></span></a>-->
                     </h4>
 
                     <uib-accordion>
                         <uib-accordion-group ng-repeat="assignment in module.assignments" is-disabled="true" is-open="assignment.open">
                             <uib-accordion-heading>
-                                <div ng-hide="model.editingAssignments">
+                                <div ng-hide="assignment.editing">
                                     <a ng-click="assignment.open=!assignment.open">
                                         <span ng-hide="assignment.open" class="glyphicon glyphicon-menu-down"></span>
                                         <span ng-show="assignment.open" class="glyphicon glyphicon-menu-up"></span>
                                     </a>
                                     {{assignment.title}}
+                                    <a ng-hide="assignment.editing" class="btn btn-xs btn-warning" ng-click="assignment.editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a ng-show="assignment.changed && !assignment.editing" ng-click = "assignment.changed = false" class="btn btn-xs btn-primary" ng-click="assignment.editing = true"><span class="glyphicon glyphicon glyphicon-floppy-disk
+"></span></a>
                                 </div>
-                                <input ng-show="model.editingAssignments" ng-model="assignment.title" placeholder="Title">
-                                <a ng-click="model.removeAssignment(course._id, module, assignment)" ng-show="model.editingAssignments" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                <input ng-show="assignment.editing" ng-model="assignment.title" placeholder="Title">
+                                <a ng-show="assignment.editing" class="btn btn-xs btn-success" ng-click="model.updateAssignment(course._id, module._id, assignment)"><span class="glyphicon glyphicon-ok"></span></a>
+                                <a ng-click="model.removeAssignment(course._id, module, assignment)" ng-show="assignment.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             </uib-accordion-heading>
                             <label>Source</label>
                             <input class="form-control" ng-model="assignment.src" placeholder="URL (Eg. Google Docs, Dropbox, etc.)">

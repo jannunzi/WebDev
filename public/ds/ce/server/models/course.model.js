@@ -35,7 +35,8 @@ module.exports = function(db, mongoose) {
 
         addAssignment: addAssignment,
         getAssignemnts: getAssignments,
-        removeAssignment: removeAssignment
+        removeAssignment: removeAssignment,
+        updateAssignment: updateAssignment
 
     }
 
@@ -224,9 +225,28 @@ module.exports = function(db, mongoose) {
             course.modules.id(moduleId).assignments.id(assignmentId).remove();
 
             course.save(function(err){
-                console.log(err);
+                //console.log(err);
                 getAssignments(courseId, moduleId).then(function(found){
                     deferred.resolve(found);
+                });
+            });
+        });
+        return deferred.promise;
+    }
+
+    function updateAssignment(courseId, moduleId, assignmentId, assignment){
+        var deferred = q.defer();
+
+        delete assignment._id;
+        delete assignment.editing;
+        delete assignment.open;
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).assignments.id(assignmentId).title = assignment.title;
+
+            course.save(function(err, saved){
+                getAssignments(courseId, moduleId).then(function(assignments){
+                    deferred.resolve(assignments);
                 });
             });
         });

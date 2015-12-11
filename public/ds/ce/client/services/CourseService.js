@@ -18,7 +18,8 @@
             updateModule: updateModule,
 
             addAssignment: addAssignment,
-            removeAssignment: removeAssignment
+            removeAssignment: removeAssignment,
+            updateAssignment: updateAssignment
         }
 
         return service;
@@ -130,6 +131,16 @@
 
                 deferred.resolve(assignments);
             });
+            return deferred.promise;
+        }
+
+        function updateAssignment(courseId, moduleId, assignmentId, assignment){
+            var deferred = $q.defer();
+
+            $http.put("/api/ds/ce/course/" + courseId+"/module/"+ moduleId + "/assignment/"+assignmentId, assignment).success(function(course){
+                deferred.resolve(course);
+            });
+
             return deferred.promise;
         }
 

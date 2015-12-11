@@ -176,7 +176,8 @@
 
             showAddDialog(function(title){
                 var assignment = {
-                    "title": title
+                    "title": title,
+                    "src":''
                 };
 
                 CourseService.addAssignment(courseId, module._id, assignment).then(function(assignments){
@@ -294,6 +295,16 @@
                 //module = modifiedModule;
                 module.editing = false;
             });
+        }
+
+        model.updateAssignment = function(courseId, moduleId, assignment){
+            var assignmentId = assignment._id;
+
+            CourseService.updateAssignment(courseId, moduleId, assignmentId, assignment).then(function(response){
+                console.log("I UPDATED");
+                assignment.editing = false
+            });
+
         }
 
         function showAddDialog(confirm, cancel){
