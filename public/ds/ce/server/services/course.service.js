@@ -20,6 +20,7 @@ module.exports = function(app, model){
     app.put("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId", updateExample);
 
     app.post("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo", addDemo);
+    app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId", removeDemo);
 
 
     function getAllCourses(req, res){
@@ -170,11 +171,23 @@ module.exports = function(app, model){
         var moduleId = req.params.moduleId;
         var exampleId = req.params.exampleId;
         var demo = req.body;
-        console.log("COMING IN HERE");
+
         model.addDemo(courseId, moduleId, exampleId, demo).then(function(demos){
 
            res.json(demos);
         });
+    }
+
+    function removeDemo(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var exampleId = req.params.exampleId;
+        var demoId = req.params.demoId;
+
+        model.removeDemo(courseId, moduleId, exampleId, demoId).then(function(demos){
+            res.json(demos);
+        });
+
     }
 
 

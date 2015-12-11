@@ -262,11 +262,17 @@
             });
         }
 
-        model.removeDemo = function(demos, index){
-            model.title = demos[index].title;
+        model.removeDemo = function(courseId, moduleId, example, demo){
+            model.title = demo.title;
+            var exampleId = example._id;
+            var demoId = demo._id;
 
             showRemoveDialog(function(){
-               demos.splice(index, 1);
+               //demos.splice(index, 1);
+
+                CourseService.removeDemo(courseId, moduleId, exampleId, demoId).then(function(demos){
+                    example.demos = demos;
+                });
             });
         }
 

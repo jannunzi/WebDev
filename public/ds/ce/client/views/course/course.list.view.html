@@ -214,7 +214,7 @@
                                             {{demo.title}}
                                         </div>
                                         <input ng-show="model.editingDemos" ng-model="demo.title" placeholder="Title">
-                                        <a ng-click="model.removeDemo(example.demos, $index)" ng-show="model.editingDemos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                        <a ng-click="model.removeDemo(course._id, module._id, example, demo)" ng-show="model.editingDemos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                     </uib-accordion-heading>
                                     <label>Base</label>
                                     <input class="form-control" ng-model="demo.base" placeholder="Base URL"><br>
