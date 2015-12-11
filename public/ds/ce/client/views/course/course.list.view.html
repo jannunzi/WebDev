@@ -118,7 +118,7 @@
                                         </div>
                                         <input ng-show="le.editing" ng-model="le.title" placeholder="Title">
                                         <a ng-show="le.editing" class="btn btn-xs btn-success" ng-click="model.updateLecture(course._id, module, lecture)"><span class="glyphicon glyphicon-ok"></span></a>
-                                        <a ng-click="model.removeLearningElement(course._id, module, lecture)" ng-show="le.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                        <a ng-click="model.removeLearningElement(course._id, module._id, lecture, le)" ng-show="le.editing" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                     </uib-accordion-heading>
 
                                     <label ng-hide="le.type==='HTML'">Source</label>

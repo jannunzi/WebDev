@@ -420,6 +420,20 @@
 
         }
 
+        model.removeLearningElement = function(courseId, moduleId, lecture, le){
+
+            model.title = le.title;
+
+            var lectureId = lecture._id;
+            var leId = le._id;
+            showRemoveDialog(function(){
+                //assignments.splice(index, 1);
+                CourseService.removeLearningElement(courseId, moduleId, lectureId, leId).then(function(learningElements){
+                    lecture.learningElements = learningElements;
+                });
+            });
+        }
+
         function showAddLearningElementDialog(confirm, cancel){
             ngDialog.openConfirm({template: 'views/course/add.learningElement.html',
                 scope: $scope //Pass the scope object if you need to access in the template

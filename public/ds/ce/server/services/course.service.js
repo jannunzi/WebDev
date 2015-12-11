@@ -20,6 +20,7 @@ module.exports = function(app, model){
     app.put("/api/ds/ce/course/:courseId/module/:moduleId/lecture/:lectureId", updateLecture);
 
     app.post("/api/ds/ce/course/:courseId/module/:moduleId/lecture/:lectureId/le", addLearningElement);
+    app.delete("/api/ds/ce/course/:courseId/module/:moduleId/lecture/:lectureId/le/:leId", removeLearningElement);
 
     app.post("/api/ds/ce/course/:courseId/module/:moduleId/example", addExample);
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId", removeExample);
@@ -32,6 +33,7 @@ module.exports = function(app, model){
     app.post("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency", addDependency);
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency/:dependencyId", removeDependency);
     app.put("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency/:dependencyId", updateDependency);
+
 
 
     function getAllCourses(req, res){
@@ -290,6 +292,18 @@ module.exports = function(app, model){
         model.addLearningElement(courseId, moduleId, lectureId, learningElement).then(function(learningElements){
             res.json(learningElements);
         });
+    }
+
+    function removeLearningElement(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var lectureId = req.params.lectureId;
+        var leId = req.params.leId;
+
+        model.removeLearningElement(courseId, moduleId, lectureId, leId).then(function(learningElements){
+            res.json(learningElements);
+        });
+
     }
 
 

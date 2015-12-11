@@ -26,6 +26,7 @@
             updateLecture: updateLecture,
 
             addLearningElement: addLearningElement,
+            removeLearningElement: removeLearningElement,
 
             addExample: addExample,
             removeExample: removeExample,
@@ -279,6 +280,15 @@
             return deferred.promise;
         }
 
+        function removeLearningElement(courseId, moduleId, lectureId, leId){
+            var deferred = $q.defer();
+
+            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/lecture/" + lectureId + "/le/" + leId).success(function(learningElements){
+                deferred.resolve(learningElements);
+            });
+
+            return deferred.promise;
+        }
 
     }
 

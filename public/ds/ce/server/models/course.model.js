@@ -32,6 +32,7 @@ module.exports = function(db, mongoose) {
         updateLecture: updateLecture,
 
         addLearningElement: addLearningElement,
+        removeLearningElement: removeLearningElement,
 
         addExample: addExample,
         getExamples: getExamples,
@@ -496,6 +497,21 @@ module.exports = function(db, mongoose) {
                     deferred.resolve(learningElements);
                 });
             });
+        });
+        return deferred.promise;
+    }
+
+    function removeLearningElement(courseId, moduleId, lectureId, leId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).lectures.id(lectureId).learningElements.id(leId).remove();
+            course.save(function(err){
+                getLearningElements(courseId, moduleId, lectureId).then(function(learningElements){
+                    deferred.resolve(learningElements);
+                });
+            });
+
         });
         return deferred.promise;
     }
