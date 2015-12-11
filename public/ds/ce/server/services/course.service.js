@@ -23,6 +23,9 @@ module.exports = function(app, model){
     app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId", removeDemo);
     app.put("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId", updateDemo);
 
+    app.post("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency", addDependency);
+    app.delete("/api/ds/ce/course/:courseId/module/:moduleId/example/:exampleId/demo/:demoId/dependency/:dependencyId", removeDependency);
+
 
     function getAllCourses(req, res){
 
@@ -200,6 +203,30 @@ module.exports = function(app, model){
 
         model.updateDemo(courseId, moduleId, exampleId, demoId, demo).then(function(demos){
             res.json(demos);
+        });
+    }
+
+    function addDependency(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var exampleId = req.params.exampleId;
+        var demoId = req.params.demoId;
+        var dependency = req.body;
+
+        model.addDependency(courseId, moduleId, exampleId, demoId, dependency).then(function(dependencies){
+            res.json(dependencies);
+        });
+    }
+
+    function removeDependency(req, res){
+        var courseId = req.params.courseId;
+        var moduleId = req.params.moduleId;
+        var exampleId = req.params.exampleId;
+        var demoId = req.params.demoId;
+        var dependencyId = req.params.dependencyId;
+
+        model.removeDependency(courseId, moduleId, exampleId, demoId, dependencyId).then(function(dependencies){
+            res.json(dependencies);
         });
     }
 

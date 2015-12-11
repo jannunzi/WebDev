@@ -162,9 +162,11 @@
             });
         }
 
-        model.addDependency = function(demo){
+        model.addDependency = function(courseId, moduleId, exampleId, demo){
 
             model.addingType = "dependency";
+
+            var demoId = demo._id;
 
             showAddDialog(function(title){
                 var dependency = {
@@ -172,9 +174,9 @@
                     "src": ""
                 };
 
-                demo.dependencies.push(dependency);
-
-                dependency.open = true;
+                CourseService.addDependency(courseId, moduleId, exampleId, demoId, dependency).then(function(dependencies){
+                    demo.dependencies = dependencies;
+                });
             });
         }
 
@@ -276,11 +278,16 @@
             });
         }
 
-        model.removeDependency = function(dependencies, index){
-            model.title = dependencies[index].title;
+        model.removeDependency = function(courseId, moduleId, exampleId, demo, dependency){
+            model.title = dependency.title;
+
+            var demoId = demo._id;
+            var dependencyId = dependency._id;
 
             showRemoveDialog(function(){
-                dependencies.splice(index, 1);
+                CourseService.removeDependency(courseId, moduleId, exampleId, demoId, dependencyId).then(function(dependencies){
+                    demo.dependencies = dependencies;
+                });
             });
 
         }

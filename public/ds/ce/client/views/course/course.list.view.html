@@ -226,7 +226,7 @@
                                     <label>Source</label>
                                     <input ng-change="demo.changed = true" class="form-control" ng-model="demo.src"  placeholder="Source URL">
                                     <h4>Dependencies
-                                        <a ng-click="model.addDependency(demo)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a ng-click="model.addDependency(course._id, module._id, example._id, demo)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
                                         <a ng-hide="model.editingDependencies || demo.dependencies.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingDependencies = true"><span class="glyphicon glyphicon-pencil"></span></a>
                                         <a ng-show="model.editingDependencies && demo.dependencies.length > 0" class="btn btn-xs btn-success" ng-click="model.editingDependencies = false"><span class="glyphicon glyphicon-ok"></span></a>
                                     </h4>
@@ -242,7 +242,7 @@
                                                     {{dependency.title}}
                                                 </div>
                                                 <input ng-show="model.editingDependencies" ng-model="dependency.title" placeholder="Title">
-                                                <a ng-click="model.removeDependency(demo.dependencies, $index)" ng-show="model.editingDependencies" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a ng-click="model.removeDependency(course._id, module._id, example._id, demo, dependency)" ng-show="model.editingDependencies" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                                             </uib-accordion-heading>
                                             <label>Source</label>
                                             <input class="form-control" ng-model="dependency.src" placeholder="Source URL">

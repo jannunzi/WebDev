@@ -27,7 +27,10 @@
 
             addDemo: addDemo,
             removeDemo: removeDemo,
-            updateDemo: updateDemo
+            updateDemo: updateDemo,
+
+            addDependency: addDependency,
+            removeDependency: removeDependency
         };
 
         return service;
@@ -202,6 +205,24 @@
 
             $http.put("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/example/" + exampleId + "/demo/" + demoId, demo).success(function(demos){
                 deferred.resolve(demos);
+            });
+            return deferred.promise;
+        }
+
+        function addDependency(courseId, moduleId, exampleId, demoId, dependency){
+            var deferred = $q.defer();
+
+            $http.post("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/example/" + exampleId + "/demo/" + demoId + "/dependency", dependency).success(function(dependencies){
+                deferred.resolve(dependencies);
+            });
+            return deferred.promise;
+        }
+
+        function removeDependency(courseId, moduleId, exampleId, demoId, dependencyId){
+            var deferred = $q.defer();
+
+            $http.delete("/api/ds/ce/course/" + courseId + "/module/" + moduleId + "/example/" + exampleId + "/demo/" + demoId + "/dependency/" + dependencyId).success(function(dependencies){
+                deferred.resolve(dependencies);
             });
             return deferred.promise;
         }

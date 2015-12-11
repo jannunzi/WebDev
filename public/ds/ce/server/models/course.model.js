@@ -34,7 +34,10 @@ module.exports = function(db, mongoose) {
 
         addDemo: addDemo,
         removeDemo: removeDemo,
-        updateDemo: updateDemo
+        updateDemo: updateDemo,
+
+        addDependency: addDependency,
+        removeDependency: removeDependency
 
     }
 
@@ -358,6 +361,43 @@ module.exports = function(db, mongoose) {
 
         });
 
+        return deferred.promise;
+    }
+
+    function getDependencies(courseId, moduleId, exampleId, demoId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            deferred.resolve(course.modules.id(moduleId).examples.id(exampleId).demos.id(demoId).dependencies);
+        });
+        return deferred.promise;
+    }
+
+    function addDependency(courseId, moduleId, exampleId, demoId, dependency){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).examples.id(exampleId).demos.id(demoId).dependencies.push(dependency);
+            course.save(function(err){
+                getDependencies(courseId, moduleId, exampleId, demoId).then(function(dependencies){
+                    deferred.resolve(dependencies);
+                });
+            });
+        });
+        return deferred.promise;
+    }
+
+    function removeDependency(courseId, moduleId, exampleId, demoId, dependencyId){
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules.id(moduleId).examples.id(exampleId).demos.id(demoId).dependencies.id(dependencyId).remove();
+            course.save(function(err){
+                getDependencies(courseId, moduleId, exampleId, demoId).then(function(dependencies){
+                    deferred.resolve(dependencies);
+                });
+            });
+        });
         return deferred.promise;
     }
 
