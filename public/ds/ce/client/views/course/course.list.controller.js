@@ -36,7 +36,7 @@
 
                 var course = {
                     "title": title,
-                    "overview": "",
+                    "overview": "<h1>Sample Heading</h1>\n<p><span style=\"font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>",
                     "modules": []
                 };
 
@@ -84,6 +84,7 @@
             showAddDialog(function(title){
                 var lecture = {
                     "title": title,
+                    "overview": "<h1>Sample Heading</h1>\n<p><span style=\"font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>",
                     learningElements: []
                 };
                 //module.lectures.push(lecture);
@@ -410,7 +411,7 @@
                     learningElement.height = 50;
                 }
                 else if(info.type==="HTML"){
-                    learningElement.html = "";
+                    learningElement.html = "<h1>Sample Heading</h1>\n<p><span style=\"font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>";
                 }
 
                 CourseService.addLearningElement(courseId, moduleId, lectureId, learningElement).then(function(learningElements){

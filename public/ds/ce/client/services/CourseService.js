@@ -56,7 +56,6 @@
         function getAll() {
             var deferred = $q.defer();
             $http.get("/api/ds/ce/course").success(function (response) {
-                console.log("got courses");
                 deferred.resolve(response);
             });
 

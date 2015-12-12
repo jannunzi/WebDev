@@ -16,6 +16,7 @@
         <!--<a ng-hide="model.editingCourses || model.courses.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingCourses = true"><span class="glyphicon glyphicon-pencil"></span></a>-->
         <!--<a ng-show="model.editingCourses && model.courses.length > 0" class="btn btn-xs btn-success" ng-click="model.editingCourses = false"><span class="glyphicon glyphicon-ok"></span></a>-->
     </h2>
+
     <uib-accordion>
         <uib-accordion-group ng-repeat="course in model.courses" is-disabled="true" is-open="course.open">
 
@@ -40,10 +41,7 @@
             </uib-accordion-heading>
 
             <h4>Overview</h4>
-            <div ng-change="course.changed = true" text-angular ng-model="course.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
-
-            <!--<div text-angular ng-model="model.htmlContent" name="demo-editor" ta-text-editor-class="border-around" ta-html-editor-class="border-around" class="ta-root"></div>-->
-
+            <textarea ng-change="course.changed = true" data-ui-tinymce data-ng-model="course.overview"></textarea>
 
             <h4>Modules
                 <a ng-click="model.addModule(course)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
@@ -98,7 +96,7 @@
                             </uib-accordion-heading>
 
                             <h4>Overview</h4>
-                            <div ng-change="lecture.changed = true" text-angular ng-model="lecture.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
+                            <textarea ng-change="lecture.changed = true" data-ui-tinymce data-ng-model="lecture.overview"></textarea>
                             <h4>Learning Elements
                                 <a ng-click="model.addLearningElement(course._id, module._id, lecture)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
                             </h4>
@@ -133,7 +131,7 @@
                                     <input type="number" ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'" ng-change="le.changed = true" class="form-control" ng-model="le.width"  placeholder="Width">
 
                                     <a ng-show="le.src.length > 0" ng-href="{{le.src}}" target="_blank"> Preview</a>
-                                    <div ng-show="le.type==='HTML'"ng-change="le.changed = true" text-angular ng-model="le.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
+                                    <div ng-show="le.type==='HTML'"ng-change="le.changed = true" ui-tinymce ng-model="le.overview"></div>
                                 </uib-accordion-group>
                             </uib-accordion>
                         </uib-accordion-group>
