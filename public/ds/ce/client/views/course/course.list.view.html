@@ -122,7 +122,9 @@
                                     </uib-accordion-heading>
 
                                     <label ng-hide="le.type==='HTML'">Source</label>
-                                    <input ng-hide="le.type==='HTML'" ng-change="le.changed = true" class="form-control" ng-model="le.src"  placeholder="Source URL">
+
+                                        <input ng-hide="le.type==='HTML'" ng-change="le.changed = true" class="form-control" ng-model="le.src"  placeholder="Source URL">
+
 
                                     <label ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'">Height</label>
                                     <input type="number" ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'" ng-change="le.changed = true" class="form-control" ng-model="le.height"  placeholder="Height">
@@ -130,88 +132,13 @@
                                     <label ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'">Width</label>
                                     <input type="number" ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'" ng-change="le.changed = true" class="form-control" ng-model="le.width"  placeholder="Width">
 
+                                    <a ng-show="le.src.length > 0" ng-href="{{le.src}}" target="_blank"> Preview</a>
                                     <div ng-show="le.type==='HTML'"ng-change="le.changed = true" text-angular ng-model="le.overview" ta-text-editor-class="border-around" ta-html-editor-class="border-around"  class="ta-root"></div>
                                 </uib-accordion-group>
                             </uib-accordion>
                         </uib-accordion-group>
                     </uib-accordion>
 
-
-                    <!--<h4>Slides-->
-                        <!--<a ng-click="model.addSlide(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>-->
-                        <!--<a ng-hide="model.editingSlides || module.slides.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingSlides = true"><span class="glyphicon glyphicon-pencil"></span></a>-->
-                        <!--<a ng-show="model.editingSlides && module.slides.length > 0" class="btn btn-xs btn-success" ng-click="model.editingSlides = false"><span class="glyphicon glyphicon-ok"></span></a>-->
-                    <!--</h4>-->
-
-                    <!--<uib-accordion>-->
-                        <!--<uib-accordion-group ng-repeat="slide in module.slides" is-disabled="true" is-open="slide.open">-->
-                            <!--<uib-accordion-heading>-->
-                                <!--<div ng-hide="model.editingSlides">-->
-                                    <!--<a ng-click="slide.open=!slide.open">-->
-                                        <!--<span ng-hide="slide.open" class="glyphicon glyphicon-menu-down"></span>-->
-                                        <!--<span ng-show="slide.open" class="glyphicon glyphicon-menu-up"></span>-->
-                                    <!--</a>-->
-                                    <!--{{slide.title}}-->
-                                <!--</div>-->
-                                <!--<input ng-show="model.editingSlides" ng-model="slide.title" placeholder="Title">-->
-                                <!--<a ng-click="model.removeSlide(module.slides, $index)" ng-show="model.editingSlides" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>-->
-                            <!--</uib-accordion-heading>-->
-                            <!--<div class="col-lg-12">-->
-                                <!--<label>Source</label>-->
-                                <!--<input class="form-control" ng-model="slides.src"  placeholder="Source URL">-->
-                            <!--</div>-->
-                            <!--<div class="col-lg-6">-->
-                                <!--<label>Height</label>-->
-                                <!--<input class="form-control" ng-model="slides.height"  placeholder="Height">-->
-                            <!--</div>-->
-                            <!--<div class="col-lg-offset-6"></div>-->
-
-                            <!--<div class="col-lg-6">-->
-                                <!--<label>Width</label>-->
-                                <!--<input class="form-control" ng-model="slides.width"  placeholder="Width">-->
-                            <!--</div>-->
-                        <!--</uib-accordion-group>-->
-                    <!--</uib-accordion>-->
-
-                    <!--<h4>Videos-->
-                        <!--<a ng-click = "model.addVideo(module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>-->
-                        <!--<a ng-hide="model.editingVideos || module.videos.length < 1" class="btn btn-xs btn-warning" ng-click="model.editingVideos = true"><span class="glyphicon glyphicon-pencil"></span></a>-->
-                        <!--<a ng-show="model.editingVideos && module.videos.length > 0" class="btn btn-xs btn-success" ng-click="model.editingVideos = false"><span class="glyphicon glyphicon-ok"></span></a>-->
-                    <!--</h4>-->
-
-                    <!--<uib-accordion>-->
-                        <!--<uib-accordion-group ng-repeat="video in module.videos" is-disabled="true" is-open="video.open">-->
-                            <!--<uib-accordion-heading>-->
-                                <!--<div ng-hide="model.editingVideos">-->
-                                    <!--<a ng-click="video.open=!video.open">-->
-                                        <!--<span ng-hide="video.open" class="glyphicon glyphicon-menu-down"></span>-->
-                                        <!--<span ng-show="video.open" class="glyphicon glyphicon-menu-up"></span>-->
-                                    <!--</a>-->
-                                    <!--{{video.title}}-->
-                                <!--</div>-->
-                                <!--<input ng-show="model.editingVideos" ng-model="video.title" placeholder="Title">-->
-                                <!--<a ng-click="model.removeVideo(module.videos, $index)" ng-show="model.editingVideos" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></a>-->
-                            <!--</uib-accordion-heading>-->
-                            <!--<div class="col-lg-12">-->
-                                <!--<label>Source</label>-->
-                                <!--<input class="form-control" ng-model="video.src"  placeholder="Source URL">-->
-                            <!--</div>-->
-                            <!--<div class="col-lg-6">-->
-                                <!--<label>Height</label>-->
-                                <!--<input class="form-control" ng-model="video.height"  placeholder="Height">-->
-                            <!--</div>-->
-                            <!--<div class="col-lg-offset-6"></div>-->
-
-                            <!--<div class="col-lg-6">-->
-                                <!--<label>Width</label>-->
-                                <!--<input class="form-control" ng-model="video.width"  placeholder="Width">-->
-                            <!--</div>-->
-
-
-
-
-                        <!--</uib-accordion-group>-->
-                    <!--</uib-accordion>-->
 
                     <h4>Examples
                         <a ng-click="model.addExample(course._id, module)" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span></a>
@@ -331,13 +258,3 @@
 
     </uib-accordion>
 </div>
-
-<!--</body>-->
-
-<!--<script src="../../../../../js/jsoneditor.js"></script>-->
-<!--<script srs="course.schema.js"></script>-->
-<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
-
-<!--</html>-->
