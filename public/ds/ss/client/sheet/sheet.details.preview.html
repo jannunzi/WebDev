@@ -1,5 +1,5 @@
 <div class="display">
-    <div ng-class="model.leftCol" ng-if="model.showSheetCell">
+    <div class="col-sm-6">
         <table class="table borderless">
             <tr ng-repeat="cell in model.sheet.cells"
                 ng-class="{'active': $index==model.functionCellIndex}">
@@ -8,11 +8,8 @@
                            id={{cell.cellStyle}}
                            ng-readonly="true"
                            tabindex="{{$index}}"
-                           class="form-control"/>
-                    <span class="input-group-btn"></span>
+                           class="form-control "/>
                 </td>
-            </tr>
-            <tr>
             </tr>
         </table>
     </div>
