@@ -131,7 +131,7 @@
                                     <input type="number" ng-show="le.type==='VIDEO' || le.type==='SLIDE' || le.type==='IFRAME'" ng-change="le.changed = true" class="form-control" ng-model="le.width"  placeholder="Width">
 
                                     <a ng-show="le.src.length > 0" ng-href="{{le.src}}" target="_blank"> Preview</a>
-                                    <div ng-show="le.type==='HTML'"ng-change="le.changed = true" ui-tinymce ng-model="le.overview"></div>
+                                    <div ng-if="le.type=='HTML'" ng-change="le.changed = true" data-ui-tinymce data-ng-model="le.html"></div>
                                 </uib-accordion-group>
                             </uib-accordion>
                         </uib-accordion-group>
