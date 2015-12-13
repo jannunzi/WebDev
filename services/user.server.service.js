@@ -1,4 +1,4 @@
-var bcrypt = require("bcrypt-nodejs");
+//var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(app, db, mongoose, passport, LocalStrategy) {
 

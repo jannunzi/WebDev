@@ -10,9 +10,7 @@ OP_REPLACE = "";
 
 /* If schema constructor */
 function IfSchema(type, inputCell1, inputCell2, thenCell, elseCell) {
-    operation = {
-        type: type
-    };
+    this.type = type;
     this.inputCell1 = inputCell1;
     this.inputCell2 = inputCell2;
     this.thenCell   = thenCell;
@@ -21,23 +19,21 @@ function IfSchema(type, inputCell1, inputCell2, thenCell, elseCell) {
 
 /* Arithmetic schema constructor */
 function ArithmeticSchema(type, inputCell1, inputCell2) {
-    //operation = {
-    //    type: type
-    //};
     this.operation = type;
     this.inputCell1 = inputCell1;
     this.inputCell2 = inputCell2;
 }
 
 /* Cell constructor */
-function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle) {
+function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle, visible) {
     this.label      = label;
     this.literal    = literal;
     this.reference  = reference;
     this.ifObj      = ifObj;
     this.arithmetic = arithmetic;
     this.editable   = editable;
-    this.cellStyle      = cellStyle;
+    this.cellStyle  = cellStyle;
+    this.visible    = visible;
 }
 
 (function(){
@@ -52,7 +48,10 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
         model.removeCell = removeCell;
         model.updateCell = updateCell;
         model.functionCell = functionCell;
+        model.functionCellUp = functionCellUp;
+        model.functionCellDown = functionCellDown;
         model.functionCellDone = functionCellDone;
+        model.functionDone = functionDone;
         model.functionCellReplaceDone =functionCellReplaceDone;
         model.functionCellIfDone = functionCellIfDone;
         model.leftCol = "col-sm-12";
@@ -61,17 +60,124 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
         model.showSheetCell = true;
         model.functionCellIndex = -1;
 
+
         function init() {
             readOneSheet($routeParams.sheetId);
         }
         init();
 
-        function functionCell(cellIndex) {
+
+        function functionDone(sheetId,style) {
+
+            var visible = document.getElementById("visible");
+            var editable = document.getElementById("editable");
+
+            var cellIndex = cellIdxById($routeParams.cellId);
+            var cells = model.sheet.cells;
+            updateCell(sheetId,
+                cellIndex,
+                new Cell(cells[cellIndex].label,
+                    cells[cellIndex].literal,
+                    cells[cellIndex].reference,
+                    cells[cellIndex].ifObj,
+                    cells[cellIndex].arithmetic,
+                    !editable.checked,
+                    style,
+                    !visible.checked),
+                true);
+
+            window.location.href ="#/sheet/"+sheetId;
+            //model.functionCellIndex = cellIndex;
+            //model.leftCol = "";
+            //model.rightCol = "col-sm-6";
+            //model.showFunctionCell = false;
+            //model.showSheetCell = true;
+        }
+
+
+        function functionCellUp(cellIndex,sheetId) {
+            var cells = model.sheet.cells;
+            var cell1 = cells[cellIndex];
+            var cell2 = cells[cellIndex-1];
+
+            if(cellIndex > 0)
+            updateCell(sheetId,
+                cellIndex-1,
+                new Cell(cell1.label,
+                    cell1.literal,
+                    cell1.reference,
+                    cell1.ifObj,
+                    cell1.arithmetic,
+                    cell1.editable,
+                    cell1.cellStyle,
+                    cell1.visible),
+                true).then(function()
+            {
+            updateCell(sheetId,
+                cellIndex,
+                new Cell(cell2.label,
+                    cell2.literal,
+                    cell2.reference,
+                    cell2.ifObj,
+                    cell2.arithmetic,
+                    cell2.editable,
+                    cell2.cellStyle,
+                    cell2.visible),
+                true);
+            });
+
+            model.functionCellIndex = cellIndex;
+            model.leftCol = "";
+            model.rightCol = "col-sm-6";
+            model.showFunctionCell = false;
+            model.showSheetCell = true;
+        }
+        function functionCellDown(cellIndex,sheetId) {
+            var cells = model.sheet.cells;
+            var cell1 = cells[cellIndex];
+            var cell2 = cells[cellIndex+1];
+
+            if(cellIndex < cells.length-1)
+            updateCell(sheetId,
+                cellIndex+1,
+                new Cell(cell1.label,
+                    cell1.literal,
+                    cell1.reference,
+                    cell1.ifObj,
+                    cell1.arithmetic,
+                    cell1.editable,
+                    cell1.cellStyle,
+                    cell1.visible),
+                true).then(function()
+            {
+                updateCell(sheetId,
+                    cellIndex,
+                    new Cell(cell2.label,
+                        cell2.literal,
+                        cell2.reference,
+                        cell2.ifObj,
+                        cell2.arithmetic,
+                        cell2.editable,
+                        cell2.cellStyle,
+                        cell2.visible),
+                    true);
+            });
+
+            model.functionCellIndex = cellIndex;
+            model.leftCol = "";
+            model.rightCol = "col-sm-6";
+            model.showFunctionCell = false;
+            model.showSheetCell = true;
+        }
+
+        function functionCell(cellIndex, sheetId) {
+            var cells = model.sheet.cells;
+            console.log(cells[cellIndex]._id);
             model.functionCellIndex = cellIndex;
             model.leftCol = "";
             model.rightCol = "col-sm-6";
             model.showFunctionCell = true;
-            model.showSheetCell = false;
+            model.showSheetCell = true;
         }
 
         function cellIdxById(id) {
@@ -82,48 +188,98 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                 }
             }
         }
+        function evalIfFunction(cell1, cell2, isCell, thenCell, elseCell) {
+            var res;
+            var cell1Val = parseInt(cell1.literal);
+            var cell2Val = parseInt(cell2.literal);
+            var thenCell = parseInt(thenCell.literal);
+            var elseCell = parseInt(elseCell.literal);
 
-        function functionCellIfDone(sheetId, cell1, cell2, isCell, thenCell, elseCell) {
-            if(isCell == "Equal") {
-                if(cell1.literal == cell2.literal)
-                    addCell(sheetId, thenCell);
-                else
-                    addCell(sheetId, elseCell);
+            switch(isCell) {
+                case "Equal":
+                    res = (cell1Val == cell2Val) ? thenCell : elseCell;
+                    break;
+                case "Not equal":
+                    res = (cell1Val != cell2Val) ? thenCell : elseCell;
+                    break;
+                case "Greater":
+                    res = (cell1Val > cell2Val) ? thenCell : elseCell;
+                    break;
+                case "Greater or equal":
+                    res = (cell1Val >= cell2Val) ? thenCell : elseCell;
+                    break;
+                case "Less than":
+                    res = (cell1Val < cell2Val) ? thenCell : elseCell;
+                    break;
+                case "Less than or equal":
+                    res = (cell1Val <= cell2Val) ? thenCell : elseCell;
+                    break;
             }
+            return res;
+        }
 
-            else if(isCell == "Not equal") {
-                if(cell1.literal != cell2.literal)
-                    addCell(sheetId, thenCell);
-                else
-                    addCell(sheetId, elseCell);
-            }
+        function functionCellIfDone(sheetId, cellIndex, cell1, cell2, isCell, thenCell, elseCell) {
+            var res = evalIfFunction(cell1, cell2, isCell, thenCell, elseCell);
 
-            else if(isCell == "Greater") {
-                if(cell1.literal > cell2.literal)
-                    addCell(sheetId, thenCell);
-                else
-                    addCell(sheetId, elseCell);
-            }
+            var cell1Idx = cellIdxById(cell1._id);
+            var cell2Idx = cellIdxById(cell2._id);
+            var thenCellIdx = cellIdxById(thenCell._id);
+            var elseCellIdx = cellIdxById(elseCell._id);
 
-            else if(isCell == "Greater or equal") {
-                if(cell1.literal >= cell2.literal)
-                    addCell(sheetId, thenCell);
-                else
-                    addCell(sheetId, elseCell);
-            }
 
-            else if(isCell == "Less than") {
-                if(cell1.literal < cell2.literal)
-                    addCell(sheetId, thenCell);
-                else
-                    addCell(sheetId, elseCell);
-            }
-            else if(isCell == "Less than or equal") {
-                if(cell1.literal <= cell2.literal)
-                    addCell(sheetId, thenCell);
-                else
-                    addCell(sheetId, elseCell);
-            }
+
+            var cell = new Cell(
+                "",
+                res,
+                "",
+                new IfSchema(isCell, cell1Idx,cell2Idx,thenCellIdx,elseCellIdx),
+                undefined,
+                false,
+                cellStyle,
+                visible);
+
+
+            updateCell(sheetId, cellIndex, cell, true)
+                .then(function()
+                {
+                    /* Update the first source cell. */
+                    if (cell1.reference === undefined) {
+                        cell1.reference = "";
+                    }
+
+                    if (cell2.reference === undefined) {
+                        cell2.reference = "";
+                    }
+
+                    if (thenCell.reference === undefined) {
+                        thenCell.reference = "";
+                    }
+
+                    if (elseCell.reference === undefined) {
+                        elseCell.reference = "";
+                    }
+
+                    cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                    cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, cell1.editable, cellStyle, cell1.visible);
+                    updateCell(sheetId, cell1Idx, cell, true)
+                        .then(function() {
+                            cell2.reference = cell2.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                            cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, cell2.editable, cellStyle, cell2.visible);
+                            updateCell(sheetId, cell2Idx, cell, true)
+
+                                .then(function() {
+                                    thenCell.reference = thenCell.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                                    cell = new Cell(thenCell.label, thenCell.literal, thenCell.reference, undefined, undefined, thenCell.editable, cellStyle, thenCell.visible);
+                                    updateCell(sheetId, thenCellIdx, cell, true)
+                                        .then(function() {
+                                            elseCell.reference = elseCell.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
+                                            cell = new Cell(elseCell.label, elseCell.literal, elseCell.reference, undefined, undefined, elseCell.editable, cellStyle, elseCell.visible);
+                                            updateCell(sheetId, elseCellIdx, cell, true)
+                                        });
+                                });
+
+                        });
+                });
 
             model.functionCellIndex = -1;
             model.leftCol = "col-sm-12";
@@ -171,22 +327,25 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
         }
 
         /* Invoked when the "Done" button is clicked - Arithmetic functions. */
-        function functionCellDone(sheetId, cellIndex, cell1, cell2, operation, cellStyle) {
+        function functionCellDone(sheetId, cell1, cell2, operation, cellStyle, visible) {
+            var cellIndex = cellIdxById($routeParams.cellId);
             var res = evalArithmeticFunction(cell1, cell2, operation);
             var cell1Idx = cellIdxById(cell1._id);
             var cell2Idx = "-1";
             if(cell2 != "") {
                 cell2Idx = cellIdxById(cell2._id);
             }
-            var cell = new Cell("",
+            var cell = new Cell(
+                "",
                 res,
                 "",
                 undefined,
                 new ArithmeticSchema(operation, cell1Idx, cell2Idx),
                 false,
-                cellStyle);
-
-            addCell(sheetId, cell)
+                cellStyle,
+                visible);
+            //addCell(sheetId, cell)
+            updateCell (sheetId, cellIndex, cell, true)
                 .then(function()
                 {
                     /* Update the first source cell. */
@@ -194,7 +353,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                         cell1.reference = "";
                     }
                     cell1.reference = cell1.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
-                    cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, false, cellStyle);
+                    cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, cell1.editable, cellStyle, cell1.visible);
                     updateCell(sheetId, cell1Idx, cell, true)
                         .then(function() {
                             /* Update the second source cell. */
@@ -203,16 +362,18 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                                     cell2.reference = "";
                                 }
                                 cell2.reference = cell2.reference.concat(model.sheet.cells[model.sheet.cells.length - 1]._id + ";");
-                                cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, false, cellStyle);
+                                cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, cell2.editable, cellStyle, cell2.visible);
                                 updateCell(sheetId, cell2Idx, cell, true);
                             }
+                            window.location.href ="#/sheet/"+sheetId;
                         });
                 });
-            model.functionCellIndex = -1;
-            model.leftCol = "col-sm-12";
-            model.rightCol = "";
-            model.showFunctionCell = false;
-            model.showSheetCell = true;
+
+            //model.functionCellIndex = -1;
+            //model.leftCol = "col-sm-12";
+            //model.rightCol = "";
+            //model.showFunctionCell = false;
+            //model.showSheetCell = true;
         }
 
         function updateReference(sheetId, cellIndex, cell) {
@@ -234,7 +395,8 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                     cells[cellIndex].ifObj,
                     arithmetic,
                     cells[cellIndex].editable,
-                    cells[cellIndex].cellStyle),
+                    cells[cellIndex].cellStyle,
+                    cells[cellIndex].visible),
                 false);
         }
 
@@ -252,7 +414,8 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle)
                     cells[cellIndex].ifObj,
                     cells[cellIndex].arithmetic,
                     cells[cellIndex].editable,
-                    cells[cellIndex].cellStyle),
+                    cells[cellIndex].cellStyle,
+                    cells[cellIndex].visible),
                 true)
                 .then(function() {
                     /* Update the reference cells. */

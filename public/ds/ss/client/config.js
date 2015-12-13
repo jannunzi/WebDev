@@ -15,6 +15,12 @@
                 controller: "SheetDetailsController",
                 controllerAs: "model"
             })
+
+            .when("/sheet/:sheetId/:cellId", {
+                templateUrl: "sheet/cell.list.view.html",
+                controller: "SheetDetailsController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/sheet"
             });

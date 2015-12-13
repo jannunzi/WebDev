@@ -25,6 +25,8 @@ module.exports = function(db, mongoose) {
             sheet.cells[cellIndex].ifObj      = cell.ifObj;
             sheet.cells[cellIndex].arithmetic = cell.arithmetic;
             sheet.cells[cellIndex].cellStyle  = cell.cellStyle;
+            sheet.cells[cellIndex].visible    = cell.visible;
+            sheet.cells[cellIndex].editable    = cell.editable;
             sheet.save(function(err, sheet){
                 deferred.resolve(sheet);
             });

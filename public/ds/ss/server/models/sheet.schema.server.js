@@ -31,7 +31,8 @@ module.exports = function(mongoose) {
                 ifObj     : IfSchema,
                 arithmetic: ArithmeticSchema,
                 editable  : Boolean,
-                cellStyle : String
+                cellStyle : String,
+                visible   : Boolean
             }
         ]
     }, {collection: "ds.ss.sheet"});
