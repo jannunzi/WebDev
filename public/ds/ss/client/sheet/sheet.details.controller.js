@@ -83,7 +83,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
                     cells[cellIndex].arithmetic,
                     !editable.checked,
                     style,
-                    !visible.checked),
+                    visible.checked),
                 true);
 
             window.location.href ="#/sheet/"+sheetId;

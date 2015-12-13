@@ -1,0 +1,19 @@
+<div class="display">
+    <div ng-class="model.leftCol" ng-if="model.showSheetCell">
+        <table class="table borderless">
+            <tr ng-repeat="cell in model.sheet.cells"
+                ng-class="{'active': $index==model.functionCellIndex}">
+                <td ng-if="cell.visible==true">
+                    <input ng-model="cell.literal"
+                           id={{cell.cellStyle}}
+                           ng-readonly="true"
+                           tabindex="{{$index}}"
+                           class="form-control"/>
+                    <span class="input-group-btn"></span>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+    </div>
+</div>
