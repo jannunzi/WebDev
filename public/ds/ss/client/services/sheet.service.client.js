@@ -25,7 +25,6 @@
         }
 
         function readAllSheet() {
-            console.log("in client read all sheets");
             var deferred = $q.defer();
 
             $http.get("/ds/ss/sheet")

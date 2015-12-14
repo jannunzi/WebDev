@@ -36,7 +36,7 @@
 
         function addCell(sheetId, cell) {
             var deferred = $q.defer();
-
+            cell.visible = true;
             $http.post("/ds/ss/sheet/"+sheetId+"/cell", cell)
                 .success(function(response){
                     deferred.resolve(response);
