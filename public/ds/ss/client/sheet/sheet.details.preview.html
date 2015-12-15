@@ -1,16 +1,23 @@
 <div class="display">
-    <div class="col-sm-6">
-        <table class="table borderless">
-            <tr ng-repeat="cell in model.sheet.cells"
+    <div>
+        <div class="table borderless">
+            <div ng-repeat="cell in model.sheet.cells"
                 ng-class="{'active': $index==model.functionCellIndex}">
-                <td ng-if="cell.visible==true">
+                <div ng-if="cell.visible==true && cell.editable == true">
                     <input ng-model="cell.literal"
                            id={{cell.cellStyle}}
+                           ng-readonly="false"
+                           ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                           tabindex="{{$index}}"
+                           class="form-control"/>
+                </div>
+                <div ng-if="cell.visible==true && cell.editable == false">
+                    <input ng-model="cell.literal"
                            ng-readonly="true"
                            tabindex="{{$index}}"
                            class="form-control "/>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

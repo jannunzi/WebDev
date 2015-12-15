@@ -51,6 +51,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
         model.functionCellUp = functionCellUp;
         model.functionCellDown = functionCellDown;
         model.functionCellDone = functionCellDone;
+        model.functionGetIndex = functionGetIndex;
         model.functionCellCancel = functionCellCancel;
         //model.functionDone = functionDone;
         model.functionCellReplaceDone =functionCellReplaceDone;
@@ -61,11 +62,14 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
         model.showSheetCell = true;
         model.functionCellIndex = -1;
 
-
         function init() {
             readOneSheet($routeParams.sheetId);
         }
         init();
+
+        function functionGetIndex(cell){
+            return cellIdxById(cell._id);
+        }
 
 
         //function functionDone(sheetId,style) {
@@ -118,8 +122,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
                 updateCell(sheetId, cellIndex-1, clickCell, true)
                 .then(function()
                 {
-                    updateCell(sheetId, cellIndex, cell2, true).then(function(){
-                    });
+                    updateCell(sheetId, cellIndex, cell2, true);
                 });
 
             //model.functionCellIndex = cellIndex;
@@ -284,7 +287,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
             var res;
             var val1;
             var val2;
-            if(operation != "Date" && operation != "Length") {
+            if(operation != "DATE" && operation != "LENGTH") {
                 val1 = parseInt(cell1.literal);
                 val2 = parseInt(cell2.literal);
             }

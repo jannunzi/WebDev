@@ -1,3 +1,4 @@
+<h1>Spread Sheet Editor</h1>
 <h2>Sheet Details</h2>
 <div class="row">
     <div ng-class="model.leftCol" ng-if="model.showSheetCell">
@@ -36,10 +37,13 @@
                             <!--</span>-->
                         <!--</button>-->
 
-                          <a href="#/sheet/{{model.sheet._id}}/{{model.sheet.cells[$index]._id}}"class="btn btn-warning">
+                          <a href="#/sheet/{{model.sheet._id}}/cell/{{model.sheet.cells[$index]._id}}"class="btn btn-warning">
                             <span class="glyphicon glyphicon-pencil">
                             </span>
                           </a>
+                        <a href="#/sheet/{{model.sheet._id}}/preview"class="btn btn-info">
+                            <span class="glyphicon glyphicon-share"> </span>
+                        </a>
 
                         <button ng-click="model.functionCellUp($index,model.sheet._id)" class="btn btn-default">
                             <span class="glyphicon glyphicon-arrow-up"></span>

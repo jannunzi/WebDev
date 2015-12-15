@@ -20,7 +20,7 @@
                 controller: "SheetDetailsController",
                 controllerAs: "model"
             })
-            .when("/sheet/:sheetId/:cellId", {
+            .when("/sheet/:sheetId/cell/:cellId", {
                 templateUrl: "sheet/cell.list.view.html",
                 controller: "SheetDetailsController",
                 controllerAs: "model"

@@ -46,6 +46,14 @@
     text-decoration: underline;
 }
 
+#label {
+    font-weight: bold;
+    display: block;
+    float: left;
+}
+
+label:after { content: ": " }
+
 
 .top {
     margin-top: 20px !important;
