@@ -97,40 +97,35 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
 
         function functionCellUp(cellIndex,sheetId) {
             var cells = model.sheet.cells;
-            var cell1 = cells[cellIndex];
+            var clickCell = cells[cellIndex];
             var cell2 = cells[cellIndex-1];
 
-            if(cellIndex > 0)
-            updateCell(sheetId,
-                cellIndex-1,
-                new Cell(cell1.label,
-                    cell1.literal,
-                    cell1.reference,
-                    cell1.ifObj,
-                    cell1.arithmetic,
-                    cell1.editable,
-                    cell1.cellStyle,
-                    cell1.visible),
-                true).then(function()
-            {
-            updateCell(sheetId,
-                cellIndex,
-                new Cell(cell2.label,
-                    cell2.literal,
-                    cell2.reference,
-                    cell2.ifObj,
-                    cell2.arithmetic,
-                    cell2.editable,
-                    cell2.cellStyle,
-                    cell2.visible),
-                true);
-            });
+            //var cell = new Cell(cells[cellIndex].label,
+            //    cells[cellIndex].literal,
+            //    cells[cellIndex].reference,
+            //    cells[cellIndex].ifObj,
+            //    new ArithmeticSchema(cells[cellIndex].arithmetic.operation,cellIndex,cells[cellIndex].arithmetic.inputCell2),
+            //    cells[cellIndex].editable,
+            //    cells[cellIndex].cellStyle,
+            //    cells[cellIndex].visible);
+            //
+            //if(clickCell.arithmetic.inputCell1 == cellIndex -1 && clickCell.arithmetic.inputCell1 != -1){
+            //    clickCell.arithmetic = new ArithmeticSchema(cells[cellIndex].arithmetic.operation,cellIndex,cells[cellIndex].arithmetic.inputCell2);
+            //}
 
-            model.functionCellIndex = cellIndex;
-            model.leftCol = "";
-            model.rightCol = "col-sm-6";
-            model.showFunctionCell = false;
-            model.showSheetCell = true;
+            if(cellIndex > 0)
+                updateCell(sheetId, cellIndex-1, clickCell, true)
+                .then(function()
+                {
+                    updateCell(sheetId, cellIndex, cell2, true).then(function(){
+                    });
+                });
+
+            //model.functionCellIndex = cellIndex;
+            //model.leftCol = "";
+            //model.rightCol = "col-sm-6";
+            //model.showFunctionCell = false;
+            //model.showSheetCell = true;
         }
         function functionCellDown(cellIndex,sheetId) {
             var cells = model.sheet.cells;
@@ -154,7 +149,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
                     cellIndex,
                     new Cell(cell2.label,
                         cell2.literal,
-                        cell2.reference,
+                        cell1.reference,
                         cell2.ifObj,
                         cell2.arithmetic,
                         cell2.editable,

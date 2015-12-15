@@ -34,6 +34,20 @@
     margin-end: 0;
 }
 
+#b{
+    font-weight: bold;
+}
+
+#i{
+    font-style:italic;
+}
+
+#u{
+    text-decoration: underline;
+}
+
+
 .top {
     margin-top: 20px !important;
 }
+

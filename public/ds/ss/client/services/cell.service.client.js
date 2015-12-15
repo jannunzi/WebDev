@@ -35,6 +35,17 @@
         */
 
         function addCell(sheetId, cell) {
+            if(cell === undefined){
+                cell = new Cell(
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined)
+            }
             var deferred = $q.defer();
             cell.visible = true;
             $http.post("/ds/ss/sheet/"+sheetId+"/cell", cell)
