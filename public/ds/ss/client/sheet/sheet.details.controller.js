@@ -51,6 +51,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
         model.functionCellUp = functionCellUp;
         model.functionCellDown = functionCellDown;
         model.functionCellDone = functionCellDone;
+        model.functionCellCancel = functionCellCancel;
         //model.functionDone = functionDone;
         model.functionCellReplaceDone =functionCellReplaceDone;
         model.functionCellIfDone = functionCellIfDone;
@@ -315,12 +316,16 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
 
             return res;
         }
+        function functionCellCancel(sheetId) {
+            window.location.href = "#/sheet/" + sheetId;
+        }
 
         /* Invoked when the "Done" button is clicked - Arithmetic functions. */
         function functionCellDone(sheetId, cell1, cell2,cell3, operation, cellStyle, ifoperation, thenCell, elseCell) {
             var cellIndex = cellIdxById($routeParams.cellId);
             var visible = document.getElementById("visible");
             var editable = document.getElementById("editable");
+
 
             if(ifoperation != undefined) {
                 functionCellIfDone(sheetId, cellIndex, cell1, cell2, ifoperation, thenCell, elseCell, cellStyle, visible, editable);
@@ -344,6 +349,8 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
                 else if (cell3 !== undefined && ifoperation === undefined)
                     functionCellReplaceDone(sheetId, cellIndex, cell1, cell2.literal, cell3.literal, cellStyle, visible, editable)
                 else {
+                if(cell1 === undefined || cell1.literal === undefined)
+                    cell1.literal = "";
                     if (cell2 === undefined)
                         cell2 = "";
 
