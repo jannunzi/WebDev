@@ -1,0 +1,13 @@
+<br/>
+<br/>
+<br/>
+<div class="container">
+
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="#/profile/{{currentUser._id}}">Profile</a></li>
+        <li role="presentation" class="active"><a href="#/project/{{currentUser._id}}">Project</a></li>
+        <li role="presentation" ng-if="currentUser.roles.indexOf('admin')>-1"><a href="#/users">Users</a></li>
+    </ul>
+
+    <h1>Project</h1>
+</div>

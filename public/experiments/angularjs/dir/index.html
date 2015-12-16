@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TestApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="mainController.js"></script>
+    <script src="helloDirective.js"></script>
+</head>
+<body>
+    <div ng-controller="MainController">
+        <h1>Hello</h1>
+        {{hello}}
+        <hello-directive msg="'Hola'"></hello-directive>
+        <hello-directive msg="'Adios'"></hello-directive>
+        <hello-directive msg="hello"></hello-directive>
+    </div>
+</body>
+</html>

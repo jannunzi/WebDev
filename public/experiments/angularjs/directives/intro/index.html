@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="IntroApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controller1.js"></script>
+    <script src="controller2.js"></script>
+    <script src="helloDirective.js"></script>
+</head>
+<body>
+    <h1>Intro to Directives</h1>
+
+    <div ng-controller="Controller1">
+        <input ng-model="hello"/>
+        Hi asdf asdf asdf {{hello}} asdf asdf asdf
+        <hello-directive users="users" message="'This is the message'"></hello-directive>
+    </div>
+
+    <div ng-controller="Controller2">
+        {{hello}}
+        <hello-directive message="hello"></hello-directive>
+    </div>
+
+</body>
+</html>

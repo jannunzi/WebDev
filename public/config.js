@@ -22,6 +22,12 @@
                     loggedin: checkLoggedin
                 }
             })
+            .when("/project/:userId", {
+                templateUrl: "views/project/project.view.html",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
             .when("/login", {
                 templateUrl: "views/login/login.view.html",
                 controller:  "LoginController",
@@ -31,6 +37,14 @@
                 templateUrl: "views/register/register.view.html",
                 controller:  "RegisterController",
                 controllerAs: "model"
+            })
+            .when("/users", {
+                templateUrl: "views/users/user.list.view.html",
+                controller:  "UserListController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkAdmin
+                }
             })
         ;
     }
