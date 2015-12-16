@@ -3,16 +3,20 @@
         <div class="table borderless">
             <div ng-repeat="cell in model.sheet.cells"
                 ng-class="{'active': $index==model.functionCellIndex}">
-                <div ng-if="cell.visible==true && cell.editable == true">
+                <div ng-if="cell.visible==true && cell.editable == true && cell.cellStyle != 'textarea'">
                     <input ng-model="cell.literal"
-                           id={{cell.cellStyle}}
                            ng-readonly="false"
-                           ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
                            tabindex="{{$index}}"
                            class="form-control"/>
                 </div>
+
                 <div ng-if="cell.visible==true && cell.editable == false">
+                    <textarea ng-model="cell.literal"/>
+                </div>
+
+                <div ng-if="cell.visible==true && cell.editable == false && cell.cellStyle != 'textarea'">
                     <input ng-model="cell.literal"
+                           id={{cell.cellStyle}}
                            ng-readonly="true"
                            tabindex="{{$index}}"
                            class="form-control "/>

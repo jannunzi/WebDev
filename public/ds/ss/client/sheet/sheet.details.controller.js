@@ -325,6 +325,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
 
         /* Invoked when the "Done" button is clicked - Arithmetic functions. */
         function functionCellDone(sheetId, cell1, cell2,cell3, operation, cellStyle, ifoperation, thenCell, elseCell) {
+            var cells = model.sheet.cells;
             var cellIndex = cellIdxById($routeParams.cellId);
             var visible = document.getElementById("visible");
             var editable = document.getElementById("editable");
@@ -334,7 +335,9 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
                 functionCellIfDone(sheetId, cellIndex, cell1, cell2, ifoperation, thenCell, elseCell, cellStyle, visible, editable);
             }
             else if(cell1 === undefined && cell2 === undefined && cell3 === undefined) {
-                    var cells = model.sheet.cells;
+                console.log(cells[cellIndex]);
+                if(cells[cellIndex].arithmetic != undefined || cells[cellIndex].ifObj != undefined)
+                    editable.checked = true;
                     updateCell(sheetId,
                         cellIndex,
                         new Cell(cells[cellIndex].label,
@@ -381,7 +384,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
                                 cell1.reference = "";
                             }
                             cell1.reference = cell1.reference.concat(model.sheet.cells[cellIndex]._id + ";");
-                            cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, cell1.editable, cellStyle, cell1.visible);
+                            cell = new Cell(cell1.label, cell1.literal, cell1.reference, undefined, undefined, cell1.editable, cell1.cellStyle, cell1.visible);
                             updateCell(sheetId, cell1Idx, cell, true)
                                 .then(function () {
                                     /* Update the second source cell. */
@@ -390,7 +393,7 @@ function Cell(label, literal, reference, ifObj, arithmetic, editable, cellStyle,
                                             cell2.reference = "";
                                         }
                                         cell2.reference = cell2.reference.concat(model.sheet.cells[cellIndex]._id + ";");
-                                        cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, cell2.editable, cellStyle, cell2.visible);
+                                        cell = new Cell(cell2.label, cell2.literal, cell2.reference, undefined, undefined, cell2.editable, cell2.cellStyle, cell2.visible);
                                         updateCell(sheetId, cell2Idx, cell, true);
                                     }
                                     window.location.href = "#/sheet/" + sheetId;

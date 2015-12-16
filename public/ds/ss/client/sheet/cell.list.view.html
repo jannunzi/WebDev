@@ -22,6 +22,8 @@
                 <option value="b">Bold</option>
                 <option value="u">Underline</option>
                 <option value="i">Italic</option>
+                <option value="textarea">Text Area</option>
+
             </select>
             </br>
         </div>
@@ -51,7 +53,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="length"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -69,7 +71,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -78,7 +80,7 @@
                 <label for="value1" class="col-sm-6 control-label">Replace</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell2">
                     </select>
                 </div>
@@ -87,7 +89,7 @@
                 <label for="value1" class="col-sm-6 control-label">Replace By</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell3">
                     </select>
                 </div>
@@ -106,7 +108,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -115,7 +117,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value2</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell2">
                     </select>
                 </div>
@@ -134,7 +136,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -143,7 +145,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value2</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell2">
                     </select>
                 </div>
@@ -163,7 +165,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -172,7 +174,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value2</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell2">
                     </select>
                 </div>
@@ -191,7 +193,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -200,7 +202,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value2</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell2">
                     </select>
                 </div>
@@ -221,7 +223,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -230,7 +232,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value2</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell2">
                     </select>
                 </div>
@@ -250,7 +252,7 @@
                 <label for="value1" class="col-sm-6 control-label">Value 1</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="value1"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell1">
                     </select>
                 </div>
@@ -275,7 +277,7 @@
                 <label for="value1" class="col-sm-6 control-label">Than</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].inputCell2">
                     </select>
                 </div>
@@ -285,7 +287,7 @@
                 <label for="value1" class="col-sm-6 control-label">Then</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].thenCell">
                     </select>
                 </div>
@@ -295,7 +297,7 @@
                 <label for="value1" class="col-sm-6 control-label">Else</label>
                 <div class="col-sm-10">
                     <select class="form-control"
-                            ng-options="cell as model.functionGetIndex(cell) +'-'+ cell.literal for cell in model.sheet.cells track by cell._id"
+                            ng-options="cell as model.functionGetIndex(cell) +' - '+ cell.literal for cell in model.sheet.cells track by cell._id"
                             ng-model="model.sheet.cells[model.functionCellIndex].elseCell">
                     </select>
                 </div>

@@ -52,6 +52,11 @@
     float: left;
 }
 
+#textarea {
+
+}
+
+
 label:after { content: ": " }
 
 

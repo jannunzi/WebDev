@@ -1,29 +1,38 @@
 <h1>Spread Sheet Editor</h1>
-<h2>Sheet Details</h2>
+<h2>Sheet Details
+    <a href="#/sheet/{{model.sheet._id}}/preview"class="btn btn-info">
+        <span class="glyphicon glyphicon-share"> </span>
+    </a>
+</h2>
+
 <div class="row">
     <div ng-class="model.leftCol" ng-if="model.showSheetCell">
         <table class="table borderless">
             <tr ng-repeat="cell in model.sheet.cells"
                 ng-class="{'active': $index==model.functionCellIndex}">
                 <td>{{$index}}</td>
-                <td ng-if="cell.editable==false">
+                <td ng-if="cell.cellStyle == 'textarea'">
+                    <textarea ng-model="cell.literal" cols="60" rows="3"
+                              ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"></textarea>
+                </td>
+
+                <td ng-if="cell.arithmetic !=undefined || cell.ifObj !=undefined && cell.cellStyle != 'textarea'">
                     <input ng-model="cell.literal"
                            id={{cell.cellStyle}}
-                           ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
                            ng-readonly="true"
                            tabindex="{{$index}}"
                            class="form-control"/>
-                    <span class="input-group-btn">
-            </span>
+                    <span class="input-group-btn"></span>
                 </td>
 
-                <td ng-if="cell.editable == undefined || cell.editable==true">
+                <td ng-if="cell.arithmetic == undefined && cell.ifObj == undefined && cell.cellStyle != 'textarea'">
                     <input ng-model="cell.literal"
                            ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
                            ng-readonly="false"
                            tabindex="{{$index}}"
                            class="form-control"/>
                 </td>
+
                 <td>
                     <span ng-show="true">
                         <button ng-click="model.removeCell(model.sheet._id, $index)"
@@ -31,19 +40,11 @@
                             <span class="glyphicon glyphicon-remove">
                             </span>
                         </button>
-                        <!--<button ng-click="model.functionCell($index,model.sheet._id)"-->
-                                <!--class="btn btn-warning">-->
-                            <!--<span class="glyphicon glyphicon-pencil">-->
-                            <!--</span>-->
-                        <!--</button>-->
 
                           <a href="#/sheet/{{model.sheet._id}}/cell/{{model.sheet.cells[$index]._id}}"class="btn btn-warning">
                             <span class="glyphicon glyphicon-pencil">
                             </span>
                           </a>
-                        <a href="#/sheet/{{model.sheet._id}}/preview"class="btn btn-info">
-                            <span class="glyphicon glyphicon-share"> </span>
-                        </a>
 
                         <button ng-click="model.functionCellUp($index,model.sheet._id)" class="btn btn-default">
                             <span class="glyphicon glyphicon-arrow-up"></span>
