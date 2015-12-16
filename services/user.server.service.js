@@ -13,6 +13,7 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
             gitHubUrl: String,
             openShiftUrl: String,
             phone: String,
+            smsSent: {type: Boolean, default: false},
             order: Number
         }, {collection: "lectures.ejs.mongo.student"});
         //}, {collection: "portal.user"});
@@ -65,6 +66,18 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy) {
     app.get("/api/portal/admin/user", ensureAdmin, getAllUsers);
     app.put("/api/portal/admin/user/:id", ensureAdmin, updateUserAsAdmin);
     app.delete("/api/portal/admin/user/:id", ensureAdmin, removeUserAsAdmin);
+    app.put("/api/portal/user/:userId/sendSms", sendSms);
+
+    function sendSms(req, res) {
+        UserModel
+            .findById(req.params.userId, function(err, user)
+            {
+                user.smsSent = true;
+                user.save(function(err, user){
+                    res.json(user);
+                });
+            });
+    }
 
     function ensureAuthenticated(req, res, next) {
         if (req.isAuthenticated()) { return next(); }

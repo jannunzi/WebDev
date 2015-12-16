@@ -13,7 +13,8 @@ module.exports = function(mongoose) {
             gitHubUrl: String,
             openShiftUrl: String,
             phone: String,
-            order: Number
+            order: Number,
+            smsSent: {type: Boolean, default: false},
         }, {collection: COLLECTION});
 
     return UserSchema;

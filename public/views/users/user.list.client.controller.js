@@ -9,6 +9,7 @@
         model.updateUserAsAdmin = updateUserAsAdmin;
         model.removeUser = removeUser;
         model.selectUser = selectUser;
+        model.sendSms = sendSms;
 
         function init() {
             UserService
@@ -23,6 +24,16 @@
                 });
         }
         init();
+
+        function sendSms(user) {
+            UserService
+                .sendSms(user._id)
+                .then(function(user){
+                    user.smsSent = true;
+                }, function(err){
+                    user.smsSent = false;
+                });
+        }
 
         function selectUser(index) {
             model.selectedIndex = index;

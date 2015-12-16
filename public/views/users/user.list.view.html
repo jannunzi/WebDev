@@ -67,7 +67,8 @@
                     <a href="tel:{{user.phone}}" target="_blank" class="btn btn-default">
                         <span class="glyphicon glyphicon-phone-alt"></span>
                     </a>
-                    <a href="sms:{{user.phone}}" target="_blank" class="btn btn-default">
+                    <a href="sms:{{user.phone}}" target="_blank" class="btn btn-default"
+                       ng-class="{'active': user.smsSent}" ng-click="model.sendSms(user)">
                         <span class="glyphicon glyphicon-comment"></span>
                     </a>
                 </td>

@@ -12,9 +12,25 @@
             updateUserAsAdmin: updateUserAsAdmin,
             getAllUsers: getAllUsers,
             getUserById: getUserById,
-            removeUser: removeUser
+            removeUser: removeUser,
+            sendSms: sendSms
         };
         return api;
+
+        function sendSms(userId) {
+            var deferred = $q.defer();
+
+            $http.put("/api/portal/user/"+userId+"/sendSms")
+                .then(
+                function(response){
+                   deferred.resolve(response);
+                },
+                function(err){
+                    deferred.reject(err);
+                }
+            );
+            return deferred.promise;
+        }
 
         function getUserById(id) {
             var deferred = $q.defer();
