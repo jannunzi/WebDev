@@ -28,7 +28,7 @@
         function sendSms(user) {
             UserService
                 .sendSms(user._id)
-                .then(function(user){
+                .then(function(response){
                     user.smsSent = true;
                 }, function(err){
                     user.smsSent = false;
