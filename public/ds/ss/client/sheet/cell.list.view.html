@@ -4,26 +4,21 @@
     <div ng-class="model.rightCol">
         <div>
             <h5>Visible:</h5>
-            <input type="checkbox" ng-checked="true" id="visible">
+            <input type="checkbox" ng-checked="true" id="visible" class="form-control">
             <br/>
 
             <h5>Read Only:</h5>
-            <input type="checkbox" ng-checked="true" id="editable">
+            <input type="checkbox" ng-checked="true" id="editable" class="form-control">
             <br/><br/>
 
             <h4>Style Editor</h4>
             <select ng-model="model.styleEditor" class="form-control">
                 <option value="">--None--</option>
-                <option value="h1">H1</option>
-                <option value="h2">H2</option>
-                <option value="h3">H3</option>
+                <option value="h1">Heading 1</option>
+                <option value="h2">Heading 2</option>
+                <option value="h3">Heading 3</option>
                 <option value="label">Label</option>
-                <option value="p">P</option>
-                <option value="b">Bold</option>
-                <option value="u">Underline</option>
-                <option value="i">Italic</option>
-                <option value="textarea">Text Area</option>
-
+                <option value="p">Text Area</option>
             </select>
             </br>
         </div>
@@ -46,7 +41,6 @@
             <div class="form-group">
                 <label for="length" class="col-sm-6 control-label">Length</label>
                 <div class="col-sm-10">
-
                 </div>
             </div>
             <div class="form-group">

@@ -3,24 +3,56 @@
         <div class="table borderless">
             <div ng-repeat="cell in model.sheet.cells"
                 ng-class="{'active': $index==model.functionCellIndex}">
-                <div ng-if="cell.visible==true && cell.editable == true && cell.cellStyle != 'textarea'">
-                    <input ng-model="cell.literal"
-                           ng-readonly="false"
-                           tabindex="{{$index}}"
-                           class="form-control"/>
-                </div>
+                <div ng-if="cell.visible == true">
+                    <div ng-show="cell.editable && cell.editable === true">
+                        <input ng-if="cell.cellStyle != 'p'"
+                               ng-model="cell.literal"
+                               tabindex="{{$index}}"
+                               class="form-control"/>
+                        <textarea ng-if="cell.cellStyle == 'p'" ng-model="cell.literal"
+                                  class="form-control"></textarea>
+                    </div>
 
-                <div ng-if="cell.visible==true && cell.editable == false">
-                    <textarea ng-model="cell.literal"/>
+                    <div ng-show="!cell.editable || cell.editable === false">
+                        <label ng-if="cell.cellStyle == 'label'">
+                            {{cell.literal}}
+                        </label>
+                        <h1 ng-if="cell.cellStyle == 'h1'">
+                            {{cell.literal}}
+                        </h1>
+                        <h2 ng-if="cell.cellStyle == 'h2'">
+                            {{cell.literal}}
+                        </h2>
+                        <h3 ng-if="cell.cellStyle == 'h3'">
+                            {{cell.literal}}
+                        </h3>
+                        <p ng-if="cell.cellStyle == 'p'">
+                            {{cell.literal}}
+                        </p>
+                        <div ng-if="!cell.cellStyle">
+                            {{cell.literal}}
+                        </div>
+                    </div>
                 </div>
+                <!--<div ng-if="cell.visible==true && cell.editable == true && cell.cellStyle != 'textarea'">-->
+                    <!--<input ng-model="cell.literal"-->
+                           <!--ng-readonly="false"-->
+                           <!--tabindex="{{$index}}"-->
+                           <!--class="form-control"/>-->
+                <!--</div>-->
 
-                <div ng-if="cell.visible==true && cell.editable == false && cell.cellStyle != 'textarea'">
-                    <input ng-model="cell.literal"
-                           id={{cell.cellStyle}}
-                           ng-readonly="true"
-                           tabindex="{{$index}}"
-                           class="form-control "/>
-                </div>
+                <!--<div ng-if="cell.visible==true && cell.editable == false">-->
+                    <!--<textarea ng-model="cell.literal"-->
+                              <!--class="form-control"/>-->
+                <!--</div>-->
+
+                <!--<div ng-if="cell.visible==true && cell.editable == false && cell.cellStyle != 'textarea'">-->
+                    <!--<input ng-model="cell.literal"-->
+                           <!--id={{cell.cellStyle}}-->
+                           <!--ng-readonly="true"-->
+                           <!--tabindex="{{$index}}"-->
+                           <!--class="form-control "/>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
