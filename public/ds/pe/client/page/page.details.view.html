@@ -114,7 +114,12 @@
             </div>
         </td>
         <td>
-
+            <button  ng-click="model.sortContentDown($index)" type="button" class="btn  btn-default pull-right space">
+                <span class="glyphicon glyphicon-arrow-down"/>
+            </button>
+            <button   ng-click="model.sortContentUp($index)" type="button" class="btn  btn-default pull-right space">
+                <span class="glyphicon glyphicon-arrow-up"/>
+            </button>
             <button ng-click="model.removeContent(content)" class="pull-right btn btn-danger space">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>

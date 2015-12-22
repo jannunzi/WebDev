@@ -14,12 +14,22 @@
             savePageContent    : savePageContent,
             saveContent     : saveContent,
             updatePageList : updatePageList,
+            updateContentList : updateContentList,
             addFieldToForm : addFieldToForm,
             removeContent : removeContent,
             removefieldContent: removefieldContent,
             editfieldContent:editfieldContent
         };
         return api;
+
+        function updateContentList(pageId,content){
+
+            $http.put("/api/lecture/mongo/pe/contentlist/", pageId ,content )
+                .success(function(response){
+                    deferred.resolve();
+                });
+
+        }
         function editfieldContent(pageId,formId,fieldIndex)
         {
             var deferred = $q.defer();

@@ -5,6 +5,7 @@ module.exports = function(app, model){
     app.post("/api/lecture/mongo/pe/page/:pageId/content/:contentType", addContent);
     app.delete("/api/lecture/mongo/pe/page/:id", deletePage);
     app.put("/api/lecture/mongo/pe/pagelist", updatePageList);
+    app.put("/api/lecture/mongo/pe/contentlist", updateContentList);
     app.put("/api/lecture/mongo/pe/page/:id/:label/:title", savePageContent);
     app.get("/api/lecture/mongo/pe/page/:pageId/form/:formId", abcd);
     app.post("/api/lecture/mongo/pe/page/:pageId/content1/:contentIndex", saveContent);
@@ -12,6 +13,12 @@ module.exports = function(app, model){
     app.delete("/api/deletePage/:pageId/:contentIndex", deletePageContent);
     app.delete("/api/lecture/mongo/pe/page/:pageId/formId/:formId/fieldIndex/:fieldIndex",removefieldContent);
     app.post("/api/editfield/:pageId/formId/:formId/fieldIndex/:fieldIndex", editfieldContent);
+
+   function updateContentList(req,res)
+   {
+       model.updateContentList(req.body);
+
+   }
 
     function editfieldContent(req,res)
     {

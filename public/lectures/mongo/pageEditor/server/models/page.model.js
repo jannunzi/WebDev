@@ -61,9 +61,16 @@ module.exports = function(mongoose, db){
         addFormToField: addFormToField,
         deleteContent : deleteContent,
         removefieldContent:removefieldContent,
-        editfieldContent:editfieldContent
+        editfieldContent:editfieldContent,
+        updateContentList:updateContentList
     };
     return api;
+
+    function updateContentList(pageId)
+    {
+
+
+    }
 
     function editfieldContent(pageId, formId,fieldIndex)
     {
