@@ -1,40 +1,149 @@
 <h4>Page Content Details</h4>
+<h3>{{model.page.label}}</h3>
+<h3>{{model.page.title}}</h3>
 
 <div ng-if="model.content.contentType=='HEADING'">
     <h5>Heading Editor</h5>
     <input class="form-control" placeholder="Header Text" ng-model="model.content.heading.content"/>
     <select class="form-control" ng-model="model.content.heading.size">
-        <option>H1</option>
-        <option>H2</option>
-        <option>H3</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
     </select>
 </div>
 
 <div ng-if="model.content.contentType=='LABEL'">
     <h5>Label Editor</h5>
-    <input class="form-control" />
+    <input class="form-control" ng-model="model.content.label.content" />
 </div>
 
 <div ng-if="model.content.contentType=='PARAGRAPH'">
     <h5>Paragraph Editor</h5>
-    <textarea class="form-control"></textarea>
+    <textarea class="form-control" ng-model="model.content.paragraph.content"></textarea>
 </div>
+
+
 
 <div ng-if="model.content.contentType=='LIST'">
     <h5>List Editor</h5>
-    <select class="form-control">
-        <option>Ordered</option>
-        <option>Unordered</option>
+    <select class="form-control" ng-model="model.content.list.listType">
+        <option>ORDERED</option>
+        <option>UNORDERED</option>
     </select>
-    <textarea class="form-control">
+    <textarea class="form-control" ng-model="model.content.list.items">
         Item 1
         Item 2
         Item 3
     </textarea>
 </div>
+<div ng-if="model.content.contentType=='BUTTON'">
+    <h5>Button Editor</h5>
+    <input class="form-control" ng-model="model.content.button.label"/>
+</div>
+<div ng-if="model.content.contentType=='TEXTAREA'">
+    <h5>TextArea Editor</h5>
+    <input class="form-control" ng-model="model.content.textarea.label"/>
+    <input class="form-control" ng-model="model.content.textarea.value" />
+</div>
+<div ng-if="model.content.contentType=='FORM'">
+    <h5>Form Editor</h5>
 
-<button ng-click="model.saveContent(mode.content)" class="btn btn-primary btn-block">Save</button>
+    <table class="table">
+    <tr class="table" ng-repeat = "field in model.content.form.fields">
+      <td>
+        <ng-switch on="field.field" ng-model="field.field">
+            <div class= col-lg-10 ng-switch-when="TEXT">
+                <input class="form-control" ng-model="field.label"/>
+
+                <input type="TEXT" placeholder="{{field.placeholder}}" ng-model="field.placeholder" class=" top input-width" />
+
+            </div>
+            <div class= col-lg-10 ng-switch-when="DATE">
+                <input class="form-control" ng-model="field.label"/>
+
+                <input type="date" placeholder="Select Date" class="top input-width" />
+            </div>
+            <div class= col-lg-10 ng-switch-when="TEXTAREA">
+                <input class="form-control" ng-model="field.label"/>
+
+                <textarea placeholder="{{field.placeholder}}" class="top input-width"></textarea>
+            </div>
+            <div class= col-lg-10 ng-switch-when="SELECT">
+                <input class="form-control" ng-model="field.label"/>
+
+                <select class="input-width top">
+                    <option>Select an option</option>
+                    <option value="{{option.value}}" ng-repeat="option in field.options">{{option.label}}
+                    </option>
+                </select>
+            </div>
+            <div class= col-lg-10 ng-switch-when="CHECKBOX">
+                <input class="form-control" ng-model="field.label"/>
+
+                <div>
+                    <div class="checkbox top" ng-repeat="option in field.options">
+                        <label>
+                            <input type="checkbox" name="{{field.labrl}}+{{field.id}}">{{option.label}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class= col-lg-10 ng-switch-when="RADIO">
+                <input class="form-control" ng-model="field.label"/>
+
+                <div class="radiobutton top" ng-repeat="option in field.options">
+                    <label>
+                        <input type="radio" name="{{field.labrl}}+{{field.id}}"> {{option.label}}
+                    </label>
+                </div>
+            </div>
+            <div class= col-lg-10 ng-switch-when="BUTTON">
+                <input class="form-control" ng-model="field.label"/>
+
+                <button class="top btn btn-primary">
+                    <span>{{field.label}}</span>
+                </button>
+            </div>
+
+
+        </ng-switch>
+      </td>
+
+        <td>
+        <button ng-click="model.removefieldContent(model.content._id,field)" class="btn btn-danger space pull-right">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+
+        </td>
+
+    </tr>
+
+
+</table>
+
+<div class="row top">
+    <div class="col-lg-10 top">
+<select class ="form-control" ng-model="model.content.form.fields">
+    <option value="">- Please Choose a Form Element -</option>
+    <option ng-repeat ="fo in fieldsOption">{{fo.name}}</option>
+
+
+</select>
+        </div>
+
+<div class="col-lg-2 top">
+<button ng-if ="model.content.contentType == 'FORM'" ng-click="model.addFieldToForm(model.content._id,model.content.form.fields)" class=" btn btn-warning  pull-right space">
+    <span class="glyphicon glyphicon-plus"></span>
+</button>
+    </div>
+    </div>
+</div>
+
+
+
+
+<button ng-click="model.saveContent(model.content)" class="top btn btn-primary btn-block">Save</button>
 
 {{model.content}}
 
-{{model.page}}
+

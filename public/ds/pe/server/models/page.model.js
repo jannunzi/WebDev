@@ -3,11 +3,12 @@ var q = require("q");
 module.exports = function(mongoose, db){
     var PageSchema = mongoose.Schema({
         "label": String,
+        "title": String,
         "created": {type: Date, default: Date.now},
         "content": [{
             "contentType": {
                 type: String,
-                enum: ["HEADING","LABEL", "PARAGRAPH", "LIST", "FORM"]
+                enum: ["HEADING","LABEL", "PARAGRAPH", "LIST", "INPUTAREA", "BUTTON"]
             },
             "heading": {
                 "size" : {type: Number, default:2},
@@ -23,8 +24,12 @@ module.exports = function(mongoose, db){
                 "listType" : {type: String, enum: ["ORDERED", "UNORDERED"], default: "ORDERED"},
                 "items": [String]
             },
-            "form" : {
-                "formId" : String
+            "inputarea" : {
+                "inputarea" : String,
+                "placeholder" : {type: String, default: " "}
+            },
+            "button" : {
+                "label"  : String
             }
         }]
     }, {collection: "ds.pageEditor.pages"});
@@ -32,10 +37,10 @@ module.exports = function(mongoose, db){
     var Page = mongoose.model("Page", PageSchema);
 
     var api = {
-        addPage: addPage,
-        addContent: addContent,
-        getAllPages: getAllPages,
-        getPageById: getPageById
+        addPage        : addPage,
+        addContent     : addContent,
+        getAllPages    : getAllPages,
+        getPageById    : getPageById
     };
     return api;
 
@@ -78,9 +83,12 @@ module.exports = function(mongoose, db){
 
     function addPage(page) {
         var deferred = q.defer();
+        console.log("(1) Add a page");
 
         Page.create(page, function(err, doc){
             Page.find(function(err, pages){
+                console.log("Pages>");
+                console.log(pages);
                 deferred.resolve(pages);
             });
         });
@@ -96,21 +104,7 @@ module.exports = function(mongoose, db){
         {
             Page.find(function(err, pages)
             {
-                deferred.resolve();
-            });
-        });
-        return deferred.promise;
-    }
-
-    /* Delete a page. */
-    function deletePage(page)
-    {
-        var deferred = q.defer();
-        Page.remove({_id: page.id}, function(err, doc)
-        {
-            Page.find(function(err, pages)
-            {
-                deferred.resolve();
+                deferred.resolve(pages);
             });
         });
         return deferred.promise;

@@ -1,25 +1,29 @@
-(function(){
+/**
+ * Created by shivastuti on 12/14/2015.
+ */
+(function() {
     angular
         .module("PageEditorApp")
-        .controller("PageDetailsController", PageDetailsController);
+        .controller("PagePreviewController", PagePreviewController);
 
-    function PageDetailsController(PageService, $routeParams) {
+    function PagePreviewController(PageService, $routeParams) {
         var pageId = $routeParams["pageId"];
 
         var model = this;
         model.addContent = addContent;
         model.removeContent = removeContent;
 
+
         function init() {
             PageService
                 .getPageById(pageId)
-                .then(function(page){
+                .then(function (page) {
                     model.page = page;
+                    console.log(model.page.content)
                 });
         }
+
         init();
-
-
         function addContent(contentType) {
             console.log(contentType)
 

@@ -3,26 +3,44 @@
 <table class="table">
     <tr>
         <td>
-            <input ng-model="model.page.label" class="form-control" placeholder="Page Name"/>
+            <input id="label" ng-model="model.page.label" class="form-control" placeholder="{{label}}"/>
         </td>
         <td>
-            <button ng-click="model.addPage(model.page)" class="btn btn-success">
+            <button ng-click="model.addPage(model.page)" class="btn btn-success pull-right space">
                 <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button ng-click="model.editPage()" class="btn btn-warning pull-right space">
+                <span class="glyphicon glyphicon-pencil"></span>
             </button>
         </td>
     </tr>
-    <tr ng-repeat="page in model.pages">
+    <tr ng-repeat="page in model.pages track by $index">
         <td>
+
             <a href="#/page/{{page._id}}/details">{{page.label}}</a>
-            <button ng-click="" type="button" class="btn btn-xs btn-default pull-right" style="margin-left: 10px;">
-                <span class="glyphicon glyphicon-sort"/>
+
+        </td>
+        <td>
+            <button ng-show="editMode" ng-click="model.sortPageDown($index)" type="button" class="btn btn-xs btn-default pull-right space">
+                <span class="glyphicon glyphicon-arrow-down"/>
             </button>
-            <button ng-click="model.deletePage(page)" type="button" class="btn btn-xs btn-danger pull-right" style="margin-left: 10px;">
+            <button  ng-show="editMode" ng-click="model.sortPageUp($index)" type="button" class="btn btn-xs btn-default pull-right space">
+                <span class="glyphicon glyphicon-arrow-up"/>
+            </button>
+            <a  ng-show="editMode" href="#/page/{{page._id}}/preview">
+                <button type="button" class="btn btn-xs btn-info pull-right space">
+                    <span class="glyphicon glyphicon-share"></span>
+                </button>
+            </a>
+            <button  ng-show="editMode" ng-click="model.deletePage(page)" type="button" class="btn btn-xs btn-danger pull-right space" >
                 <span class="glyphicon glyphicon-remove"/>
             </button>
-            <button ng-click="model.updatePageLabel(page)" type="button" class="btn btn-xs btn-warning pull-right">
-                <span class="glyphicon glyphicon-pencil"/>
-            </button>
+            <a  ng-show="editMode" href="#/page/{{page._id}}/newpage">
+                 <button type="button" class="btn btn-xs btn-warning pull-right space">
+                 <span class="glyphicon glyphicon-pencil"></span>
+               </button>
+            </a>
+
         </td>
     </tr>
 </table>

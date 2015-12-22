@@ -1,0 +1,27 @@
+<h2>New Page</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+            <input ng-model="model.page.label" class="form-control" placeholder="Page Name"/>
+    </div>
+    <div class="col-sm-12 top">
+            <input ng-model="model.page.title" class="form-control" placeholder="Title"/>
+      </div>
+
+
+</div>
+<div class ="alert alert-danger alert-dismissible top" role="alert"" data-ng-show="displayPageDeletePopup">
+    <h6>Are you sure you want to delete this page?</h6>
+    <div class="form-controls-alert">
+        <a href="" class="btn" data-ng-click="showDeletePagePopup(false)">No</a>
+        <a href="" class="btn btn-danger" data-ng-click="model.deletePage(model.page)">Yes</a>
+
+    </div>
+</div>
+<button ng-click="showDeletePagePopup(true, model.page)" type="button" class="btn btn-lg btn-danger pull-right top space" >
+    <span>Delete</span>
+</button>
+<button ng-click="model.savePageContent(model.page)" type="button" class="btn btn-lg btn-success pull-right top space" >
+    <span>Save</span>
+</button>
+{{model.content}}

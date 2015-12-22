@@ -1,8 +1,5 @@
-<h2>Page Details</h2>
-
-<h3>{{model.page.label}}</h3>
+<h3>{{model.page.label}} Preview</h3>
 <h3>{{model.page.title}}</h3>
-
 <table class="table">
     <tr ng-repeat="content in model.page.content" class="table">
         <td>
@@ -56,7 +53,7 @@
                                 <label>{{field.label}}</label>
                             </div>
                             <input type="date" placeholder="Select Date" class="input-width" />
-                         </div>
+                        </div>
                         <div ng-switch-when="TEXTAREA">
                             <div>
                                 <label>{{field.label}}</label>
@@ -113,38 +110,5 @@
 
             </div>
         </td>
-        <td>
-
-            <button ng-click="model.removeContent(content)" class="pull-right btn btn-danger space">
-                <span class="glyphicon glyphicon-remove"></span>
-            </button>
-            <a href="#/page/{{model.page._id}}/details/{{$index}}" class="pull-right btn btn-warning space">
-                <span class="glyphicon glyphicon-pencil"></span>
-            </a>
-
-        </td>
     </tr>
-    <tr>
-        <td >
-            <select ng-model="model.contentType" class="form-control top">
-                <option value="">- Please Choose a Content Type -</option>
-                <option ng-value="HEADING">HEADING</option>
-                <option ng-value="LABEL">LABEL</option>
-                <option ng-value="PARAGRAPH">PARAGRAPH</option>
-                <option ng-value="LIST">LIST</option>
-                <option ng-value="BUTTON">BUTTON</option>
-                <option ng-value="TEXTAREA">TEXTAREA</option>
-                <option ng-value="FORM">FORM</option>
-
-
-            </select>
-        </td>
-        <td>
-            <button ng-click="model.addContent(model.contentType)" class="top pull-right btn btn-success">
-                <span class="glyphicon glyphicon-plus"></span>
-            </button>
-        </td>
-    </tr>
-</table>
-
-{{model.page}}
+    </table>

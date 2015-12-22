@@ -5,10 +5,17 @@
 
     function PageListController(PageService, $scope) {
         var model = this;
-        model.addPage         = addPage;
-        model.updatePageLabel = updatePageLabel;
-        model.deletePage      = deletePage;
+        $scope.editMode = false;
+        $scope.label = "Page Name";
 
+
+        model.addPage           = addPage;
+        model.updatePageLabel   = updatePageLabel;
+        model.deletePage        = deletePage;
+        model.editPage          = editPage;
+        model.sortPageUp        = sortPageUp;
+        model.sortPageDown      = sortPageDown;
+        model.updatePageList    = updatePageList;
         function init() {
             PageService
                 .getAllPages()
@@ -22,9 +29,54 @@
             PageService
                 .addPage(page)
                 .then(function(pages){
+
                     model.pages = pages;
                 });
         }
+
+        function editPage()
+        {
+            $scope.editMode = !($scope.editMode);
+
+        }
+        /*Mode page up in the List*/
+        function sortPageUp(index)
+        {
+            if(index ==0)
+            {
+                return;
+            }
+            var temp = model.pages[index-1];
+            model.pages[index-1] = model.pages[index];
+            model.pages[index] = temp;
+
+            updatePageList();
+
+
+        }
+
+        /*Mode page down in the List*/
+        function sortPageDown(index)
+        {
+
+            if(index == model.pages.length-1)
+            {
+                return;
+            }
+            var temp = model.pages[index];
+            model.pages[index] = model.pages[index+1];
+            model.pages[index+1] = temp;
+
+            updatePageList();
+
+
+        }
+        function updatePageList()
+        {
+            PageService.updatePageList(model.pages);
+
+        }
+
 
         function updatePageLabel(page)
         {
