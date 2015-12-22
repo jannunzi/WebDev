@@ -30,11 +30,11 @@
         <option>ORDERED</option>
         <option>UNORDERED</option>
     </select>
-    <textarea class="form-control" ng-model="model.content.list.items">
-        Item 1
-        Item 2
-        Item 3
-    </textarea>
+    <div ng-repeat="item in model.content.list.items track by $index">
+        <input class="form-control" ng-model="model.content.list.items[$index]" />
+        </div>
+
+
 </div>
 <div ng-if="model.content.contentType=='BUTTON'">
     <h5>Button Editor</h5>
@@ -75,6 +75,7 @@
                     <option>Select an option</option>
                     <option value="{{option.value}}" ng-repeat="option in field.options">{{option.label}}
                     </option>
+
                 </select>
             </div>
             <div class= col-lg-10 ng-switch-when="CHECKBOX">

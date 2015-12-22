@@ -1,8 +1,8 @@
 <h3>{{model.page.label}} Preview</h3>
 <h3>{{model.page.title}}</h3>
-<table class="table">
-    <tr ng-repeat="content in model.page.content" class="table">
-        <td>
+<div>
+    <div ng-repeat="content in model.page.content" >
+        <div>
             <h1 ng-if="content.contentType=='HEADING' && content.heading.size=='1'">
                 {{content.heading.content}}
             </h1>
@@ -109,6 +109,6 @@
 
 
             </div>
-        </td>
-    </tr>
-    </table>
+        </div>
+    </div>
+    </div>
