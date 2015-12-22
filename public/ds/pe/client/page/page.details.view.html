@@ -4,7 +4,7 @@
 <h3>{{model.page.title}}</h3>
 
 <table class="table">
-    <tr ng-repeat="content in model.page.content" class="table">
+    <tr ng-repeat="content in model.page.content" class="table ">
         <td>
             <h1 ng-if="content.contentType=='HEADING' && content.heading.size=='1'">
                 {{content.heading.content}}
@@ -18,7 +18,7 @@
             <label ng-if="content.contentType=='LABEL'">
                 {{content.label.content}}
             </label>
-            <p ng-if="content.contentType=='PARAGRAPH'">
+            <p  ng-if="content.contentType=='PARAGRAPH'">
                 {{content.paragraph.content}}
             </p>
             <ul ng-if="content.contentType=='LIST' && content.list.listType == 'UNORDERED'">

@@ -3,32 +3,32 @@
 <div>
     <div ng-repeat="content in model.page.content" >
         <div>
-            <h1 ng-if="content.contentType=='HEADING' && content.heading.size=='1'">
+            <h1 class="top" ng-if="content.contentType=='HEADING' && content.heading.size=='1'">
                 {{content.heading.content}}
             </h1>
-            <h2 ng-if="content.contentType=='HEADING' && content.heading.size=='2'">
+            <h2 class="top" ng-if="content.contentType=='HEADING' && content.heading.size=='2'">
                 {{content.heading.content}}
             </h2>
-            <h3 ng-if="content.contentType=='HEADING' && content.heading.size=='3'">
+            <h3 class="top" ng-if="content.contentType=='HEADING' && content.heading.size=='3'">
                 {{content.heading.content}}
             </h3>
-            <label ng-if="content.contentType=='LABEL'">
+            <label class="top" ng-if="content.contentType=='LABEL'">
                 {{content.label.content}}
             </label>
-            <p ng-if="content.contentType=='PARAGRAPH'">
+            <p class="top" ng-if="content.contentType=='PARAGRAPH'">
                 {{content.paragraph.content}}
             </p>
-            <ul ng-if="content.contentType=='LIST' && content.list.listType == 'UNORDERED'">
+            <ul class="top" ng-if="content.contentType=='LIST' && content.list.listType == 'UNORDERED'">
                 <li ng-repeat="item in content.list.items">
                     {{item}}
                 </li>
             </ul>
-            <ol ng-if="content.contentType=='LIST' && content.list.listType == 'ORDERED'">
+            <ol class="top" ng-if="content.contentType=='LIST' && content.list.listType == 'ORDERED'">
                 <li ng-repeat="item in content.list.items">
                     {{item}}
                 </li>
             </ol>
-            <button class="btn btn-primary" ng-if="content.contentType=='BUTTON'">
+            <button class="btn btn-primary top" ng-if="content.contentType=='BUTTON'">
                 {{content.button.label}}
             </button>
             <div ng-if="content.contentType=='TEXTAREA'">
@@ -38,29 +38,29 @@
                 <input type="TEXTAREA" placeholder="{{content.textarea.value}}" class="input-width" />
             </div>
             <div ng-if="content.contentType=='FORM'">
-                {{content.form.title}}
+
 
                 <div ng-repeat = "field in content.form.fields">
                     <ng-switch on="field.field" ng-model="field.field">
-                        <div ng-switch-when="TEXT">
+                        <div ng-switch-when="TEXT" class="top">
                             <div>
                                 <label>{{field.label}}</label>
                             </div>
                             <input type="TEXT" placeholder="{{field.placeholder}}" class="input-width" />
                         </div>
-                        <div ng-switch-when="DATE">
+                        <div ng-switch-when="DATE" class="top">
                             <div>
                                 <label>{{field.label}}</label>
                             </div>
                             <input type="date" placeholder="Select Date" class="input-width" />
                         </div>
-                        <div ng-switch-when="TEXTAREA">
+                        <div ng-switch-when="TEXTAREA" class="top">
                             <div>
                                 <label>{{field.label}}</label>
                             </div>
                             <textarea placeholder="{{field.placeholder}}" class="input-width"></textarea>
                         </div>
-                        <div ng-switch-when="SELECT">
+                        <div ng-switch-when="SELECT" class="top">
                             <div>
                                 <label>{{field.label}}</label>
                             </div>
@@ -70,7 +70,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div ng-switch-when="CHECKBOX">
+                        <div ng-switch-when="CHECKBOX" class="top">
                             <div>
                                 <label>{{field.label}}</label>
                             </div>
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-switch-when="RADIO">
+                        <div ng-switch-when="RADIO" class="top">
                             <div>
                                 <label>{{field.label}}</label>
                             </div>
@@ -92,10 +92,8 @@
                                 </label>
                             </div>
                         </div>
-                        <div ng-switch-when="BUTTON">
-                            <div>
-                                <label>{{field.label}}</label>
-                            </div>
+                        <div ng-switch-when="BUTTON" class="top">
+
                             <button class="btn btn-primary">
                                 <span>{{field.label}}</span>
                             </button>
