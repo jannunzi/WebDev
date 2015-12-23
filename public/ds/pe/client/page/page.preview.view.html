@@ -31,13 +31,13 @@
             <button class="btn btn-primary top" ng-if="content.contentType=='BUTTON'">
                 {{content.button.label}}
             </button>
-            <div ng-if="content.contentType=='TEXTAREA'">
+            <div class="top" ng-if="content.contentType=='TEXTAREA'">
                 <div>
                     <label>{{content.textarea.label}}</label>
                 </div>
                 <input type="TEXTAREA" placeholder="{{content.textarea.value}}" class="input-width" />
             </div>
-            <div ng-if="content.contentType=='FORM'">
+            <div class="top" ng-if="content.contentType=='FORM'">
 
 
                 <div ng-repeat = "field in content.form.fields">
