@@ -220,4 +220,6 @@ require("./experiments/ejs/directory/app.js")(app);
 require("./experiments/ejs/explorer/app.js")(app, mongoose, __dirname);
 require("./views/experiments/ejs/wam/app.js")(app, mongoose);
 
+require("./public/experiments/braintree/server/app.js")(app);
+
 app.listen(port, ipaddress);
