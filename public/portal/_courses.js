@@ -6,7 +6,7 @@
         {
           visible: true,
           available: true,
-          title: 'Fall 2015',
+          title: 'Course Videos',
           lectures: [
             {title: 'Week 1'},
             {title: 'Week 2'},
