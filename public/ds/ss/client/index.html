@@ -2,15 +2,26 @@
 <html lang="en" ng-app="SheetEditorApp">
 <head>
     <link href="../../../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../css/sheetEditor.css" rel="stylesheet"/>
     <script src="../../../js/angular.min.js"></script>
     <script src="../../../js/angular-route.min.js"></script>
     <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="sheet/sheet.details.controller.js"></script>
+    <script src="sheet/sheet.list.controller.js"></script>
+    <script src="services/sheet.service.client.js"></script>
+    <script src="services/cell.service.client.js"></script>
     <meta charset="UTF-8">
+
     <title></title>
+    <style>
+        .borderless td, .borderless th {
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Spread Sheet Editor</h1>
         <div ng-view></div>
     </div>
 </body>

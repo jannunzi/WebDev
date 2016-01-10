@@ -1,0 +1,482 @@
+<h1>Spread Sheet Editor</h1>
+<h2>Sheet Details
+    <a href="#/sheet/{{model.sheet._id}}/preview"class="btn btn-info">
+        <span class="glyphicon glyphicon-share"> </span>
+    </a>
+</h2>
+
+<div class="row">
+    <div ng-class="model.leftCol" ng-if="model.showSheetCell">
+        <table class="table borderless">
+            <tr ng-repeat="cell in model.sheet.cells"
+                ng-class="{'active': $index==model.functionCellIndex}">
+                <td>{{$index}}</td>
+                <td ng-if="!cell.arithmetic && !cell.ifObj">
+                    <span ng-if="cell.cellStyle == 'p'">
+                        <textarea ng-model="cell.literal"
+                                  ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                                  class="form-control"></textarea>
+                    </span>
+                    <span ng-if="cell.cellStyle == 'label'">
+                        <input ng-model="cell.literal"
+                           id={{cell.cellStyle}}
+                           ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                           class="form-control"/>
+                    </span>
+                    <span ng-if="cell.cellStyle == 'h1'">
+                        <input
+                            ng-model="cell.literal"
+                            id={{cell.cellStyle}}
+                            ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                            class="form-control"/>
+                    </span>
+                    <span ng-show="cell.cellStyle == 'h2'">
+                        <input ng-model="cell.literal"
+                           id={{cell.cellStyle}}
+                           ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                           class="form-control"/>
+                    </span>
+                    <span ng-show="cell.cellStyle == 'h3'">
+                        <input ng-model="cell.literal"
+                           id={{cell.cellStyle}}
+                           ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                           class="form-control"/>
+                    </span>
+                    <span ng-show="!cell.cellStyle">
+                        <input ng-model="cell.literal"
+                           ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                           class="form-control"/>
+                    </span>
+                </td>
+                <td ng-if="cell.arithmetic || cell.ifObj">
+                    <span ng-if="cell.cellStyle == 'p'">
+                        <textarea ng-model="cell.literal"
+                                  ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                                  ng-readonly="true"
+                                  class="form-control"></textarea>
+                    </span>
+                    <span ng-if="cell.cellStyle == 'label'">
+                        <input ng-model="cell.literal"
+                               id={{cell.cellStyle}}
+                               ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                               ng-readonly="true"
+                               class="form-control"/>
+                    </span>
+                    <span ng-if="cell.cellStyle == 'h1'">
+                        <input
+                                ng-model="cell.literal"
+                                id={{cell.cellStyle}}
+                                ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                                ng-readonly="true"
+                                class="form-control"/>
+                    </span>
+                    <span ng-show="cell.cellStyle == 'h2'">
+                        <input ng-model="cell.literal"
+                               id={{cell.cellStyle}}
+                               ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                               ng-readonly="true"
+                               class="form-control"/>
+                    </span>
+                    <span ng-show="cell.cellStyle == 'h3'">
+                        <input ng-model="cell.literal"
+                               id={{cell.cellStyle}}
+                               ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                               ng-readonly="true"
+                               class="form-control"/>
+                    </span>
+                    <span ng-show="!cell.cellStyle">
+                        <input ng-model="cell.literal"
+                               ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"
+                               ng-readonly="true"
+                               class="form-control"/>
+                    </span>
+                </td>
+
+                <!--<td ng-if="cell.cellStyle == 'p' && cell.editable == false">-->
+                    <!--<textarea ng-model="cell.literal" cols="60" rows="3"-->
+                              <!--ng-readonly="true"-->
+                              <!--ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"-->
+                              <!--class="form-control"></textarea>-->
+                <!--</td>-->
+
+                <!--<td ng-if="cell.arithmetic !=undefined || cell.ifObj !=undefined && cell.cellStyle != 'p'">-->
+                    <!--<input ng-model="cell.literal"-->
+                           <!--id={{cell.cellStyle}}-->
+                           <!--ng-readonly="true"-->
+                           <!--tabindex="{{$index}}"-->
+                           <!--class="form-control"/>-->
+                    <!--<span class="input-group-btn"></span>-->
+                <!--</td>-->
+
+                <!--<td ng-if="cell.arithmetic == undefined && cell.ifObj == undefined && cell.cellStyle != 'p'">-->
+                    <!--<input ng-model="cell.literal"-->
+                           <!--ng-change="model.updateCell(model.sheet._id, $index, cell) && updateReferences(model.sheet._id, $index, cell)"-->
+                           <!--ng-readonly="false"-->
+                           <!--tabindex="{{$index}}"-->
+                           <!--class="form-control"/>-->
+                <!--</td>-->
+
+                <td>
+                    <span ng-show="true">
+                        <button ng-click="model.removeCell(model.sheet._id, $index)"
+                                class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove">
+                            </span>
+                        </button>
+
+                          <a href="#/sheet/{{model.sheet._id}}/cell/{{model.sheet.cells[$index]._id}}"class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>
+                          </a>
+
+                        <button ng-click="model.functionCellUp($index,model.sheet._id)" class="btn btn-default">
+                            <span class="glyphicon glyphicon-arrow-up"></span>
+                        </button>
+
+                        <button ng-click="model.functionCellDown($index,model.sheet._id)" class="btn btn-default">
+                            <span class="glyphicon glyphicon-arrow-down"></span>
+                        </button>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input ng-model="model.cell.literal"
+                           class="form-control"/>
+                </td>
+                <td>
+                    <button ng-click="model.addCell(model.sheet._id, model.cell)"
+                            class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus">
+                        </span>
+                    </button>
+                    <button ng-click="model.functionCell($index)"
+                            class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!--<div ng-class="model.rightCol" ng-if="model.showFunctionCell" class="form-horizontal">-->
+        <!--<div>-->
+            <!--&lt;!&ndash;Pulkit&ndash;&gt;-->
+            <!--<h5>Visible:</h5>-->
+                <!--<input type="checkbox" ng-checked="true" ng-model="model.visible">-->
+            <!--<br/>-->
+
+            <!--<h5>Read Only:</h5>-->
+            <!--<input type="checkbox" ng-checked="true" ng-model="model.editable">-->
+            <!--<br/><br/>-->
+
+            <!--<h4>Style Editor</h4>-->
+            <!--<select ng-model="model.styleEditor" class="form-control">-->
+                <!--<option value="None">&#45;&#45;None&#45;&#45;</option>-->
+                <!--<option value="h1">H1</option>-->
+                <!--<option value="h2">H2</option>-->
+                <!--<option value="h3">H3</option>-->
+                <!--<option value="p">P</option>-->
+            <!--</select>-->
+            <!--</br>-->
+        <!--</div>-->
+
+        <!--<h4>Function Editor</h4>-->
+
+        <!--<select ng-model="model.editor" class="form-control">-->
+            <!--<option>IF</option>-->
+            <!--<option>SUM</option>-->
+            <!--<option>AVERAGE</option>-->
+            <!--<option>MAX</option>-->
+            <!--<option>MIN</option>-->
+            <!--<option>DATE</option>-->
+            <!--<option>LENGTH</option>-->
+            <!--<option>REPLACE</option>-->
+        <!--</select>-->
+
+        <!--<div ng-if="model.editor=='LENGTH'">-->
+            <!--<h5>String Length Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="length" class="col-sm-2 control-label">Length</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="length"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].length.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<button ng-click="model.functionCellDone(model.sheet._id, model.functionCellIndex, model.sheet.cells[model.functionCellIndex].length.inputCell1,'','Length',model.styleEditor, model.visible)" class="btn btn-block btn-success">Done</button>-->
+        <!--</div>-->
+
+        <!--<div ng-if="model.editor=='REPLACE'">-->
+            <!--<h5>String Replace Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="replace" class="col-sm-2 control-label">Replace</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="value1"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].replace.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Replace</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<input type="text" name="replace"-->
+                           <!--ng-model="replace">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Replace</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<input type="text" name="replaceBy"-->
+                           <!--ng-model="replaceBy">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<button ng-click="model.functionCellReplaceDone(-->
+            <!--model.sheet._id,-->
+            <!--model.functionCellIndex,-->
+            <!--model.sheet.cells[model.functionCellIndex].replace.inputCell1, replace,replaceBy)"-->
+                    <!--class="btn btn-block btn-success">Done</button>-->
+        <!--</div>-->
+
+        <!--<div ng-if="model.editor=='DATE'">-->
+            <!--<h5>Date Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="date" class="col-sm-2 control-label">Max</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="value1"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].date.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value2</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].date.inputCell2">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].date.inputCell1,model.sheet.cells[model.functionCellIndex].date.inputCell2,'Date',model.styleEditor,model.visible)" class="btn btn-block btn-success">Done</button>-->
+        <!--</div>-->
+
+        <!--<div ng-if="model.editor=='MIN'">-->
+            <!--<h5>Min Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="min" class="col-sm-2 control-label">Max</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="value1"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].min.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value2</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].min.inputCell2">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].min.inputCell1,model.sheet.cells[model.functionCellIndex].min.inputCell2,'Min',model.styleEditor,model.visible)" class="btn btn-block btn-success">Done</button>-->
+        <!--</div>-->
+
+        <!--<div ng-if="model.editor=='MAX'">-->
+            <!--<h5>Max Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="max" class="col-sm-2 control-label">Max</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="value1"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].max.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value2</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].max.inputCell2">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].max.inputCell1,model.sheet.cells[model.functionCellIndex].max.inputCell2,'Max',model.styleEditor,model.visible)" class="btn btn-block btn-success">Done</button>-->
+        <!--</div>-->
+
+        <!--<div ng-if="model.editor=='AVERAGE'">-->
+            <!--<h5>Average Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="average" class="col-sm-2 control-label">Average</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="value1"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].average.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value2</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].average.inputCell2">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].average.inputCell1,model.sheet.cells[model.functionCellIndex].average.inputCell2,'Avg',model.styleEditor,model.visible)" class="btn btn-block btn-success">Done</button>-->
+
+        <!--</div>-->
+
+        <!--<div ng-if="model.editor=='SUM'">-->
+            <!--<h5>Sum Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="sum" class="col-sm-2 control-label">Sum</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="value1"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].sum.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value2</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].sum.inputCell2">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<button ng-click="model.functionCellDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].sum.inputCell1,model.sheet.cells[model.functionCellIndex].sum.inputCell2,'Sum',model.styleEditor,model.visible)" class="btn btn-block btn-success">Done</button>-->
+        <!--</div>-->
+
+        <!--<div ng-if="model.editor=='IF'">-->
+            <!--<h5>If Editor</h5>-->
+            <!--<div class="form-group">-->
+                <!--<label for="if" class="col-sm-2 control-label">If</label>-->
+                <!--<div class="col-sm-10">-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Value 1</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control" id="value1"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].if.inputCell1">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Is</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].if.operation">-->
+                        <!--<option ng-value="EQ">Equal</option>-->
+                        <!--<option ng-value="NEQ">Not equal</option>-->
+                        <!--<option ng-value="GT">Greater</option>-->
+                        <!--<option ng-value="GTE">Greater or equal</option>-->
+                        <!--<option ng-value="LT">Less than</option>-->
+                        <!--<option ng-value="LTE">Less than or equal</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Than</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].if.inputCell2">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Then</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].if.thenCell">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="value1" class="col-sm-2 control-label">Else</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<select class="form-control"-->
+                            <!--ng-options="cell as cell.literal for cell in model.sheet.cells track by cell._id"-->
+                            <!--ng-model="model.sheet.cells[model.functionCellIndex].if.elseCell">-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<button ng-click="model.functionCellIfDone(model.sheet._id,model.functionCellIndex,model.sheet.cells[model.functionCellIndex].if.inputCell1,model.sheet.cells[model.functionCellIndex].if.inputCell2,model.sheet.cells[model.functionCellIndex].if.operation,model.sheet.cells[model.functionCellIndex].if.thenCell,model.sheet.cells[model.functionCellIndex].if.elseCell)" class="btn btn-block btn-success">Done</button>-->
+
+        <!--</div>-->
+        <!--<div>-->
+            <!--<br>-->
+            <!--<button ng-click="model.functionDone(model.sheet._id,model.functionCellIndex,model.styleEditor,model.visible, model.editable)" class="btn btn-block btn-success">Done</button>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

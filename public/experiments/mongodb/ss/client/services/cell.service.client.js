@@ -24,7 +24,6 @@
 
         function addCell(sheetId, cell) {
             var deferred = $q.defer();
-
             $http.post("/experiments/mongodb/ss/sheet/"+sheetId+"/cell", cell)
                 .success(function(response){
                     deferred.resolve(response);
