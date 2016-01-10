@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({ secret: 'this is the secret' }));
+app.use(session({ secret: process.env.PASSPORT_SECRET }));
 app.use(cookieParser())
 app.use(passport.initialize());
 app.use(passport.session());
@@ -221,9 +221,5 @@ require("./experiments/ejs/explorer/app.js")(app, mongoose, __dirname);
 require("./views/experiments/ejs/wam/app.js")(app, mongoose);
 
 require("./public/experiments/braintree/server/app.js")(app);
-
-app.get("/api/process/env", function(req, res){
-    res.send(process.env);
-});
 
 app.listen(port, ipaddress);
