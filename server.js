@@ -222,4 +222,8 @@ require("./views/experiments/ejs/wam/app.js")(app, mongoose);
 
 require("./public/experiments/braintree/server/app.js")(app);
 
+app.get("/api/process/env", function(req, res){
+    res.send(process.env);
+});
+
 app.listen(port, ipaddress);
