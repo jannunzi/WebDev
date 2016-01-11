@@ -1,0 +1,112 @@
+<h3>{{model.page.label}} Preview</h3>
+<h3>{{model.page.title}}</h3>
+<div>
+    <div ng-repeat="content in model.page.content" >
+        <div>
+            <h1 class="top" ng-if="content.contentType=='HEADING' && content.heading.size=='1'">
+                {{content.heading.content}}
+            </h1>
+            <h2 class="top" ng-if="content.contentType=='HEADING' && content.heading.size=='2'">
+                {{content.heading.content}}
+            </h2>
+            <h3 class="top" ng-if="content.contentType=='HEADING' && content.heading.size=='3'">
+                {{content.heading.content}}
+            </h3>
+            <label class="top" ng-if="content.contentType=='LABEL'">
+                {{content.label.content}}
+            </label>
+            <p class="top" ng-if="content.contentType=='PARAGRAPH'">
+                {{content.paragraph.content}}
+            </p>
+            <ul class="top" ng-if="content.contentType=='LIST' && content.list.listType == 'UNORDERED'">
+                <li ng-repeat="item in content.list.items">
+                    {{item}}
+                </li>
+            </ul>
+            <ol class="top" ng-if="content.contentType=='LIST' && content.list.listType == 'ORDERED'">
+                <li ng-repeat="item in content.list.items">
+                    {{item}}
+                </li>
+            </ol>
+            <button class="btn btn-primary top" ng-if="content.contentType=='BUTTON'">
+                {{content.button.label}}
+            </button>
+            <div class="top" ng-if="content.contentType=='TEXTAREA'">
+                <div>
+                    <label>{{content.textarea.label}}</label>
+                </div>
+                <input type="TEXTAREA" placeholder="{{content.textarea.value}}" class="input-width" />
+            </div>
+            <div class="top" ng-if="content.contentType=='FORM'">
+
+
+                <div ng-repeat = "field in content.form.fields">
+                    <ng-switch on="field.field" ng-model="field.field">
+                        <div ng-switch-when="TEXT" class="top">
+                            <div>
+                                <label>{{field.label}}</label>
+                            </div>
+                            <input type="TEXT" placeholder="{{field.placeholder}}" class="input-width" />
+                        </div>
+                        <div ng-switch-when="DATE" class="top">
+                            <div>
+                                <label>{{field.label}}</label>
+                            </div>
+                            <input type="date" placeholder="Select Date" class="input-width" />
+                        </div>
+                        <div ng-switch-when="TEXTAREA" class="top">
+                            <div>
+                                <label>{{field.label}}</label>
+                            </div>
+                            <textarea placeholder="{{field.placeholder}}" class="input-width"></textarea>
+                        </div>
+                        <div ng-switch-when="SELECT" class="top">
+                            <div>
+                                <label>{{field.label}}</label>
+                            </div>
+                            <select class="input-width">
+                                <option>Select an option</option>
+                                <option value="{{option.value}}" ng-repeat="option in field.options">{{option.label}}
+                                </option>
+                            </select>
+                        </div>
+                        <div ng-switch-when="CHECKBOX" class="top">
+                            <div>
+                                <label>{{field.label}}</label>
+                            </div>
+                            <div>
+                                <div class="checkbox" ng-repeat="option in field.options">
+                                    <label>
+                                        <input type="checkbox" name="{{field.labrl}}+{{field.id}}">{{option.label}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-when="RADIO" class="top">
+                            <div>
+                                <label>{{field.label}}</label>
+                            </div>
+                            <div class="radiobutton" ng-repeat="option in field.options">
+                                <label>
+                                    <input type="radio" name="{{field.labrl}}+{{field.id}}"> {{option.label}}
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-switch-when="BUTTON" class="top">
+
+                            <button class="btn btn-primary">
+                                <span>{{field.label}}</span>
+                            </button>
+                        </div>
+
+
+
+                    </ng-switch>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    </div>

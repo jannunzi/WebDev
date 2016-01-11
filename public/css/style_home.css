@@ -59,8 +59,16 @@ h2 {
     margin-bottom:15px;
 	color:#334D5C;
 }
+
 footer p{
 	text-align:center;	
+}
+.space{
+	margin-left: 10px;
+}
+.top
+{
+	margin-top: 20px;
 }
 /*  landing page  */
 

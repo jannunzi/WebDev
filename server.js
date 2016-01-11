@@ -205,6 +205,7 @@ require("./public/lectures/mongo/pageEditor/server/app.js")(app, mongoose, db);
 require("./public/portal/server/app.js")(app, db, mongoose);
 
 require("./public/experiments/mongodb/ss/server/app.js")(app, db, mongoose);
+//require("./public/ds/pe/server/app.js")(app, db, mongoose);
 
 require("./public/ds/ss/server/app.js")(app, db, mongoose);
 require("./public/ds/fc/server/app.js")(app, db, mongoose);

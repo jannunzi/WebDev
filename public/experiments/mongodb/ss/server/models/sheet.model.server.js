@@ -56,11 +56,14 @@ module.exports = function(db, mongoose) {
 
     function createSheet(sheet) {
         var deferred = q.defer();
+        console.log("Create a sheet");
 
         SheetModel.create(sheet, function(err, sheet) {
             if(err) {
                 deferred.reject(err);
             } else {
+                console.log("Sheet>");
+                console.log(sheet);
                 deferred.resolve(sheet);
             }
         });
