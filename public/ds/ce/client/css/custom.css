@@ -1,0 +1,50 @@
+.right-padding {
+    padding-right: 10px
+}
+
+
+a {
+    text-decoration: none !important;
+}
+a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary {
+    background: #009933;
+    color: #fff;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary:hover {
+    background: #006622;
+
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary:disabled{
+    background: rgba(0, 153, 51, 0.50);
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-secondary {
+    background: #cc0000;
+    color: #fff;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-secondary:hover {
+    background: #990000;
+
+}
+
+/*.ta-scroll-window{*/
+    /*height: 305px;*/
+/*}*/
+
+/*.ta-scroll-window p{*/
+    /*height: 290px !important;*/
+    /*max-height:290px;*/
+    /*resize:none;*/
+
+/*}*/
+
+/*'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'*/

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Vendor StyleSheets-->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.5.5/css/ngDialog.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.5.5/css/ngDialog-theme-default.min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300">
+
+
+
+<!--Vendor JS-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+
+<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+
+
+<script type="text/javascript" src="js/tinymce.js"></script>
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.5.5/js/ngDialog.min.js"></script>
+
+
+
+
+
+<!--Custom StyleSheets-->
+<link rel="stylesheet" href="css/custom.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body style="padding-top:50px" ng-app="CourseEditorApp">
+
+    <div ng-include src="'views/header/header.view.html'">
+    </div>
+
+ <div ng-view ></div>
+
+</body>
+
+<!--Controllers-->
+<script src="app.js"></script>
+<script src="config.js"></script>
+<script src="views/course/course.list.controller.js"></script>
+<script src="views/header/header.controller.js"></script>
+
+<!--Services-->
+<script src="services/CourseService.js"></script>
+
+
+
+</html>

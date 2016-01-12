@@ -1,0 +1,9 @@
+<div class="ngdialog-message">
+<h4>Choose a name for {{model.addingType}}:</h4>
+    <input  class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="name" />
+</div>
+<div class="ngdialog-buttons" style="padding-top:20px;">
+    <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+    <button ng-disabled="name==undefined || name.length==0" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(name)>Add</button>
+</div>
+
