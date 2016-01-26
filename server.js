@@ -154,6 +154,10 @@ app.get('/hello', function(req, res) {
     res.render('hello.ejs');
 });
 
+app.get('/tools/experiment', function(req, res) {
+    res.render('tools/experimentView.ejs', {req: req});
+});
+
 app.get('/lecture/ejs/hello', function(req, res){
     res.render('lecture/hello.ejs');
 })
