@@ -1,0 +1,7 @@
+.collapsable::after {
+    content: "<a style='position:absolute;top:0px;right:0px'>toggle</a>"
+}
+
+a {
+    cursor: pointer;
+}
