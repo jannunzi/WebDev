@@ -1,9 +1,43 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/css/jga.css" rel="stylesheet"/>
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/angular.min.js"></script>
 <script src="/experiments/getfile/client/directive/getfile.js"></script>
+<script src="/experiments/directives/escapehtml/escapeHtml.js"></script>
 <script src="app.js"></script>
+<script src="helloWorld.js"></script>
 <div class="container" ng-app="HelloWorldDirective">
     <h1>Hello World Directive</h1>
-    <getfile file="/public/experiments/directives/helloworld/index.html"/>
+    <p>
+        AngularJS directive allow creating custom HTML elements or
+        extend the functionality of existing HTML elements. This
+        example illustrates creating the simplest directive. Let's
+        create a <code>&lt;hello-world&gt;</code> directive which just says
+        "Hello World". The "Hello World" message below is created
+        by the <code>&lt;hello-world&gt;</code> element.
+    </p>
+
+    <hello-world></hello-world>
+
+    <h2>This App</h2>
+
+    <p>
+        This application declares a module called <code>HelloWorldDirective</code>
+    </p>
+
+    <getfile file="/public/experiments/directives/helloworld/app.js"></getfile>
+
+    <h2>Directive</h2>
+
+    <p>
+        Then in a separate <code>helloWorld.js</code> file we implement the
+        directive
+    </p>
+
+    <getfile file="/public/experiments/directives/helloworld/helloWorld.js"></getfile>
+
+    <h2>This File</h2>
+
+    <getfile file="/public/experiments/directives/helloworld/index.html"></getfile>
+
 </div>

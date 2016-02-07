@@ -1,4 +1,12 @@
 (function() {
+
+    // decalre a HelloWorldDirective module
+    // it depends on other directives we've
+    // implemented elsewhere
     angular
-        .module("HelloWorldDirective", ["GetFileModule"]);
+        .module("HelloWorldDirective",
+        [
+            "escapeHtml",
+            "GetFileModule"
+        ]);
 })();
