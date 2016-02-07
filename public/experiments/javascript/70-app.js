@@ -1,4 +1,4 @@
-(function(math)
+(function()
 {
   alert(math.add(2,3));
-})(math);
+})();
