@@ -1,0 +1,42 @@
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/css/jga.css" rel="stylesheet"/>
+<script src="/js/jquery.js"></script>
+<script src="/js/angular.js"></script>
+<script src="/directives/escapeHtml/escapeHtml.js"></script>
+<script src="/directives/getServerFile/client/directive/getServerFile.js"></script>
+<script src="jgaTable.js"></script>
+<script src="app.js"></script>
+
+<div class="container"
+     ng-app="DirectiveDataExperiment">
+
+    <div ng-controller="DataController">
+        <h1>Directive Data</h1>
+
+        <p>
+            In this example a controller manages data rendered by
+            a directive. The data consists of the following user array
+        </p>
+
+        <pre>{{users}}</pre>
+
+        <p>
+            To pass the <code>users</code> data to the directive,
+            use the <code>data</code> attribute set to the
+            <code>users</code> scope variable as follows
+        </p>
+
+        <escape-html height="auto" toggle="false">
+<jga-table caption="'Data Table'" data="users"></jga-table>
+        </escape-html>
+
+        <h2>Directive</h2>
+
+        <get-server-file file="/public/experiments/directives/data/jgaTable.js"></get-server-file>
+
+        <h2>This File</h2>
+
+        <get-server-file file="/public/experiments/directives/data/index.html"></get-server-file>
+
+    </div>
+</div>

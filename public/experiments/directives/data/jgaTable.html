@@ -1,0 +1,16 @@
+<!-- jgaTable.html -->
+<h2>{{caption}}</h2>
+<div class="table-responsive jga-table">
+    <table class="table table-striped" border="{{border}}">
+        <thead>
+            <tr>
+                <th ng-repeat="(key, value) in data[0]">{{key}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in data">
+                <td ng-repeat="col in row">{{col}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
