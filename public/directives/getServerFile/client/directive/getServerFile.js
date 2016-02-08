@@ -1,9 +1,9 @@
 (function(){
     angular
-        .module("GetFileModule", [])
-        .directive("getfile", GetFile);
+        .module("getServerFile", [])
+        .directive("getServerFile", getServerFile);
 
-    function GetFile($http) {
+    function getServerFile($http) {
 
         function expandCollapse() {
             var element = $(this).parent().find("pre");
