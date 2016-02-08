@@ -7,6 +7,11 @@
 
         function link(scope, element, attrs) {
 
+            var height = "120px";
+            if ( attrs.height ) {
+                height = attrs.height;
+            }
+
             // get the html content of the element
             var html = element.html();
 
@@ -18,15 +23,18 @@
             var a = $("<a style='position:absolute;top:0px;right:20px'>toggle</a>")
                 .click(expandCollapse);
 
-            var div = $("<div style='position:relative'>")
-                .append(a);
+            var div = $("<div style='position:relative'>");
+
+            if (attrs.toggle !== "false") {
+                div.append(a);
+            }
 
             // add encoded content to a pre
             // set its initial height to 120px
             // if pre is clicked toggle height
             var pre = $("<pre>")
                 .html(html)
-                .css("height", "120px");
+                .css("height", height);
 
             div.append(pre);
 

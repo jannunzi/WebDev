@@ -3,6 +3,6 @@
         .module("EscapeHtmlTest",
             [
                 "escapeHtml",
-                "GetFileModule"
+                "getServerFile"
             ]);
 })();
