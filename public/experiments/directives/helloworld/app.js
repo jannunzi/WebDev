@@ -1,12 +1,11 @@
 (function() {
 
-    // decalre a HelloWorldDirective module
+    // declare a HelloWorldDirective module
     // it depends on other directives we've
     // implemented elsewhere
     angular
-        .module("HelloWorldDirective",
-        [
+        .module("HelloWorldDirective", [
             "escapeHtml",
-            "GetFileModule"
+            "getServerFile"
         ]);
 })();

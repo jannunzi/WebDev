@@ -2,8 +2,8 @@
 <link href="/css/jga.css" rel="stylesheet"/>
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/angular.min.js"></script>
-<script src="/experiments/getfile/client/directive/getfile.js"></script>
-<script src="/experiments/directives/escapehtml/escapeHtml.js"></script>
+<script src="/directives/getServerFile/client/directive/getServerFile.js"></script>
+<script src="/directives/escapehtml/escapeHtml.js"></script>
 <script src="app.js"></script>
 <script src="helloWorld.js"></script>
 <div class="container" ng-app="HelloWorldDirective">
@@ -25,7 +25,7 @@
         This application declares a module called <code>HelloWorldDirective</code>
     </p>
 
-    <getfile file="/public/experiments/directives/helloworld/app.js"></getfile>
+    <get-server-file file="/public/experiments/directives/helloworld/app.js"></get-server-file>
 
     <h2>Directive</h2>
 
@@ -34,10 +34,10 @@
         directive
     </p>
 
-    <getfile file="/public/experiments/directives/helloworld/helloWorld.js"></getfile>
+    <get-server-file file="/public/experiments/directives/helloworld/helloWorld.js"></get-server-file>
 
     <h2>This File</h2>
 
-    <getfile file="/public/experiments/directives/helloworld/index.html"></getfile>
+    <get-server-file file="/public/experiments/directives/helloworld/index.html"></get-server-file>
 
 </div>
