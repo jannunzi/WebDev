@@ -227,7 +227,7 @@ require("./experiments/ejs/explorer/app.js")(app, mongoose, __dirname);
 require("./views/experiments/ejs/wam/app.js")(app, mongoose);
 
 require("./public/experiments/braintree/server/app.js")(app);
-require("./public/experiments/getfile/server/app.js")(app);
+require("./public/directives/getServerFile/server/app.js")(app);
 
 //
 
