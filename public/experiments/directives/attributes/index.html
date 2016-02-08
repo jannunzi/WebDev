@@ -1,0 +1,17 @@
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/css/jga.css" rel="stylesheet"/>
+<script src="/js/jquery.js"></script>
+<script src="/js/angular.js"></script>
+<script src="/directives/escapeHtml/escapeHtml.js"></script>
+<script src="/directives/getServerFile/client/directive/getServerFile.js"></script>
+<script src="jgaTable.js"></script>
+<script src="app.js"></script>
+<div class="container" ng-app="DirectiveAttributeExperiment">
+    <h1>Attribute Parameters</h1>
+
+    <jga-table caption="'JGA Table'" border="5"></jga-table>
+
+    <h2>This File</h2>
+
+    <get-server-file file="/public/experiments/directives/attributes/index.html"></get-server-file>
+</div>
