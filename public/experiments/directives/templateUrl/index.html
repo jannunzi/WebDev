@@ -1,0 +1,45 @@
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/css/jga.css" rel="stylesheet"/>
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/angular.min.js"></script>
+<script src="/directives/getServerFile/client/directive/getServerFile.js"></script>
+<script src="/directives/escapehtml/escapeHtml.js"></script>
+<script src="jgaTable.js"></script>
+<script src="app.js"></script>
+
+<div class="container" ng-app="TemplateUrlExperiment">
+
+    <h1>Directive Template URL</h1>
+
+    <p>
+        Directives can declare their HTML
+        templates in separate files using
+        the attribute <code>templateUrl</code>.
+        The table below is declared in
+        <code>jgaTable.js</code>
+    </p>
+
+    <jga-table></jga-table>
+
+    <p>
+        The directive refers to the file
+        using the <code>templateUrl</code>
+    </p>
+
+    <get-server-file file="/public/experiments/directives/templateUrl/jgaTable.js"></get-server-file>
+
+    <p>
+        The template file <code>jgaTable.html</code>
+        can contain plain HTML or AngularJS template
+    </p>
+
+    <get-server-file file="/public/experiments/directives/templateUrl/jgaTable.html"></get-server-file>
+
+    <p>
+        This experiment's <code>app.js</code> declares
+        the directive's module as a dependency
+    </p>
+
+    <get-server-file file="/public/experiments/directives/templateUrl/app.js"></get-server-file>
+
+</div>
