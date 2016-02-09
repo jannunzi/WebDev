@@ -6,8 +6,8 @@ a {
     cursor: pointer;
 }
 
-.jga-table {
-
+.jga-table th {
+    text-transform: capitalize;
 }
 
 p {

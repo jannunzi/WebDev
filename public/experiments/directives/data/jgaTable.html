@@ -4,12 +4,17 @@
     <table class="table table-striped" border="{{border}}">
         <thead>
             <tr>
+                <!-- iterate over the keys and values of first instance -->
+                <!-- use key as column title -->
                 <th ng-repeat="(key, value) in data[0]">{{key}}</th>
             </tr>
         </thead>
         <tbody>
+            <!-- iterate over the array of objects -->
+            <!-- bind each data item to local row variable -->
             <tr ng-repeat="row in data">
-                <td ng-repeat="col in row">{{col}}</td>
+                <!-- iterate over elements in each row -->
+                <td ng-repeat="(key, value) in row">{{value}}</td>
             </tr>
         </tbody>
     </table>
