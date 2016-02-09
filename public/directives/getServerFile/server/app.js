@@ -7,7 +7,7 @@ module.exports = function(app) {
 
     function getFile(req, res) {
         var file = req.params[0];
-        var publicIndex = __dirname.lastIndexOf("/public");
+        var publicIndex = __dirname.lastIndexOf("public") - 1;
         var rootPath = __dirname.substring(0,publicIndex) + "/";
         var path = rootPath + file;
         fs.readFile(path, 'utf8',function(error, html){

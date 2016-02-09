@@ -541,6 +541,62 @@
               "sidebar.html": "sidebar.html"
             }
           }
+        ],
+        "Directives_examples" : [
+          {
+            "title": "Hello",
+            "base": "/experiments/directives/helloworld/",
+            "src": "index.html",
+            "dependencies": {
+              "index.html": "index.html",
+              "app.js": "app.js",
+              "helloWorld.js": "helloWorld.js"
+            }
+          },
+          {
+            "title": "Template Url",
+            "base": "/experiments/directives/templateUrl/",
+            "src": "index.html",
+            "dependencies": {
+              "index.html": "index.html",
+              "app.js": "app.js",
+              "jgaTable.html": "jgaTable.html",
+              "jgaTable.js": "jgaTable.js"
+            }
+          },
+          {
+            "title": "Attributes",
+            "base": "/experiments/directives/attributes/",
+            "src": "index.html",
+            "dependencies": {
+              "index.html": "index.html",
+              "app.js": "app.js",
+              "jgaTable.html": "jgaTable.html",
+              "jgaTable.js": "jgaTable.js"
+            }
+          },
+          {
+            "title": "Users",
+            "base": "/experiments/directives/users/",
+            "src": "index.html",
+            "dependencies": {
+              "index.html": "index.html",
+              "app.js": "app.js",
+              "jgaTable.html": "jgaTable.html",
+              "jgaTable.js": "jgaTable.js"
+            }
+          },
+          {
+            "title": "Data",
+            "base": "/experiments/directives/data/",
+            "src": "index.html",
+            "dependencies": {
+              "index.html": "index.html",
+              "app.js": "app.js",
+              "jgaTable.html": "jgaTable.html",
+              "jgaTable.js": "jgaTable.js"
+            }
+          }
         ]
       },
       {
