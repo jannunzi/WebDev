@@ -1,3 +1,4 @@
+<!-- index.html -->
 <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="/css/jga.css" rel="stylesheet"/>
 <script src="/js/jquery-1.11.3.min.js"></script>
@@ -9,8 +10,9 @@
 <div class="container" ng-app="HelloWorldDirective">
     <h1>Hello World Directive</h1>
     <p>
-        AngularJS directive allow creating custom HTML elements or
-        extend the functionality of existing HTML elements. This
+        AngularJS directive allow creating custom HTML elements,
+        extend the functionality of existing HTML elements,
+        and create self contained user interface components. This
         example illustrates creating the simplest directive. Let's
         create a <code>&lt;hello-world&gt;</code> directive which just says
         "Hello World". The "Hello World" message below is created
@@ -22,7 +24,9 @@
     <h2>This App</h2>
 
     <p>
-        This application declares a module called <code>HelloWorldDirective</code>
+        This application declares a module called <code>HelloWorldDirective</code>.
+        It depends on two other modules which happen to be some directives used
+        to document these examples.
     </p>
 
     <get-server-file file="/public/experiments/directives/helloworld/app.js"></get-server-file>
@@ -31,7 +35,8 @@
 
     <p>
         Then in a separate <code>helloWorld.js</code> file we implement the
-        directive
+        directive shown below. To create a directive use the <code>directive</code>
+        function to add it to a module and implement it in a function
     </p>
 
     <get-server-file file="/public/experiments/directives/helloworld/helloWorld.js"></get-server-file>
