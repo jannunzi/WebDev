@@ -8,6 +8,7 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose      = require('mongoose');
 
+
 var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
@@ -230,6 +231,7 @@ require("./experiments/ejs/explorer/app.js")(app, mongoose, __dirname);
 require("./views/experiments/ejs/wam/app.js")(app, mongoose);
 
 require("./public/experiments/braintree/server/app.js")(app);
+require("./public/directives/getServerFile/server/app.js")(app);
 
 //
 

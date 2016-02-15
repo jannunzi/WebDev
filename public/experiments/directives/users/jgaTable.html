@@ -1,0 +1,23 @@
+<!-- jgaTable.html -->
+<h2>{{caption}}</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First</th>
+                <th>Last</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- iterate over data -->
+            <!-- bind each item to local user variable -->
+            <!-- render properties 'first', 'last', 'email' of 'user' variable -->
+            <tr ng-repeat="user in data">
+                <td>{{user.first}}</td>
+                <td>{{user.last}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

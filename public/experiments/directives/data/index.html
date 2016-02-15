@@ -1,0 +1,57 @@
+<!-- index.html -->
+<link href="/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="/css/jga.css" rel="stylesheet"/>
+<script src="/js/jquery.js"></script>
+<script src="/js/angular.js"></script>
+<script src="/directives/escapeHtml/escapeHtml.js"></script>
+<script src="/directives/getServerFile/client/directive/getServerFile.js"></script>
+<script src="jgaTable.js"></script>
+<script src="app.js"></script>
+
+<div class="container"
+     ng-app="DirectiveDataExperiment">
+
+    <div ng-controller="DataController">
+        <h1>Directive Data</h1>
+
+        <p>
+            This example expands on the previous one by generalizing
+            the directive to render any object array. We will use the
+            same user array as the previous example shown below
+        </p>
+
+        <pre>{{users}}</pre>
+
+        <p>
+            To pass the <code>users</code> data to the directive,
+            use the <code>data</code> attribute set to the
+            <code>users</code> scope variable as follows
+        </p>
+
+        <escape-html height="auto" toggle="false">
+<jga-table caption="'Data Table'" data="users"></jga-table>
+        </escape-html>
+
+        <jga-table data="users" border="0"></jga-table>
+
+        <h2>Directive</h2>
+
+        <p>
+            The implementation of the directive is pretty much the same as before.
+            The real magic happens in the template.
+        </p>
+
+        <get-server-file file="/public/experiments/directives/data/jgaTable.js"></get-server-file>
+
+        <h2>Template</h2>
+
+        The template is implemented in <code>jgaTable.html</code> shown below
+
+        <get-server-file file="/public/experiments/directives/data/jgaTable.html"></get-server-file>
+
+        <h2>This File</h2>
+
+        <get-server-file file="/public/experiments/directives/data/index.html"></get-server-file>
+
+    </div>
+</div>

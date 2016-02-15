@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/css/jga.css" rel="stylesheet"/>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="escapeHtml.js"></script>
+    <script src="/directives/getServerFile/client/directive/getServerFile.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="EscapeHtmlTest">
+    <div class="container">
+
+        <h1>Directive to Escape HTML</h1>
+
+        <p>
+            Here's a directive that escapes HTML and
+            wraps it into a <code>pre</code> element.
+            Below is an example applied to the heading
+            above and this paragraph.
+        </p>
+
+        <escape-html>
+<h1>Directive to Escape HTML</h1>
+
+<p>
+    Here's a directive that escapes HTML and
+    wraps it into a <code>pre</code> element.
+    Below is an example applied to the heading
+    above and this paragraph.
+</p>
+        </escape-html>
+
+        <h2>Directive</h2>
+
+        <get-server-file file="/public/directives/escapehtml/escapeHtml.js"></get-server-file>
+
+        <h2>Angular App</h2>
+
+        <get-server-file file="/public/directives/escapehtml/app.js"></get-server-file>
+
+        <h2>This File</h2>
+
+        <get-server-file file="/public/directives/escapehtml/index.html"></get-server-file>
+
+    </div>
+</body>
+</html>

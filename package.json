@@ -30,11 +30,13 @@
     "ejs": "^2.3.4",
     "express": "~3.4.4",
     "express-session": "^1.11.3",
+    "htmlencode": "0.0.4",
     "mongoose": "^4.2.3",
     "multer": "^1.0.6",
     "ng-dialog": "^0.5.5",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "q": "^1.4.1"
   },
   "devDependencies": {},

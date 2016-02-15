@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../../css/bootstrap.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        img {
+            height: 100px;
+        }
+
+        #detailPoster {
+            float: left;
+            margin: 0px 16px 10px 0px;
+        }
+
+        #more {
+            height: 300px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Search Movies</h1>
+
+                <input id="title" class="form-control"/>
+                <a id="searchBtn" href="#" class="btn btn-primary btn-block">Search</a>
+
+                <h2>Results</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Poster</th>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>IMDB ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results">
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <h1>Details</h1>
+                <img id="detailPoster"/>
+                <div id="more">
+                    <p id="plot"></p>
+                </div>
+                <h2>Actors</h2>
+                <ul id="actors">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+.collapsable::after {
+    content: "<a style='position:absolute;top:0px;right:0px'>toggle</a>"
+}
+
+a {
+    cursor: pointer;
+}
+
+.jga-table th {
+    text-transform: capitalize;
+}
+
+p {
+    text-align: justify;
+}
