@@ -25,6 +25,10 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 app.set('view engine', 'ejs');
 
+
+console.log("secret");
+console.log(process.env.PASSPORT_SECRET);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());

@@ -162,7 +162,7 @@
               src:"07-arrays-min-max.html"}
             , { title: "Document",
               base: "/experiments/javascript/",
-              src:"10-document-write-ul-table.html"}
+              src:"10-document-write-ul-tavola.html"}
             , { title: "Functions",
               base: "/experiments/javascript/",
               src:"13-functions-add.html"}
@@ -217,13 +217,13 @@
           jQuery_examples: [
               {
                   title: "Install",
-                  base: "/experiments/jquery/",
+                  base: "/experiments/link/",
                   src: "00-install.html",
                   dependencies: {}
               }
               ,{
                   title: "Main",
-                  base: "/experiments/jquery/",
+                  base: "/experiments/link/",
                   src: "05-main.html",
                   dependencies: {
                       "05-main.js":"05-index.js"
@@ -231,7 +231,7 @@
               }
               ,{
                   title: "HTML",
-                  base: "/experiments/jquery/",
+                  base: "/experiments/link/",
                   src: "10-html.html",
                   dependencies: {
                       "10-html.js":"10-html.js"
@@ -239,7 +239,7 @@
               }
               ,{
                   title: "Append",
-                  base: "/experiments/jquery/",
+                  base: "/experiments/link/",
                   src: "15-append.html",
                   dependencies: {
                       "15-append.js":"15-append.js"
@@ -247,7 +247,7 @@
               }
               ,{
                   title: "Click",
-                  base: "/experiments/jquery/",
+                  base: "/experiments/link/",
                   src: "20-click.html",
                   dependencies: {
                       "20-click.js":"20-click.js"
@@ -255,7 +255,7 @@
               }
               ,{
                   title: "IMDB",
-                  base: "/lectures/jquery/",
+                  base: "/lectures/link/",
                   src: "imdb.html",
                   dependencies: {
                       "imdb.js":"imdb.js"
@@ -263,7 +263,7 @@
               }
               ,{
                   title: "AJAX",
-                  base: "/experiments/jquery/",
+                  base: "/experiments/link/",
                   src: "100-ajax.html",
                   dependencies: {}
               }

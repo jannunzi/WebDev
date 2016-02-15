@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>IMDB ID</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="movie in movies">
+                <td>
+                    <span class="glyphicon glyphicon-align-justify pull-left"></span>
+                    {{movie.title}}
+                </td>
+                <td>{{movie.imdbid}}</td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
