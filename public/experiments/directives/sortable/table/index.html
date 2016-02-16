@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SortableApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../../../../../css/bootstrap.css" rel="stylesheet"/>
+    <script src="../../../../../js/jquery.js"></script>
+    <script src="../../../../../js/jquery-ui.min.js"></script>
+    <script src="../../../../../js/angular.js"></script>
+    <script src="../directive/jgaSortable.js"></script>
+    <script src="app.js"></script>
+    <script>
+//        $(function(){
+//            $("ul").sortable();
+//        });
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="SortableController">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First</th>
+                    <th>Last</th>
+                </tr>
+            </thead>
+            <tbody jga-sortable jga-axis="y">
+                <tr ng-repeat="user in users">
+                    <td>{{user.first}}</td>
+                    <td>{{user.last}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{users}}
+    </div>
+</body>
+</html>
