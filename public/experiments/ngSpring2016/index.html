@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MovieDBApp">
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../../js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .nowrap {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Database</h1>
+
+        <table class="table" ng-controller="MovieListController">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td><input ng-model="movie.id" class="form-control"/></td>
+                    <td><input ng-model="movie.title" class="form-control"/></td>
+                    <td><input ng-model="movie.year" class="form-control"/></td>
+                    <td>
+                        <button ng-click="addMovie(movie)" class="btn btn-success">Add</button>
+                        <button ng-click="updateMovie(movie)" class="btn btn-primary">Update</button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="movie in movies">
+                    <td>{{movie.id}}</td>
+                    <td>{{movie.title}}</td>
+                    <td>{{movie.year}}</td>
+                    <td class="nowrap">
+                        <button ng-click="removeMovie(movie)" class="btn btn-danger">
+                            Delete
+                        </button>
+                        <button ng-click="selectMovie(movie)" class="btn btn-info">
+                            Select
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

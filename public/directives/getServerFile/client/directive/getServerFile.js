@@ -3,7 +3,7 @@
         .module("getServerFile", [])
         .directive("getServerFile", getServerFile);
 
-    function getServerFile($http) {
+    function getServerFile($http, $location) {
 
         function expandCollapse() {
             var element = $(this).parent().find("pre");
@@ -19,11 +19,18 @@
             $http.get("/api/file" + file)
                 .success(function(response){
 
-                    var a = $("<a style='position:absolute;top:0px;right:20px'>toggle</a>")
+                    var toggle = $("<a style='position:absolute;top:0px;right:20px'><span class='glyphicon glyphicon-plus'></span></a>")
                         .click(expandCollapse);
 
+                    var url = $location.absUrl();
+                    url = 'view-source:' + url;
+
+                    var view = $("<a target='_blank' style='position:absolute;top:0px;right:40px'><span class='glyphicon glyphicon-fullscreen'></span></a>")
+                        .attr("href", url);
+
                     var div = $("<div style='position:relative'>")
-                        .append(a);
+                        .append(toggle)
+                        .append(view);
 
                     var pre = $("<pre>")
                         .append(response)
