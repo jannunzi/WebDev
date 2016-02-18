@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="OmdbApi">
+<head>
+    <link href="../../../../css/bootstrap.css" rel="stylesheet"/>
+    <script src="../../../../js/angular.min.js"></script>
+    <script src="../../../../js/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-controller="SearchController" class="container">
+        <h1>Search OMDBAPI</h1>
+        <div class="row">
+            <div class="col-xs-6">
+                <h2>Search</h2>
+                <input ng-model="movieTitle" value="Star Wars" class="form-control"/>
+                <button ng-click="searchMovie(movieTitle)" class="btn btn-primary btn-block">
+                    Search
+                </button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Poster</th>
+                            <th>Title</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-click="selectMovie(movie)" ng-repeat="movie in data.Search">
+                            <td>
+                                <img height="100px" ng-src="{{movie.Poster}}"/>
+                            </td>
+                            <td>
+                                {{movie.Title}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-6">
+                <h2>{{details.Title}}</h2>
+                <div>{{details.Director}}</div>
+                <img ng-src="{{details.Poster}}" height="100px" class="pull-left"/>
+                <p>
+                    {{details.Plot}}
+                </p>
+                <h3>Actors</h3>
+                <ul>
+                    <li ng-repeat="actorName in details.Actors.split(',')">
+                        {{actorName}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="OmdbApi">
+<head>
+    <link href="../../../../css/bootstrap.css" rel="stylesheet"/>
+    <script src="../../../../js/angular.min.js"></script>
+    <script src="../../../../js/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/details/details.controller.js"></script>
+    <script src="views/search/search.controller.js"></script>
+    <script src="services/movie.service.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <br/>
+    <div class="container">
+        <div ng-include="'views/header/header.view.html'">
+        </div>
+        <div ng-view>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<h1>Search OMDBAPI 123</h1>
+    <h2>Search</h2>
+    <input ng-model="movieTitle" class="form-control"/>
+    <!--<button ng-click="searchMovie(movieTitle)" class="btn btn-primary btn-block">-->
+        <!--Search-->
+    <!--</button>-->
+    <a href="#/search/{{movieTitle}}" class="btn btn-primary btn-block">
+        Search
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-click="selectMovie(movie)" ng-repeat="movie in data.Search">
+            <td>
+                <img height="100px" ng-src="{{movie.Poster}}"/>
+            </td>
+            <td>
+                <a href="#/details/{{movie.imdbID}}">{{movie.Title}}</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

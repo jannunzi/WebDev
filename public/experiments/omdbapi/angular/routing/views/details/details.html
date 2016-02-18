@@ -1,0 +1,12 @@
+<h2>{{model.details.Title}}</h2>
+<div>{{model.details.Director}}</div>
+<img ng-src="{{model.details.Poster}}" height="100px" class="pull-left"/>
+<p>
+    {{model.details.Plot}}
+</p>
+<h3>Actors</h3>
+<ul>
+    <li ng-repeat="actorName in model.details.Actors.split(',')">
+        {{actorName}}
+    </li>
+</ul>

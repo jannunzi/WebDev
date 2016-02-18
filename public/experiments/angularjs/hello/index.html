@@ -66,13 +66,13 @@
             reference it from the HTML document using the <code>script</code>
             element. Below is an example <code>script</code> element
             loading an AngularJS application implemented in a source file
-            called <code>app.js</code>.
+            called <code>textToPhrase.js</code>.
         </p>
 
 <pre>&lt;html lang=&quot;en&quot; ng-app=&quot;HelloWorldApp&quot;&gt;
     ...
     &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js&quot;&gt;&lt;/script&gt;
-    <b><u>&lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;</u></b>
+    <b><u>&lt;script src=&quot;textToPhrase.js&quot;&gt;&lt;/script&gt;</u></b>
     ...
 &lt;/html&gt;</pre>
 
@@ -98,7 +98,7 @@
             Since the name of the module matches the
             <code>ng-app="HelloWorldApp"</code> declared in the HTML,
             this module implements the application referred to in the
-            HTML. The code is in <code>app.js</code>
+            HTML. The code is in <code>textToPhrase.js</code>
         </p>
 
 <pre>
@@ -129,7 +129,7 @@ var app = angular.module("HelloWorldApp", []);
 &lt;html lang=&quot;en&quot; ng-app=&quot;HelloWorldApp&quot;&gt;
     ...
     &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;textToPhrase.js&quot;&gt;&lt;/script&gt;
     ...
     &lt;div class=&quot;container&quot; <b><u>ng-controller=&quot;HelloWorldController&quot;</u></b>&gt;
         ...
@@ -200,7 +200,7 @@ function TheController() {
 &lt;html lang=&quot;en&quot; ng-app=&quot;HelloWorldApp&quot;&gt;
     ...
     &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;textToPhrase.js&quot;&gt;&lt;/script&gt;
     ...
     &lt;div class=&quot;container&quot; ng-controller=&quot;HelloWorldController&quot;&gt;
         ...
