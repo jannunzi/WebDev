@@ -91,7 +91,7 @@ $scope.selectCourse = function() {
             .controller("ExpressController", ExpressController);
 
         function ExpressController($scope, $http) {
-            $scope.courses = {};
+            $scope.courses = [];
             $http.get("/api/course")
                 .success(function(response){
                     $scope.courses = response;

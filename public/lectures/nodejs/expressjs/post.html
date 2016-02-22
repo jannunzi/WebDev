@@ -79,6 +79,14 @@
         <h3>Server</h3>
 
         <pre>
+...
+var <b>bodyParser</b> = require('body-parser');
+var <b>multer</b>     = require('multer');
+...
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer());
+
 <b style="color: blue;">app.post('/api/course'</b>, function (req, res) {
     var newCourse = req.body;
     console.log(newCourse);

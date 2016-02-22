@@ -8,10 +8,7 @@
 
         function register(user) {
             UserService
-                .findUserByUsername(user.username).then()
-            UserService.createUser(user) {
-
-            }
+                .findUserByUsername(user.username);
         }
     }
 })();

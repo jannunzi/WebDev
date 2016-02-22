@@ -2,15 +2,6 @@
 // is already running in a server
 module.exports = function(app) {
 
-    // removed the following since
-    // it's already running in a server
-
-    //var express = require('express');
-    //var bodyParser = require('body-parser');
-    //var app = express();
-    //app.use(bodyParser.json());
-    //app.use(bodyParser.urlencoded({ extended: true }));
-
     app.get('/api/hello', sayHello);
     app.get('/api/json', function (req, res) {
         var course = {
@@ -62,8 +53,4 @@ module.exports = function(app) {
         console.log('Say Hello');
         res.send('<h1>Say Hello</h1>');
     }
-
-    // commented this out since
-    // a server is already running
-    //app.listen(3000);
 }
