@@ -194,7 +194,8 @@ require("./lectures/ejs/mongo/app.js")(app, mongoose);
 //require("./public/experiments/express/require/get.hello.exp.js")(app);
 //require("./public/experiments/require/experiments.js")(app);
 
-require("./public/lectures/nodejs/expressjs/server.js")(app);
+//require("./public/lectures/nodejs/expressjs/server.js")(app);
+require("./public/experiments/express/server.js")(app);
 //
 //require("./public/lectures/nodejs/angularjsClient/server.js")(app);
 //require("./public/experiments/rest/app/model/application.model.test.js");

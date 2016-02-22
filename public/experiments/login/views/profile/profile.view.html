@@ -1,45 +1,48 @@
 <h2>Profile</h2>
 
+<div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+<div ng-show="error" class="alert alert-success" role="alert">{{error}}</div>
+
 <div class="form-horizontal">
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">Username</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="username" placeholder="johndoe">
+            <input ng-model="currentUser.username" type="text" class="form-control" id="username" placeholder="johndoe">
         </div>
     </div>
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">Password</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="password" placeholder="p@ssw0rd">
+            <input ng-model="currentUser.password" type="password" class="form-control" id="password" placeholder="p@ssw0rd">
         </div>
     </div>
     <div class="form-group">
         <label for="password2" class="col-sm-2 control-label">Verify Password</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="password2" placeholder="p@ssw0rd">
+            <input ng-model="currentUser.password2" type="password" class="form-control" id="password2" placeholder="p@ssw0rd">
         </div>
     </div>
     <div class="form-group">
         <label for="firstName" class="col-sm-2 control-label">First Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="firstName" placeholder="John">
+            <input ng-model="currentUser.firstName" type="text" class="form-control" id="firstName" placeholder="John">
         </div>
     </div>
     <div class="form-group">
         <label for="lastName" class="col-sm-2 control-label">Last Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="lastName" placeholder="Doe">
+            <input ng-model="currentUser.lastName" type="text" class="form-control" id="lastName" placeholder="Doe">
         </div>
     </div>
     <div class="form-group">
         <label for="email" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="email" placeholder="john@doe.com">
+            <input ng-model="currentUser.email" type="email" class="form-control" id="email" placeholder="john@doe.com">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary btn-block">Update Profile</button>
+            <button ng-click="updateUser(currentUser)" class="btn btn-primary btn-block">Update Profile</button>
         </div>
     </div>
 </div>
