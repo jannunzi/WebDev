@@ -1,0 +1,10 @@
+<nav ng-controller="HeaderController">
+    <ul class="nav nav-pills">
+        <li ng-class="{'active': $location.url()=='/home'}"><a href="#/home">Home</a></li>
+        <li ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
+        <li ng-class="{'active': $location.url()=='/login'}"><a href="#/login">Login</a></li>
+        <li><a href="#/logout">Logout</a></li>
+        <li ng-class="{'active': $location.url()=='/profile'}"><a href="#/profile">Profile</a></li>
+        <li ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
+    </ul>
+</nav>

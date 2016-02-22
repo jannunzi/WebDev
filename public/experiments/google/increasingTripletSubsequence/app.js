@@ -8,7 +8,7 @@ function ets(nums) {
 
 function maxBst(nums) {
     if(nums.length == 1)
-        return nums[]
+        return nums;
     var mid = nums.length / 2;
 
 }
