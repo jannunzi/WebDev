@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="GetMoviesApp">
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services/movie.service.client.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="container" ng-controller="GetMoviesController">
+        <h1>Get Movies</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Director</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td><input ng-model="movie.title" class="form-control"/></td>
+                    <td><input ng-model="movie.director" class="form-control"/></td>
+                    <td><a ng-click="createMovie(movie)" href="#"><span class="glyphicon glyphicon-plus"></span></a></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="movie in movies">
+                    <td>{{movie.title}}</td>
+                    <td>{{movie.director}}</td>
+                    <td>
+                        <a ng-click="getMovieById(movie._id)" href="#"><span class="glyphicon glyphicon-share-alt"></span></a>
+                        <a ng-click="deleteMovieById(movie._id)" href="#"><span class="glyphicon glyphicon-minus"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
