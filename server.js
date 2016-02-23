@@ -234,4 +234,6 @@ require("./views/experiments/ejs/wam/app.js")(app, mongoose);
 require("./public/experiments/braintree/server/app.js")(app);
 require("./public/directives/getServerFile/server/app.js")(app);
 
+require("./public/experiments/server/express/omdb/get/server/app.js")(app);
+
 app.listen(port, ipaddress);
