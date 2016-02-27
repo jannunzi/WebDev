@@ -1,15 +1,20 @@
 <nav ng-controller="HeaderController">
     <ul class="nav nav-pills">
-        <li ng-class="{'active': $location.url()=='/home'}">    <a href="#/home">    Home   </a></li>
+        <li ng-class="{'active': $location.url()=='/home'}">
+            <a href="#/home">    Home   </a></li>
         <li ng-hide="currentUser"
-            ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
+            ng-class="{'active': $location.url()=='/register'}">
+            <a href="#/register">Register</a></li>
         <li ng-hide="currentUser"
-            ng-class="{'active': $location.url()=='/login'}">   <a href="#/login">   Login  </a></li>
+            ng-class="{'active': $location.url()=='/login'}">
+            <a href="#/login">   Login  </a></li>
         <li ng-show="currentUser">
             <a ng-click="logout()">  Logout </a></li>
         <li ng-class="{'active': $location.url()=='/profile'}"
             ng-show="currentUser">
             <a href="#/profile"> Profile</a></li>
-        <li ng-show="currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': $location.url()=='/admin'}">   <a href="#/admin">   Admin  </a></li>
+        <li ng-show="currentUser.roles.indexOf('admin') >= 0"
+            ng-class="{'active': $location.url() === '/admin'}">
+            <a href="#/admin">   Admin  </a></li>
     </ul>
 </nav>

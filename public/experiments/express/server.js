@@ -36,6 +36,7 @@ module.exports = function(app) {
         res.json(courses);
     });
 
+    // use post to create new content
     app.post('/api/course', function (req, res) {
         var newCourse = req.body;
         console.log(newCourse);
@@ -43,6 +44,7 @@ module.exports = function(app) {
         res.json(courses);
     });
 
+    // use put to update existing content
     app.put('/api/course/:id', function (req, res) {
         var index = req.params.id;
         courses[index] = req.body;

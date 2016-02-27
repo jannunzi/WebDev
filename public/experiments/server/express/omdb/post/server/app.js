@@ -12,6 +12,9 @@ module.exports = function (app) {
 
     function createMovie (req, res) {
         var movie = req.body;
+        var now = new Date().getTime();
+        var id = "id-"+now;
+        movie._id = id;
         movies.push (movie);
         res.send (200);
     }

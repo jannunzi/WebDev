@@ -12,6 +12,8 @@
 
         function getAllMovies () {
             return $http.get ("/api/experiments/express/omdb/getmovies/movie");
+            //$http.get ("/api/experiments/express/omdb/getmovies/movie")
+            //    .success(callback);
         }
 
         function getMovieById (id) {
