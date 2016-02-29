@@ -3,14 +3,14 @@
         .module("OmdbApp")
         .factory("UserService", userService);
 
-    function userService() {
+    function userService($http) {
         var api = {
             findUserByCredentials: findUserByCredentials
         };
         return api;
 
         function findUserByCredentials(credentials) {
-            console.log(credentials);
+            return $http.post("/api/project/user", credentials);
         }
     }
 })();

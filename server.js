@@ -240,4 +240,6 @@ require("./public/experiments/server/express/omdb/delete/server/app.js")(app);
 require("./public/experiments/server/express/omdb/update/server/app.js")(app);
 require("./public/experiments/server/express/omdb/structure/server/app.js")(app);
 
+require("./public/project/omdb/server/app.js")(app);
+
 app.listen(port, ipaddress);
