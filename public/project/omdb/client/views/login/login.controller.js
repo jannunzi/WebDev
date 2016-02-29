@@ -3,7 +3,7 @@
         .module("OmdbApp")
         .controller("LoginController", loginController);
 
-    function loginController(UserService) {
+    function loginController(UserService, $location) {
         var vm = this;
 
         vm.login = login;
@@ -24,6 +24,7 @@
                 .then(function(response){
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
+                        $location.url("/profile");
                     }
                 });
         }
