@@ -21,7 +21,7 @@
         }
 
         function findUserByCredentials(credentials) {
-            return $http.post("/api/project/user", credentials);
+            return $http.post("/api/project/login", credentials);
         }
     }
 })();
