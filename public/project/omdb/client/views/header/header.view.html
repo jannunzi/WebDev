@@ -1,7 +1,17 @@
 <nav ng-controller="NavigationController as model">
     <ul class="nav nav-pills">
         <li ng-class="{'active': model.$location.url() == '/home'}"><a href="#/home">Home</a></li>
-        <li ng-class="{'active': model.$location.url() == '/login'}"><a href="#/login">Login</a></li>
+        <li ng-class="{'active': model.$location.url() == '/login'}"
+            ng-hide="currentUser">
+            <a href="#/login">Login</a>
+        </li>
+        <li ng-show="currentUser">
+            <a ng-click="model.logout()">Logout</a>
+        </li>
         <li ng-class="{'active': model.$location.url() == '/search'}"><a href="#/search">Search</a></li>
+        <li ng-class="{'active': model.$location.url() == '/profile'}"
+            ng-show="currentUser">
+            <a href="#/profile">Profile</a>
+        </li>
     </ul>
 </nav>
