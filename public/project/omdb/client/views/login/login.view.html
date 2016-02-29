@@ -1,1 +1,11 @@
 <h2>Login</h2>
+
+<input ng-model="model.user.username"
+       class="form-control"
+       placeholder="username"/>
+<input ng-model="model.user.password"
+       type="password"
+       placeholder="password"
+       class="form-control"/>
+
+<button ng-click="model.login(model.user);" class="btn btn-primary btn-block">Login</button>
