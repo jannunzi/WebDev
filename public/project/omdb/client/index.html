@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="OmdbApp">
 <head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
     <script src="../../../js/jquery.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <script src="../../../js/angular.js"></script>
     <script src="../../../js/angular-route.min.js"></script>
     <script src="app.js"></script>
+    <script src="config.js"></script>
     <meta charset="UTF-8">
     <title>OMDB Project</title>
 </head>
 <body>
     <div class="container">
         <h1>Omdb Application</h1>
+        <nav>
+            <ul class="nav nav-tabs">
+                <li><a href="#/home">Home</a></li>
+            </ul>
+        </nav>
+        <div ng-view></div>
     </div>
 </body>
 </html>

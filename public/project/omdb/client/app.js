@@ -1,4 +1,4 @@
 (function(){
     angular
-        .module("OmdbApp", []);
+        .module("OmdbApp", ["ngRoute"]);
 })();
