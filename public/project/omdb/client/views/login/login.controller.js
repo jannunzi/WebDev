@@ -17,6 +17,9 @@
                 .findUserByCredentials({
                     username: user.username,
                     password: user.password
+                })
+                .then(function(response){
+                    console.log(response.data);
                 });
         }
     }
