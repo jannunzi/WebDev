@@ -1,6 +1,10 @@
 <nav ng-controller="NavigationController as model">
     <ul class="nav nav-pills">
         <li ng-class="{'active': model.$location.url() == '/home'}"><a href="#/home">Home</a></li>
+        <li ng-class="{'active': model.$location.url() == '/register'}"
+            ng-hide="currentUser">
+            <a href="#/register">Register</a>
+        </li>
         <li ng-class="{'active': model.$location.url() == '/login'}"
             ng-hide="currentUser">
             <a href="#/login">Login</a>
