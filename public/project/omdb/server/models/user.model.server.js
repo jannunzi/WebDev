@@ -6,7 +6,12 @@ module.exports = function() {
     return api;
 
     function findUserByCredentials(credentials) {
-        console.log(mock);
-        console.log(credentials);
+        for(var u in mock) {
+            if( mock[u].username === credentials.username &&
+                mock[u].password === credentials.password) {
+                return mock[u];
+            }
+        }
+        return null;
     }
 }
