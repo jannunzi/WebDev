@@ -8,3 +8,26 @@
         class="btn btn-primary btn-block">
     Search
 </button>
+
+<div ng-if="model.data">
+    <h3>Search Results</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Poster</th>
+                <th>Title</th>
+                <th>IMDB</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="movie in model.data.Search">
+                <td>
+                    <img ng-src="{{movie.Poster}}"
+                         height="100px"/>
+                </td>
+                <td>{{movie.Title}}</td>
+                <td>{{movie.imdbID}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
