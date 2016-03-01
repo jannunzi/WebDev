@@ -8,9 +8,14 @@
             findUserByCredentials: findUserByCredentials,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
+            createUser: createUser,
             logout: logout
         };
         return api;
+
+        function createUser(user) {
+            console.log(user);
+        }
 
         function logout() {
             return $http.post("/api/project/logout");

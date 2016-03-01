@@ -3,7 +3,7 @@
         .module("OmdbApp")
         .controller("RegisterController", registerController);
 
-    function registerController() {
+    function registerController(UserService) {
         var vm = this;
 
         vm.register = register;
@@ -14,7 +14,8 @@
         init();
 
         function register(user) {
-            console.log(user);
+            UserService
+                .createUser(user);
         }
     }
 })();
