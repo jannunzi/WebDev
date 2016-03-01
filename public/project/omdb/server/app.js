@@ -3,5 +3,5 @@ module.exports = function(app) {
     var userService  = require("./services/user.service.server.js")(app, userModel);
 
     var movieModel   = require("./models/movie.model.server.js")();
-    var movieService = require("./services/movie.service.server.js")(app, movieModel);
+    var movieService = require("./services/movie.service.server.js")(app, movieModel, userModel);
 }
