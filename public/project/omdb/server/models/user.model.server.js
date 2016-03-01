@@ -1,9 +1,16 @@
 var mock = require("./user.mock.json");
 module.exports = function() {
     var api = {
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
+        createUser: createUser
     };
     return api;
+
+    function createUser(user) {
+        user._id = "ID_" + (new Date()).getTime();
+        mock.push(user);
+        return user;
+    }
 
     function findUserByCredentials(credentials) {
         for(var u in mock) {

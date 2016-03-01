@@ -6,8 +6,9 @@ module.exports = function(app, model) {
 
     function register(req, res) {
         var user = req.body;
-        console.log(user);
-        res.send(200);
+        user = model.createUser(user);
+        req.session.currentUser = user;
+        res.json(user);
     }
 
     function findUserByCredentials(req, res) {
