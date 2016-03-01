@@ -6,7 +6,10 @@
     function configuration($routeProvider) {
         $routeProvider
             .when("/home", {
-                templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .when("/login", {
                 templateUrl: "views/login/login.view.html",
@@ -27,11 +30,28 @@
                 }
             })
             .when("/search", {
-                templateUrl: "views/search/search.view.html"
+                templateUrl: "views/search/search.view.html",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .otherwise({
                 redirectTo: "/home"
             });
+    }
+
+    function getLoggedIn(UserService, $q) {
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response){
+                var currentUser = response.data;
+                UserService.setCurrentUser(currentUser);
+                deferred.resolve();
+            });
+
+        return deferred.promise;
     }
 
     function checkLoggedIn(UserService, $q, $location) {
