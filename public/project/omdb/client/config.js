@@ -37,6 +37,9 @@
                     getLoggedIn: getLoggedIn
                 }
             })
+            .when("/details/:imdbID", {
+                templateUrl: "views/details/details.view.html"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

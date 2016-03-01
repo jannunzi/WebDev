@@ -12,10 +12,12 @@
         <li ng-show="currentUser">
             <a ng-click="model.logout()">Logout</a>
         </li>
-        <li ng-class="{'active': model.$location.url() == '/search'}"><a href="#/search">Search</a></li>
         <li ng-class="{'active': model.$location.url() == '/profile'}"
             ng-show="currentUser">
             <a href="#/profile">Profile</a>
         </li>
+        <li ng-class="{'active': model.$location.url() == '/search'}"><a href="#/search">Search</a></li>
+        <li ng-class="{'active': model.$location.url().indexOf('/details')>=0}"
+            ng-show="model.$location.url().indexOf('/details')>=0"><a>Details</a></li>
     </ul>
 </nav>
