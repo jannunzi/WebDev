@@ -11,7 +11,7 @@
             OmdbService
                 .findMovieByImdbID(imdbID)
                 .then(function(response){
-                    console.log(response.data);
+                    vm.data = response.data;
                 });
         }
         init();

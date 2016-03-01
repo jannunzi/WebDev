@@ -1,1 +1,18 @@
 <h2>Details</h2>
+
+<h3>{{model.data.Title}}</h3>
+
+<img ng-src="{{model.data.Poster}}"
+        height="200px"/>
+
+<h4>Plot</h4>
+<p>
+    {{model.data.Plot}}
+</p>
+
+<h4>Actors</h4>
+<ul>
+    <li ng-repeat="actor in model.data.Actors.split(',')">
+        {{actor}}
+    </li>
+</ul>
