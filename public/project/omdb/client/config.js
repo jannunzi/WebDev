@@ -38,7 +38,9 @@
                 }
             })
             .when("/details/:imdbID", {
-                templateUrl: "views/details/details.view.html"
+                templateUrl: "views/details/details.view.html",
+                controller: "DetailsController",
+                controllerAs: "model"
             })
             .otherwise({
                 redirectTo: "/home"
