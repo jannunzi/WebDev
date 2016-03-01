@@ -1,3 +1,10 @@
 <h2>Seach</h2>
 
-{{currentUser}}
+<input ng-model="model.movie.title"
+       class="form-control"
+       placeholder="Batman"/>
+
+<button ng-click="model.search(model.movie)"
+        class="btn btn-primary btn-block">
+    Search
+</button>
