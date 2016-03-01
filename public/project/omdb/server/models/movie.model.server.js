@@ -15,7 +15,7 @@ module.exports = function() {
         return movie;
     }
 
-    function findMovieByImdbID(userId, imdbID) {
+    function findMovieByImdbID(imdbID) {
         for(var m in movies) {
             if(movies[m].imdbID === imdbID) {
                 return movies[m];
