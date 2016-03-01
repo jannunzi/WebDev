@@ -3,7 +3,7 @@
         .module("OmdbApp")
         .controller("SearchController", searchController);
 
-    function searchController() {
+    function searchController(OmdbService) {
         var vm = this;
 
         vm.search = search;
@@ -14,7 +14,7 @@
         init();
 
         function search(movie) {
-            console.log(movie);
+            OmdbService.searchMovieByTitle(movie.title);
         }
     }
 })();
