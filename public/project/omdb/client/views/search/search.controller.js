@@ -14,7 +14,11 @@
         init();
 
         function search(movie) {
-            OmdbService.searchMovieByTitle(movie.title);
+            OmdbService
+                .searchMovieByTitle(movie.title)
+                .then(function(response){
+                    vm.data = response.data;
+                });
         }
     }
 })();
