@@ -5,6 +5,14 @@
 <img ng-src="{{model.data.Poster}}"
         height="200px"/>
 
+<br/>
+<br/>
+
+<button class="btn btn-primary"
+        ng-click="model.favorite(model.data.imdbID)">
+    <span class="glyphicon glyphicon-star-empty"></span>
+</button>
+
 <h4>Plot</h4>
 <p>
     {{model.data.Plot}}

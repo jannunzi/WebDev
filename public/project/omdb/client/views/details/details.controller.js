@@ -6,6 +6,7 @@
     function detailsController($routeParams, OmdbService) {
         var vm = this;
         var imdbID = $routeParams.imdbID;
+        vm.favorite = favorite;
 
         function init() {
             OmdbService
@@ -15,5 +16,9 @@
                 });
         }
         init();
+
+        function favorite(imdbDB) {
+            console.log(imdbID);
+        }
     }
 })();
