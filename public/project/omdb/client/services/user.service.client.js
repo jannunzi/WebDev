@@ -14,7 +14,7 @@
         return api;
 
         function createUser(user) {
-            console.log(user);
+            return $http.post("/api/project/register", user);
         }
 
         function logout() {
