@@ -7,7 +7,8 @@ module.exports = function(app, model) {
 
     function profile(req, res) {
         var userId = req.params.userId;
-        console.log(userId);
+        var user = model.findUserById(userId);
+        console.log(user);
     }
 
     function register(req, res) {
