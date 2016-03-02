@@ -15,7 +15,7 @@
         return api;
 
         function getProfile() {
-            console.log($rootScope.currentUser._id);
+            return $http.get("/api/project/omdb/profile/"+$rootScope.currentUser._id);
         }
 
         function createUser(user) {
