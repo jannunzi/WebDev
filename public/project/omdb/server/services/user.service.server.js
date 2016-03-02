@@ -1,4 +1,4 @@
-module.exports = function(app, model) {
+module.exports = function(app, movieModel, userModel) {
     app.post("/api/project/omdb/login", login);
     app.get("/api/project/omdb/loggedin", loggedin);
     app.post("/api/project/omdb/logout", logout);
@@ -7,20 +7,20 @@ module.exports = function(app, model) {
 
     function profile(req, res) {
         var userId = req.params.userId;
-        var user = model.findUserById(userId);
+        var user = userModel.findUserById(userId);
         console.log(user);
     }
 
     function register(req, res) {
         var user = req.body;
-        user = model.createUser(user);
+        user = userModel.createUser(user);
         req.session.currentUser = user;
         res.json(user);
     }
 
     function login(req, res) {
         var credentials = req.body;
-        var user = model.findUserByCredentials(credentials);
+        var user = userModel.findUserByCredentials(credentials);
         req.session.currentUser = user;
         res.json(user);
     }
