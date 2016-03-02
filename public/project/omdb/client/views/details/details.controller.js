@@ -16,9 +16,15 @@
 
         function init() {
             OmdbService
-                .findMovieByImdbID(imdbID)
+                .findMovieByImdbID (imdbID)
                 .then(function(response){
                     vm.data = response.data;
+                });
+
+            MovieService
+                .findUserLikes (imdbID)
+                .then(function(response){
+                    vm.userLikes = response.data;
                 });
         }
         init();
