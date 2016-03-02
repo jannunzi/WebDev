@@ -8,7 +8,9 @@ module.exports = function(app, movieModel, userModel) {
         var movie = movieModel.findMovieByImdbID(imdbID);
         var userLikes = movie.likes;
         console.log(userLikes);
-        res.send(users);
+        var users = userModel.findUsersByIds(userLikes);
+        movie.userLikes = users;
+        res.json(movie);
     }
 
     function userLikesMovie(req, res) {

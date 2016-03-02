@@ -3,9 +3,21 @@ module.exports = function() {
     var api = {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
-        findUserById: findUserById
+        findUserById: findUserById,
+        findUsersByIds: findUsersByIds
     };
     return api;
+
+    function findUsersByIds (userIds) {
+        var users = [];
+        for (var u in userIds) {
+            var user = findUserById (userIds[u]);
+            if (user) {
+                users.push (user);
+            }
+        }
+        return users;
+    }
 
     function findUserById(userId) {
         for(var u in mock) {
