@@ -1,8 +1,8 @@
 module.exports = function(app, model) {
-    app.post("/api/project/login", login);
-    app.get("/api/project/loggedin", loggedin);
-    app.post("/api/project/logout", logout);
-    app.post("/api/project/register", register);
+    app.post("/api/project/omdb/login", login);
+    app.get("/api/project/omdb/loggedin", loggedin);
+    app.post("/api/project/omdb/logout", logout);
+    app.post("/api/project/omdb/register", register);
 
     function register(req, res) {
         var user = req.body;

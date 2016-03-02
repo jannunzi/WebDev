@@ -14,15 +14,15 @@
         return api;
 
         function createUser(user) {
-            return $http.post("/api/project/register", user);
+            return $http.post("/api/project/omdb/register", user);
         }
 
         function logout() {
-            return $http.post("/api/project/logout");
+            return $http.post("/api/project/omdb/logout");
         }
 
         function getCurrentUser() {
-            return $http.get("/api/project/loggedin");
+            return $http.get("/api/project/omdb/loggedin");
         }
 
         function setCurrentUser(user) {
@@ -30,7 +30,7 @@
         }
 
         function findUserByCredentials(credentials) {
-            return $http.post("/api/project/login", credentials);
+            return $http.post("/api/project/omdb/login", credentials);
         }
     }
 })();
