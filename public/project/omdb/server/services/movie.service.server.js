@@ -5,7 +5,10 @@ module.exports = function(app, movieModel, userModel) {
     function findUserLikes (req, res) {
         var imdbID = req.params.imdbID;
         console.log(imdbID);
-        res.send(200)
+        var movie = movieModel.findMovieByImdbID(imdbID);
+        var userLikes = movie.likes;
+        console.log(userLikes);
+        res.send(users);
     }
 
     function userLikesMovie(req, res) {
