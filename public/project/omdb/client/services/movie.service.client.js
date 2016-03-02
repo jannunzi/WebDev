@@ -9,8 +9,8 @@
         };
         return api;
 
-        function setUserLikesMovie(userId, imdbID) {
-            return $http.post("/api/project/user/"+userId+"/movie/"+imdbID);
+        function setUserLikesMovie(userId, movie) {
+            return $http.post("/api/project/user/"+userId+"/movie/"+movie.imdbID, movie);
         }
     }
 })();

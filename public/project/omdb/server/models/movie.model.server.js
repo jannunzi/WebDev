@@ -6,10 +6,12 @@ module.exports = function() {
     };
     return api;
 
-    function createMovie(imdbID) {
-        var movie = {
+    function createMovie(movie) {
+        movie = {
             _id: "ID_" + (new Date()).getTime(),
-            imdbID: imdbID
+            imdbID: movie.imdbID,
+            poster: movie.Poster,
+            title: movie.Title
         };
         movies.push(movie);
         return movie;
