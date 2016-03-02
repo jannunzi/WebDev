@@ -8,9 +8,15 @@
 
     <div class="panel panel-default jga-movie-panel"
          ng-repeat="movie in model.profile.likesMovies">
-        <div class="panel-heading">{{movie.title}}</div>
+        <div class="panel-heading">
+            <a href="#/details/{{movie.imdbID}}">
+                {{movie.title}}
+            </a>
+        </div>
         <div class="panel-body">
-            <img ng-src="{{movie.poster}}" width="100px"/>
+            <a href="#/details/{{movie.imdbID}}">
+                <img ng-src="{{movie.poster}}" width="100px"/>
+            </a>
         </div>
     </div>
 
