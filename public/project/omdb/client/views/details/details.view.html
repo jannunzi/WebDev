@@ -26,3 +26,12 @@
 </ul>
 
 {{model.userLikes}}
+
+<div ng-if="model.movie.userLikes">
+    <h4>Other Users that Like This Movie</h4>
+    <ul>
+        <li ng-repeat="user in model.movie.userLikes">
+            {{user.username}}
+        </li>
+    </ul>
+</div>

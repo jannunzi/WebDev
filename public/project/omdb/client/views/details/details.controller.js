@@ -24,7 +24,7 @@
             MovieService
                 .findUserLikes (imdbID)
                 .then(function(response){
-                    vm.userLikes = response.data;
+                    vm.movie = response.data;
                 });
         }
         init();
