@@ -2,9 +2,21 @@ module.exports = function() {
     var movies = [];
     var api = {
         findMovieByImdbID: findMovieByImdbID,
+        findMoviesByImdbIDs: findMoviesByImdbIDs,
         createMovie: createMovie
     };
     return api;
+
+    function findMoviesByImdbIDs (imdbIDs) {
+        var movies = [];
+        for (var id in imdbIDs) {
+            var movie = findMovieByImdbID (imdbIDs[id]);
+            if (movie) {
+                movies.push(movie);
+            }
+        }
+        return movies;
+    }
 
     function createMovie(movie) {
         movie = {
