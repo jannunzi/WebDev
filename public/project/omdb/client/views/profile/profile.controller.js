@@ -8,7 +8,11 @@
 
         function init() {
             UserService
-                .getProfile();
+                .getProfile()
+                .then(function (response) {
+                    vm.profile = response.data;
+                    console.log(vm.profile);
+                });
         }
         return init();
     }

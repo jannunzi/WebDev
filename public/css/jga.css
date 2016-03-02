@@ -13,3 +13,15 @@ a {
 p {
     text-align: justify;
 }
+
+.jga-movie-panel {
+    float: left;
+    width: 130px;
+    margin-right: 15px;
+}
+
+.jga-movie-panel .panel-heading {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

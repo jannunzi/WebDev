@@ -1,3 +1,17 @@
 <h2>Profile</h2>
 
-{{currentUser}}
+{{vm.profile}}
+
+<div ng-if="model.profile.likesMovies">
+
+    <h3>Movies I Like</h3>
+
+    <div class="panel panel-default jga-movie-panel"
+         ng-repeat="movie in model.profile.likesMovies">
+        <div class="panel-heading">{{movie.title}}</div>
+        <div class="panel-body">
+            <img ng-src="{{movie.poster}}" width="100px"/>
+        </div>
+    </div>
+
+</div>
