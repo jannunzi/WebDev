@@ -26,7 +26,7 @@
         function favorite(movie) {
             if(currentUser) {
                 MovieService
-                    .setUserLikesMovie(currentUser._id, movie);
+                    .userLikesMovie(currentUser._id, movie);
             } else {
                 $location.url("/login");
             }

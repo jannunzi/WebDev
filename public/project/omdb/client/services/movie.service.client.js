@@ -5,11 +5,11 @@
 
     function movieService($http) {
         var api = {
-            setUserLikesMovie: setUserLikesMovie
+            userLikesMovie: userLikesMovie
         };
         return api;
 
-        function setUserLikesMovie(userId, movie) {
+        function userLikesMovie(userId, movie) {
             return $http.post("/api/project/user/"+userId+"/movie/"+movie.imdbID, movie);
         }
     }

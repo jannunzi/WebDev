@@ -5,10 +5,10 @@
 
     function userService($http, $rootScope) {
         var api = {
-            findUserByCredentials: findUserByCredentials,
+            login: login,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            createUser: createUser,
+            register: register,
             logout: logout,
             getProfile: getProfile
         };
@@ -18,7 +18,7 @@
             return $http.get("/api/project/omdb/profile/"+$rootScope.currentUser._id);
         }
 
-        function createUser(user) {
+        function register(user) {
             return $http.post("/api/project/omdb/register", user);
         }
 
@@ -34,7 +34,7 @@
             $rootScope.currentUser = user;
         }
 
-        function findUserByCredentials(credentials) {
+        function login(credentials) {
             return $http.post("/api/project/omdb/login", credentials);
         }
     }
