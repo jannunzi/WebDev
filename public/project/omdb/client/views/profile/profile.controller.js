@@ -7,7 +7,8 @@
         var vm = this;
 
         function init() {
-
+            UserService
+                .getProfile();
         }
         return init();
     }
