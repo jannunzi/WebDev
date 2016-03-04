@@ -13,7 +13,10 @@ module.exports = function() {
         for (var u in userIds) {
             var user = findUserById (userIds[u]);
             if (user) {
-                users.push (user);
+                users.push ({
+                    username: user.username,
+                    _id: user._id
+                });
             }
         }
         return users;

@@ -6,10 +6,12 @@ module.exports = function(app, movieModel, userModel) {
         var imdbID = req.params.imdbID;
         console.log(imdbID);
         var movie = movieModel.findMovieByImdbID(imdbID);
-        var userLikes = movie.likes;
-        console.log(userLikes);
-        var users = userModel.findUsersByIds(userLikes);
-        movie.userLikes = users;
+        if(movie) {
+            var userLikes = movie.likes;
+            console.log(userLikes);
+            var users = userModel.findUsersByIds(userLikes);
+            movie.userLikes = users;
+        }
         res.json(movie);
     }
 

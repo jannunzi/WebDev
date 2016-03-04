@@ -12,7 +12,12 @@ module.exports = function() {
         for (var id in imdbIDs) {
             var movie = findMovieByImdbID (imdbIDs[id]);
             if (movie) {
-                movies.push(movie);
+                movies.push({
+                    _id: movie._id,
+                    title: movie.title,
+                    poster: movie.poster,
+                    imdbID: movie.imdbID
+                });
             }
         }
         return movies;
