@@ -3,8 +3,11 @@
         .module("OmdbApp")
         .controller("ProfileController", profileController);
 
-    function profileController(UserService, $location) {
+    function profileController(UserService, $location, $routeParams) {
         var vm = this;
+
+        var username = $routeParams.username;
+        console.log(username);
 
         function init() {
             UserService

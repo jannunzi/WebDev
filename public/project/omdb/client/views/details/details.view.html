@@ -31,7 +31,9 @@
     <h4>Other Users that Like This Movie</h4>
     <ul>
         <li ng-repeat="user in model.movie.userLikes">
-            {{user.username}}
+            <a href="#/profile/{{user.username}}">
+                {{user.username}}
+            </a>
         </li>
     </ul>
 </div>

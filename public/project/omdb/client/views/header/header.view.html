@@ -12,7 +12,7 @@
         <li ng-show="currentUser">
             <a ng-click="model.logout()">Logout</a>
         </li>
-        <li ng-class="{'active': model.$location.url() == '/profile'}"
+        <li ng-class="{'active': model.$location.url().indexOf('/profile')>=0}"
             ng-show="currentUser">
             <a href="#/profile">Profile</a>
         </li>

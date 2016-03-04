@@ -21,7 +21,7 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/profile", {
+            .when("/profile/:username?", {
                 templateUrl: "views/profile/profile.view.html",
                 controller: "ProfileController",
                 controllerAs: "model",
