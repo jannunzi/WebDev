@@ -676,6 +676,11 @@
         "title": "Database Development",
         "visible": true,
         "available": true,
+        "assignments": [
+          {
+            "title": "Database Programming"
+          }
+        ],
         "lectures": [
           {
             "title": "Introduction to MongoDB"
