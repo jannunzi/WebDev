@@ -43,7 +43,13 @@
 <h3>Read Data from MongoDB</h3>
 
 <p>
-    
+    Mongoose models allow retrieving data documents from MongoDB using various
+    finder methods. Documents can be retrieved using their unique <code>_id</code>
+    field or by satisfying a predicate. Finder methods can return a single
+    object instance or an array of instances that match a predicate. Methods
+    can be synchronous or asynchronous. Asynchronous methods should be wrapped
+    into deferred promises to avoid nesting serialized queries. This lecture
+    covers retrieving data from MongoDB using the Mongoose API.
 </p>
 
 <a class="btn btn-primary btn-sm btn-warning" href="#/modules/5/lectures/2">
@@ -53,7 +59,12 @@
 <hr>
 
 <h3>Update Data in MongoDB</h3>
-
+    Mongoose models allow updating data documents in a MongoDB database using
+    various data update methods that allow insterting into the database,
+    updating documents already in the database, and removing existing documents.
+    Update and delete methods accept predicate objects used to identify the
+    existing object we want the upda or delete. This lecture covers the varios
+    data update functions.
 <p>
 
 </p>
