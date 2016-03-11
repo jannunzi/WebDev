@@ -790,7 +790,6 @@
             }
           }
         ],
-        "assignments": [],
         "videos": [],
         "slides": [],
         "examples": [
@@ -850,6 +849,11 @@
         "title": "Dynamic Server Pages",
         "visible": true,
         "available": false,
+        "assignments": [
+          {
+            "title": "Dynamic Server Pages"
+          }
+        ],
         "lectures": [
           {
             "title": "Creating a Node.js Server"
@@ -859,11 +863,6 @@
           },
           {
             "title": "Updating Data"
-          }
-        ],
-        "assignments": [
-          {
-            "title": "Dynamic Server Pages"
           }
         ],
         "videos": [],
