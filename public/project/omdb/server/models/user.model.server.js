@@ -41,9 +41,10 @@ module.exports = function(db, mongoose) {
     }
 
     function createUser(user) {
-        user._id = "ID_" + (new Date()).getTime();
-        mock.push(user);
-        return user;
+        // insert new user with mongoose user model's create()
+        UserModel.create(user, function (err, doc) {
+            console.log(doc);
+        });
     }
 
     function findUserByCredentials(credentials) {
