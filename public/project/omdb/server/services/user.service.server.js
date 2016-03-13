@@ -7,11 +7,23 @@ module.exports = function(app, movieModel, userModel) {
 
     function profile(req, res) {
         var userId = req.params.userId;
-        var user = userModel.findUserById(userId);
-        var movieImdbIDs = user.likes;
-        var movies = movieModel.findMoviesByImdbIDs(movieImdbIDs);
-        user.likesMovies = movies;
-        res.json(user);
+
+        // use model to find user by id
+        var user = userModel.findUserById(userId)
+            .then(
+                // return user if promise resolved
+                function (doc) {
+                    //we'll work on movie model a bit later
+                    //var movieImdbIDs = user.likes;
+                    //var movies = movieModel.findMoviesByImdbIDs(movieImdbIDs);
+                    //user.likesMovies = movies;
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function register(req, res) {

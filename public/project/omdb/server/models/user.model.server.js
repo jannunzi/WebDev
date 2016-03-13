@@ -34,13 +34,17 @@ module.exports = function(db, mongoose) {
         return users;
     }
 
+    // use user model find by id
     function findUserById(userId) {
-        for(var u in mock) {
-            if( mock[u]._id === userId ) {
-                return mock[u];
+        var deferred = q.defer();
+        UserModel.findById(userId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
             }
-        }
-        return null;
+        });
+        return deferred.promise;
     }
 
     function createUser(user) {
