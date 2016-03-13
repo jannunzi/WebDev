@@ -46,9 +46,17 @@ module.exports = function(app, movieModel, userModel) {
 
     function login(req, res) {
         var credentials = req.body;
-        var user = userModel.findUserByCredentials(credentials);
-        req.session.currentUser = user;
-        res.json(user);
+        var user = userModel.findUserByCredentials(credentials)
+            .then(
+                function (doc) {
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            )
     }
 
     function loggedin(req, res) {
