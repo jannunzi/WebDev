@@ -1,5 +1,8 @@
 var mock = require("./user.mock.json");
 
+// load q promise library
+var q = require("q");
+
 // pass db and mongoose reference to model
 module.exports = function(db, mongoose) {
 
@@ -41,10 +44,25 @@ module.exports = function(db, mongoose) {
     }
 
     function createUser(user) {
+
+        // use q to defer the response
+        var deferred = q.defer();
+
         // insert new user with mongoose user model's create()
         UserModel.create(user, function (err, doc) {
-            console.log(doc);
+
+            if (err) {
+                // reject promise if error
+                deferred.reject(err);
+            } else {
+                // resolve promise
+                deferred.resolve(doc);
+            }
+
         });
+
+        // return a promise
+        return deferred.promise;
     }
 
     function findUserByCredentials(credentials) {
