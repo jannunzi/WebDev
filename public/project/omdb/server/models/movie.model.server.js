@@ -1,4 +1,5 @@
-module.exports = function() {
+// pass db and mongoose reference to model
+module.exports = function(db, mongoose) {
     var movies = [];
     var api = {
         findMovieByImdbID: findMovieByImdbID,
