@@ -2,6 +2,10 @@ var mock = require("./user.mock.json");
 
 // pass db and mongoose reference to model
 module.exports = function(db, mongoose) {
+
+    // load user schema
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+
     var api = {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
