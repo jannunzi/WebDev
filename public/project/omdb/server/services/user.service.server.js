@@ -7,23 +7,42 @@ module.exports = function(app, movieModel, userModel) {
 
     function profile(req, res) {
         var userId = req.params.userId;
+        var user = null;
 
         // use model to find user by id
-        var user = userModel.findUserById(userId)
+        userModel.findUserById(userId)
             .then(
-                // return user if promise resolved
+
+                // first retrieve the user by user id
                 function (doc) {
-                    //we'll work on movie model a bit later
-                    //var movieImdbIDs = user.likes;
-                    //var movies = movieModel.findMoviesByImdbIDs(movieImdbIDs);
-                    //user.likesMovies = movies;
-                    res.json(doc);
+
+                    user = doc;
+
+                    // fetch movies this user likes
+                    return movieModel.findMoviesByImdbIDs(doc.likes);
                 },
+
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                // fetch movies this user likes
+                function (movies) {
+
+                    // list of movies this user likes
+                    // movies are not stored in database
+                    // only added for UI rendering
+                    user.likesMovies = movies;
+                    res.json(user);
+                },
+
                 // send error if promise rejected
                 function (err) {
                     res.status(400).send(err);
                 }
-            );
+            )
     }
 
     function register(req, res) {
