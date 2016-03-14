@@ -62,11 +62,17 @@ module.exports = function(db, mongoose) {
     }
 
     function findMovieByImdbID(imdbID) {
-        for(var m in movies) {
-            if(movies[m].imdbID === imdbID) {
-                return movies[m];
+
+        var deferred = q.defer();
+
+        Movie.findById(imdbID, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
             }
-        }
-        return null;
+        });
+
+        return deferred.promise;
     }
 }
