@@ -48,7 +48,12 @@ module.exports = function(db, mongoose) {
                 } else {
                     // if there's no movie
                     // create a new instance
-                    movie = new Movie(movie);
+                    movie = new Movie({
+                        imdbID: movie.imdbID,
+                        title: movie.Title,
+                        poster: movie.Poster,
+                        likes: []
+                    });
                     // add user to likes
                     movie.likes.push (userId);
                     // save new instance
@@ -87,7 +92,8 @@ module.exports = function(db, mongoose) {
         var movie = new Movie({
             imdbID: movie.imdbID,
             poster: movie.Poster,
-            title: movie.Title
+            title: movie.Title,
+            likes: []
         });
 
         var deferred = q.defer();
