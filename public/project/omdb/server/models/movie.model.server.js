@@ -1,5 +1,8 @@
 // pass db and mongoose reference to model
 module.exports = function(db, mongoose) {
+
+    var MovieSchema = require("./movie.schema.server.js")(mongoose);
+
     var movies = [];
     var api = {
         findMovieByImdbID: findMovieByImdbID,
