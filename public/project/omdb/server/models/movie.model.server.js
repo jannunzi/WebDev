@@ -1,3 +1,6 @@
+
+var q = require("q");
+
 // pass db and mongoose reference to model
 module.exports = function(db, mongoose) {
 
@@ -40,10 +43,22 @@ module.exports = function(db, mongoose) {
             title: movie.Title
         });
 
+        var deferred = q.defer();
+
         // save movie to database
-        Movie.save(function (err, doc) {
-            console.log(doc);
+        movie.save(function (err, doc) {
+
+            if (err) {
+                // reject promise if error
+                defferred.reject(err)
+            } else {
+                // resolve promise
+                deferred.resolve(doc);
+            }
+
         });
+
+        return deferred.promise;
     }
 
     function findMovieByImdbID(imdbID) {

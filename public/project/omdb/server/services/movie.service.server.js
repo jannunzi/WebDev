@@ -20,21 +20,31 @@ module.exports = function(app, movieModel, userModel) {
         var userId = req.params.userId;
         var imdbID = req.params.imdbID;
         var movie = movieModel.findMovieByImdbID(imdbID);
-        if(!movie) {
-            movie = movieModel.createMovie(movieOmdb);
-        }
-        if(!movie.likes) {
-            movie.likes = [];
-        }
-        movie.likes.push(userId);
 
-        var user = userModel.findUserById(userId);
-        if(!user.likes) {
-            user.likes = [];
+        if(!movie) {
+            movieModel.createMovie(movieOmdb)
+                .then(
+                    function (movie) {
+
+                        if(!movie.likes) {
+                            movie.likes = [];
+                        }
+                        movie.likes.push(userId);
+
+                        var user = userModel.findUserById(userId);
+                        if(!user.likes) {
+                            user.likes = [];
+                        }
+                        user.likes.push(imdbID);
+                        console.log(user);
+                        console.log(movie);
+                        res.send(200);
+
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    }
+                );
         }
-        user.likes.push(imdbID);
-        console.log(user);
-        console.log(movie);
-        res.send(200);
     }
 }
