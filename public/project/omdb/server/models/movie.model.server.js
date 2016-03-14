@@ -1,7 +1,11 @@
 // pass db and mongoose reference to model
 module.exports = function(db, mongoose) {
 
+    // load movie schema from movie model
     var MovieSchema = require("./movie.schema.server.js")(mongoose);
+
+    // create movie from schema
+    var Movie  = mongoose.model("Movie", MovieSchema);
 
     var movies = [];
     var api = {
@@ -28,14 +32,18 @@ module.exports = function(db, mongoose) {
     }
 
     function createMovie(movie) {
-        movie = {
-            _id: "ID_" + (new Date()).getTime(),
+
+        // create instance of movie
+        var movie = new Movie({
             imdbID: movie.imdbID,
             poster: movie.Poster,
             title: movie.Title
-        };
-        movies.push(movie);
-        return movie;
+        });
+
+        // save movie to database
+        Movie.save(function (err, doc) {
+            console.log(doc);
+        });
     }
 
     function findMovieByImdbID(imdbID) {
