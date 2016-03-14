@@ -14,9 +14,56 @@ module.exports = function(db, mongoose) {
     var api = {
         findMovieByImdbID: findMovieByImdbID,
         findMoviesByImdbIDs: findMoviesByImdbIDs,
-        createMovie: createMovie
+        createMovie: createMovie,
+        userLikesMovie: userLikesMovie
     };
     return api;
+
+    function userLikesMovie (userId, movie) {
+
+        var deferred = q.defer();
+
+        // find the movie by imdb ID
+        Movie.findOne({imdbID: movie.imdbID},
+
+            function (err, doc) {
+
+                // reject promise if error
+                if (err) {
+                    deferred.reject(err);
+                }
+
+                // if there's a movie
+                if (doc) {
+                    // add user to likes
+                    doc.likes.push (userId);
+                    // save changes
+                    doc.save(function(err, doc){
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                } else {
+                    // if there's no movie
+                    // create a new instance
+                    movie = new Movie(movie);
+                    // add user to likes
+                    movie.likes.push (userId);
+                    // save new instance
+                    movie.save(function(err, doc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(doc);
+                        }
+                    });
+                }
+        });
+
+        return deferred.promise;
+    }
 
     function findMoviesByImdbIDs (imdbIDs) {
         var movies = [];
