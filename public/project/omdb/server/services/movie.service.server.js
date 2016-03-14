@@ -23,13 +23,23 @@ module.exports = function(app, movieModel, userModel) {
 
         movieModel
             .userLikesMovie(userId, movieOmdb)
+            // add user to movie likes
             .then(
                 function (movie) {
-                    res.json(movie);
+                    return userModel.userLikesMovie(userId, movie);
                 },
                 function (err) {
                     res.status(400).send(err);
                 }
             )
+            // add movie to user likes
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 }
