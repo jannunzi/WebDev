@@ -31,6 +31,8 @@
 
         function favorite(movie) {
             if(currentUser) {
+                vm.movie.likes = [];
+                vm.movie.likes.push(currentUser._id);
                 MovieService
                     .userLikesMovie(currentUser._id, movie);
             } else {
