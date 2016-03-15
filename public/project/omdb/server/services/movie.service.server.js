@@ -4,15 +4,28 @@ module.exports = function(app, movieModel, userModel) {
 
     function findUserLikes (req, res) {
         var imdbID = req.params.imdbID;
-        console.log(imdbID);
-        var movie = movieModel.findMovieByImdbID(imdbID);
-        if(movie) {
-            var userLikes = movie.likes;
-            console.log(userLikes);
-            var users = userModel.findUsersByIds(userLikes);
-            movie.userLikes = users;
-        }
-        res.json(movie);
+
+        var movie = null;
+        movieModel
+            .findMovieByImdbID(imdbID)
+            .then (
+                function (doc) {
+                    movie = doc;
+                    return userModel.findUsersByIds(movie.likes);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then (
+                function (users) {
+                    movie.userLikes = users;
+                    res.json(movie);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function userLikesMovie(req, res) {
