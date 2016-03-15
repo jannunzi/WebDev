@@ -6,7 +6,11 @@ module.exports = function(mongoose) {
         title: String,
         poster: String,
         // ids of users that like this movie
-        likes: [String]
+        likes: [String],
+        // list of users that like this movie
+        userLikes: [
+            {username: String}
+        ],
         // store movie documents in this collection
     }, {collection: 'project.omdb.movie'});
 
