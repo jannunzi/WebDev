@@ -1,0 +1,8 @@
+<div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+        <li ng-class="{'active': $location.url() == '/poc'}"><a href="#/home">Home</a></li>
+        <li ng-show="currentUser" ng-class="{'active': $location.url() == '/schedule'}"><a href="#/schedule">Schedule</a></li>
+        <li ng-show="currentUser" ng-class="{'active': $location.url() == '/course'}"><a href="#/course">Course</a></li>
+        <li ng-show="currentUser.role == 'admin'" ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
+    </ul>
+</div>
