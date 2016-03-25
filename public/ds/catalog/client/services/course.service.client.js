@@ -30,6 +30,8 @@
             findAllCoursesForUser: findAllCoursesForUser,
             findCourseByUserId: findCourseByUserId,
             findCourseByTitle: findCourseByTitle,
+            getCurrentCourse: getCurrentCourse,
+            setCurrentCourse: setCurrentCourse,
             updateCourseById: updateCourseById
         };
         return model;
@@ -108,6 +110,14 @@
                     callback(updatedCourse);
                 }
             }
+        }
+
+        function getCurrentCourse() {
+            return $rootScope.currentCourse;
+        }
+
+        function setCurrentCourse (course) {
+            $rootScope.currentCourse = course;
         }
     }
 }());

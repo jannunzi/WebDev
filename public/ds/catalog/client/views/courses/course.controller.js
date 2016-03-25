@@ -8,13 +8,15 @@
         .module("CatalogApp")
         .controller("CourseController", CourseController)
 
-    function CourseController($scope, CourseService) {
+    function CourseController($scope, $location, CourseService) {
         var selectedCourse = null;
+        var currentCourse = CourseService.getCurrentCourse();
 
         $scope.addCourse = addCourse;
         $scope.deleteCourse = deleteCourse;
         $scope.selectCourse = selectCourse;
         $scope.updateCourse = updateCourse;
+        $scope.viewCourse = viewCourse;
 
         CourseService.findAllCourses(function(callback) {
             $scope.courses = callback;
@@ -54,6 +56,12 @@
             CourseService.deleteCourseById($scope.courses[index]._id, function(callback) {
                 $scope.courses = callback;
             });
+        }
+
+        function viewCourse(index) {
+            currentCourse = $scope.courses[index];
+            CourseService.setCurrentCourse(currentCourse);
+            $location.url('/course/'+currentCourse.number);
         }
     }
 }());
