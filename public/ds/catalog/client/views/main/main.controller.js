@@ -14,7 +14,7 @@
         $scope.hideSidebar = hideSidebar;
 
         function hideSidebar() {
-            return ($location.url() === '/home');
+            return ($location.url() === '/home' || $location.url() === '/course');
         }
     }
 }());
