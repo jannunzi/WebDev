@@ -35,6 +35,10 @@
                 controller: "ScheduleController"
             })
             .when("/course", {
+                templateUrl: "views/courses/brochure.view.html",
+                controller: "CourseController"
+            })
+            .when("/course/:id", {
                 templateUrl: "views/courses/course.view.html",
                 controller: "CourseController"
             })
