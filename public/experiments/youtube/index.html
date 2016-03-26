@@ -15,7 +15,10 @@
         <h2>Dynamic Embedded YouTube Video</h2>
         <table>
             <tr ng-repeat="video in videos">
-                <td>{{video.youTubeId}}</td>
+                <td style="vertical-align: top">{{video.youTubeId}}</td>
+                <td>
+                    <iframe width="300" height="200" ng-src="{{video.url}}" frameborder="0" allowfullscreen></iframe>
+                </td>
             </tr>
         </table>
     </div>
