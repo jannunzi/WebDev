@@ -2,7 +2,9 @@ module.exports = function(app) {
 
     var files = [];
 
-    app.post('/upload', function (req, res) {
+    app.post('/experiments/upload', upload);
+
+    function upload(req, res) {
 
         var myFile = req.files.myFile;
 
@@ -17,5 +19,5 @@ module.exports = function(app) {
 
         // redirect to another page after upload
         res.redirect("/experiments/upload/file-list.view.html");
-    });
+    }
 }
