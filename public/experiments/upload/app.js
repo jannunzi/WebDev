@@ -1,4 +1,9 @@
 (function(){
     angular
-        .module("FileUploadExperiment", []);
+        .module("FileUploadExperiment", [])
+        .controller("ListFilesController", listFilesController);
+
+    function ListFilesController() {
+
+    }
 })();
