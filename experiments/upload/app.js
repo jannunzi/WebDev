@@ -6,7 +6,6 @@ module.exports = function(app) {
 
         var myFile = req.files.myFile;
 
-        // create local file object with relevant properties
         var file = {
             path: myFile.path,
             name: myFile.name,
@@ -14,10 +13,9 @@ module.exports = function(app) {
             type: myFile.type
         }
 
-        // store file object in some collection
-        // or store in a database collection
         files.push(file);
 
-        res.send(200);
+        // redirect to another page after upload
+        res.redirect("/experiments/upload/file-list.view.html");
     });
 }
