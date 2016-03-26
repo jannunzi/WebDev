@@ -1,3 +1,6 @@
+// load file system module
+var fs = require("fs");
+
 module.exports = function(app) {
 
     var files = [];
@@ -18,11 +21,14 @@ module.exports = function(app) {
             name: myFile.name,
             size: myFile.size,
             type: myFile.type
-        }
+        };
 
-        files.push(file);
-
-        // redirect to another page after upload
-        res.redirect("/experiments/upload/file-list.view.html");
+        // optionally rename the file to its original name
+        var oldPath = __dirname + "/../../" + myFile.path;
+        var newPath = __dirname + "/../../public/uploads/" + myFile.name;
+        fs.rename(oldPath, newPath, function(err){
+            files.push(file);
+            res.redirect("/experiments/upload/file-list.view.html");
+        });
     }
 }
