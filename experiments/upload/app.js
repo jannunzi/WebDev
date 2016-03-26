@@ -8,6 +8,25 @@ module.exports = function(app) {
     app.post('/experiments/upload', upload);
     app.get ('/api/experiments/upload', getUploadedFiles);
 
+
+    function init() {
+        readFilesFromDirectory();
+    }
+
+    init();
+
+    function readFilesFromDirectory() {
+        var uploadDir = __dirname + "/../../public/uploads";
+        fs.readdir(uploadDir, function(err, filesInDirectory) {
+            filesInDirectory.forEach(function(fileName){
+                var file = {
+                    name: fileName
+                };
+                files.push(file);
+            });
+        });
+    }
+
     function getUploadedFiles(req, res) {
         res.json(files);
     }
