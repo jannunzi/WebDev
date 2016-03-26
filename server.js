@@ -245,6 +245,8 @@ require("./public/experiments/server/express/omdb/delete/server/app.js")(app);
 require("./public/experiments/server/express/omdb/update/server/app.js")(app);
 require("./public/experiments/server/express/omdb/structure/server/app.js")(app);
 
+require("./experiments/upload/app.js")(app);
+
 // pass db and mongoose reference to server side application module
 require("./public/project/omdb/server/app.js")(app, db, mongoose);
 
