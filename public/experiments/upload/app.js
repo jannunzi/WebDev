@@ -8,7 +8,7 @@
             .then(
                 function(response){
                     files = response.data;
-                    console.log(files);
+                    $scope.files = files;
                 }
             );
     }

@@ -4,5 +4,19 @@
 <div ng-app="FileUploadExperiment">
     <div ng-controller="ListFilesController">
         <h1>List Uploaded Files</h1>
+        <table>
+            <tr ng-repeat="file in files">
+                <td>
+                    Path: {{file.path}} <br/>
+                    Name: {{file.name}} <br/>
+                    Size: {{file.size}} <br/>
+                    Type: {{file.type}} <br/>
+                    File: {{file.path.substring(file.path.indexOf('/'))}}
+                </td>
+                <td><img height="100px"
+                         ng-src="{{file.path.substring(file.path.indexOf('/'))}}"/>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
