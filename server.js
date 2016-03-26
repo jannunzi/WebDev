@@ -36,6 +36,7 @@ console.log(process.env.PASSPORT_SECRET);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.bodyParser({ uploadDir: './public/uploads', keepExtensions: true }));
 app.use(multer());
 app.use(session({ secret: process.env.PASSPORT_SECRET }));
 app.use(cookieParser())
