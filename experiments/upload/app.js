@@ -3,6 +3,11 @@ module.exports = function(app) {
     var files = [];
 
     app.post('/experiments/upload', upload);
+    app.get ('/api/experiments/upload', getUploadedFiles);
+
+    function getUploadedFiles(req, res) {
+        res.json(files);
+    }
 
     function upload(req, res) {
 
