@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>YouTube + AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
     <h1>YouTube Example</h1>
     <h2>Static Embedded YouTube Video</h2>
     <iframe width="300" height="200" src="https://www.youtube.com/embed/vdOSynpAnNg" frameborder="0" allowfullscreen></iframe>
+
+    <div ng-controller="YouTubeListController">
+        <h2>Dynamic Embedded YouTube Video</h2>
+        <table>
+            <tr ng-repeat="video in videos">
+                <td>{{video.youTubeId}}</td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
