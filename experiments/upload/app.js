@@ -10,7 +10,7 @@ module.exports = function(app) {
 
 
     function init() {
-        readFilesFromDirectory();
+        //readFilesFromDirectory();
     }
 
     init();
