@@ -1,76 +1,166 @@
 ﻿<div class="alert alert-success">
   <h4>OVERVIEW</h4>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
+    <p>
+        Passport is a library that abstracts authentication to provide
+        a consistent API for providing credentials. Passport allows easy
+        integration with authentication providers such as Google, Twitter,
+        and Facebook.
+    </p>
 
 </div>
 
+<h3>Website and Documentation</h3>
+<p>
+    Take a look at <a href="http://passportjs.org/">Passport's Web site</a>
+    and <a href="http://passportjs.org/docs">documentation</a>. The Web site
+    provides plenty of documentation and examples for many strategies.
+    Each strategy adds different integration points such as
 
-<h3>Ng-Routing</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-    <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/0">Start
-        Lecture &raquo;</a>
+    <a href="https://github.com/jaredhanson/passport-facebook">Facebook</a>,
+    <a href="https://github.com/jaredhanson/passport-google-oauth">Google</a>,
+    <a href="https://github.com/jaredhanson/passport-twitter">Twitter</a>, and
+    <a href="https://github.com/jaredhanson/passport-linkedin">Linkedin</a>
+</p>
 
-<hr>
-<h3>Register</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/1">Start
-        Lecture &raquo;</a>
+<p>
+    To get started you'll need to install various passport packages. Install
+    the core module <code>passport</code> and <code>passport-local</code>
+</p>
 
-<hr>
-<h3>Profile</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/2">Start
-        Lecture &raquo;</a>
+<pre>
+npm install passport --save
+npm install passport-local --save
+</pre>
 
-<hr>
-<h3>Navigation</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/3">Start
-        Lecture &raquo;</a>
+<h3>Installation and Configuration</h3>
 
-<hr>
-<h3>Update User</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-    <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/4">Start
-        Lecture &raquo;</a>
+<p>
+    Take a look at
+    <a href="https://github.com/jannunzi/mean-stack-authentication-and-registration-with-passport.git">
+        the sample repository in GitHub
+    </a>
+    for a complete example of how to create a simple MEAN application
+    that uses Passport for authentication. The following documents the
+</p>
 
-<hr>
-<h3>Login/Logout</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/5">Start
-        Lecture &raquo;</a>
+<h4>package.json</h4>
+<p>
+    After installing the modules, you should have the following dependencies
+    in your <code>package.json</code>
+</p>
 
-<hr>
-<h3>Admin Page</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/6">Start
-        Lecture &raquo;</a>
+<gist id="42ac70c3d428ce7f8d56"></gist>
 
-<hr>
-<h3>Admin Tasks</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/7">Start
-        Lecture &raquo;</a>
+<h4>server.js</h4>
+<p>
+    Once you have installed the needed passport modules, load them
+    and configure them from your <code>server.js</code> file
+</p>
 
-<hr>
+<gist id="38981b74782335c16266"></gist>
+
+<h4>user.service.server.js</h4>
+<p>
+    In your Web service file, configure URL pattern handlers for
+    authenticating the client with the server. Map URL patterns
+    for
+    <code>login</code>, <code>logout</code>, <code>register</code>
+    <gist id="9d83953b7c0a7fc4f90a"></gist>
+</p>
+
+<p>
+    Configure local strategy to handle simple username/password
+    authentication. Use the credentials to lookup the user from
+    the database. If the user exists, then return
+    <code>done(null, user)</code> where <code>user</code> is
+    the user found in the database and <code>null</code> is
+    the error.
+    <gist id="0770cc820b32f9291dcd"></gist>
+</p>
+
+<p>
+    Configure serialization and desirialization to set and retrieve
+    the user identity from the session cookie. The cookie keeps
+    the identity in the client browser which provides the cookie
+    in every request. The cookie is encrypted to avoid tampering
+    on the client side.
+    <gist id="d50200b8633b049fbbe9"></gist>
+</p>
+
+<p>
+    Implement <code>login</code>, <code>logout</code>, and <code>loggedin</code>
+    by using passport. Passport adds the currently logged in user
+    to the request <code>req.user</code>. The user is retrieved using
+    the <code>deserializeUser()</code> function. Passport also adds
+    functions <code>req.isAuthenticated()</code> and <code>req.logOut()</code>
+    to check if the current user has been already authenticated and
+    to logout the current user. Logging out invalidates the session cookie.
+    <gist id="7126735731b70b328d67"></gist>
+</p>
+
+<!--<h2>Sample Videos</h2>-->
+<!--<h3>Ng-Routing</h3>-->
+<!--<p> This video describes . </p>-->
+    <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/0">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
+<!--<h3>Register</h3>-->
+<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+        <!--incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+        <!--nisi ut aliquip ex ea commodo consequat. </p>-->
+        <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/1">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
+<!--<h3>Profile</h3>-->
+<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+        <!--incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+        <!--nisi ut aliquip ex ea commodo consequat. </p>-->
+        <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/2">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
+<!--<h3>Navigation</h3>-->
+<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+        <!--incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+        <!--nisi ut aliquip ex ea commodo consequat. </p>-->
+        <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/3">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
+<!--<h3>Update User</h3>-->
+<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+        <!--incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+        <!--nisi ut aliquip ex ea commodo consequat. </p>-->
+    <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/4">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
+<!--<h3>Login/Logout</h3>-->
+<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+        <!--incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+        <!--nisi ut aliquip ex ea commodo consequat. </p>-->
+        <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/5">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
+<!--<h3>Admin Page</h3>-->
+<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+        <!--incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+        <!--nisi ut aliquip ex ea commodo consequat. </p>-->
+        <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/6">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
+<!--<h3>Admin Tasks</h3>-->
+<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
+        <!--incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
+        <!--nisi ut aliquip ex ea commodo consequat. </p>-->
+        <!--<a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/7">Start-->
+        <!--Lecture &raquo;</a>-->
+
+<!--<hr>-->
 
 
