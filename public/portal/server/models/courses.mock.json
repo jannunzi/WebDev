@@ -832,7 +832,11 @@
             "title": "Admin Tasks"
           }
         ],
-        "assignments": [],
+        "assignments": [
+          {
+            "title": "Security and User Management"
+          }
+        ],
         "videos": [],
         "slides": [],
         "examples": [
