@@ -1,11 +1,25 @@
 <div class="col-sm-12 col-md-12 main">
-    <h1 class="page-header">Courses</h1>
+    <table style="width: 100%">
+        <tr>
+            <td><h1 class="page-header">Courses</h1></td>
+            <td align="right" ng-show="currentUser.roles.indexOf('admin') >= 0">
+                <a ng-click="model.newCourse()"><span class="glyphicon glyphicon-plus-sign" style="color:green"></span></a>
+            </td>
+        </tr>
+    </table>
 
     <div class="row">
         <div class="col-sm-6 col-md-4" ng-repeat="course in model.courses">
             <div class="thumbnail">
                 <div class="caption">
-                    <h2 align="center">{{course.number}}</h2>
+                    <table style="width: 100%">
+                        <tr>
+                            <td align="right" ng-show="currentUser.roles.indexOf('admin') >= 0">
+                                <a ng-click="model.removeCourse($index)"><span class="glyphicon glyphicon-minus-sign" style="color:lightcoral"></span></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <h2 align="center" class="page-header">{{course.number}}</h2>
                     <h4 align="center">{{course.title}}</h4>
                     <p align="center"><a ng-click="model.viewCourse($index)" class="btn btn-primary" role="button"><i class="fa fa-book"></i> View Course</a></p>
                 </div>

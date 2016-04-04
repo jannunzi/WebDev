@@ -8,7 +8,7 @@
         .module("CatalogApp")
         .controller("BrochureController", BrochureController)
 
-    function BrochureController($location, CourseService) {
+    function BrochureController($scope, $location, ngDialog, CourseService) {
         var vm = this;
         var selectedCourse = null;
 
@@ -17,6 +17,8 @@
         vm.selectCourse = selectCourse;
         vm.updateCourse = updateCourse;
         vm.viewCourse = viewCourse;
+        vm.newCourse = newCourse;
+        vm.removeCourse = removeCourse;
 
         CourseService.findAllCourses().then(function(response) {
             vm.courses = response.data;
@@ -62,6 +64,39 @@
             selectedCourse = vm.courses[index];
             CourseService.setCurrentCourse(selectedCourse);
             $location.url('/course/'+selectedCourse.number);
+        }
+
+        function newCourse() {
+            vm.addingType = "course";
+            showAddDialog(function(title){
+                var course = {
+                    "title": title,
+                    "modules": []
+                };
+
+                CourseService.createCourse(course).then(function(callback) {
+                    vm.courses = callback.data;
+                });
+            });
+        }
+
+        function removeCourse(index) {
+            vm.title = vm.courses[index].title;
+            showRemoveDialog(function(){
+                deleteCourse(index);
+
+                CourseService.findAllCourses().then(function(response) {
+                    vm.courses = response.data;
+                });
+            });
+        }
+
+        function showAddDialog(confirm, cancel){
+            ngDialog.openConfirm({template: 'views/courses/add.html', scope: $scope}).then(confirm, cancel);
+        }
+
+        function showRemoveDialog(confirm, cancel){
+            ngDialog.openConfirm({template: 'views/courses/delete.html', scope: $scope}).then(confirm, cancel);
         }
     }
 }());
