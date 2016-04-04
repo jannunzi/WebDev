@@ -16,7 +16,8 @@
             })
             .when("/admin", {
                 templateUrl: "./views/admin/admin.view.html",
-                controller: "AdminController"
+                controller: "AdminController",
+                controllerAs: "model"
             })
             .when("/login", {
                 templateUrl: "./views/users/login.view.html",

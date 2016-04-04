@@ -8,7 +8,7 @@ module.exports = function (mongoose) {
         password: String,
         firstName: String,
         lastName: String,
-        email: [String],
-        phones: [String]
+        email: String,
+        roles: [String]
     }, {collection: 'catalog.user'});
 };

@@ -7,6 +7,6 @@
                 <li>{{module}}</li>
             </ul>
         </li>
-        <li ng-show="currentUser.role == 'admin'" ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
+        <li ng-show="currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
     </ul>
 </div>
