@@ -15,8 +15,8 @@
             var username = $scope.username;
             var password = $scope.password;
 
-            UserService.findUserByCredentials(username, password, function(callback) {
-                UserService.setCurrentUser(callback);
+            UserService.findUserByCredentials(username, password).then(function(response) {
+                UserService.setCurrentUser(response.data);
                 $location.url('/profile');
             });
         }

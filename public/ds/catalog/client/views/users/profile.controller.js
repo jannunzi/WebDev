@@ -46,8 +46,8 @@
 
             var userId = user._id;
 
-            UserService.updateUser(userId, user, function(callback) {
-                UserService.setCurrentUser(callback);
+            UserService.updateUserById(userId, user).then(function(response) {
+                UserService.setCurrentUser(response.data);
                 $scope.message = "User updated successfully";
                 $location.url('/profile');
             });

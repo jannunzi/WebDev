@@ -18,7 +18,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/starter-template.css" rel="stylesheet">
+    <link href="./css/starter-template.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -29,31 +29,32 @@
     <script	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
 
-    <script src="app.js"></script>
-    <script src="config.js"></script>
+    <script src="./app.js"></script>
+    <script src="./config.js"></script>
 
-    <script src="views/header/header.controller.js"></script>
-    <script src="views/home/home.controller.js"></script>
-    <script src="views/main/main.controller.js"></script>
-    <script src="views/sidebar/sidebar.controller.js"></script>
-    <script src="views/users/login.controller.js"></script>
-    <script src="views/users/profile.controller.js"></script>
-    <script src="views/users/register.controller.js"></script>
-    <script src="views/courses/schedule.controller.js"></script>
-    <script src="views/courses/course.controller.js"></script>
-    <script src="views/admin/admin.controller.js"></script>
+    <script src="./views/header/header.controller.js"></script>
+    <script src="./views/home/home.controller.js"></script>
+    <script src="./views/main/main.controller.js"></script>
+    <script src="./views/sidebar/sidebar.controller.js"></script>
+    <script src="./views/users/login.controller.js"></script>
+    <script src="./views/users/profile.controller.js"></script>
+    <script src="./views/users/register.controller.js"></script>
+    <script src="./views/modules/module.controller.js"></script>
+    <script src="./views/courses/course.controller.js"></script>
+    <script src="./views/courses/brochure.controller.js"></script>
+    <script src="./views/admin/admin.controller.js"></script>
 
-    <script src="services/user.service.client.js"></script>
-    <script src="services/course.service.client.js"></script>
+    <script src="./services/user.service.client.js"></script>
+    <script src="./services/course.service.client.js"></script>
 </head>
 
 <body ng-controller="MainController">
 
-<div ng-include="'views/header/header.view.html'"></div>
+<div ng-include="'./views/header/header.view.html'"></div>
 
 <div class="container-fluid">
     <div class="row">
-        <div ng-hide="hideSidebar()" ng-include="'views/sidebar/sidebar.view.html'"></div>
+        <div ng-hide="hideSidebar()" ng-include="'./views/sidebar/sidebar.view.html'"></div>
         <div ng-view></div>
     </div>
 </div>

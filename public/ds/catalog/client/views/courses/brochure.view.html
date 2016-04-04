@@ -1,11 +1,15 @@
 <div class="col-sm-12 col-md-12 main">
     <h1>Brochure</h1>
-    <div class="table responsive">
-        <div class="list-group">
-            <a ng-click="viewCourse($index)" class="list-group-item" ng-repeat="course in courses">
-                <h4 class="list-group-item-heading">{{course.number}}</h4>
-                <p class="list-group-item-text">{{course.title}}</p>
-            </a>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-4" ng-repeat="course in courses">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h2 align="center">{{course.number}}</h2>
+                    <h5 align="center">{{course.title}}</h5>
+                    <p align="center"><a ng-click="viewCourse($index)" class="btn btn-primary" role="button">View Course</a></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

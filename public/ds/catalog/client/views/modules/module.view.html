@@ -1,0 +1,43 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1>Modules</h1>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group">
+                <input ng-model="search" type="text" class="form-control" placeholder="Please enter only the module number...">
+                <span class="input-group-btn">
+                    <button ng-click="searchModule()" class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="list-group" ng-show="moduleSearchResult">
+        <div class="list-group-item">
+            <table style="width: 100%">
+                <tr>
+                    <td><h3 class="list-group-item-heading">Module {{moduleSearchResult}}</h3></td>
+                </tr>
+                <tr><td colspan="2" class="list-group-item-text">Description {{moduleSearchResult}}</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="list-group">
+        <div class="list-group-item" ng-repeat="module in currentCourse.modules">
+            <table style="width: 100%">
+                <tr>
+                    <td><h3 class="list-group-item-heading"><a ng-click="viewModule($index)">Module {{module}}</a></h3></td>
+                    <td align="right">
+                        <a ng-click="deleteModule($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                    </td>
+                </tr>
+                <tr><td colspan="2" class="list-group-item-text">Description {{module}}</td></tr>
+            </table>
+        </div>
+    </div>
+    <div align="right" ng-show="currentCourse">
+        <a ng-click="addModule()"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+</div>

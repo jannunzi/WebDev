@@ -8,51 +8,42 @@
         .module("CatalogApp")
         .controller("AdminController", AdminController)
 
-    function AdminController($scope, UserService) {
-        var selectedUser = null;
+    function AdminController($scope, CourseService) {
+        var selectedCourse = null;
 
-        $scope.addUser = addUser;
-        $scope.deleteUser = deleteUser;
-        $scope.selectUser = selectUser;
-        $scope.updateUser = updateUser;
+        $scope.addCourse = addCourse;
+        $scope.deleteCourse = deleteUser;
+        $scope.selectCourse = selectCourse;
+        $scope.updateCourse = updateCourse;
 
-        UserService.findAllUsers(function(callback) {
-            $scope.users = callback;
+        CourseService.findAllCourses().then(function(response) {
+            $scope.courses = response.data;
         });
 
-        function selectUser(index) {
-            selectedUser = $scope.users[index];
-            $scope.username = selectedUser.username;
-            $scope.department = selectedUser.department;
-            $scope.role = selectedUser.role;
+        function selectCourse(index) {
+            selectedCourse = $scope.courses[index];
+            $scope.selectedCourse = selectedCourse;
         }
 
-        function addUser(){
-            var newUser = {"username": $scope.username, "department": $scope.department, "role": $scope.role};
-            UserService.createUser(newUser, function(callback) {
-                $scope.users = callback;
-                $scope.username = "";
-                $scope.department = "";
-                $scope.role = "";
+        function addCourse(){
+            var newCourse = $scope.selectedCourse;
+            CourseService.createCourse(newCourse).then(function(response) {
+                $scope.courses = response.data;
+                $scope.selectedCourse = null;
             });
         }
 
-        function updateUser() {
-            if (selectedUser) {
-                selectedUser.username = $scope.username;
-                selectedUser.department = $scope.department;
-                selectedUser.role = $scope.role;
-                UserService.updateUserById(selectedUser._id, selectedUser, function(callback) {
-                    $scope.username = "";
-                    $scope.department = "";
-                    $scope.role = "";
+        function updateCourse() {
+            if (selectedCourse) {
+                CourseService.updateCourseById(selectedCourse._id, selectedCourse).then(function(response) {
+                    $scope.selectedCourse = null;
                 });
             }
         }
 
         function deleteUser(index) {
-            UserService.deleteUserById($scope.users[index]._id, function(callback) {
-                $scope.users = callback;
+            CourseService.deleteCourseById($scope.courses[index]._id).then(function(response) {
+                $scope.courses = response.data;
             });
         }
     }

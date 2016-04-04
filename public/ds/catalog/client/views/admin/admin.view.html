@@ -1,35 +1,35 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1>Admin</h1>
-    <h3>Users</h3>
+    <h3>Courses</h3>
     <div class="table responsive">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Username</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Department</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Role</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Action</th>
-                </tr>
+            <tr>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Course</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Title</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Location</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Action</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input ng-model="username" class="form-control" placeholder="username"/></td>
-                    <td><input ng-model="department" class="form-control" placeholder="department"/></td>
-                    <td><input ng-model="role" class="form-control" placeholder="role"/></td>
-                    <td>
-                        <a ng-click="addUser()"><span class="glyphicon glyphicon-plus"></span></a>&emsp;
-                        <a ng-click="updateUser()"><span class="glyphicon glyphicon-ok"></span></a>
-                    </td>
-                </tr>
-                <tr ng-repeat="user in users">
-                    <td>{{user.username}}</td>
-                    <td>{{user.department}}</td>
-                    <td>{{user.role}}</td>
-                    <td>
-                        <a ng-click="deleteUser($index)"><span class="glyphicon glyphicon-remove"></span></a>&emsp;
-                        <a ng-click="selectUser($index)"><span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
-                </tr>
+            <tr>
+                <td><input ng-model="selectedCourse.number" class="form-control" placeholder="course number"/></td>
+                <td><input ng-model="selectedCourse.title" class="form-control" placeholder="title"/></td>
+                <td><input ng-model="selectedCourse.location" class="form-control" placeholder="location"/></td>
+                <td>
+                    <a ng-click="addCourse()"><span class="glyphicon glyphicon-plus"></span></a>&emsp;
+                    <a ng-click="updateCourse()"><span class="glyphicon glyphicon-ok"></span></a>
+                </td>
+            </tr>
+            <tr ng-repeat="course in courses">
+                <td>{{course.number}}</td>
+                <td>{{course.title}}</td>
+                <td>{{course.location}}</td>
+                <td>
+                    <a ng-click="deleteCourse($index)"><span class="glyphicon glyphicon-remove"></span></a>&emsp;
+                    <a ng-click="selectCourse($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

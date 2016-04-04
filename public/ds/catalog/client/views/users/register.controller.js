@@ -34,18 +34,18 @@
                 $scope.message = "Please provide an email";
                 return;
             }
-            var user = UserService.findUserByUsername(user.username);
-            if (user != null) {
-                $scope.message = "User already exists";
-                return;
-            }
-
-            UserService.createUser($scope.user, function(callback) {
-                UserService.setCurrentUser(callback);
-                $location.url('/profile');
+            UserService.findUserByUsername(user.username).then(function(response) {
+                user = response.data;
+                if (user != null) {
+                    $scope.message = "User already exists";
+                    return;
+                } else {
+                    UserService.createUser($scope.user).then(function(response) {
+                        UserService.setCurrentUser(response.data);
+                        $location.url('/profile');
+                    });
+                }
             });
-
         }
-
     }
 }());

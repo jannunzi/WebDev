@@ -8,7 +8,7 @@
         .module("CatalogApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($scope, $location) {
+    function SidebarController($scope, $rootScope, $location) {
 
     }
 }());

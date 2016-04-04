@@ -8,22 +8,8 @@
         .module("CatalogApp")
         .factory("CourseService", CourseService);
 
-    function CourseService($rootScope) {
-        var model = {
-            courses: [
-                {
-                    "_id": 123, "number": "CS5600", "title": "Web Development", "timing": "6 - 9 PM | W",
-                    "location": "101 Chrome Hall"
-                },
-                {
-                    "_id": 234, "number": "CS8674", "title": "Master's Project", "timing": "3 - 6 PM | M",
-                    "location": "1 Hacker Way"
-                },
-                {
-                    "_id": 345, "number": "CS6000", "title": "Database Management", "timing": "6 - 9 PM | T, F",
-                    "location": "1 Infinite Loop"
-                }
-            ],
+    function CourseService($rootScope, $http) {
+        var service = {
             createCourse: createCourse,
             deleteCourseById: deleteCourseById,
             findAllCourses: findAllCourses,
@@ -32,11 +18,27 @@
             findCourseByTitle: findCourseByTitle,
             getCurrentCourse: getCurrentCourse,
             setCurrentCourse: setCurrentCourse,
-            updateCourseById: updateCourseById
+            updateCourseById: updateCourseById,
+            addModuleToCourse: addModuleToCourse,
+            deleteModuleFromCourse: deleteModuleFromCourse,
+            searchModuleInCourse: searchModuleInCourse
         };
-        return model;
 
-        function findCourseByTitle (title) {
+        return service;
+
+        function addModuleToCourse(courseId) {
+            return $http.put('/api/ds/catalog/course/' + courseId + '/module');
+        }
+
+        function deleteModuleFromCourse(courseId, index) {
+            return $http.put('/api/ds/catalog/course/' + courseId + '/module/' + index);
+        }
+
+        function searchModuleInCourse(courseId, moduleId) {
+            return $http.get('/api/ds/catalog/course/' + courseId + '/module/' + moduleId);
+        }
+
+        function findCourseByTitle(title) {
             for (var u in model.courses) {
                 if (model.courses[u].title === title) {
                     return model.courses[u];
@@ -56,8 +58,8 @@
             callback(course);
         }
 
-        function findAllCourses(callback) {
-            callback(model.courses);
+        function findAllCourses() {
+            return $http.get("/api/ds/catalog/course");
         }
 
         function findAllCoursesForUser(courseIds, callback) {
@@ -72,44 +74,16 @@
             callback(courses);
         }
 
-        function createCourse(course, callback) {
-            var newCourse = {
-                _id: new Date().getTime(),
-                number: course.number,
-                title: course.title,
-                timing: course.timing,
-                location: course.location,
-                userId: course.userId
-            };
-            model.courses.push(newCourse);
-            callback(model.courses);
+        function createCourse(course) {
+            return $http.post('/api/ds/catalog/course', course);
         }
 
-        function deleteCourseById(courseId, callback) {
-            for (var u in model.courses) {
-                if (model.courses[u]._id == courseId) {
-                    model.courses.splice(u, 1);
-                    break;
-                }
-            }
-            callback(model.courses);
+        function deleteCourseById(courseId) {
+            return $http.delete('/api/ds/catalog/course/' + courseId);
         }
 
-        function updateCourseById(courseId, course, callback) {
-            for (var u in model.courses) {
-                if (model.courses[u]._id == courseId) {
-                    var updatedCourse = {
-                        _id: courseId,
-                        number: course.number,
-                        title: course.title,
-                        timing: course.timing,
-                        location: course.location,
-                        userId: course.userId
-                    };
-                    model.courses[u] = updatedCourse;
-                    callback(updatedCourse);
-                }
-            }
+        function updateCourseById(courseId, course) {
+            return $http.put('/api/ds/catalog/course/' + courseId, course);
         }
 
         function getCurrentCourse() {
