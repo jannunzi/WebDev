@@ -11,10 +11,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active': $location.url() == '/register'}"><a ng-show="!currentUser && !showDropdown()" href="#/register">Register</a></li>
-                <li ng-class="{'active': $location.url() == '/login'}"><a ng-show="!currentUser && !showDropdown()" href="#/login">Login</a></li>
-                <li ng-class="{'active': $location.url() == '/profile'}"><a ng-show="currentUser && !showDropdown()" href="#/profile">{{currentUser.username}}</a></li>
-                <li><a ng-show="currentUser && !showDropdown()" ng-click="logout()" href="#/home">Logout</a></li>
+                <li ng-class="{'active': $location.url() == '/register'}"><a ng-show="!currentUser && !showDropdown()" href="#/register"><span class="glyphicon glyphicon-check"></span>&emsp;Register</a></li>
+                <li ng-class="{'active': $location.url() == '/login'}"><a ng-show="!currentUser && !showDropdown()" href="#/login"><span class="glyphicon glyphicon-log-in"></span>&emsp;Login</a></li>
+                <li ng-class="{'active': $location.url() == '/profile'}"><a ng-show="currentUser && !showDropdown()" href="#/profile"><span class="glyphicon glyphicon-user"></span>&emsp;{{currentUser.username}}</a></li>
+                <li><a ng-show="currentUser && !showDropdown()" ng-click="logout()" href="#/home"><span class="glyphicon glyphicon-log-out"></span>&emsp;Logout</a></li>
             </ul>
         </div>
     </div>
