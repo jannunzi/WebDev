@@ -1,10 +1,13 @@
 /**
- * Created by ameyapandilwar on 3/8/16.
+ * Created by ameyapandilwar on 3/7/16.
  */
 
-var users = require("./user.mock.json");
+var q = require('q');
 
-module.exports = function() {
+module.exports = function (db, mongoose) {
+
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+    var UserModel = mongoose.model('CatalogUser', UserSchema);
 
     var api = {
         createUser: createUser,
@@ -19,76 +22,75 @@ module.exports = function() {
     return api;
 
     function findUserByCredentials(credentials) {
-        for (var u in users) {
-            if (users[u].username == credentials.username && users[u].password == credentials.password) {
-                return users[u];
-            }
-        }
-
-        return null;
+        return UserModel.findOne({username: credentials.username, password: credentials.password});
     }
 
-    function findUserById(userId) {
-        for (var u in users){
-            if (users[u]._id == userId) {
-                return users[u];
-            }
-        }
-
-        return null;
+    function findUserById(id) {
+        return UserModel.findById(id);
     }
 
     function findUserByUsername(username) {
-        for (var u in users){
-            if (users[u].username == username) {
-                return users[u];
-            }
-        }
-
-        return null;
+        return UserModel.findOne({username: username});
     }
 
     function findAllUsers() {
-        return users;
+        var deferred = q.defer();
+
+        UserModel.find(
+            function(err, res) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(res);
+                }
+            });
+
+        return deferred.promise;
     }
 
     function createUser(user) {
-        var newUser = {
-            _id: (new Date).getTime().toString(),
-            username: user.username,
-            password: user.password,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            roles: user.roles,
-            email: user.email
-        };
+        var deferred = q.defer();
 
-        users.push(newUser);
-        return newUser;
+        UserModel.create(user, function (err, res) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(res);
+            }
+        });
+
+        return deferred.promise;
     }
 
-    function deleteUserById(userId) {
-        var user = findUserById(userId);
-        if (user) {
-            users.splice(users.indexOf(user), 1);
-        }
+    function deleteUserById(id) {
+        var deferred = q.defer();
 
-        return null;
+        UserModel.remove({_id: id},
+            function(err, res) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(res);
+                }
+            });
+
+        return deferred.promise;
     }
 
-    function updateUser(userId, user) {
-        var existingUser = findUserById(userId);
-        if (existingUser) {
-            existingUser.firstName = user.firstName;
-            existingUser.lastName = user.lastName;
-            existingUser.password = user.password;
-            existingUser.username = user.username;
-            existingUser.roles = user.roles;
-            existingUser.email = user.email;
-            return existingUser;
-        } else {
-            return null;
-        }
-    }
+    function updateUser(id, user) {
+        var deferred = q.defer();
 
+        UserModel.update(
+            {_id: id},
+            {$set: user},
+            function (err, res) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(res);
+                }
+            });
+
+        return deferred.promise;
+    }
 };

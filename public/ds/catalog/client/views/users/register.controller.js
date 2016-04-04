@@ -8,39 +8,40 @@
         .module("CatalogApp")
         .controller("RegisterController", RegisterController)
 
-    function RegisterController($scope, $location, UserService){
-        $scope.message = null;
-        $scope.register = register;
+    function RegisterController($location, UserService){
+        var vm = this;
+        vm.message = null;
+        vm.register = register;
 
         function register(user){
-            $scope.message = null;
+            vm.message = null;
             if (user == null) {
-                $scope.message = "Please fill in the required fields";
+                vm.message = "Please fill in the required fields";
                 return;
             }
             if (!user.username) {
-                $scope.message = "Please provide a username";
+                vm.message = "Please provide a username";
                 return;
             }
             if (!user.password || !user.verifypassword) {
-                $scope.message = "Please provide a password";
+                vm.message = "Please provide a password";
                 return;
             }
             if (user.password != user.verifypassword) {
-                $scope.message = "Passwords must match";
+                vm.message = "Passwords must match";
                 return;
             }
             if (!user.email) {
-                $scope.message = "Please provide an email";
+                vm.message = "Please provide an email";
                 return;
             }
             UserService.findUserByUsername(user.username).then(function(response) {
                 user = response.data;
                 if (user != null) {
-                    $scope.message = "User already exists";
+                    vm.message = "User already exists";
                     return;
                 } else {
-                    UserService.createUser($scope.user).then(function(response) {
+                    UserService.createUser(vm.user).then(function(response) {
                         UserService.setCurrentUser(response.data);
                         $location.url('/profile');
                     });

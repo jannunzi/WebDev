@@ -10,7 +10,7 @@ var session       = require('express-session');
 var mongoose      = require('mongoose');
 
 // create a default connection string
-var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
+var connectionString = 'mongodb://127.0.0.1:27017/webdev';
 
 // use remote connection string
 // if running in remote server
@@ -36,7 +36,6 @@ console.log(process.env.PASSPORT_SECRET);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.bodyParser({ uploadDir: './public/uploads', keepExtensions: true }));
 app.use(multer());
 app.use(session({ secret: process.env.PASSPORT_SECRET }));
 app.use(cookieParser())
@@ -226,6 +225,7 @@ require("./public/ds/ss/server/app.js")(app, db, mongoose);
 require("./public/ds/fc/server/app.js")(app, db, mongoose);
 require("./public/ds/ce/server/app.js")(app, db, mongoose);
 require("./public/ds/pe/server/app.js")(app, db, mongoose);
+
 require("./public/ds/catalog/server/app.js")(app, db, mongoose);
 
 //require("./public/experiments/passport/exp1/server/app.js")(app, db, mongoose, passport);
@@ -245,8 +245,6 @@ require("./public/experiments/server/express/omdb/post/server/app.js")(app);
 require("./public/experiments/server/express/omdb/delete/server/app.js")(app);
 require("./public/experiments/server/express/omdb/update/server/app.js")(app);
 require("./public/experiments/server/express/omdb/structure/server/app.js")(app);
-
-require("./experiments/upload/app.js")(app);
 
 // pass db and mongoose reference to server side application module
 require("./public/project/omdb/server/app.js")(app, db, mongoose);
