@@ -43,7 +43,8 @@
             })
             .when("/course", {
                 templateUrl: "./views/courses/brochure.view.html",
-                controller: "BrochureController"
+                controller: "BrochureController",
+                controllerAs: "model"
             })
             .when("/course/:id", {
                 templateUrl: "./views/courses/course.view.html",

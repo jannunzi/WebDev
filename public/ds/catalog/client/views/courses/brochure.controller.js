@@ -8,57 +8,58 @@
         .module("CatalogApp")
         .controller("BrochureController", BrochureController)
 
-    function BrochureController($scope, $location, CourseService) {
+    function BrochureController($location, CourseService) {
+        var vm = this;
         var selectedCourse = null;
 
-        $scope.addCourse = addCourse;
-        $scope.deleteCourse = deleteCourse;
-        $scope.selectCourse = selectCourse;
-        $scope.updateCourse = updateCourse;
-        $scope.viewCourse = viewCourse;
+        vm.addCourse = addCourse;
+        vm.deleteCourse = deleteCourse;
+        vm.selectCourse = selectCourse;
+        vm.updateCourse = updateCourse;
+        vm.viewCourse = viewCourse;
 
         CourseService.findAllCourses().then(function(response) {
-            $scope.courses = response.data;
+            vm.courses = response.data;
         });
 
         function selectCourse(index) {
-            selectedCourse = $scope.courses[index];
-            $scope.number = selectedCourse.number;
-            $scope.timing = selectedCourse.timing;
-            $scope.location = selectedCourse.location;
+            selectedCourse = vm.courses[index];
+            vm.number = selectedCourse.number;
+            vm.timing = selectedCourse.timing;
+            vm.location = selectedCourse.location;
         }
 
         function addCourse() {
-            var newCourse = {"number": $scope.number, "timing": $scope.timing, "location": $scope.location};
+            var newCourse = {"number": vm.number, "timing": vm.timing, "location": vm.location};
             CourseService.createCourse(newCourse, function(callback) {
-                $scope.courses = callback;
-                $scope.number = "";
-                $scope.timing = "";
-                $scope.location = "";
+                vm.courses = callback;
+                vm.number = "";
+                vm.timing = "";
+                vm.location = "";
             });
         }
 
         function updateCourse() {
             if (selectedCourse) {
-                selectedCourse.number = $scope.number;
-                selectedCourse.timing = $scope.timing;
-                selectedCourse.location = $scope.location;
+                selectedCourse.number = vm.number;
+                selectedCourse.timing = vm.timing;
+                selectedCourse.location = vm.location;
                 CourseService.updateCourseById(selectedCourse._id, selectedCourse, function(callback) {
-                    $scope.number = "";
-                    $scope.timing = "";
-                    $scope.location = "";
+                    vm.number = "";
+                    vm.timing = "";
+                    vm.location = "";
                 });
             }
         }
 
         function deleteCourse(index) {
-            CourseService.deleteCourseById($scope.courses[index]._id, function(callback) {
-                $scope.courses = callback;
+            CourseService.deleteCourseById(vm.courses[index]._id, function(callback) {
+                vm.courses = callback;
             });
         }
 
         function viewCourse(index) {
-            selectedCourse = $scope.courses[index];
+            selectedCourse = vm.courses[index];
             CourseService.setCurrentCourse(selectedCourse);
             $location.url('/course/'+selectedCourse.number);
         }

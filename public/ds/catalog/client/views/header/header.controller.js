@@ -13,12 +13,12 @@
         $scope.logout = logout;
 
         function showDropdown() {
-            return ($location.url() === '/home' || $location.url() === '/proposal' || $location.url() === '/mockups');
+            return ($location.url() === '/home');
         }
 
         function logout() {
             UserService.setCurrentUser(null);
-            $location.url('/poc');
+            $location.url('/home');
         }
     }
 }());
