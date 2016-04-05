@@ -36,7 +36,9 @@
         function addCourse(){
             var newCourse = vm.selectedCourse;
             CourseService.createCourse(newCourse).then(function(response) {
-                vm.courses = response.data;
+                CourseService.findAllCourses().then(function(response) {
+                    vm.courses = response.data;
+                });
                 vm.selectedCourse = null;
             });
         }
@@ -51,7 +53,9 @@
 
         function deleteCourse(index) {
             CourseService.deleteCourseById(vm.courses[index]._id).then(function(response) {
-                vm.courses = response.data;
+                CourseService.findAllCourses().then(function(response) {
+                    vm.courses = response.data;
+                });
             });
         }
 

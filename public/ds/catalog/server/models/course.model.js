@@ -2,9 +2,12 @@
  * Created by ameyapandilwar on 3/8/16.
  */
 
-var courses = require("./course.mock.json");
+var q = require('q');
 
-module.exports = function() {
+module.exports = function(db, mongoose) {
+
+    var CourseSchema = require("./course.schema.server.js")(mongoose);
+    var CourseModel = mongoose.model('CatalogCourse', CourseSchema);
 
     var api = {
         viewCourses: viewCourses,
@@ -23,16 +26,22 @@ module.exports = function() {
     return api;
 
     function viewCourses() {
-        return courses;
+        var deferred = q.defer();
+
+        CourseModel.find(
+            function(err, res) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(res);
+                }
+            });
+
+        return deferred.promise;
     }
 
     function findCourseByTitle(title) {
-        for (var u in courses) {
-            if (courses[u].title === title) {
-                return courses[u];
-            }
-        }
-        return null;
+        return CourseModel.findOne({title: title});
     }
 
     function searchModuleInCourse(courseId, moduleId) {
@@ -45,13 +54,8 @@ module.exports = function() {
         return null;
     }
 
-    function findCourseById(courseId) {
-        for (var u in courses) {
-            if (courses[u]._id === parseInt(courseId)) {
-                return courses[u];
-            }
-        }
-        return null;
+    function findCourseById(id) {
+        return CourseModel.findById(id);
     }
 
     function findCourseByUserId(courseId) {
@@ -78,43 +82,49 @@ module.exports = function() {
     }
 
     function createCourse(course) {
-        var newCourse = {
-            _id: new Date().getTime(),
-            number: course.number,
-            title: course.title,
-            timing: course.timing,
-            location: course.location,
-            userId: course.userId
-        };
-        courses.push(newCourse);
-        return courses;
+        var deferred = q.defer();
+
+        CourseModel.create(course, function (err, res) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(res);
+            }
+        });
+
+        return deferred.promise;
     }
 
-    function deleteCourseById(courseId) {
-        for (var u in courses) {
-            if (courses[u]._id == courseId) {
-                courses.splice(u, 1);
-                break;
-            }
-        }
-        return courses;
+    function deleteCourseById(id) {
+        var deferred = q.defer();
+
+        CourseModel.remove({_id: id},
+            function(err, res) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(res);
+                }
+            });
+
+        return deferred.promise;
     }
 
-    function updateCourseById(courseId, course) {
-        for (var u in courses) {
-            if (courses[u]._id == courseId) {
-                var updatedCourse = {
-                    _id: courseId,
-                    number: course.number,
-                    title: course.title,
-                    timing: course.timing,
-                    location: course.location,
-                    userId: course.userId
-                };
-                courses[u] = updatedCourse;
-                return updatedCourse;
-            }
-        }
+    function updateCourseById(id, course) {
+        var deferred = q.defer();
+
+        CourseModel.update(
+            {_id: id},
+            {$set: course},
+            function (err, res) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(res);
+                }
+            });
+
+        return deferred.promise;
     }
 
     function addModuleToCourse(courseId) {

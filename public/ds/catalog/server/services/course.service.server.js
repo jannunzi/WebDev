@@ -35,7 +35,11 @@ module.exports = function(app, courseModel) {
     }
 
     function viewCourses(req, res) {
-        res.json(courseModel.viewCourses());
+        courseModel.viewCourses().then(function(courses) {
+            res.json(courses);
+        }, function(err) {
+            res.status(400).send(err);
+        });
     }
 
     function findCourseByTitle(title) {
@@ -76,7 +80,11 @@ module.exports = function(app, courseModel) {
 
     function createCourse(req, res) {
         var course = req.body;
-        res.json(courseModel.createCourse(course));
+        courseModel.createCourse(course).then(function(course) {
+            res.json(course);
+        }, function(err) {
+            res.status(400).send(err);
+        });
     }
 
     function deleteCourseById(req, res) {

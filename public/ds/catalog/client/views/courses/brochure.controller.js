@@ -77,7 +77,9 @@
                 };
 
                 CourseService.createCourse(course).then(function(callback) {
-                    vm.courses = callback.data;
+                    CourseService.findAllCourses().then(function(response) {
+                        vm.courses = response.data;
+                    });
                 });
             });
             vm.number = "";
