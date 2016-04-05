@@ -20,6 +20,8 @@
         vm.makeAdmin = makeAdmin;
         vm.deleteUser = deleteUser;
 
+        CourseService.setCurrentCourse(null);
+
         CourseService.findAllCourses().then(function(response) {
             vm.courses = response.data;
         });

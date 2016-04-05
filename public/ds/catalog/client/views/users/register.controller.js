@@ -8,10 +8,12 @@
         .module("CatalogApp")
         .controller("RegisterController", RegisterController)
 
-    function RegisterController($location, UserService){
+    function RegisterController($location, UserService, CourseService){
         var vm = this;
         vm.message = null;
         vm.register = register;
+
+        CourseService.setCurrentCourse(null);
 
         function register(user){
             vm.message = null;

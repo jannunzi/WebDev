@@ -1,12 +1,27 @@
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-        <li><a href="#/course">Home</a></li>
-        <li ng-show="currentCourse" ng-class="{'active': $location.url() == '/module'}">
-            <a href="#/module">Modules</a>
+        <li><a href="#/course"><span class="glyphicon glyphicon-home"></span>&emsp;Courses</a></li>
+    </ul>
+
+    <hr ng-show="currentCourse"/>
+
+    <ul class="nav nav-sidebar" ng-show="currentCourse">
+        <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number}">
+            <a href="#/course/{{currentCourse.number}}"><span class="glyphicon glyphicon-book"></span>&emsp;{{currentCourse.title}}</a>
+        </li>
+        <li ng-class="{'active': $location.url() == '/module'}">
+            <a href="#/module"><span class="glyphicon glyphicon-tags"></span>&emsp;Modules</a>
             <ul ng-repeat="module in currentCourse.modules">
                 <li>{{module.title}}</li>
             </ul>
         </li>
-        <li ng-show="currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
+    </ul>
+
+    <hr ng-show="currentUser.roles.indexOf('admin') >= 0"/>
+
+    <ul class="nav nav-sidebar" ng-show="currentUser.roles.indexOf('admin') >= 0">
+        <li ng-class="{'active': $location.url() == '/admin'}">
+            <a href="#/admin"><span class="glyphicon glyphicon-cog"></span>&emsp;Admin</a>
+        </li>
     </ul>
 </div>

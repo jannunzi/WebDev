@@ -95,7 +95,7 @@
             return $rootScope.currentCourse;
         }
 
-        function setCurrentCourse (course) {
+        function setCurrentCourse(course) {
             $rootScope.currentCourse = course;
         }
     }

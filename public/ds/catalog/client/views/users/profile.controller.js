@@ -8,12 +8,14 @@
         .module("CatalogApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, UserService) {
+    function ProfileController($location, UserService, CourseService) {
         var vm = this;
         vm.error = null;
         vm.message = null;
 
         vm.update = update;
+
+        CourseService.setCurrentCourse(null);
 
         vm.currentUser = UserService.getCurrentUser();
         if (!vm.currentUser) {

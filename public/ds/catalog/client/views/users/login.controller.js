@@ -8,9 +8,11 @@
         .module("CatalogApp")
         .controller("LoginController", LoginController)
 
-    function LoginController($location, UserService) {
+    function LoginController($location, UserService, CourseService) {
         var vm = this;
         vm.login = login;
+
+        CourseService.setCurrentCourse(null);
 
         function login() {
             var username = vm.username;
