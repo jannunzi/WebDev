@@ -51,13 +51,17 @@ module.exports = function(db, mongoose) {
     }
 
     function searchModuleInCourse(courseId, moduleId) {
-        var course = findCourseById(courseId);
-        for (var m in course.modules) {
-            if (m === moduleId) {
-                return m;
+        var deferred = q.defer();
+
+        CourseModel.findById(courseId, function(err, course) {
+            for (var m in course.modules) {
+                if (m.title === moduleId) {
+                    deferred.resolve(m);
+                }
             }
-        }
-        return null;
+        });
+
+        return deferred.promise;
     }
 
     function findCourseById(id) {

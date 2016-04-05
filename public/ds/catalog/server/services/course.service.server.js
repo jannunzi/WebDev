@@ -38,7 +38,9 @@ module.exports = function(app, courseModel) {
     function searchModuleInCourse(req, res) {
         var courseId = req.params.courseId;
         var moduleId = req.params.moduleId;
-        res.json(courseModel.searchModuleInCourse(courseId, moduleId));
+        courseModel.searchModuleInCourse(courseId, moduleId).then(function(courses){
+            res.json(courses);
+        });
     }
 
     function viewCourses(req, res) {
