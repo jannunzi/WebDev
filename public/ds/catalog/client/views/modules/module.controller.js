@@ -30,7 +30,7 @@
         function viewModule(index) {
             var selectedModule = selectedCourse.modules[index];
             $rootScope.selectedModule = selectedModule;
-            $location.url("/module/" + selectedModule);
+            $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule);
         }
 
         function addModule(){

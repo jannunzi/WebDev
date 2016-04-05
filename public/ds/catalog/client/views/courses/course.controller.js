@@ -8,62 +8,64 @@
         .module("CatalogApp")
         .controller("CourseController", CourseController)
 
-    function CourseController($scope, $rootScope, $location, CourseService) {
-        var selectedCourse = CourseService.getCurrentCourse();
-        $scope.course = selectedCourse;
+    function CourseController($rootScope, $location, CourseService) {
+        var vm = this;
 
-        $scope.addCourse = addCourse;
-        $scope.deleteCourse = deleteCourse;
-        $scope.selectCourse = selectCourse;
-        $scope.updateCourse = updateCourse;
-        $scope.viewCourses = viewCourses;
-        $scope.viewModule = viewModule;
+        var selectedCourse = CourseService.getCurrentCourse();
+        vm.course = selectedCourse;
+
+        vm.addCourse = addCourse;
+        vm.deleteCourse = deleteCourse;
+        vm.selectCourse = selectCourse;
+        vm.updateCourse = updateCourse;
+        vm.viewCourses = viewCourses;
+        vm.viewModule = viewModule;
 
         function viewCourses() {
             CourseService.findAllCourses().then(function(response) {
-                $scope.courses = response.data;
+                vm.courses = response.data;
             });
         }
 
         function viewModule(index) {
             var selectedModule = selectedCourse.modules[index];
             $rootScope.selectedModule = selectedModule;
-            $location.url("/module/" + selectedModule);
+            $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule);
         }
 
         function selectCourse(index) {
-            selectedCourse = $scope.courses[index];
-            $scope.number = selectedCourse.number;
-            $scope.timing = selectedCourse.timing;
-            $scope.location = selectedCourse.location;
+            selectedCourse = vm.courses[index];
+            vm.number = selectedCourse.number;
+            vm.timing = selectedCourse.timing;
+            vm.location = selectedCourse.location;
         }
 
         function addCourse(){
-            var newCourse = {"number": $scope.number, "timing": $scope.timing, "location": $scope.location};
+            var newCourse = {"number": vm.number, "timing": vm.timing, "location": vm.location};
             CourseService.createCourse(newCourse).then(function(response) {
-                $scope.courses = response.data;
-                $scope.number = "";
-                $scope.timing = "";
-                $scope.location = "";
+                vm.courses = response.data;
+                vm.number = "";
+                vm.timing = "";
+                vm.location = "";
             });
         }
 
         function updateCourse() {
             if (selectedCourse) {
-                selectedCourse.number = $scope.number;
-                selectedCourse.timing = $scope.timing;
-                selectedCourse.location = $scope.location;
+                selectedCourse.number = vm.number;
+                selectedCourse.timing = vm.timing;
+                selectedCourse.location = vm.location;
                 CourseService.updateCourseById(selectedCourse._id, selectedCourse).then(function(response) {
-                    $scope.number = "";
-                    $scope.timing = "";
-                    $scope.location = "";
+                    vm.number = "";
+                    vm.timing = "";
+                    vm.location = "";
                 });
             }
         }
 
         function deleteCourse(index) {
-            CourseService.deleteCourseById($scope.courses[index]._id).then(function(response) {
-                $scope.courses = response.data;
+            CourseService.deleteCourseById(vm.courses[index]._id).then(function(response) {
+                vm.courses = response.data;
             });
         }
 

@@ -34,14 +34,15 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/module", {
+            .when("/course/:id/module", {
                 templateUrl: "./views/modules/module.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/module/:id", {
+            .when("/course/:id/module/:id", {
                 templateUrl: "./views/modules/detail.view.html",
-                controller: "ModuleController"
+                controller: "ModuleController",
+                controllerAs: "model"
             })
             .when("/course", {
                 templateUrl: "./views/courses/brochure.view.html",
@@ -50,7 +51,8 @@
             })
             .when("/course/:id", {
                 templateUrl: "./views/courses/course.view.html",
-                controller: "CourseController"
+                controller: "CourseController",
+                controllerAs: "model"
             })
             .otherwise({
                 redirectTo: "/home"

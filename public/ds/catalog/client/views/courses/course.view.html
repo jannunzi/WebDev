@@ -1,12 +1,44 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1>{{course.number}} | {{course.title}}</h1>
-    <div class="table responsive">
-        <h4><u>Timings:</u> {{course.timing}}</h4>
-        <h4><u>Location:</u> {{course.location}}</h4>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-show="model.course">
+    <h1 class="page-header">{{model.course.number}} | {{model.course.title}}</h1>
 
+    <div class="jumbotron">
+        <h1 class="page-header">{{model.course.title}} | <small>{{model.course.instructor}}</small></h1>
+        <p>{{model.course.description}}</p>
+        <p align="right"><a class="btn btn-primary" href="#/course/{{model.course.number}}" role="button">Enroll</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>Timing & Location</h3>
+                    <p>{{model.course.location}}</p>
+                    <p>{{model.course.timing}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>Syllabus</h3>
+                    <p>{{model.course.syllabus}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>Instructor</h3>
+                    <p>{{model.course.instructor}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table responsive">
         <h4><u>Modules:</u></h4>
-        <ul ng-repeat="module in course.modules">
-            <li><a ng-click="viewModule($index)">{{module.title}}</a></li>
+        <ul ng-repeat="module in model.course.modules">
+            <li><a ng-click="model.viewModule($index)">{{module.title}}</a></li>
         </ul>
     </div>
 </div>
