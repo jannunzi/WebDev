@@ -8,13 +8,14 @@
         .module("CatalogApp")
         .controller("ModuleController", ModuleController)
 
-    function ModuleController($rootScope, $location, CourseService) {
+    function ModuleController($scope, $rootScope, $location, ngDialog, CourseService) {
         var vm = this;
         var selectedCourse = CourseService.getCurrentCourse();
         vm.course = selectedCourse;
 
         vm.addModule = addModule;
         vm.deleteModule = deleteModule;
+        vm.editModule = editModule;
         vm.selectModule = selectModule;
         vm.updateModule = updateModule;
         vm.searchModule = searchModule;
@@ -39,6 +40,31 @@
                 $rootScope.currentCourse.modules = response.data;
                 vm.course.modules = $rootScope.currentCourse.modules;
             });
+        }
+
+        function editModule(index){
+            vm.addingType = "module";
+            vm.module = vm.course.modules[index];
+
+            showUpdateDialog(function(model){
+                var selectedModule = vm.module;
+                selectedModule.title = model.title;
+
+                for (var m in vm.course.modules) {
+                    if (vm.course.modules[index]._id === vm.course.modules[m]._id) {
+                        vm.course.modules[m] = selectedModule;
+                    }
+                }
+
+                CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                });
+            });
+            vm.module = null;
+        }
+
+        function showUpdateDialog(confirm, cancel){
+            ngDialog.openConfirm({template: 'views/modules/update.html', scope: $scope}).then(confirm, cancel);
         }
 
         function updateModule() {

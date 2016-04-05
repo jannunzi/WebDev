@@ -12,10 +12,11 @@ module.exports = function(app, courseModel) {
     //app.get("/api/catalog/course", getCurrentCourse);
     //app.get("/api/catalog/course", setCurrentCourse);
     app.put("/api/ds/catalog/course/:id", updateCourseById);
-    app.put("/api/ds/catalog/course/:id/module", addModuleToCourse);
+    app.post("/api/ds/catalog/course/:id/module", addModuleToCourse);
     app.get("/api/ds/catalog/course/:id/module", findModulesForCourse);
-    app.put("/api/ds/catalog/course/:courseId/module/:id", deleteModuleFromCourse);
+    app.put("/api/ds/catalog/course/:courseId/module/:moduleId", deleteModuleFromCourse);
     app.get("/api/ds/catalog/course/:courseId/module/:moduleId", searchModuleInCourse);
+    app.put("/api/ds/catalog/course/:courseId/module/", updateModulesInCourse);
 
     function addModuleToCourse(req, res) {
         courseModel.addModuleToCourse(req.params.id, req.body).then(function(modules){
@@ -30,16 +31,20 @@ module.exports = function(app, courseModel) {
     }
 
     function deleteModuleFromCourse(req, res) {
-        courseModel.deleteModuleFromCourse(req.params.courseId, req.params.id).then(function(modules){
+        courseModel.deleteModuleFromCourse(req.params.courseId, req.params.moduleId).then(function(modules){
             res.json(modules);
         });
     }
 
     function searchModuleInCourse(req, res) {
-        var courseId = req.params.courseId;
-        var moduleId = req.params.moduleId;
-        courseModel.searchModuleInCourse(courseId, moduleId).then(function(courses){
-            res.json(courses);
+        courseModel.searchModuleInCourse(req.params.courseId, req.params.moduleId).then(function(module){
+            res.json(module);
+        });
+    }
+
+    function updateModulesInCourse(req, res) {
+        courseModel.updateModulesInCourse(req.params.courseId, req.body).then(function(modules) {
+            res.json(modules);
         });
     }
 

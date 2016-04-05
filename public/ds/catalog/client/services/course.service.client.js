@@ -22,13 +22,14 @@
             updateCourseById: updateCourseById,
             addModuleToCourse: addModuleToCourse,
             deleteModuleFromCourse: deleteModuleFromCourse,
-            searchModuleInCourse: searchModuleInCourse
+            searchModuleInCourse: searchModuleInCourse,
+            updateModulesByCourseId: updateModulesByCourseId
         };
 
         return service;
 
         function addModuleToCourse(courseId, module) {
-            return $http.put('/api/ds/catalog/course/' + courseId + '/module', module);
+            return $http.post('/api/ds/catalog/course/' + courseId + '/module', module);
         }
 
         function findCourseById(courseId) {
@@ -41,6 +42,10 @@
 
         function searchModuleInCourse(courseId, moduleId) {
             return $http.get('/api/ds/catalog/course/' + courseId + '/module/' + moduleId);
+        }
+
+        function updateModulesByCourseId(courseId, modules) {
+            return $http.put('/api/ds/catalog/course/' + courseId + '/module/', modules);
         }
 
         function findCourseByTitle(title) {

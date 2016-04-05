@@ -22,7 +22,8 @@ module.exports = function(db, mongoose) {
         addModuleToCourse: addModuleToCourse,
         deleteModuleFromCourse: deleteModuleFromCourse,
         searchModuleInCourse: searchModuleInCourse,
-        findModulesForCourse: findModulesForCourse
+        findModulesForCourse: findModulesForCourse,
+        updateModulesInCourse: updateModulesInCourse
     };
 
     return api;
@@ -59,6 +60,32 @@ module.exports = function(db, mongoose) {
                     deferred.resolve(m);
                 }
             }
+        });
+
+        return deferred.promise;
+    }
+
+    function updateModulesInCourse(courseId, modules) {
+        var deferred = q.defer();
+
+        getCourseById(courseId).then(function(course){
+            course.modules = modules;
+
+            course.save(function(err, savedCourse){
+                getModulesByCourseId(courseId).then(function(modules){
+                    deferred.resolve(modules);
+                });
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function getCourseById(id){
+        var deferred = q.defer();
+
+        CourseModel.findById(id, function(err, course){
+            deferred.resolve(course);
         });
 
         return deferred.promise;
