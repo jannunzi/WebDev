@@ -6,7 +6,6 @@ module.exports = function(app, courseModel) {
     app.get("/api/ds/catalog/course", viewCourses);
     app.post("/api/ds/catalog/course", createCourse);
     app.delete("/api/ds/catalog/course/:id", deleteCourseById);
-    //app.get("/api/catalog/course", findAllCourses);
     //app.get("/api/catalog/course", findAllCoursesForUser);
     //app.get("/api/catalog/course", findCourseByUserId);
     //app.get("/api/catalog/course", findCourseByTitle);
@@ -14,18 +13,26 @@ module.exports = function(app, courseModel) {
     //app.get("/api/catalog/course", setCurrentCourse);
     app.put("/api/ds/catalog/course/:id", updateCourseById);
     app.put("/api/ds/catalog/course/:id/module", addModuleToCourse);
+    app.get("/api/ds/catalog/course/:id/module", findModulesForCourse);
     app.put("/api/ds/catalog/course/:courseId/module/:id", deleteModuleFromCourse);
     app.get("/api/ds/catalog/course/:courseId/module/:moduleId", searchModuleInCourse);
 
     function addModuleToCourse(req, res) {
-        var courseId = req.params.id;
-        res.json(courseModel.addModuleToCourse(courseId));
+        courseModel.addModuleToCourse(req.params.id, req.body).then(function(modules){
+            res.json(modules);
+        });
+    }
+
+    function findModulesForCourse(req, res) {
+        var course = courseModel.findModulesForCourse(req.params.id);
+        //console.log(course.modules);
+        //res.json(courseModel.findModulesForCourse(req.params.id));
     }
 
     function deleteModuleFromCourse(req, res) {
-        var courseId = req.params.courseId;
-        var id = req.params.id;
-        res.json(courseModel.deleteModuleFromCourse(courseId, id));
+        courseModel.deleteModuleFromCourse(req.params.courseId, req.params.id).then(function(modules){
+            res.json(modules);
+        });
     }
 
     function searchModuleInCourse(req, res) {
@@ -62,10 +69,6 @@ module.exports = function(app, courseModel) {
         callback(course);
     }
 
-    function findAllCourses() {
-        return $http.get("/api/catalog/course");
-    }
-
     function findAllCoursesForUser(courseIds, callback) {
         var courses = []
         for (var u in model.courses) {
@@ -79,8 +82,7 @@ module.exports = function(app, courseModel) {
     }
 
     function createCourse(req, res) {
-        var course = req.body;
-        courseModel.createCourse(course).then(function(course) {
+        courseModel.createCourse(req.body).then(function(course) {
             res.json(course);
         }, function(err) {
             res.status(400).send(err);
@@ -88,14 +90,10 @@ module.exports = function(app, courseModel) {
     }
 
     function deleteCourseById(req, res) {
-        var courseId = req.params.id;
-        res.send(courseModel.deleteCourseById(courseId));
+        res.json(courseModel.deleteCourseById(req.params.id));
     }
 
     function updateCourseById(req, res) {
-        var id = req.params.id;
-        var course = req.body;
-        var updatedCourse = courseModel.updateCourseById(id, course);
-        res.json(updatedCourse);
+        res.json(courseModel.updateCourseById(req.params.id, req.body));
     }
 };

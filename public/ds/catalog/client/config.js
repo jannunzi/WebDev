@@ -36,7 +36,8 @@
             })
             .when("/module", {
                 templateUrl: "./views/modules/module.view.html",
-                controller: "ModuleController"
+                controller: "ModuleController",
+                controllerAs: "model"
             })
             .when("/module/:id", {
                 templateUrl: "./views/modules/detail.view.html",

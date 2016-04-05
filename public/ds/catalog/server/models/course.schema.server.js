@@ -3,11 +3,14 @@
  */
 
 module.exports = function (mongoose) {
+
+    var Module = require("./module.schema.server.js")(mongoose);
+
     return mongoose.Schema({
         number: String,
         title: String,
         timing: String,
         location: String,
-        modules: [String]
+        modules: [Module]
     }, {collection: 'catalog.course'});
 };

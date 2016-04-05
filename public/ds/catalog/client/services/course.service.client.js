@@ -12,6 +12,7 @@
         var service = {
             createCourse: createCourse,
             deleteCourseById: deleteCourseById,
+            findCourseById: findCourseById,
             findAllCourses: findAllCourses,
             findAllCoursesForUser: findAllCoursesForUser,
             findCourseByUserId: findCourseByUserId,
@@ -26,12 +27,16 @@
 
         return service;
 
-        function addModuleToCourse(courseId) {
-            return $http.put('/api/ds/catalog/course/' + courseId + '/module');
+        function addModuleToCourse(courseId, module) {
+            return $http.put('/api/ds/catalog/course/' + courseId + '/module', module);
         }
 
-        function deleteModuleFromCourse(courseId, index) {
-            return $http.put('/api/ds/catalog/course/' + courseId + '/module/' + index);
+        function findCourseById(courseId) {
+            return $http.get('/api/ds/catalog/course/' + courseId + '/module');
+        }
+
+        function deleteModuleFromCourse(courseId, moduleId) {
+            return $http.put('/api/ds/catalog/course/' + courseId + '/module/' + moduleId);
         }
 
         function searchModuleInCourse(courseId, moduleId) {

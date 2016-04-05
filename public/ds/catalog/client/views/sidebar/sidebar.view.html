@@ -4,7 +4,7 @@
         <li ng-show="currentCourse" ng-class="{'active': $location.url() == '/module'}">
             <a href="#/module">Modules</a>
             <ul ng-repeat="module in currentCourse.modules">
-                <li>{{module}}</li>
+                <li>{{module.title}}</li>
             </ul>
         </li>
         <li ng-show="currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
