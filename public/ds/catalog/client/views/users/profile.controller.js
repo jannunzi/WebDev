@@ -45,9 +45,7 @@
                 return;
             }
 
-            var userId = user._id;
-
-            UserService.updateUserById(userId, user).then(function(response) {
+            UserService.updateUserById(user._id, user).then(function(response) {
                 UserService.setCurrentUser(user);
                 vm.message = "User updated successfully";
                 $location.url('/profile');

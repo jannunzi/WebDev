@@ -13,11 +13,12 @@
         var selectedCourse = null;
 
         vm.addCourse = addCourse;
-        vm.deleteCourse = deleteUser;
+        vm.deleteCourse = deleteCourse;
         vm.selectCourse = selectCourse;
         vm.updateCourse = updateCourse;
 
         vm.makeAdmin = makeAdmin;
+        vm.deleteUser = deleteUser;
 
         CourseService.findAllCourses().then(function(response) {
             vm.courses = response.data;
@@ -48,7 +49,7 @@
             }
         }
 
-        function deleteUser(index) {
+        function deleteCourse(index) {
             CourseService.deleteCourseById(vm.courses[index]._id).then(function(response) {
                 vm.courses = response.data;
             });
@@ -58,6 +59,14 @@
             var selectedUser = vm.users[index];
             selectedUser.roles.push('admin');
             UserService.updateUserById(selectedUser._id, selectedUser).then(function(response) {
+                UserService.findAllUsers().then(function(response) {
+                    vm.users = response.data;
+                });
+            });
+        }
+
+        function deleteUser(index) {
+            UserService.deleteUserById(vm.users[index]._id).then(function(response) {
                 UserService.findAllUsers().then(function(response) {
                     vm.users = response.data;
                 });
