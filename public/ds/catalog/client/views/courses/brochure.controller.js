@@ -19,6 +19,7 @@
         vm.viewCourse = viewCourse;
         vm.newCourse = newCourse;
         vm.removeCourse = removeCourse;
+        vm.modifyCourse = modifyCourse;
 
         CourseService.findAllCourses().then(function(response) {
             vm.courses = response.data;
@@ -46,7 +47,7 @@
                 selectedCourse.number = vm.number;
                 selectedCourse.timing = vm.timing;
                 selectedCourse.location = vm.location;
-                CourseService.updateCourseById(selectedCourse._id, selectedCourse, function(callback) {
+                CourseService.updateCourseById(selectedCourse._id, selectedCourse).then(function(response) {
                     vm.number = "";
                     vm.timing = "";
                     vm.location = "";
@@ -68,9 +69,10 @@
 
         function newCourse() {
             vm.addingType = "course";
-            showAddDialog(function(title){
+            showAddDialog(function(model){
                 var course = {
-                    "title": title,
+                    "number": model.number,
+                    "title": model.title,
                     "modules": []
                 };
 
@@ -78,6 +80,8 @@
                     vm.courses = callback.data;
                 });
             });
+            vm.number = "";
+            vm.title = "";
         }
 
         function removeCourse(index) {
@@ -91,12 +95,34 @@
             });
         }
 
+        function modifyCourse(index) {
+            vm.addingType = "course";
+            vm.course = vm.courses[index];
+            showUpdateDialog(function(model){
+                selectedCourse = vm.course;
+                selectedCourse.number = model.number;
+                selectedCourse.title = model.title;
+
+                CourseService.updateCourseById(selectedCourse._id, selectedCourse).then(function(response) {
+                    CourseService.findAllCourses().then(function(response) {
+                        vm.courses = response.data;
+                    });
+                });
+            });
+            vm.number = "";
+            vm.title = "";
+        }
+
         function showAddDialog(confirm, cancel){
             ngDialog.openConfirm({template: 'views/courses/add.html', scope: $scope}).then(confirm, cancel);
         }
 
         function showRemoveDialog(confirm, cancel){
             ngDialog.openConfirm({template: 'views/courses/delete.html', scope: $scope}).then(confirm, cancel);
+        }
+
+        function showUpdateDialog(confirm, cancel){
+            ngDialog.openConfirm({template: 'views/courses/update.html', scope: $scope}).then(confirm, cancel);
         }
     }
 }());

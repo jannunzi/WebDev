@@ -3,7 +3,7 @@
  */
 
 WebFontConfig = {
-    google: { families: [ 'Crushed::latin' ] }
+    google: { families: [ 'Crushed::latin', 'Belgrano::latin' ] }
 };
 (function() {
     var wf = document.createElement('script');

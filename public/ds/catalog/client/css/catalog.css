@@ -2,6 +2,8 @@
 
 .page-header { font-family: 'Crushed', sans-serif !important; }
 
+body { font-family: 'Belgrano', sans-serif !important; }
+
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary {
     background: #009933;
     color: #fff;

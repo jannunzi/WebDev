@@ -15,6 +15,7 @@
                     <table style="width: 100%">
                         <tr>
                             <td align="right" ng-show="currentUser.roles.indexOf('admin') >= 0">
+                                <a ng-click="model.modifyCourse($index)"><span class="glyphicon glyphicon-edit" style="color:saddlebrown"></span></a>&emsp;
                                 <a ng-click="model.removeCourse($index)"><span class="glyphicon glyphicon-minus-sign" style="color:lightcoral"></span></a>
                             </td>
                         </tr>
