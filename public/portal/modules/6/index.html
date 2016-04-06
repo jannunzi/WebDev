@@ -10,7 +10,7 @@
 
 </div>
 
-<h3>Website and Documentation</h3>
+<h2>Website and Documentation</h2>
 <p>
     Take a look at <a href="http://passportjs.org/">Passport's Web site</a>
     and <a href="http://passportjs.org/docs">documentation</a>. The Web site
@@ -33,7 +33,7 @@ npm install passport --save
 npm install passport-local --save
 </pre>
 
-<h3>Installation and Configuration</h3>
+<h2>Installation and Configuration</h2>
 
 <p>
     Take a look at
@@ -98,6 +98,230 @@ npm install passport-local --save
     to logout the current user. Logging out invalidates the session cookie.
     <gist id="7126735731b70b328d67"></gist>
 </p>
+
+<h2>
+    Integrating with Google Authentication
+</h2>
+
+<p>
+    From the command line use <code>npm</code>
+    to install passport packages
+</p>
+
+<pre>
+npm install passport --save
+npm install passport-google-oauth --save
+</pre>
+
+<p>
+    Make sure the packages are in package.json
+</p>
+
+<pre>
+...
+"dependencies": {
+    ...
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0"
+    ...
+}
+...
+</pre>
+
+<p>
+    In your login page add a google button that refers
+    to a route on your server, e.g., <code>/auth/google</code>
+</p>
+
+<escape-html>
+<a href="/auth/google"
+   class="btn btn-danger btn-block">
+    <span class="fa fa-google-plus"></span>
+    Google
+</a></escape-html>
+
+<p>
+    Optionally, in your <code>index.html</code> page,
+    load the font awesome styles
+</p>
+
+<escape-html>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+</escape-html>
+
+<p>
+    In your Web service script require the passport libraries
+</p>
+
+<pre>
+var passport       = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+</pre>
+
+<p>
+    Configure the client ID, secret, and callback URL.
+    Get these from
+    <a href="https://console.developers.google.com/">
+        google's developer console
+    </a>.
+    At the console, configure an OAuth credential and
+    copy these values. Store them in an environment
+    variable. Do not paste them in your source code since
+    your code might be shared publicly in a code
+    repository. Load the environment variables using
+    <code>process.env</code>
+</p>
+
+<pre>
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
+</pre>
+
+<p>
+    Configure a Web service endpoint to respond to the
+    google button click
+</p>
+
+<pre>
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+</pre>
+
+<p>
+    Configure a Web service endpoint to receive Google's
+    response. Configure successful authentication to <code>profile</code>
+    page and failure to <code>login</code> page
+</p>
+
+<pre>
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/#/profile',
+        failureRedirect: '/#/login'
+    }));
+</pre>
+
+<p>
+    Configure a callback for passport to notify you of
+    authentication result. Look up the user in local
+    database. If there, log them in. If not there, create
+    them and log them in.
+</p>
+
+<pre>
+...
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+...
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
+</pre>
+
+<h2>
+    Encrypting the Password When Creating a User
+</h2>
+
+<p>
+    From the terminal use <code>npm</code> to install
+    the <code>bcrypt-nodejs</code> module
+</p>
+
+<pre>
+npm install bcrypt-nodejs --save
+</pre>
+
+<p>
+    Verify it's in the package.json file
+</p>
+
+<pre>
+...
+"dependencies": {
+    ...
+    "bcrypt-nodejs": "0.0.3",
+    ...
+}
+...
+</pre>
+
+<p>
+    In the server side script where you create the
+    new user, require the <code>bcrypt-nodejs</code>
+    module
+</p>
+
+<pre>
+var bcrypt = require("bcrypt-nodejs");
+</pre>
+
+<p>
+    In your register function use
+    <code>bcrypt.hashSync()</code> function to
+    encrypt the password before storing it
+</p>
+
+<pre>
+user.password = <b>bcrypt.hashSync</b>(user.password);
+return userModel.createUser(user);
+</pre>
+
+<p>
+    When you are login in the user, searching to
+    see if the user exists, e.g., when login in,
+    use <code>bcrypt.compareSync()</code> function
+    to compare the passwords
+</p>
+
+<pre>
+...
+userModel
+    .findUserByUsername(username)
+    .then(
+        function(user) {
+            // if the user exists, compare passwords with bcrypt.compareSync
+            if(user && <b>bcrypt.compareSync</b>(password, user.password)) {
+                return done(null, user);
+            } else {
+                return done(null, false);
+            }
+        }
+...
+</pre>
 
 <!--<h2>Sample Videos</h2>-->
 <!--<h3>Ng-Routing</h3>-->
