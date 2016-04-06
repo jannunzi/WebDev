@@ -35,7 +35,7 @@
         }
 
         function addModule(){
-            var module = {"title": Date.now()}
+            var module = {"title": Date.now(), "description": ""}
             CourseService.addModuleToCourse(selectedCourse._id, module).then(function(response) {
                 $rootScope.currentCourse.modules = response.data;
                 vm.course.modules = $rootScope.currentCourse.modules;
@@ -44,11 +44,12 @@
 
         function editModule(index){
             vm.addingType = "module";
-            vm.module = vm.course.modules[index];
+            vm.currentModule = vm.course.modules[index];
 
             showUpdateDialog(function(model){
-                var selectedModule = vm.module;
+                var selectedModule = vm.currentModule;
                 selectedModule.title = model.title;
+                selectedModule.description = model.description;
 
                 for (var m in vm.course.modules) {
                     if (vm.course.modules[index]._id === vm.course.modules[m]._id) {
