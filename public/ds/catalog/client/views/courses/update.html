@@ -1,0 +1,9 @@
+<div class="ngdialog-message">
+<h4>Choose a name for {{model.addingType}}:</h4>
+    <input class="form-control" type="text" placeholder="{{model.addingType}} number" ng-model="model.course.number" />
+    <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="model.course.title" />
+</div>
+<div class="ngdialog-buttons" style="padding-top:20px;">
+    <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+    <button ng-disabled="!(model.course.number && model.course.title)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.course)>Update</button>
+</div>
