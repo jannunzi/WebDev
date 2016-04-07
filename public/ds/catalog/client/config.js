@@ -54,6 +54,11 @@
                 controller: "CourseController",
                 controllerAs: "model"
             })
+            .when("/course/:id/syllabus", {
+                templateUrl: "./views/courses/syllabus.view.html",
+                controller: "CourseController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/home"
             });
