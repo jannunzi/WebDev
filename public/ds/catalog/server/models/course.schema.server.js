@@ -11,6 +11,7 @@ module.exports = function (mongoose) {
         title: String,
         timing: String,
         location: String,
+        instructor: String,
         modules: [Module]
     }, {collection: 'catalog.course'});
 };

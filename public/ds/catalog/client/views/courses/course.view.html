@@ -2,33 +2,35 @@
     <h1 class="page-header">{{model.course.number}} | {{model.course.title}}</h1>
 
     <div class="jumbotron">
-        <h1 class="page-header">{{model.course.title}} | <small>{{model.course.instructor}}</small></h1>
+        <h1 class="page-header">{{model.course.title}} | <small>{{model.course.number}}</small></h1>
+        <h3 class="page-header">{{model.course.instructor}}</h3>
         <p>{{model.course.description}}</p>
-        <p align="right"><a class="btn btn-primary" href="#/course/{{model.course.number}}" role="button">Enroll</a></p>
+        <p align="right" ng-show="currentUser">
+            <a class="btn btn-primary" href="#/course/{{model.course.number}}" role="button">Enroll</a>
+        </p>
     </div>
 
     <div class="row">
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>Timing & Location</h3>
-                    <p>{{model.course.location}}</p>
-                    <p>{{model.course.timing}}</p>
+                    <h3><i class="fa fa-clock-o"></i>&emsp;<u>Timing & Location</u></h3>
+                    <p>{{model.course.location}} | {{model.course.timing}}</p>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>Syllabus</h3>
-                    <p>{{model.course.syllabus}}</p>
+                    <h3><i class="fa fa-file-text-o"></i>&emsp;<u>Syllabus</u></h3>
+                    <p><a href="#/course/{{model.course.number}}/syllabus">{{model.course.syllabus}}</a></p>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3>Instructor</h3>
+                    <h3><i class="fa fa-user"></i>&emsp;<u>Instructor</u></h3>
                     <p>{{model.course.instructor}}</p>
                 </div>
             </div>

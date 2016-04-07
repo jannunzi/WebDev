@@ -7,29 +7,35 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Course Number</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Number</th>
                 <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Title</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Timing</th>
                 <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Location</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Instructor</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td><input ng-model="model.selectedCourse.number" class="form-control" placeholder="course number"/></td>
+                <td><input ng-model="model.selectedCourse.number" class="form-control" placeholder="number"/></td>
                 <td><input ng-model="model.selectedCourse.title" class="form-control" placeholder="title"/></td>
+                <td><input ng-model="model.selectedCourse.timing" class="form-control" placeholder="timing"/></td>
                 <td><input ng-model="model.selectedCourse.location" class="form-control" placeholder="location"/></td>
+                <td><input ng-model="model.selectedCourse.instructor" class="form-control" placeholder="instructor"/></td>
                 <td>
-                    <a ng-click="model.addCourse()"><span class="glyphicon glyphicon-plus"></span></a>&emsp;
-                    <a ng-click="model.updateCourse()"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a ng-click="model.addCourse()"><i class="fa fa-plus-circle"></i></a>&emsp;
+                    <a ng-click="model.updateCourse()"><i class="fa fa-floppy-o"></i></a>
                 </td>
             </tr>
             <tr ng-repeat="course in model.courses">
                 <td>{{course.number}}</td>
                 <td>{{course.title}}</td>
+                <td>{{course.timing}}</td>
                 <td>{{course.location}}</td>
+                <td>{{course.instructor}}</td>
                 <td>
-                    <a ng-click="model.deleteCourse($index)"><span class="glyphicon glyphicon-remove"></span></a>&emsp;
-                    <a ng-click="model.selectCourse($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a ng-click="model.deleteCourse($index)"><i class="fa fa-times-circle"></i></a>&emsp;
+                    <a ng-click="model.selectCourse($index)"><i class="fa fa-pencil"></i></a>
                 </td>
             </tr>
             </tbody>
