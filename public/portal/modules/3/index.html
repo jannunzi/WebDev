@@ -28,7 +28,7 @@
 </div>
 
 
-<h3>JavaScript</h3>
+<h2>JavaScript</h2>
 
 <p>
   JavaScript is a programming language that allows programmatic
@@ -46,7 +46,7 @@
 </a>
 
 <hr>
-<h3>JQuery</h3>
+<h2>JQuery</h2>
 <p>
   JQuery is a very popular JavaScript library that abstracts
   various browsers by hiding their specific beharious, versions,
@@ -63,3 +63,155 @@
 </a>
 
 <hr>
+
+<h2>Angular Autocomplete</h2>
+
+<p>
+  Download and install the Angular autocomplete library
+  <a href="http://ghiden.github.io/angucomplete-alt/" target="_blank">
+    Angucomplete</a>
+  into your local <code>js/</code> directory. Then load it
+  from your <code>index.html</code> file
+</p>
+
+<pre>
+&lt;link href="css/angucomplete-alt.css" rel="stylesheet"/&gt;
+</pre>
+
+<p>
+  Include the directive as dependency of your angular project
+</p>
+
+<pre>
+(function () {
+  angular
+    .module ("WebAppMakerApp",
+      ["ngRoute",
+        "jgaDirectives",
+        "textAngular",
+        "angucomplete-alt"]);
+})();
+</pre>
+
+<p>
+  Apply the directive in an HTML file where you want the
+  autocomplete to appear
+</p>
+
+<pre>
+&lt;div angucomplete-alt
+     placeholder="Search for other developers"
+     pause="500"
+     <b>remote-url="/api/developer/search/"</b>
+     <b>title-field="username"</b>
+     <b>selected-object="selectedUser"</b>
+     minlength="2"
+     input-class="form-control form-control-small"
+     match-class="highlight"&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+  The <code>remote-url</code> attribute refers to a server
+  side Web service endpoint where the text you type will
+  be sent for searching. The Web service will respond with
+  an array of objects that match the query. The attribute
+  <code>title-field</code> configures the field in the
+  object used to render as one of the options in the autocomplete.
+  When the user selects the option, the selection is available
+  in the <code>$scope</code> in a variable referred to by
+  <code>selected-object</code>
+</p>
+
+<p>
+  Create a Web service to handle the search that matches the
+  <code>remote-url</code>
+</p>
+
+<pre>
+app.get ("/api/developer/search/:username", searchDeveloper);
+</pre>
+
+<p>
+  Delegate the search to a model. The model will respond with
+  an array that matches the query
+</p>
+
+<pre>
+function searchDeveloper(req, res) {
+    var username = req.params.username;
+    developerModel
+        .searchDeveloper(username)
+        .then(
+            function(developers){
+                res.json(developers);
+            },
+            function(err){
+                res.status(400).send(err);
+            }
+        )
+}
+</pre>
+
+<p>
+  Use <code>$regex</code> to
+  <a href="https://docs.mongodb.org/manual/reference/operator/query/regex/">
+  query MongoDB with a regular expression
+  </a>.
+  Use the option <code>i</code> for case insensitive comparisons.
+  The example below searches for all developers whose <code>username</code>
+  field contains the value in the parameter <code>username</code>
+</p>
+
+<pre>
+function searchDeveloper(username) {
+  return Developer.find({'username': {$regex: username, $options: 'i'}});
+}
+</pre>
+
+<hr>
+
+<h2>Angular Wysiwyg Editor</h2>
+
+<p>
+  Download and install
+  <a href="http://textangular.com/">
+      the textangular module
+  </a> and link the CSS and load the JavaScript from your
+    <code>index.html</code>
+</p>
+
+<pre>
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/&gt;
+&lt;link href="css/textAngular.css" rel="stylesheet"/&gt;
+&lt;script src="js/textAngular-rangy.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/textAngular-sanitize.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/textAngular.min.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>
+    Use the <code>text-angular</code> directive to
+    render the WYSIWYG editor
+</p>
+
+<pre>
+&lt;div text-angular
+     ng-model="model.widget.repeater.template"&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+    By default the editor renders various toolbars
+    with lots of buttons to format the content.
+    Use the <code>ta-toolbar</code> attribute
+    to configure which buttons you want to show
+    and how you want to group them.
+</p>
+
+<pre>
+&lt;div ng-if="widget.textInput.formatted"
+     text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+     ng-model="model.fields[widget.name]"&gt;
+&lt;/div&gt;
+</pre>
