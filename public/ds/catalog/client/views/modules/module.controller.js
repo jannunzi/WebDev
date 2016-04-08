@@ -8,7 +8,7 @@
         .module("CatalogApp")
         .controller("ModuleController", ModuleController)
 
-    function ModuleController($scope, $rootScope, $location, ngDialog, CourseService) {
+    function ModuleController($scope, $rootScope, $location, ngDialog, CourseService, ModuleService) {
         var vm = this;
         var selectedCourse = CourseService.getCurrentCourse();
         vm.course = selectedCourse;
@@ -30,7 +30,7 @@
 
         function viewModule(index) {
             var selectedModule = selectedCourse.modules[index];
-            $rootScope.selectedModule = selectedModule;
+            ModuleService.setCurrentModule(selectedModule);
             $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule);
         }
 
