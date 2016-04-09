@@ -59,6 +59,21 @@
                 controller: "CourseController",
                 controllerAs: "model"
             })
+            .when("/course/:id/module/:id/lectures", {
+                templateUrl: "./views/modules/lecture.view.html",
+                controller: "ModuleController",
+                controllerAs: "model"
+            })
+            .when("/course/:id/module/:id/examples", {
+                templateUrl: "./views/modules/example.view.html",
+                controller: "ModuleController",
+                controllerAs: "model"
+            })
+            .when("/course/:id/module/:id/assignments", {
+                templateUrl: "./views/modules/assignment.view.html",
+                controller: "ModuleController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

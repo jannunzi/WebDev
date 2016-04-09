@@ -2,14 +2,14 @@
     <h1 class="page-header">{{model.course.title}} | <small>{{currentModule.title}}</small></h1>
 
     <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Overview</a></li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}">Overview</a></li>
         <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}/lectures">Lectures</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}/examples">Examples</a></li>
+        <li role="presentation" class="active"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}/examples">Examples</a></li>
         <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}/assignments">Assignments</a></li>
     </ul>
 
     <br>
-    <h3 class="page-header">Overview</h3>
-    {{currentModule.description}}
+    <h3 class="page-header">Example</h3>
+    {{currentModule.examples}}
 
 </div>
