@@ -1,7 +1,7 @@
 module.exports = function(mongoose) {
-    var Assignment = require("./assignment.schema.js")(mongoose);
-    var Lecture = require("./lecture.schema.js")(mongoose);
-    var Example = require("./example.schema.js")(mongoose);
+    var Assignment = require("./assignment.schema.server.js")(mongoose);
+    var Lecture = require("./lecture.schema.server.js")(mongoose);
+    var Example = require("./example.schema.server.js")(mongoose);
 
     return mongoose.Schema({
         title: String,
