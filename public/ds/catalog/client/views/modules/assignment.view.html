@@ -1,11 +1,11 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">{{model.course.title}} | <small>{{currentModule.title}}</small></h1>
+    <h1 class="page-header">{{model.course.title}} | <small>Module #{{currentModule.number}} - {{currentModule.title}}</small></h1>
 
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}">Overview</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}/lectures">Lectures</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}/examples">Examples</a></li>
-        <li role="presentation" class="active"><a href="#/course/{{model.course.number}}/module/{{currentModule.title}}/assignments">Assignments</a></li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}">Overview</a></li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/lectures">Lectures</a></li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/examples">Examples</a></li>
+        <li role="presentation" class="active"><a>Assignments</a></li>
     </ul>
 
     <br>

@@ -12,8 +12,8 @@
         <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/module'}">
             <a href="#/course/{{currentCourse.number}}/module"><span class="glyphicon glyphicon-tags"></span>&emsp;Modules</a>
             <ul ng-repeat="module in currentCourse.modules">
-                <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/module/' + module.title}">
-                    <a href="#/course/{{currentCourse.number}}/module/{{module.title}}">{{module.title}}</a>
+                <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/module/' + module.number}">
+                    <a href="#/course/{{currentCourse.number}}/module/{{module.number}}">{{module.title}}</a>
                 </li>
             </ul>
             <br/>

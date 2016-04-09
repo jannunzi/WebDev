@@ -4,6 +4,7 @@ module.exports = function(mongoose) {
     var Example = require("./example.schema.server.js")(mongoose);
 
     return mongoose.Schema({
+        number: Number,
         title: String,
         description: String,
         available: Boolean,

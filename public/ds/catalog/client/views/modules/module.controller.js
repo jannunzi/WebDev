@@ -31,11 +31,12 @@
         function viewModule(index) {
             var selectedModule = selectedCourse.modules[index];
             ModuleService.setCurrentModule(selectedModule);
-            $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule);
+            $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule.number);
         }
 
-        function addModule(){
-            var module = {"title": Date.now(), "description": ""}
+        function addModule() {
+            var number = selectedCourse.modules.length > 0 ? selectedCourse.modules[selectedCourse.modules.length - 1].number + 1 : 1;
+            var module = {"number": number, "title": Date.now(), "description": ""}
             CourseService.addModuleToCourse(selectedCourse._id, module).then(function(response) {
                 $rootScope.currentCourse.modules = response.data;
                 vm.course.modules = $rootScope.currentCourse.modules;
