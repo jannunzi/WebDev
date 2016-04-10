@@ -11,6 +11,14 @@
     <br>
     <h3 class="page-header">Lecture</h3>
 
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active" ng-repeat="lecture in currentModule.lectures">
+            <a>{{lecture.title}}</a>
+        </li>
+    </ul>
+
+    <br>
+
     <div class="list-group">
         <div class="list-group-item" ng-repeat="lecture in currentModule.lectures">
             <table style="width: 100%">
