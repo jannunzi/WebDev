@@ -115,7 +115,7 @@
         function addLecture() {
             var currentModule = ModuleService.getCurrentModule();
             var number = currentModule.lectures.length > 0 ? currentModule.lectures[currentModule.lectures.length - 1].number + 1 : 1;
-            var lecture = {"number": number, "title": Date.now(), "overview": ""}
+            var lecture = {"number": number, "title": Date.now(), "overview": "", "learningElements": []}
 
             currentModule.lectures.push(lecture);
 
