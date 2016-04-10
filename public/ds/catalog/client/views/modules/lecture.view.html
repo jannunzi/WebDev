@@ -10,6 +10,23 @@
 
     <br>
     <h3 class="page-header">Lecture</h3>
-    {{currentModule.lectures}}
+
+    <div class="list-group">
+        <div class="list-group-item" ng-repeat="lecture in currentModule.lectures">
+            <table style="width: 100%">
+                <tr>
+                    <td><h3 class="list-group-item-heading"><a ng-click="model.viewLecture($index)">{{lecture.title}}</a></h3></td>
+                    <td align="right">
+                        <a ng-click="model.editLecture($index)"><span class="glyphicon glyphicon-edit"></span></a>&emsp;
+                        <a ng-click="model.deleteLecture($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                    </td>
+                </tr>
+                <tr><td colspan="2" class="list-group-item-text">{{lecture.overview}}</td></tr>
+            </table>
+        </div>
+    </div>
+    <div align="right">
+        <a ng-click="model.addLecture()"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
 
 </div>

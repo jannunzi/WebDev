@@ -21,6 +21,11 @@
         vm.searchModule = searchModule;
         vm.viewModule = viewModule;
 
+        vm.addLecture = addLecture;
+        vm.deleteLecture = deleteLecture;
+
+        // Module
+
         function selectModule(index) {
             selectedCourse = vm.courses[index];
             vm.number = selectedCourse.number;
@@ -93,6 +98,42 @@
             var moduleId = vm.search;
             CourseService.searchModuleInCourse(selectedCourse._id, moduleId).then(function(response) {
                 vm.moduleSearchResult = response.data;
+            });
+        }
+
+        // Lecture
+
+        function addLecture() {
+            var currentModule = ModuleService.getCurrentModule();
+            var number = currentModule.lectures.length > 0 ? currentModule.lectures[currentModule.lectures.length - 1].number + 1 : 1;
+            var lecture = {"number": number, "title": Date.now(), "overview": ""}
+
+            currentModule.lectures.push(lecture);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+            });
+        }
+
+        function deleteLecture(index) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            currentModule.lectures.splice(index, 1);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
             });
         }
     }
