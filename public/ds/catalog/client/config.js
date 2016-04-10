@@ -74,6 +74,11 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
+            .when("/:username/courses", {
+                templateUrl: "./views/users/courses.view.html",
+                controller: "UserController",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/home"
             });
