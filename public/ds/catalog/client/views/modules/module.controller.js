@@ -24,6 +24,9 @@
         vm.addLecture = addLecture;
         vm.deleteLecture = deleteLecture;
 
+        vm.addAssignment = addAssignment;
+        vm.deleteAssignment = deleteAssignment;
+
         // Module
 
         function selectModule(index) {
@@ -136,5 +139,44 @@
                 vm.course.modules = response.data;
             });
         }
+
+        // Example
+
+        // Assignment
+
+        function addAssignment() {
+            var currentModule = ModuleService.getCurrentModule();
+            var number = currentModule.assignments.length > 0 ? currentModule.assignments[currentModule.assignments.length - 1].number + 1 : 1;
+            var assignment = {"number": number, "title": Date.now(), "src": ""}
+
+            currentModule.assignments.push(assignment);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+            });
+        }
+
+        function deleteAssignment(index) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            currentModule.assignment.splice(index, 1);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+            });
+        }
+
     }
 }());
