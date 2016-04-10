@@ -98,10 +98,10 @@ module.exports = function (db, mongoose) {
     function enrollUserInCourse(id, course) {
         var deferred = q.defer();
 
-        UserModel.findById(id, function(err, user){
+        UserModel.findById(id, function(err, user) {
             user.courses.push(course);
-            user.save(function(err, saved){
-                getUserById(saved._id).then(function(user){
+            user.save(function(err, saved) {
+                getUserById(saved._id).then(function(user) {
                     deferred.resolve(user);
                 });
             });

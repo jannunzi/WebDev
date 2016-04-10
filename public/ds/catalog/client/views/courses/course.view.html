@@ -6,7 +6,8 @@
         <h3 class="page-header">{{model.course.instructor}}</h3>
         <p>{{model.course.description}}</p>
         <p align="right" ng-show="currentUser.roles.indexOf('student') >= 0">
-            <a class="btn btn-primary" ng-click="model.enrollInCourse(currentUser)" role="button">Enroll</a>
+            <a ng-show="model.course.users.indexOf(currentUser.username) == -1" class="btn btn-primary" ng-click="model.enrollInCourse(currentUser)" role="button">Enroll</a>
+            <a ng-show="model.course.users.indexOf(currentUser.username) >= 0" class="btn btn-success" ng-click="model.disenrollFromCourse(currentUser)" role="button">Enrolled</a>
         </p>
     </div>
 

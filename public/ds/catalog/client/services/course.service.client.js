@@ -23,7 +23,8 @@
             addModuleToCourse: addModuleToCourse,
             deleteModuleFromCourse: deleteModuleFromCourse,
             searchModuleInCourse: searchModuleInCourse,
-            updateModulesByCourseId: updateModulesByCourseId
+            updateModulesByCourseId: updateModulesByCourseId,
+            registerUserToCourse: registerUserToCourse
         };
 
         return service;
@@ -45,7 +46,7 @@
         }
 
         function updateModulesByCourseId(courseId, modules) {
-            return $http.put('/api/ds/catalog/course/' + courseId + '/module/', modules);
+            return $http.put('/api/ds/catalog/course/' + courseId + '/module', modules);
         }
 
         function findCourseByTitle(title) {
@@ -102,6 +103,10 @@
 
         function setCurrentCourse(course) {
             $rootScope.currentCourse = course;
+        }
+
+        function registerUserToCourse(username, courseId) {
+            return $http.put('/api/ds/catalog/course/' + courseId + '/register/' + username);
         }
     }
 }());

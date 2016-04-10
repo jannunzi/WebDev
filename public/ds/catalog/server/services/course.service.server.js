@@ -16,7 +16,8 @@ module.exports = function(app, courseModel) {
     app.get("/api/ds/catalog/course/:id/module", findModulesForCourse);
     app.put("/api/ds/catalog/course/:courseId/module/:moduleId", deleteModuleFromCourse);
     app.get("/api/ds/catalog/course/:courseId/module/:moduleId", searchModuleInCourse);
-    app.put("/api/ds/catalog/course/:courseId/module/", updateModulesInCourse);
+    app.put("/api/ds/catalog/course/:courseId/module", updateModulesInCourse);
+    app.put("/api/ds/catalog/course/:courseId/register/:username", registerUserToCourse);
 
     function addModuleToCourse(req, res) {
         courseModel.addModuleToCourse(req.params.id, req.body).then(function(modules){
@@ -102,5 +103,13 @@ module.exports = function(app, courseModel) {
 
     function updateCourseById(req, res) {
         res.json(courseModel.updateCourseById(req.params.id, req.body));
+    }
+
+    function registerUserToCourse(req, res) {
+        courseModel.registerUserToCourse(req.params.courseId, req.params.username).then(function(course) {
+            res.json(course);
+        }, function(err) {
+            res.status(400).send(err);
+        });
     }
 };

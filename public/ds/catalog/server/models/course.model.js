@@ -23,7 +23,8 @@ module.exports = function(db, mongoose) {
         deleteModuleFromCourse: deleteModuleFromCourse,
         searchModuleInCourse: searchModuleInCourse,
         findModulesForCourse: findModulesForCourse,
-        updateModulesInCourse: updateModulesInCourse
+        updateModulesInCourse: updateModulesInCourse,
+        registerUserToCourse: registerUserToCourse
     };
 
     return api;
@@ -197,6 +198,21 @@ module.exports = function(db, mongoose) {
             course.save(function(err, course){
                 getModulesByCourseId(course._id).then(function(modules){
                     deferred.resolve(modules);
+                });
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function registerUserToCourse(id, username) {
+        var deferred = q.defer();
+
+        CourseModel.findById(id, function(err, course){
+            course.users.push(username);
+            course.save(function(err, saved){
+                getCourseById(saved._id).then(function(course){
+                    deferred.resolve(course);
                 });
             });
         });

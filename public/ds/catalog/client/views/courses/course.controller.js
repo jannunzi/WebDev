@@ -75,6 +75,11 @@
             UserService.enrollUserInCourse(user._id, selectedCourse).then(function(response) {
                 UserService.setCurrentUser(response.data);
             });
+
+            CourseService.registerUserToCourse(user.username, selectedCourse._id).then(function(response) {
+                vm.course = response.data;
+                CourseService.setCurrentCourse(response.data);
+            });
         }
 
     }
