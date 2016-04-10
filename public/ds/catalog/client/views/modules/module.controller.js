@@ -24,6 +24,9 @@
         vm.addLecture = addLecture;
         vm.deleteLecture = deleteLecture;
 
+        vm.addExample = addExample;
+        vm.deleteExample = deleteExample;
+
         vm.addAssignment = addAssignment;
         vm.deleteAssignment = deleteAssignment;
 
@@ -142,6 +145,40 @@
 
         // Example
 
+        function addExample() {
+            var currentModule = ModuleService.getCurrentModule();
+            var number = currentModule.examples.length > 0 ? currentModule.examples[currentModule.examples.length - 1].number + 1 : 1;
+            var example = {"number": number, "title": Date.now(), "demos": []}
+
+            currentModule.examples.push(example);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+            });
+        }
+
+        function deleteExample(index) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            currentModule.examples.splice(index, 1);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+            });
+        }
+
         // Assignment
 
         function addAssignment() {
@@ -165,7 +202,7 @@
         function deleteAssignment(index) {
             var currentModule = ModuleService.getCurrentModule();
 
-            currentModule.assignment.splice(index, 1);
+            currentModule.assignments.splice(index, 1);
 
             for (var m in vm.course.modules) {
                 if (currentModule._id === vm.course.modules[m]._id) {

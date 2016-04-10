@@ -10,6 +10,30 @@
 
     <br>
     <h3 class="page-header">Example</h3>
-    {{currentModule.examples}}
+
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active" ng-repeat="example in currentModule.examples">
+            <a>{{example.title}}</a>
+        </li>
+    </ul>
+
+    <br>
+
+    <div class="list-group">
+        <div class="list-group-item" ng-repeat="example in currentModule.examples">
+            <table style="width: 100%">
+                <tr>
+                    <td><h3 class="list-group-item-heading"><a ng-click="model.viewExample($index)">{{example.title}}</a></h3></td>
+                    <td align="right">
+                        <a ng-click="model.editExample($index)"><span class="glyphicon glyphicon-edit"></span></a>&emsp;
+                        <a ng-click="model.deleteExample($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div align="right">
+        <a ng-click="model.addExample()"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
 
 </div>
