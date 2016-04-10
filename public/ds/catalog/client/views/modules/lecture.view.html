@@ -30,6 +30,14 @@
                     </td>
                 </tr>
                 <tr><td colspan="2" class="list-group-item-text">{{lecture.overview}}</td></tr>
+                <tr ng-repeat="learningElement in lecture.learningElements">
+                    <td colspan="2" class="list-group-item-text"><a ng-click="model.deleteLearningElement($index, lecture)"><span class="glyphicon glyphicon-remove-circle"></span></a>&emsp;{{learningElement.title}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="list-group-item-text">
+                        <span class="glyphicon glyphicon-plus-sign"></span>&emsp;<a ng-click="model.addLearningElement(lecture)">New Learning Element</a>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

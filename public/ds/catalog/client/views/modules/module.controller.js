@@ -30,6 +30,9 @@
         vm.addAssignment = addAssignment;
         vm.deleteAssignment = deleteAssignment;
 
+        vm.addLearningElement = addLearningElement;
+        vm.deleteLearningElement = deleteLearningElement;
+
         // Module
 
         function selectModule(index) {
@@ -206,6 +209,50 @@
 
             for (var m in vm.course.modules) {
                 if (currentModule._id === vm.course.modules[m]._id) {
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+            });
+        }
+
+        // LearningElement
+
+        function addLearningElement(lecture) {
+            var currentModule = ModuleService.getCurrentModule();
+            var learningElement = {"title": Date.now()}
+            lecture.learningElements.push(learningElement);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    for (var l in currentModule.lectures) {
+                        if (lecture._id === currentModule.lectures[l]._id) {
+                            currentModule.lectures[l] = lecture;
+                        }
+                    }
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+            });
+        }
+
+        function deleteLearningElement(index, lecture) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            lecture.learningElements.splice(index, 1);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    for (var l in currentModule.lectures) {
+                        if (lecture._id === currentModule.lectures[l]._id) {
+                            currentModule.lectures[l] = lecture;
+                        }
+                    }
                     vm.course.modules[m] = currentModule;
                 }
             }
