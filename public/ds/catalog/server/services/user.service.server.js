@@ -8,6 +8,7 @@ module.exports = function(app, userModel) {
     app.get("/api/ds/catalog/user/:id", findUserById);
     app.put("/api/ds/catalog/user/:id", updateUserById);
     app.delete("/api/ds/catalog/user/:id", deleteUserById);
+    app.put("/api/ds/catalog/user/:id/enroll", enrollUserInCourse);
 
     function createUser(req, res) {
         var user = req.body;
@@ -65,6 +66,14 @@ module.exports = function(app, userModel) {
     function deleteUserById(req, res) {
         userModel.deleteUserById(req.params.id).then(function(user) {
             res.json(200);
+        }, function(err) {
+            res.status(400).send(err);
+        });
+    }
+
+    function enrollUserInCourse(req, res) {
+        userModel.enrollUserInCourse(req.params.id, req.body).then(function(user) {
+            res.json(user);
         }, function(err) {
             res.status(400).send(err);
         });

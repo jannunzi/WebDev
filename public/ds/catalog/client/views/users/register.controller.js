@@ -43,6 +43,7 @@
                     vm.message = "User already exists";
                     return;
                 } else {
+                    vm.user.courses = [];
                     UserService.createUser(vm.user).then(function(response) {
                         UserService.setCurrentUser(response.data);
                         $location.url('/profile');

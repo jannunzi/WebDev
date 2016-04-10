@@ -9,6 +9,10 @@ module.exports = function (mongoose) {
         firstName: String,
         lastName: String,
         email: String,
-        roles: [String]
+        roles: [String],
+        courses: [{
+            number: String,
+            title: String,
+        }]
     }, {collection: 'catalog.user'});
 };

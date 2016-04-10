@@ -17,7 +17,8 @@
             findUserByUsername: findUserByUsername,
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser,
-            updateUserById: updateUserById
+            updateUserById: updateUserById,
+            enrollUserInCourse: enrollUserInCourse
         };
         return service;
 
@@ -55,6 +56,11 @@
 
         function updateUserById(userId, user) {
             return $http.put('/api/ds/catalog/user/' + userId, user);
+        }
+
+        function enrollUserInCourse(userId, course) {
+            var enrollCourse = {number: course.number, title: course.title};
+            return $http.put('/api/ds/catalog/user/' + userId + '/enroll', enrollCourse);
         }
     }
 }());

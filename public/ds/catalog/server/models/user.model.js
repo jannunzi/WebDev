@@ -16,7 +16,8 @@ module.exports = function (db, mongoose) {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findAllUsers: findAllUsers,
-        updateUser: updateUser
+        updateUser: updateUser,
+        enrollUserInCourse: enrollUserInCourse
     };
 
     return api;
@@ -90,6 +91,31 @@ module.exports = function (db, mongoose) {
                     deferred.resolve(res);
                 }
             });
+
+        return deferred.promise;
+    }
+
+    function enrollUserInCourse(id, course) {
+        var deferred = q.defer();
+
+        UserModel.findById(id, function(err, user){
+            user.courses.push(course);
+            user.save(function(err, saved){
+                getUserById(saved._id).then(function(user){
+                    deferred.resolve(user);
+                });
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function getUserById(id){
+        var deferred = q.defer();
+
+        UserModel.findById(id, function(err, user){
+            deferred.resolve(user);
+        });
 
         return deferred.promise;
     }

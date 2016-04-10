@@ -8,7 +8,7 @@
         .module("CatalogApp")
         .controller("CourseController", CourseController)
 
-    function CourseController($rootScope, $location, CourseService, ModuleService) {
+    function CourseController($location, CourseService, ModuleService, UserService) {
         var vm = this;
 
         var selectedCourse = CourseService.getCurrentCourse();
@@ -20,6 +20,8 @@
         vm.updateCourse = updateCourse;
         vm.viewCourses = viewCourses;
         vm.viewModule = viewModule;
+
+        vm.enrollInCourse = enrollInCourse;
 
         function viewCourses() {
             CourseService.findAllCourses().then(function(response) {
@@ -66,6 +68,12 @@
         function deleteCourse(index) {
             CourseService.deleteCourseById(vm.courses[index]._id).then(function(response) {
                 vm.courses = response.data;
+            });
+        }
+
+        function enrollInCourse(user) {
+            UserService.enrollUserInCourse(user._id, selectedCourse).then(function(response) {
+                UserService.setCurrentUser(response.data);
             });
         }
 

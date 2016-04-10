@@ -73,7 +73,7 @@
         }
 
         function findAllCoursesForUser(courseIds, callback) {
-            var courses = []
+            var courses = [];
             for (var u in model.courses) {
                 for (var id in courseIds) {
                     if (model.courses[u].number === courseIds[id]) {

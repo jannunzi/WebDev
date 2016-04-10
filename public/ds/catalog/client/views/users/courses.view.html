@@ -1,50 +1,17 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">My Courses</h1>
 
-    <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
-    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
-
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="username" class="col-sm-2 control-label">Username:</label>
-            <div class="col-sm-10">
-                <input ng-model="model.currentUser.username" type="text" class="form-control" id="username" placeholder="Username" disabled>
-            </div>
+    <div class="list-group">
+        <div class="list-group-item" ng-repeat="course in model.currentUser.courses">
+            <table style="width: 100%">
+                <tr>
+                    <td><h3 class="list-group-item-heading"><a ng-click="model.viewModule($index)">{{course.number}}</a></h3></td>
+                    <td align="right">
+                        <a ng-click="model.deleteModule($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                    </td>
+                </tr>
+                <tr><td colspan="2" class="list-group-item-text">{{course.title}}</td></tr>
+            </table>
         </div>
-        <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">Password:</label>
-            <div class="col-sm-10">
-                <input ng-model="model.currentUser.password" type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="firstname" class="col-sm-2 control-label">First Name:</label>
-            <div class="col-sm-10">
-                <input ng-model="model.currentUser.firstName" type="text" class="form-control" id="firstname" placeholder="First Name">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-sm-2 control-label">Last Name:</label>
-            <div class="col-sm-10">
-                <input ng-model="model.currentUser.lastName" type="text" class="form-control" id="lastname" placeholder="Last Name">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="email" class="col-sm-2 control-label">Email:</label>
-            <div class="col-sm-10">
-                <input ng-model="model.currentUser.email" type="email" class="form-control" id="email" placeholder="Email">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Roles:</label>
-            <div class="col-sm-10">
-                <input ng-value="model.currentUser.roles.join(', ')" type="text" class="form-control" id="roles" placeholder="Roles" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button ng-click="model.update(model.currentUser)" type="submit" class="btn btn-primary btn-default col-sm-12">Update</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
