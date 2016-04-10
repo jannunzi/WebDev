@@ -5,7 +5,7 @@
         <h1 class="page-header">{{model.course.title}} | <small>{{model.course.number}}</small></h1>
         <h3 class="page-header">{{model.course.instructor}}</h3>
         <p>{{model.course.description}}</p>
-        <p align="right" ng-show="currentUser">
+        <p align="right" ng-show="currentUser.roles.indexOf('student') >= 0">
             <a class="btn btn-primary" href="#/course/{{model.course.number}}" role="button">Enroll</a>
         </p>
     </div>

@@ -8,7 +8,7 @@
         .module("CatalogApp")
         .controller("CourseController", CourseController)
 
-    function CourseController($rootScope, $location, CourseService) {
+    function CourseController($rootScope, $location, CourseService, ModuleService) {
         var vm = this;
 
         var selectedCourse = CourseService.getCurrentCourse();
@@ -29,8 +29,8 @@
 
         function viewModule(index) {
             var selectedModule = selectedCourse.modules[index];
-            $rootScope.selectedModule = selectedModule;
-            $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule);
+            ModuleService.setCurrentModule(selectedModule);
+            $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule.number);
         }
 
         function selectCourse(index) {
