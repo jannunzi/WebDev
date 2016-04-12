@@ -14,6 +14,7 @@
         vm.course = selectedCourse;
 
         vm.lecture = ModuleService.getCurrentLecture();
+        vm.assignment = ModuleService.getCurrentAssignment();
 
         vm.addModule = addModule;
         vm.deleteModule = deleteModule;
@@ -32,6 +33,7 @@
 
         vm.addAssignment = addAssignment;
         vm.deleteAssignment = deleteAssignment;
+        vm.viewAssignment = viewAssignment;
 
         vm.addLearningElement = addLearningElement;
         vm.deleteLearningElement = deleteLearningElement;
@@ -210,19 +212,29 @@
         function addAssignment() {
             var currentModule = ModuleService.getCurrentModule();
             var number = currentModule.assignments.length > 0 ? currentModule.assignments[currentModule.assignments.length - 1].number + 1 : 1;
-            var assignment = {"number": number, "title": Date.now(), "src": ""}
 
-            currentModule.assignments.push(assignment);
+            vm.addingType = "assignment";
+            showAddDialog(function(model) {
+                var assignment = {
+                    "number": number,
+                    "title": model.title,
+                    "src": model.src
+                };
 
-            for (var m in vm.course.modules) {
-                if (currentModule._id === vm.course.modules[m]._id) {
-                    vm.course.modules[m] = currentModule;
+                currentModule.assignments.push(assignment);
+
+                for (var m in vm.course.modules) {
+                    if (currentModule._id === vm.course.modules[m]._id) {
+                        vm.course.modules[m] = currentModule;
+                    }
                 }
-            }
 
-            CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
-                vm.course.modules = response.data;
+                CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                });
             });
+            vm.title = "";
+            vm.src = "";
         }
 
         function deleteAssignment(index) {
@@ -239,6 +251,15 @@
             CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
                 vm.course.modules = response.data;
             });
+        }
+
+        function viewAssignment(index) {
+            var currentModule = ModuleService.getCurrentModule();
+            vm.assignment = currentModule.assignments[index];
+
+            ModuleService.setCurrentAssignment(vm.assignment);
+
+            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number + "/assignment/" + vm.assignment.number);
         }
 
         // LearningElement

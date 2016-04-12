@@ -12,10 +12,21 @@
     <h3 class="page-header">Assignment</h3>
 
     <ul class="nav nav-pills">
-        <li role="presentation" class="active" ng-repeat="assignment in currentModule.assignments">
-            <a>{{assignment.title}}</a>
+        <li role="presentation" ng-class="{'active': $location.url() == '/course/' + model.course.number + '/module/' + currentModule.number + '/assignment/' + assignment.number}" ng-repeat="assignment in currentModule.assignments">
+            <a ng-click="model.viewAssignment($index)">{{assignment.title}}</a>
         </li>
     </ul>
+
+    <br>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{model.assignment.number}} | {{model.assignment.title}}</h3>
+        </div>
+        <div class="panel-body">
+            {{model.assignment.src}}
+        </div>
+    </div>
 
     <br>
 

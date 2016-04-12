@@ -79,6 +79,11 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
+            .when("/course/:id/module/:id/assignment/:id", {
+                templateUrl: "./views/modules/assignment.view.html",
+                controller: "ModuleController",
+                controllerAs: "model"
+            })
             .when("/:username/courses", {
                 templateUrl: "./views/users/courses.view.html",
                 controller: "UserController",
