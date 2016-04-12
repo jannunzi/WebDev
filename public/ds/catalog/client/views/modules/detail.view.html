@@ -9,8 +9,11 @@
     </ul>
 
     <br>
+
     <h3 class="page-header">Overview</h3>
-    {{currentModule.description}}
+    <div class="alert alert-info" style="margin-bottom:25px">
+        <p align="justify">{{currentModule.description}}</p>
+    </div>
 
     <div ng-repeat="lecture in currentModule.lectures">
         <h3>{{lecture.title}}</h3>

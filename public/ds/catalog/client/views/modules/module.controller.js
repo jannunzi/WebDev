@@ -7,6 +7,13 @@
     angular
         .module("CatalogApp")
         .controller("ModuleController", ModuleController)
+        .filter("trustUrl", trustUrl)
+
+    function trustUrl($sce) {
+        return function(url) {
+            return $sce.trustAsResourceUrl(url);
+        };
+    }
 
     function ModuleController($scope, $rootScope, $location, ngDialog, CourseService, ModuleService) {
         var vm = this;
@@ -27,6 +34,7 @@
 
         vm.addLecture = addLecture;
         vm.deleteLecture = deleteLecture;
+        vm.editLecture = editLecture;
         vm.viewLecture = viewLecture;
 
         vm.addExample = addExample;
@@ -84,10 +92,6 @@
                 });
             });
             vm.module = null;
-        }
-
-        function showUpdateDialog(confirm, cancel){
-            ngDialog.openConfirm({template: 'views/modules/update.html', scope: $scope}).then(confirm, cancel);
         }
 
         function updateModule() {
@@ -162,6 +166,34 @@
             CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
                 vm.course.modules = response.data;
             });
+        }
+
+        function editLecture(index){
+            var currentModule = ModuleService.getCurrentModule();
+            vm.currentLecture = currentModule.lectures[index];
+            vm.addingType = "lecture";
+
+            showUpdateDialog(function(model){
+                vm.currentLecture.title = model.title;
+                vm.currentLecture.overview = model.overview;
+
+                for (var l in currentModule.lectures) {
+                    if (vm.currentLecture._id === currentModule.lectures[l]._id) {
+                        currentModule.lectures[l] = vm.currentLecture;
+                    }
+                }
+
+                for (var m in vm.course.modules) {
+                    if (currentModule._id === vm.course.modules[m]._id) {
+                        vm.course.modules[m] = currentModule;
+                    }
+                }
+
+                CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                });
+            });
+            vm.module = null;
         }
 
         function viewLecture(index) {
@@ -342,6 +374,10 @@
 
         function showAddDialog(confirm, cancel){
             ngDialog.openConfirm({template: 'views/modules/add.html', scope: $scope}).then(confirm, cancel);
+        }
+
+        function showUpdateDialog(confirm, cancel){
+            ngDialog.openConfirm({template: 'views/modules/update.html', scope: $scope}).then(confirm, cancel);
         }
 
     }
