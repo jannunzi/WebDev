@@ -24,10 +24,15 @@
             deleteModuleFromCourse: deleteModuleFromCourse,
             searchModuleInCourse: searchModuleInCourse,
             updateModulesByCourseId: updateModulesByCourseId,
-            registerUserToCourse: registerUserToCourse
+            registerUserToCourse: registerUserToCourse,
+            getCourseByNumber: getCourseByNumber
         };
 
         return service;
+
+        function getCourseByNumber(courseNumber) {
+            return $http.get('/api/ds/catalog/course/' + courseNumber);
+        }
 
         function addModuleToCourse(courseId, module) {
             return $http.post('/api/ds/catalog/course/' + courseId + '/module', module);

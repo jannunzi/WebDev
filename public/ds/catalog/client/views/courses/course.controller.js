@@ -8,7 +8,7 @@
         .module("CatalogApp")
         .controller("CourseController", CourseController)
 
-    function CourseController($location, CourseService, ModuleService, UserService) {
+    function CourseController($location, CourseService, ModuleService, UserService, $routeParams) {
         var vm = this;
 
         var selectedCourse = CourseService.getCurrentCourse();
@@ -16,6 +16,14 @@
 
         vm.viewModule = viewModule;
         vm.enrollInCourse = enrollInCourse;
+
+
+        CourseService.getCourseByNumber($routeParams.id).then(function(response) {
+            selectedCourse = response.data;
+            CourseService.setCurrentCourse(selectedCourse);
+            vm.course = selectedCourse;
+        })
+
 
         function viewModule(index) {
             var selectedModule = selectedCourse.modules[index];

@@ -24,7 +24,8 @@ module.exports = function(db, mongoose) {
         searchModuleInCourse: searchModuleInCourse,
         findModulesForCourse: findModulesForCourse,
         updateModulesInCourse: updateModulesInCourse,
-        registerUserToCourse: registerUserToCourse
+        registerUserToCourse: registerUserToCourse,
+        getCourseByNumber: getCourseByNumber
     };
 
     return api;
@@ -50,6 +51,10 @@ module.exports = function(db, mongoose) {
 
     function findCourseByTitle(title) {
         return CourseModel.findOne({title: title});
+    }
+
+    function getCourseByNumber(number) {
+        return CourseModel.findOne({number: number});
     }
 
     function searchModuleInCourse(courseId, moduleId) {

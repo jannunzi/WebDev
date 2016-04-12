@@ -18,10 +18,18 @@ module.exports = function(app, courseModel) {
     app.get("/api/ds/catalog/course/:courseId/module/:moduleId", searchModuleInCourse);
     app.put("/api/ds/catalog/course/:courseId/module", updateModulesInCourse);
     app.put("/api/ds/catalog/course/:courseId/register/:username", registerUserToCourse);
+    app.get("/api/ds/catalog/course/:number", getCourseByNumber);
 
     function addModuleToCourse(req, res) {
         courseModel.addModuleToCourse(req.params.id, req.body).then(function(modules){
             res.json(modules);
+        });
+    }
+
+    function getCourseByNumber(req, res) {
+        courseModel.getCourseByNumber(req.params.number).then(function(course){
+            res.json(course);
+            res.json(course);
         });
     }
 
