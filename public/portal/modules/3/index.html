@@ -215,3 +215,26 @@ function searchDeveloper(username) {
      ng-model="model.fields[widget.name]"&gt;
 &lt;/div&gt;
 </pre>
+
+<h2>Angular Repeaters</h2>
+
+<div class="jga-slide">
+    <h3>Ng Repeat Orderby Filter</h3>
+    <p>
+        Use <code>orderBy</code> filter to configure the order of
+        the items in the collection.
+    </p>
+<pre>
+&lt;div ng-repeat="<b>record in model.data | orderBy : created : true</b>"&gt;
+    &lt;div ng-bind-html="model.trustAsHtml(widget.repeater.template, record)"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+    <p>
+        In the example above we iterate over the <code>model.data</code>
+        collection. Each item is bound to <code>record</code>. The
+        <code>orderBy</code> filter sorts the collection by <code>created</code>
+        which is a date field in <code>record</code>. The <code>true</code>
+        configures the reversed order of the collection.
+    </p>
+</div>

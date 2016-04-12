@@ -1,76 +1,650 @@
 ﻿<div class="alert alert-success">
-  <h4>OVERVIEW</h4>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
+    <h4>OVERVIEW</h4>
+
+    <p>
+        Up to this point we have been working on implementing
+        single page applications (SPAs). SPAs query the server
+        for data using AJAX and render the interface using
+        JavaScript running on the browser.
+    </p>
+
+    <p>
+        In this module we explore a fundamentally different
+        approach to building Web applications, server side
+        Web development. In server side Web development, Web
+        pages are rendered on the server, by server side code
+        that executes on the server and generates dynamic
+        HTML. The HTML is then streamed to the client browser
+        where it is rendered for the user.
+    </p>
+
+    <h5>Learning Objectives</h5>
+
+    <ul>
+        <li>Install and configure EJS</li>
+        <li>Map routes to EJS templates</li>
+        <li>Rendering dynamic EJS templates</li>
+        <li>Build complex templates in terms of simpler partial templates</li>
+        <li>Configure templates using path parameters</li>
+        <li>Sharing data with partial templates</li>
+        <li>Retrieve data from an EJS template</li>
+        <li>Iterate over a collection in EJS templates</li>
+    </ul>
 
 </div>
 
+<div class="jga-slide">
 
-<h3>Ng-Routing</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-    <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/0">Start
-        Lecture &raquo;</a>
+    <h3>Install and Configure EJS</h3>
+
+    <p>
+        Use <code>npm</code> to install the <code>ejs</code> node module
+    </p>
+
+    <pre>npm install ejs --save</pre>
+
+    <p>
+        Verify the module installed in <code>package.json</code>
+    </p>
+
+<pre>
+...
+"dependencies": {
+    ...
+    "ejs": "^2.4.1",
+    ...
+}
+...</pre>
+
+    <p>
+        From your <code>server.js</code> require the new <code>ejs</code> module
+    </p>
+
+    <pre>...
+app.set('view engine', 'ejs');
+...</pre>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Map Routes to Views</h3>
+
+    <p>
+        Using an <code>express</code> instance, e.g., <code>app</code>,
+        create routes that map to views. Declare routes in server
+        side controllers that handle
+    </p>
+
+    <pre>
+// server side controllers handle page routes
+module.exports = function(app) {
+
+    // map HTTP URL GET request from browser to controller
+    app.get('<b>/page</b>', pageController);
+
+    // controller handles request
+    // renders template view
+    function pageController(req, res) {
+        // maps to <b>views/page.ejs</b>
+        res.render('<b>page</b>');
+    }
+}</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>EJS Pages</h3>
+
+    <p>
+        EJS pages contain mostly HTML with optinal
+        <b>e</b>mbedded <b>J</b>ava<b>S</b>cript (ejs)
+    </p>
+
+<pre>&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h2&gt;Page&lt;/h2&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+    <h3>EJS Include</h3>
+
+    <p>
+        Use EJS <code>include</code> directive to include other EJS
+        content
+    </p>
+
+    <pre>
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Page&lt;/title&gt;
+    <b>&lt;% include common/head-link.ejs.html %&gt;</b>
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Page&lt;/h2&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+    <p>
+        The example above includes the following HTML file
+        <code>common/head-link.ejs.html</code>
+        containing common CSS library references. The HTML
+        below is not intended as a stand alone document. It
+        is meant to be used as part of other files, hence it
+        referred to as a <em>partial</em>
+    </p>
+
+    <pre>
+&lt;!-- put all links in a common partial HTML to be included where needed --&gt;
+&lt;link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"&gt;
+&lt;link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"&gt;
+&lt;link href="css/styles.css" rel="stylesheet"/&gt;
+&lt;link href="css/textAngular.css" rel="stylesheet"/&gt;
+&lt;link href="css/angucomplete-alt.css" rel="stylesheet"/&gt;</pre>
+</div>
 
 <hr>
-<h3>Register</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/1">Start
-        Lecture &raquo;</a>
 
-<hr>
-<h3>Profile</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/2">Start
-        Lecture &raquo;</a>
+<div class="jga-slide">
+    <h3>Parsing Path Parameters from a Route</h3>
 
-<hr>
-<h3>Navigation</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/3">Start
-        Lecture &raquo;</a>
+    <p>
+        Use <code>:parameterName</code> in the route's URL path
+        to bind values from the URL to a value map in the request
+        object, e.g., <code>req.params</code>
+    </p>
 
-<hr>
-<h3>Update User</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-    <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/4">Start
-        Lecture &raquo;</a>
+    <pre>
+...
+app.get('/application/<b>:applicationId</b>/page/<b>:pageId</b>', pageController);
 
-<hr>
-<h3>Login/Logout</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/5">Start
-        Lecture &raquo;</a>
+function pageController(<b>req</b>, res) {
 
-<hr>
-<h3>Admin Page</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/6">Start
-        Lecture &raquo;</a>
+    // extract path parameters from URL
+    var applicationId = <b>req.params.applicationId</b>;
+    var pageId        = <b>req.params.pageId</b>;
+}
+...</pre>
+</div>
 
-<hr>
-<h3>Admin Tasks</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat. </p>
-        <a class="btn btn-primary btn-sm btn-warning" href="#/modules/6/lectures/7">Start
-        Lecture &raquo;</a>
+<hr/>
 
-<hr>
+<div class="jga-slide">
+    <h3>Passing Data to an EJS Template</h3>
+    <p>
+        Use the <code>render()</code> to pass data to a
+        template as a single object
+    </p>
+
+    <pre>
+...
+// create data map
+var context = {
+    applicationId : applicationId,
+    pageId        : pageId
+};
+
+// pass data map to template for rendering
+res.render('page', context);
+...</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+    <h3>Render Data in an EJS Template</h3>
+    <p>
+        Data passed in the <code>render()</code> method
+        can be rendered using &lt;%= and %&gt;
+    </p>
+
+    <pre>
+&lt;!-- render data passed from the controller --&gt;
+&lt;%= applicationId %&gt; / &lt;%= pageId %&gt;</pre>
+
+    <h3>EJS Special Characters</h3>
+
+    <ul>
+        <li>Control flow with &lt;% %&gt;</li>
+        <li>Escaped output with &lt;%= %&gt;</li>
+        <li>Unescaped raw output with &lt;%- %&gt;</li>
+        <li>Newline-trim mode ('newline slurping') with -%&gt; ending tag</li>
+        <li>Whitespace-trim mode (slurp all whitespace) for control flow with <%_ _%></li>
+        <li>Custom delimiters (e.g., use '' instead of '&lt;% %&gt;')</li>
+    </ul>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+    <h3>Rendering Data from MongoDB Data Model</h3>
+
+    <p>
+        Use a data model to retrieve data from the database.
+        On a successful promise pass the data through the
+        <code>render()</code> function
+    </p>
+
+    <pre>
+...
+pageModel.findPage(applicationId, pageId)
+    .then(
+        function(page) {
+
+            // create data map
+            var context = {
+                applicationId : applicationId,
+                pageId        : pageId,
+                page          : page // add page to data map for template
+            };
+
+            // pass data map to template for rendering
+            res.render('page', context);
+        }
+    )
+...</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Iterate Over a Collection in EJS</h3>
+
+    <p>
+        Use control flow &lt;% %&gt; to execute
+        JavaScript code including <code>for</code>
+        loops, <code>if</code> statements, and any
+        other valid JavaScript
+    </p>
+
+    <pre>
+&lt;% for(var i in page.widgets) { %&gt;
+    &lt;div&gt;
+        &lt;%= page.widgets[i] %&gt;
+    &lt;/div&gt;
+&lt;% } %&gt;</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Dynamically Load Templates</h3>
+
+    <p>
+        EJS can <code>include</code> hard coded file paths
+        or it can use a variable to load a dynamic file
+        name that can be computed. The following example
+        computes the <code>widgetTemplate</code> to be
+        included
+    </p>
+
+<pre>
+...
+&lt;% for(var i in page.widgets) {
+
+        // calculate the name of the template to include
+        // name is based on the type of the widget
+        var widgetType = page.widgets[i].widgetType;
+        widgetType = widgetType.toLowerCase();
+
+        // actual widget partials are in widget folder
+        var <b>widgetTemplate</b> = "widget/"+widgetType;
+%&gt;
+        &lt;%- include<b>(widgetTemplate)</b> -%&gt;
+&lt;% }
+%&gt;
+...</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>EJS Code Comments</h3>
+
+    <p>
+        Use <b>&lt;%#</b> to create comments that will not render
+        on the resulting HTML
+    </p>
+
+    <pre>
+...
+<b>&lt;%#</b> include template whose name has been dynamically calcylated -%&gt;
+<b>&lt;%#</b> deliberately un-indent so included HTML is not indented -%&gt;
+&lt;%- include(widgetTemplate) -%&gt;
+...</pre>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Pass Data to Dynamic EJS Partials</h3>
+
+    <p>
+
+    </p>
+
+    <pre>
+<%  ...
+    var <b>widget</b> = page.widgets[i];
+    ...
+%>
+<%# pass data to included partial template -%>
+<%- <b>include</b>(widgetTemplate, <b>widget</b>) -%></pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Render Dynamic HTML Tags with EJS</h3>
+
+    <p>
+        EJS variables can be embedded as part of HTML tags.
+        The example below uses the value of
+        <code>widget.header.size</code> to render different
+        sizes of header elements, e.g., h1, h2, h3, etc.
+    </p>
+
+    <pre>
+<% if(!widget.header.size) {widget.header.size = 2;} %>
+<b>&lt;h<%=widget.header.size%>&gt;</b>    &lt;!-- renders as &lt;h1&gt;, &lt;h2&gt;, etc... --&gt;
+    <%= widget.text %>
+<b>&lt;/h<%=widget.header.size%>&gt;</b>   &lt;!-- renders as &lt;/h1&gt;, &lt;/h2&gt;, etc... --&gt;</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Embed EJS Variables in HTML Attributes</h3>
 
 
+    <pre>
+&lt;input name="<b><%= widget.name %></b>"
+       id="<b><%= widget._id %></b>"
+       value="<b><%= widget.text %></b>"
+       placeholder="<b><%= widget.textInput.placeholder %></b>"
+       class="form-control"/&gt;</pre>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Render Dynamic URLs with EJS</h3>
+
+    <p>
+        EJS variables can be embedded in an <code>href</code>
+        attribute to generate dynamic URL references
+    </p>
+
+    <pre>
+&lt;a <b>href</b>="/application/<b><%= applicationId %></b>/page/<b><%= widget.button.navigate %></b>"&gt;
+    <%= widget.text %>
+&lt;/a&gt;</pre>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Render Dynamic CSS Classes with EJS</h3>
+
+    <p>
+        EJS variables can be embedded in a <code>class</code>
+        attribute to apply dynamic styles
+    </p>
+
+    <pre>
+&lt;a href="/application/<%=applicationId%>/page/<%=widget.button.navigate%>"
+   <b>class</b>="btn btn-block <b>btn-<%= widget.button.style.toLowerCase() %></b>"&gt;
+    <%= widget.text %>
+&lt;/a&gt;</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Use <code>if</code> to Choose HTML</h3>
+
+    <p>
+        Use <code>if</code>, <code>else</code>, <code>else if</code>
+        for flow control and choose between different HTML snippets
+    </p>
+
+    <pre>
+<% <b>if</b>(!widget.textInput.formatted && (!widget.textInput.rows || widget.textInput.rows===1)) { %>
+    &lt;input ... /&gt;
+<% } <b>else if</b>(!widget.textInput.formatted && (widget.textInput.rows > 1)) { %>
+    &lt;textarea&gt; ... &lt;/textarea&gt;
+<% } <b>else</b> { %>
+    &lt;div text-angular&gt;
+    &lt;/div&gt;
+<% } %></pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Integrate Angular in EJS Templates</h3>
+
+    <p>
+        EJS generates dynamic HTML on the server. The resulting
+        HTML is parsed and interpreted by the browser. The HTML
+        can refer to client side technologies such as CSS and
+        JavaScript
+    </p>
+
+    <pre>
+&lt;html lang="en" <b>ng-app="WebAppMakerApp"</b>&gt;
+<%- include common/head-link   %>
+<%- include common/head-script %></pre>
+
+    <p>
+        JavaScript libraries can be included from a common
+        partial EJS template <code>common/head-script</code>
+    </p>
+
+    <pre>
+&lt;script src="/js/angular.js"&gt;&lt;/script&gt;
+&lt;script src="/js/angular-route.js"&gt;&lt;/script&gt;
+&lt;script src="/js/angucomplete-alt.min.js"&gt;&lt;/script&gt;
+&lt;script src="/directives/jga-directives.js"&gt;&lt;/script&gt;
+&lt;script src="/js/textAngular-rangy.min.js"&gt;&lt;/script&gt;
+&lt;script src="/js/textAngular-sanitize.min.js"&gt;&lt;/script&gt;
+&lt;script src="/js/textAngular.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    angular.module ("WebAppMakerApp", ["jgaDirectives", "textAngular", "angucomplete-alt"]);
+&lt;/script&gt;</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Rendering YouTube Widget with EJS</h3>
+
+    <p>
+        Embed YouTube URL in <code>src</code> attribute
+        of an <code>iframe</code> element.  No need  to
+        escape like in Angular since EJS is a server side
+        technology and the resulting HTML is static HTML
+        as far as the browser is concerned.
+    </p>
+
+    <pre>
+<%  if(widget.youTube) {
+        var urlParts        = widget.youTube.url.split("/");
+        var youTubeId       = urlParts[urlParts.length-1];
+        var youTubeEmbedUrl = "https://www.youtube.com/embed/"+youTubeId;
+%>      &lt;iframe src="<%= youTubeEmbedUrl %>"
+                width="100%"
+                frameborder="0"
+                allowfullscreen&gt;
+        &lt;/iframe&gt;
+<%  }
+%></pre>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Rendering Dynamic Images with EJS</h3>
+
+    <p>
+        Embed image URLs dynamically. The <code>image</code>
+        element will be fully rendered by the time the
+        HTML gets to the browser. No need to escape the URL
+        like in Angular with <code>ng-src</code>
+    </p>
+
+    <pre>
+&lt;img <b>src="<%= widget.image.url %>"</b>
+     width="<%= widget.image.width %>"/&gt;</pre>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Rendering Dynamic Tables with EJS</h3>
+
+    <p>
+
+    </p>
+
+    <pre>
+&lt;table class="table table-bordered"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            <% for(var i in widget.datatable.fields) {%>
+                &lt;th&gt; <%= field %> &lt;/th&gt;
+            <% } %>
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        <% for(var row in widget.datatable.data) {
+                var record = widget.datatable.data[row];
+        %>      &lt;tr&gt;
+        <%      for(var field in record) {
+        %>          &lt;td&gt; <%= record[field] %> &lt;/td&gt;
+        <%      }
+        %>      &lt;/tr&gt;
+        <% } %>
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Unescaping HTML EJS Variables</h3>
+
+    <p>
+        Use <b><%-</b> instead of <%= to unescape HTML
+    </p>
+
+    <pre>
+&lt;div&gt;
+    <b><%-</b> widget.html.text %>
+&lt;/div&gt;</pre>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Post Data from EJS Form</h3>
+
+    <p>
+        In a SPA (Single Page Application) data is posted to
+        the server using AJAX without navigating away from
+        the page. In server side applications data is posted
+        using <code>form</code> elements. The <code>form</code>
+        in the example below posts data to Web service that
+        inserts that data in a collection
+    </p>
+
+    <pre>
+&lt;form action="/api/database/<%= page.name.replace(/ /g,'_') %>" method="post"&gt;
+    ...
+    &lt;button type="submit" ... &gt;
+        ...
+    &lt;/button&gt;
+    ...
+&lt;/form&gt;</pre>
+
+</div>
+
+<hr/>
+
+<div>
+
+    <h3>Configuring a Callback URL</h3>
+
+    <p>
+        Pages can post callback URLs that the server can the use
+        to redirect the navigation of the Web application. The URL
+        can be <code>form</code> field hidden from view, only
+        meant for the server logic
+    </p>
+
+    <pre>
+&lt;form ...>
+    &lt;input type="hidden"
+       name="callback-url"
+       value="/developer/<%=username%>/application/<%=applicationId%>/page"/&gt;
+    &lt;button type="submit" ...&gt;...&lt;/button&gt;
+&lt;/form&gt;</pre>
+
+    <p>
+        On the server the Web service can parse the URL
+        from the parameters and use it to redirect the
+        navigation. Form data fields will be encoded
+        in the <code>req.body</code>
+    </p>
+
+    <pre>
+function insert(req, res) {
+    // form data is in body
+    var fields = req.body;
+    var callbackUrl = fields["callback-url"];
+    ...
+    if(callbackUrl) {
+        res.redirect(callbackUrl);
+    } else {
+        res.json(doc);
+    }
+    ...
+}</pre>
+
+</div>

@@ -75,3 +75,164 @@
 
 <hr>
 
+<div class="jga-slide">
+    <h3>Encapsulate all Models into a Singleton</h3>
+
+    <p>
+        Use a singleton <code>model</code> module to centralize access to all
+        data access
+
+    <pre>
+// app/models/model.js
+module.exports = function() {
+
+    var mongoose = require("mongoose");
+    var mongojs  = require('mongojs');
+
+    mongoose.connect('mongodb://localhost/web-app-maker');
+    mongojs('web-app-maker');
+
+    var model = {
+        developerModel   : require("./developer/developer.model.server")(),
+        applicationModel : require("./application/application.model.server")(),
+        shareModel       : require("./application/share.model.server")(applicationModel),
+        pageModel        : require("./page/page.model.server")(applicationModel),
+        widgetMode       : require("./widget/widget.model.server")(applicationModel),
+        mongojs          : mongojs
+    };
+    return model;
+}</pre>
+    </p>
+
+    <p>
+        Services can then share the same <code>model</code>
+        <pre>
+// app/app.js
+var model = require("./models/model.js")();
+
+var developerService   = require("./services/developer.service.server.js")  (app, model);
+var applicationService = require("./services/application.service.server.js")(app, model);
+var pageService        = require("./services/page.service.server.js")       (app, model);
+var widgetService      = require("./services/widget.service.server.js")     (app, model);
+var shareService       = require("./services/share.service.server")         (app, model);</pre>
+    </p>
+</div>
+
+<hr>
+
+<div class="jga-slide">
+
+    <h3>Embed Schemas</h3>
+
+    <p>
+        Embed nested schemas
+    </p>
+
+    <pre>
+var WidgetSchema = require("../widget/widget.schema.server.js")();
+var PageSchema = mongoose.Schema({
+        name:         String,
+        title:        String,
+        widgets:     [WidgetSchema],
+        dateCreated: {type: Date, default: Date.now}
+});</pre>
+
+</div>
+
+<hr>
+
+<div class="jga-slide">
+
+    <h3>Implementing Inheritance with Embedded Multiple Schemas</h3>
+
+    <p>
+        Object oriented inheritance can be implemented by embedding
+        multiples schemas in a base object and using a <code>type</code>
+        property to determine which of the embedded schemas are
+        valid.
+    </p>
+
+    <p>
+        The example below implements a base schema <code>WidgetSchema</code>
+        and contains several sub schemas. Only one schema is valid for
+        any one instance. The valid schema is based on property
+        <code>widgetType</code>
+    </p>
+
+    <pre>
+var TextInputSchema = require("./text-input.schema.server.js")();
+var RepeaterSchema  = require("./repeater.schema.server.js")();
+var DataTableSchema = require("./data-table.schema.server.js")();
+var YouTubeSchema   = require("./you-tube.schema.server.js")();
+var HtmlSchema      = require("./html.schema.server.js")();
+
+var WidgetSchema = mongoose.Schema({
+    <b>widgetType</b>: {type: String, enum: ["HTML", "HEADER", "LABEL", "TEXT",
+        "LINK", "BUTTON", "IMAGE", "YOUTUBE","DATATABLE", "REPEATER"]},
+    name      : String,
+    title     : String,
+    text      : {type:String, default:'Text'},
+    html      : HtmlSchema,
+    youTube   : YouTubeSchema,
+    datatable : DataTableSchema,
+    repeater  : RepeaterSchema,
+    textInput : TextInputSchema
+});</pre>
+</div>
+
+<hr/>
+
+<div>
+
+    <h3>Removing Documents with <code>mongojs</code></h3>
+
+    <p>
+        Mongojs can dynamically create new collections, or
+        refer to existing ones using <code>collection(collectionName)</code>.
+        Remove documents using a collection's <code>remove()</code>
+        function
+    </p>
+
+    <pre>
+var collection = db.<b>collection(pageName)</b>;
+
+// remove record by ID
+collection.remove(
+    <b>{ "_id" : mongojs.ObjectId(recordId) }</b>,
+    function(err, docs){
+        ...
+    });</pre>
+
+    <p>
+        Querying by ID requires a <code>mongojs.ObjectId</code> instance
+    </p>
+
+</div>
+
+<hr/>
+
+<div class="jga-slide">
+
+    <h3>Storing Boolean Values in the Database</h3>
+
+    <p>
+        Store <code>boolean</code> variables in <code>Boolean</code> fields
+    </p>
+
+    <pre>
+var RepeaterSchema = mongoose.Schema({
+    collectionName :  String,
+    fields         : [String],
+    template       :  String,
+    <b>deletable      :  Boolean</b>
+});</pre>
+
+    <p>
+        Render <code>boolean</code> values <code>checkbox</code> buttons
+    </p>
+
+    <pre>
+&lt;input ng-model="model.widget.repeatable.deletable"
+       type="checkbox"/&gt;</pre>
+
+</div>
