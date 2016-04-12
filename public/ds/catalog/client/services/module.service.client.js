@@ -15,7 +15,9 @@
             getCurrentLecture: getCurrentLecture,
             setCurrentLecture: setCurrentLecture,
             getCurrentAssignment: getCurrentAssignment,
-            setCurrentAssignment: setCurrentAssignment
+            setCurrentAssignment: setCurrentAssignment,
+            getCurrentExample: getCurrentExample,
+            setCurrentExample: setCurrentExample,
         };
 
         return service;
@@ -42,6 +44,14 @@
 
         function setCurrentAssignment(assignment) {
             $rootScope.currentAssignment = assignment;
+        }
+
+        function getCurrentExample() {
+            return $rootScope.currentExample;
+        }
+
+        function setCurrentExample(example) {
+            $rootScope.currentExample = example;
         }
     }
 }());

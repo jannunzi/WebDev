@@ -12,10 +12,36 @@
     <h3 class="page-header">Example</h3>
 
     <ul class="nav nav-pills">
-        <li role="presentation" class="active" ng-repeat="example in currentModule.examples">
-            <a>{{example.title}}</a>
+        <li role="presentation" ng-class="{'active': $location.url() == '/course/' + model.course.number + '/module/' + currentModule.number + '/example/' + example.number}" ng-repeat="example in currentModule.examples">
+            <a ng-click="model.viewExample($index)">{{example.title}}</a>
         </li>
     </ul>
+
+    <br>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{model.example.number}} | {{model.example.title}}</h3>
+        </div>
+    </div>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default" ng-repeat="demo in model.example.demos">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        {{demo.title}}
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    {{demo.base}}<br>
+                    {{demo.src}}
+                </div>
+            </div>
+        </div>
+    </div>
 
     <br>
 

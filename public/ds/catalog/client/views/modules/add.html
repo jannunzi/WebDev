@@ -8,7 +8,7 @@
         <input class="form-control" type="text" placeholder="{{model.addingType}} overview" ng-model="model.overview" />
     </div>
     <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="lecture">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
         <button ng-disabled="!(model.title && model.overview)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
     </div>
 
@@ -31,7 +31,7 @@
         <input class="form-control" type="text" placeholder="{{model.addingType}} html" ng-model="model.html" />
     </div>
     <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="learning element">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
         <button ng-disabled="!(model.title && model.type)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
     </div>
 
@@ -43,8 +43,19 @@
         <input class="form-control" type="text" placeholder="{{model.addingType}} src" ng-model="model.src" />
     </div>
     <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="assignment">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
         <button ng-disabled="!(model.title && model.src)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
+    </div>
+
+    <!--example-->
+
+    <div class="ngdialog-message" ng-switch-when="example">
+        <h4>Choose a name for {{model.addingType}}:</h4>
+        <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="model.title" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="example">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.title)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
     </div>
 
 </div>
