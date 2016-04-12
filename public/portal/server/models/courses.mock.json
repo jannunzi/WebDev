@@ -851,8 +851,8 @@
       },
       {
         "title": "Dynamic Server Pages",
-        "visible": false,
-        "available": false,
+        "visible": true,
+        "available": true,
         "assignments": [
           {
             "title": "Dynamic Server Pages"

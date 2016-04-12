@@ -19,6 +19,13 @@
         where it is rendered for the user.
     </p>
 
+    <p>
+        Embedded JavaScript is a templating engine for Node.js
+        that allows embedding JavaScript code within HTML
+        documents. The code can dynamically render HTML based
+        on data driven logic.
+    </p>
+
     <h5>Learning Objectives</h5>
 
     <ul>
@@ -99,10 +106,10 @@ module.exports = function(app) {
 
 <div class="jga-slide">
 
-    <h3>EJS Pages</h3>
+    <h3>EJS Dynamic Server Pages</h3>
 
     <p>
-        EJS pages contain mostly HTML with optinal
+        EJS dynamic server pages contain mostly HTML with optinal
         <b>e</b>mbedded <b>J</b>ava<b>S</b>cript (ejs)
     </p>
 
@@ -113,6 +120,8 @@ module.exports = function(app) {
     &lt;/head&gt;
     &lt;body&gt;
         &lt;h2&gt;Page&lt;/h2&gt;
+        <%  var hello = "Hello World!"; %>
+        <%= hello %>
     &lt;/body&gt;
 &lt;/html&gt;
 </pre>
