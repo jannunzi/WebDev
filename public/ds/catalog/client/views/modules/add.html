@@ -1,0 +1,38 @@
+<div ng-switch on="model.addingType">
+
+    <!--lecture-->
+
+    <div class="ngdialog-message" ng-switch-when="lecture">
+        <h4>Choose a name for {{model.addingType}}:</h4>
+        <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="model.title" />
+        <input class="form-control" type="text" placeholder="{{model.addingType}} overview" ng-model="model.overview" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="lecture">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.title && model.overview)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
+    </div>
+
+    <!--learning element-->
+
+    <div class="ngdialog-message" ng-switch-when="learning element">
+        <h4>Choose a name for {{model.addingType}}:</h4>
+        <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="model.title" />
+        <select class="form-control" ng-model="model.type">
+            <option value="PDF">PDF Document</option>
+            <option value="VIDEO">Video</option>
+            <option value="SLIDE">Slides</option>
+            <option value="LINK">Link</option>
+            <option value="HTML">HTML</option>
+            <option value="IFRAME">iFrame</option>
+        </select>
+        <input class="form-control" type="text" placeholder="{{model.addingType}} src" ng-model="model.src" />
+        <input class="form-control" type="text" placeholder="{{model.addingType}} height" ng-model="model.height" />
+        <input class="form-control" type="text" placeholder="{{model.addingType}} width" ng-model="model.width" />
+        <input class="form-control" type="text" placeholder="{{model.addingType}} html" ng-model="model.html" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="learning element">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.title && model.type)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
+    </div>
+
+</div>

@@ -64,6 +64,11 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
+            .when("/course/:id/module/:id/lecture/:id", {
+                templateUrl: "./views/modules/lecture.view.html",
+                controller: "ModuleController",
+                controllerAs: "model"
+            })
             .when("/course/:id/module/:id/examples", {
                 templateUrl: "./views/modules/example.view.html",
                 controller: "ModuleController",

@@ -11,7 +11,9 @@
     function ModuleService($rootScope) {
         var service = {
             getCurrentModule: getCurrentModule,
-            setCurrentModule: setCurrentModule
+            setCurrentModule: setCurrentModule,
+            getCurrentLecture: getCurrentLecture,
+            setCurrentLecture: setCurrentLecture
         };
 
         return service;
@@ -22,6 +24,14 @@
 
         function setCurrentModule(module) {
             $rootScope.currentModule = module;
+        }
+
+        function getCurrentLecture() {
+            return $rootScope.currentLecture;
+        }
+
+        function setCurrentLecture(lecture) {
+            $rootScope.currentLecture = lecture;
         }
     }
 }());

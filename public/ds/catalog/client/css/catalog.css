@@ -11,7 +11,6 @@ body { font-family: 'Belgrano', sans-serif !important; }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary:hover {
     background: #006622;
-
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary:disabled{
