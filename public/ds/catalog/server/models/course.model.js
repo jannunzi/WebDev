@@ -25,7 +25,8 @@ module.exports = function(db, mongoose) {
         findModulesForCourse: findModulesForCourse,
         updateModulesInCourse: updateModulesInCourse,
         registerUserToCourse: registerUserToCourse,
-        getCourseByNumber: getCourseByNumber
+        getCourseByNumber: getCourseByNumber,
+        getModuleByNumber: getModuleByNumber
     };
 
     return api;
@@ -64,6 +65,20 @@ module.exports = function(db, mongoose) {
             for (var m in course.modules) {
                 if (m.title === moduleId) {
                     deferred.resolve(m);
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    function getModuleByNumber(courseId, moduleNumber) {
+        var deferred = q.defer();
+
+        CourseModel.findById(courseId, function(err, course) {
+            for (var m in course.modules) {
+                if (course.modules[m].number === parseInt(moduleNumber)) {
+                    deferred.resolve(course.modules[m]);
                 }
             }
         });

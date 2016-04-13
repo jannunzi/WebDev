@@ -15,10 +15,12 @@ module.exports = function(app, courseModel) {
     app.post("/api/ds/catalog/course/:id/module", addModuleToCourse);
     app.get("/api/ds/catalog/course/:id/module", findModulesForCourse);
     app.put("/api/ds/catalog/course/:courseId/module/:moduleId", deleteModuleFromCourse);
-    app.get("/api/ds/catalog/course/:courseId/module/:moduleId", searchModuleInCourse);
+    //app.get("/api/ds/catalog/course/:courseId/module/:moduleId", searchModuleInCourse);
     app.put("/api/ds/catalog/course/:courseId/module", updateModulesInCourse);
     app.put("/api/ds/catalog/course/:courseId/register/:username", registerUserToCourse);
+
     app.get("/api/ds/catalog/course/:number", getCourseByNumber);
+    app.get("/api/ds/catalog/course/:courseId/module/:moduleNumber", getModuleByNumber);
 
     function addModuleToCourse(req, res) {
         courseModel.addModuleToCourse(req.params.id, req.body).then(function(modules){
@@ -48,6 +50,14 @@ module.exports = function(app, courseModel) {
     function searchModuleInCourse(req, res) {
         courseModel.searchModuleInCourse(req.params.courseId, req.params.moduleId).then(function(module){
             res.json(module);
+        });
+    }
+
+    function getModuleByNumber(req, res) {
+        courseModel.getModuleByNumber(req.params.courseId, req.params.moduleNumber).then(function(module) {
+            res.json(module);
+        }, function(err) {
+            res.status(400).send(err);
         });
     }
 

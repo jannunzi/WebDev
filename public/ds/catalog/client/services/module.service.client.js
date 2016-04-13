@@ -8,7 +8,7 @@
         .module("CatalogApp")
         .factory("ModuleService", ModuleService);
 
-    function ModuleService($rootScope) {
+    function ModuleService($rootScope, $http) {
         var service = {
             getCurrentModule: getCurrentModule,
             setCurrentModule: setCurrentModule,
@@ -18,6 +18,7 @@
             setCurrentAssignment: setCurrentAssignment,
             getCurrentExample: getCurrentExample,
             setCurrentExample: setCurrentExample,
+            getModuleByNumber: getModuleByNumber
         };
 
         return service;
@@ -52,6 +53,10 @@
 
         function setCurrentExample(example) {
             $rootScope.currentExample = example;
+        }
+
+        function getModuleByNumber(courseId, moduleNumber) {
+            return $http.get('/api/ds/catalog/course/' + courseId + '/module/' + moduleNumber);
         }
     }
 }());

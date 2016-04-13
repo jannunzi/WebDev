@@ -2,7 +2,7 @@
     <ul class="nav nav-sidebar">
         <li><a href="#/course"><span class="glyphicon glyphicon-home"></span>&emsp;Courses</a></li>
         <li ng-show="currentUser" ng-class="{'active': $location.url() == '/' + currentUser.username + '/courses'}">
-            <a href="#/{{currentUser.username}}/courses"><span class="glyphicon glyphicon-align-justify"></span>&emsp;My Courses</a>
+            <a href="#/{{currentUser.username}}/course"><span class="glyphicon glyphicon-align-justify"></span>&emsp;My Courses</a>
         </li>
     </ul>
 

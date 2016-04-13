@@ -15,7 +15,7 @@
         };
     }
 
-    function ModuleController($scope, $rootScope, $location, ngDialog, CourseService, ModuleService) {
+    function ModuleController($scope, $rootScope, $location, ngDialog, CourseService, ModuleService, $routeParams) {
         var vm = this;
         var selectedCourse = CourseService.getCurrentCourse();
         vm.course = selectedCourse;
@@ -47,6 +47,14 @@
 
         vm.addLearningElement = addLearningElement;
         vm.deleteLearningElement = deleteLearningElement;
+
+
+        var moduleNumber = $routeParams.number;
+        if (selectedCourse && moduleNumber) {
+            ModuleService.getModuleByNumber(selectedCourse._id, moduleNumber).then(function(response) {
+                ModuleService.setCurrentModule(response.data);
+            });
+        }
 
         // Module
 

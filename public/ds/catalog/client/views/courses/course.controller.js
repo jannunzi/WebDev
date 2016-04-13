@@ -11,34 +11,28 @@
     function CourseController($location, CourseService, ModuleService, UserService, $routeParams) {
         var vm = this;
 
-        var selectedCourse = CourseService.getCurrentCourse();
-        vm.course = selectedCourse;
-
         vm.viewModule = viewModule;
         vm.enrollInCourse = enrollInCourse;
 
-
         CourseService.getCourseByNumber($routeParams.id).then(function(response) {
-            selectedCourse = response.data;
-            CourseService.setCurrentCourse(selectedCourse);
-            vm.course = selectedCourse;
+            vm.course = response.data;
+            CourseService.setCurrentCourse(vm.course);
         })
 
-
         function viewModule(index) {
-            var selectedModule = selectedCourse.modules[index];
+            var selectedModule = vm.course.modules[index];
             ModuleService.setCurrentModule(selectedModule);
-            $location.url("/course/" + selectedCourse.number + "/module/" + selectedModule.number);
+            $location.url("/course/" + vm.course.number + "/module/" + selectedModule.number);
         }
 
         function enrollInCourse(user) {
-            UserService.enrollUserInCourse(user._id, selectedCourse).then(function(response) {
+            UserService.enrollUserInCourse(user._id, vm.course).then(function(response) {
                 UserService.setCurrentUser(response.data);
             });
 
-            CourseService.registerUserToCourse(user.username, selectedCourse._id).then(function(response) {
+            CourseService.registerUserToCourse(user.username, vm.course._id).then(function(response) {
                 vm.course = response.data;
-                CourseService.setCurrentCourse(response.data);
+                CourseService.setCurrentCourse(vm.course);
             });
         }
     }

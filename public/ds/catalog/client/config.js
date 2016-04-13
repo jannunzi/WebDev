@@ -39,7 +39,7 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id", {
+            .when("/course/:id/module/:number", {
                 templateUrl: "./views/modules/detail.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
@@ -59,7 +59,7 @@
                 controller: "CourseController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/lectures", {
+            .when("/course/:id/module/:id/lecture", {
                 templateUrl: "./views/modules/lecture.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
@@ -69,7 +69,7 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/examples", {
+            .when("/course/:id/module/:id/example", {
                 templateUrl: "./views/modules/example.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
@@ -79,7 +79,7 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/assignments", {
+            .when("/course/:id/module/:id/assignment", {
                 templateUrl: "./views/modules/assignment.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
@@ -89,7 +89,7 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/:username/courses", {
+            .when("/:username/course", {
                 templateUrl: "./views/users/courses.view.html",
                 controller: "UserController",
                 controllerAs: "model"
