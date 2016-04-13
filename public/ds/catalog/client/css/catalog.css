@@ -25,3 +25,11 @@ body { font-family: 'Belgrano', sans-serif !important; }
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-secondary:hover {
     background: #990000;
 }
+
+.no-borders {
+    border: none;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
