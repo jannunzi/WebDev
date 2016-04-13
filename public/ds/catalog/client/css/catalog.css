@@ -5,25 +5,38 @@
 body { font-family: 'Belgrano', sans-serif !important; }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary {
+    font-family: 'Belgrano';
     background: #009933;
     color: #fff;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary:hover {
+    font-family: 'Belgrano';
     background: #006622;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-primary:disabled{
+    font-family: 'Belgrano';
     background: rgba(0, 153, 51, 0.50);
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-secondary {
+    font-family: 'Belgrano';
     background: #cc0000;
     color: #fff;
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-button.ngdialog-button-secondary:hover {
+    font-family: 'Belgrano';
     background: #990000;
+}
+
+.ngdialog.ngdialog-theme-default .ng-binding {
+    font-family: 'Crushed';
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-message {
+    font-family: 'Belgrano';
 }
 
 .no-borders {
