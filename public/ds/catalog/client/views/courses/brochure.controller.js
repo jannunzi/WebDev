@@ -12,10 +12,6 @@
         var vm = this;
         var selectedCourse = null;
 
-        vm.addCourse = addCourse;
-        vm.deleteCourse = deleteCourse;
-        vm.selectCourse = selectCourse;
-        vm.updateCourse = updateCourse;
         vm.viewCourse = viewCourse;
         vm.newCourse = newCourse;
         vm.removeCourse = removeCourse;
@@ -25,46 +21,10 @@
             vm.courses = response.data;
         });
 
-        function selectCourse(index) {
-            selectedCourse = vm.courses[index];
-            vm.number = selectedCourse.number;
-            vm.timing = selectedCourse.timing;
-            vm.location = selectedCourse.location;
-        }
-
-        function addCourse() {
-            var newCourse = {"number": vm.number, "timing": vm.timing, "location": vm.location};
-            CourseService.createCourse(newCourse, function(callback) {
-                vm.courses = callback;
-                vm.number = "";
-                vm.timing = "";
-                vm.location = "";
-            });
-        }
-
-        function updateCourse() {
-            if (selectedCourse) {
-                selectedCourse.number = vm.number;
-                selectedCourse.timing = vm.timing;
-                selectedCourse.location = vm.location;
-                CourseService.updateCourseById(selectedCourse._id, selectedCourse).then(function(response) {
-                    vm.number = "";
-                    vm.timing = "";
-                    vm.location = "";
-                });
-            }
-        }
-
-        function deleteCourse(index) {
-            CourseService.deleteCourseById(vm.courses[index]._id, function(callback) {
-                vm.courses = callback;
-            });
-        }
-
         function viewCourse(index) {
             selectedCourse = vm.courses[index];
             CourseService.setCurrentCourse(selectedCourse);
-            $location.url('/course/'+selectedCourse.number);
+            $location.url('/course/' + selectedCourse.number);
         }
 
         function newCourse() {
@@ -76,7 +36,7 @@
                     "modules": []
                 };
 
-                CourseService.createCourse(course).then(function(callback) {
+                CourseService.createCourse(course).then(function(response) {
                     CourseService.findAllCourses().then(function(response) {
                         vm.courses = response.data;
                     });
@@ -89,10 +49,10 @@
         function removeCourse(index) {
             vm.title = vm.courses[index].title;
             showRemoveDialog(function(){
-                deleteCourse(index);
-
-                CourseService.findAllCourses().then(function(response) {
-                    vm.courses = response.data;
+                CourseService.deleteCourseById(vm.courses[index]._id).then(function(response) {
+                    CourseService.findAllCourses().then(function(response) {
+                        vm.courses = response.data;
+                    });
                 });
             });
         }
