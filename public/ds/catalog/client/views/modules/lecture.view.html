@@ -2,10 +2,18 @@
     <h1 class="page-header">{{model.course.title}} | <small>Module #{{currentModule.number}} - {{currentModule.title}}</small></h1>
 
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}">Overview</a></li>
-        <li role="presentation" class="active"><a>Lectures</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/example">Examples</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/assignment">Assignments</a></li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}">
+            <span class="glyphicon glyphicon-globe"></span> Overview</a>
+        </li>
+        <li role="presentation" class="active"><a>
+            <span class="glyphicon glyphicon-facetime-video"></span> Lectures</a>
+        </li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/example">
+            <span class="glyphicon glyphicon-play-circle"></span> Examples</a>
+        </li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/assignment">
+            <span class="glyphicon glyphicon-paperclip"></span> Assignments</a>
+        </li>
     </ul>
 
     <br>
@@ -23,9 +31,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">{{model.lecture.number}} | {{model.lecture.title}}</h3>
         </div>
-        <div class="panel-body">
-            {{model.lecture.overview}}
-        </div>
+        <div class="panel-body" ng-bind-html="model.renderHtml(model.lecture.overview)"></div>
     </div>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -60,7 +66,7 @@
                         <a ng-click="model.deleteLecture($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
                     </td>
                 </tr>
-                <tr><td colspan="2" class="list-group-item-text">{{lecture.overview}}</td></tr>
+                <tr><td colspan="2" class="list-group-item-text" ng-bind-html="model.renderHtml(lecture.overview)"></td></tr>
                 <tr ng-repeat="learningElement in lecture.learningElements">
                     <td colspan="2" class="list-group-item-text"><a ng-click="model.deleteLearningElement($index, lecture)"><span class="glyphicon glyphicon-remove-circle"></span></a>&emsp;{{learningElement.title}}</td>
                 </tr>

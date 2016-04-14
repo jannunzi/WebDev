@@ -2,10 +2,18 @@
     <h1 class="page-header">{{model.course.title}} | <small>Module #{{currentModule.number}} - {{currentModule.title}}</small></h1>
 
     <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a>Overview</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/lecture">Lectures</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/example">Examples</a></li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/assignment">Assignments</a></li>
+        <li role="presentation" class="active"><a>
+            <span class="glyphicon glyphicon-globe"></span> Overview</a>
+        </li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/lecture">
+            <span class="glyphicon glyphicon-facetime-video"></span> Lectures</a>
+        </li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/example">
+            <span class="glyphicon glyphicon-play-circle"></span> Examples</a>
+        </li>
+        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/assignment">
+            <span class="glyphicon glyphicon-paperclip"></span> Assignments</a>
+        </li>
     </ul>
 
     <br>
@@ -17,7 +25,7 @@
 
     <div ng-repeat="lecture in currentModule.lectures">
         <h3>{{lecture.title}}</h3>
-        <p>{{lecture.overview}}</p>
+        <p ng-bind-html="model.renderHtml(lecture.overview)" align="justify"></p>
         <a class="btn btn-warning" href="#/course/{{model.course.number}}/module/{{currentModule.number}}/lecture/{{lecture.number}}">
             <i class="fa fa-eye" aria-hidden="true"></i> View Lecture
         </a>

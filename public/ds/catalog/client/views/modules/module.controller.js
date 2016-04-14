@@ -15,7 +15,7 @@
         };
     }
 
-    function ModuleController($scope, $rootScope, $location, ngDialog, CourseService, ModuleService, $routeParams) {
+    function ModuleController($scope, $rootScope, $location, ngDialog, CourseService, ModuleService, $routeParams, $sce) {
         var vm = this;
         var selectedCourse = CourseService.getCurrentCourse();
         vm.course = selectedCourse;
@@ -47,6 +47,8 @@
 
         vm.addLearningElement = addLearningElement;
         vm.deleteLearningElement = deleteLearningElement;
+
+        vm.renderHtml = renderHtml;
 
         var courseId = $routeParams.courseId;
         var moduleNumber = $routeParams.moduleNumber;
@@ -404,5 +406,8 @@
             ngDialog.openConfirm({template: 'views/modules/update.html', scope: $scope}).then(confirm, cancel);
         }
 
+        function renderHtml(text) {
+            return $sce.trustAsHtml(text);
+        }
     }
 }());
