@@ -34,57 +34,67 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module", {
-                templateUrl: "./views/modules/module.view.html",
-                controller: "ModuleController",
-                controllerAs: "model"
-            })
-            .when("/course/:id/module/:number", {
-                templateUrl: "./views/modules/detail.view.html",
-                controller: "ModuleController",
-                controllerAs: "model"
-            })
             .when("/course", {
                 templateUrl: "./views/courses/brochure.view.html",
                 controller: "BrochureController",
                 controllerAs: "model"
             })
-            .when("/course/:id", {
+            .when("/course/:courseId", {
                 templateUrl: "./views/courses/course.view.html",
                 controller: "CourseController",
                 controllerAs: "model"
             })
-            .when("/course/:id/syllabus", {
+            .when("/course/:courseId/edit", {
+                templateUrl: "./views/courses/course.edit.view.html",
+                controller: "CourseController",
+                controllerAs: "model"
+            })
+            .when("/course/:courseId/module", {
+                templateUrl: "./views/modules/module.view.html",
+                controller: "ModuleController",
+                controllerAs: "model"
+            })
+            .when("/course/:courseId/module/:moduleNumber", {
+                templateUrl: "./views/modules/detail.view.html",
+                controller: "ModuleController",
+                controllerAs: "model"
+            })
+            .when("/course/:courseId/syllabus", {
                 templateUrl: "./views/courses/syllabus.view.html",
                 controller: "CourseController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/lecture", {
+            .when("/course/:courseId/agenda", {
+                templateUrl: "./views/courses/agenda.view.html",
+                controller: "CourseController",
+                controllerAs: "model"
+            })
+            .when("/course/:courseId/module/:id/lecture", {
                 templateUrl: "./views/modules/lecture.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/lecture/:id", {
+            .when("/course/:courseId/module/:id/lecture/:id", {
                 templateUrl: "./views/modules/lecture.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/example", {
+            .when("/course/:courseId/module/:id/example", {
                 templateUrl: "./views/modules/example.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/example/:id", {
+            .when("/course/:courseId/module/:id/example/:id", {
                 templateUrl: "./views/modules/example.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/assignment", {
+            .when("/course/:courseId/module/:id/assignment", {
                 templateUrl: "./views/modules/assignment.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:id/module/:id/assignment/:id", {
+            .when("/course/:courseId/module/:id/assignment/:id", {
                 templateUrl: "./views/modules/assignment.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"

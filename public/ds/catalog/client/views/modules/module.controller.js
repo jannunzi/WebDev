@@ -48,11 +48,16 @@
         vm.addLearningElement = addLearningElement;
         vm.deleteLearningElement = deleteLearningElement;
 
+        var courseId = $routeParams.courseId;
+        var moduleNumber = $routeParams.moduleNumber;
+        if (courseId && moduleNumber) {
+            CourseService.getCourseByNumber(courseId).then(function(response) {
+                vm.course = response.data;
+                CourseService.setCurrentCourse(vm.course);
 
-        var moduleNumber = $routeParams.number;
-        if (selectedCourse && moduleNumber) {
-            ModuleService.getModuleByNumber(selectedCourse._id, moduleNumber).then(function(response) {
-                ModuleService.setCurrentModule(response.data);
+                ModuleService.getModuleByNumber(courseId, moduleNumber).then(function(response) {
+                    ModuleService.setCurrentModule(response.data);
+                });
             });
         }
 
@@ -73,10 +78,21 @@
 
         function addModule() {
             var number = selectedCourse.modules.length > 0 ? selectedCourse.modules[selectedCourse.modules.length - 1].number + 1 : 1;
-            var module = {"number": number, "title": Date.now(), "description": ""}
-            CourseService.addModuleToCourse(selectedCourse._id, module).then(function(response) {
-                $rootScope.currentCourse.modules = response.data;
-                vm.course.modules = $rootScope.currentCourse.modules;
+            vm.addingType = "module";
+
+            showAddDialog(function(model) {
+                var module = {
+                    "number": number,
+                    "title": model.title,
+                    "description": model.description
+                };
+
+                vm.course.modules.push(module);
+
+                CourseService.updateModulesByCourseId(selectedCourse._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                    CourseService.setCurrentCourse(vm.course);
+                });
             });
         }
 

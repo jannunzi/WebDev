@@ -13,6 +13,9 @@ module.exports = function (mongoose) {
         location: String,
         instructor: String,
         modules: [Module],
-        users: [String]
+        users: [String],
+        syllabus: String,
+        agenda: String,
+        piazza: String
     }, {collection: 'catalog.course'});
 };

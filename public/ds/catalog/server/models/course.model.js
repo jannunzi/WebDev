@@ -72,14 +72,18 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
-    function getModuleByNumber(courseId, moduleNumber) {
+    function getModuleByNumber(courseNumber, moduleNumber) {
         var deferred = q.defer();
 
-        CourseModel.findById(courseId, function(err, course) {
-            for (var m in course.modules) {
-                if (course.modules[m].number === parseInt(moduleNumber)) {
-                    deferred.resolve(course.modules[m]);
+        CourseModel.findOne({number: courseNumber}, function(err, course) {
+            if (course) {
+                for (var m in course.modules) {
+                    if (course.modules[m].number === parseInt(moduleNumber)) {
+                        deferred.resolve(course.modules[m]);
+                    }
                 }
+            } else {
+                deferred.reject(err);
             }
         });
 

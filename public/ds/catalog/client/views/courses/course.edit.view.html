@@ -1,0 +1,62 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">{{model.course.title}} | <small>course information</small></h1>
+
+    <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">{{model.error}}</div>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="number" class="col-sm-2 control-label">Number:</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.number" type="text" class="form-control" id="number" placeholder="Course Number">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Title:</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.title" type="text" class="form-control" id="name" placeholder="Course Title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="timing" class="col-sm-2 control-label">Timing:</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.timing" type="text" class="form-control" id="timing" placeholder="Course Timing">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="location" class="col-sm-2 control-label">Location:</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.location" type="text" class="form-control" id="location" placeholder="Course Location">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="instructor" class="col-sm-2 control-label">Instructor</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.instructor" type="text" class="form-control" id="instructor" placeholder="Course Instructor">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Syllabus:</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.syllabus" type="text" class="form-control" id="syllabus" placeholder="Course Syllabus">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Agenda:</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.agenda" type="text" class="form-control" id="agenda" placeholder="Course Agenda">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Piazza:</label>
+            <div class="col-sm-10">
+                <input ng-model="model.course.piazza" type="text" class="form-control" id="piazza" placeholder="Piazza">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button ng-click="model.updateCourse(model.course)" type="submit" class="btn btn-primary btn-default col-sm-12">Update</button>
+            </div>
+        </div>
+    </form>
+</div>

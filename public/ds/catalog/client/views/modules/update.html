@@ -9,7 +9,7 @@
     </div>
     <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="module">
         <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
-        <button ng-disabled="!model.currentModule.title" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentModule)>Update</button>
+        <button ng-disabled="!(model.currentModule.title && model.currentModule.description)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentModule)>Update</button>
     </div>
 
     <!--lecture-->

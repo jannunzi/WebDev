@@ -11,13 +11,23 @@
     function CourseController($location, CourseService, ModuleService, UserService, $routeParams) {
         var vm = this;
 
+        vm.updateCourse = updateCourse;
         vm.viewModule = viewModule;
         vm.enrollInCourse = enrollInCourse;
 
-        CourseService.getCourseByNumber($routeParams.id).then(function(response) {
+        CourseService.getCourseByNumber($routeParams.courseId).then(function(response) {
             vm.course = response.data;
             CourseService.setCurrentCourse(vm.course);
-        })
+        });
+
+        function updateCourse(course) {
+            CourseService.updateCourseById(course._id, course).then(function(response) {
+                CourseService.getCourseByNumber(course.number).then(function(response) {
+                    vm.course = response.data;
+                    CourseService.setCurrentCourse(vm.course);
+                });
+            });
+        }
 
         function viewModule(index) {
             var selectedModule = vm.course.modules[index];

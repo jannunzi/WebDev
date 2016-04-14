@@ -24,6 +24,12 @@
         <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/syllabus'}">
             <a href="#/course/{{currentCourse.number}}/syllabus"><span class="glyphicon glyphicon-file"></span>&emsp;Syllabus</a>
         </li>
+        <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/agenda'}">
+            <a href="#/course/{{currentCourse.number}}/agenda"><span class="glyphicon glyphicon-briefcase"></span>&emsp;Agenda</a>
+        </li>
+        <li>
+            <a href="{{currentCourse.piazza}}" target="_blank"><span class="glyphicon glyphicon-inbox"></span>&emsp;Piazza</a>
+        </li>
     </ul>
 
     <hr ng-show="currentUser.roles.indexOf('admin') >= 0"/>

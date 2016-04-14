@@ -1,5 +1,17 @@
 <div ng-switch on="model.addingType">
 
+    <!--module-->
+
+    <div class="ngdialog-message" ng-switch-when="module">
+        <h4>Choose a name for {{model.addingType}}:</h4>
+        <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="model.title" />
+        <input class="form-control" type="text" placeholder="{{model.addingType}} description" ng-model="model.description" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="module">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.title && model.description)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
+    </div>
+
     <!--lecture-->
 
     <div class="ngdialog-message" ng-switch-when="lecture">

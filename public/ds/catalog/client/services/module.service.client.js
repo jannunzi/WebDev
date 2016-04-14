@@ -55,8 +55,8 @@
             $rootScope.currentExample = example;
         }
 
-        function getModuleByNumber(courseId, moduleNumber) {
-            return $http.get('/api/ds/catalog/course/' + courseId + '/module/' + moduleNumber);
+        function getModuleByNumber(courseNumber, moduleNumber) {
+            return $http.get('/api/ds/catalog/course/' + courseNumber + '/module/' + moduleNumber);
         }
     }
 }());
