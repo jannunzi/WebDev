@@ -34,7 +34,11 @@
                         <a ng-click="model.deleteModule($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
                     </td>
                 </tr>
-                <tr><td colspan="2" class="list-group-item-text">{{module.description}}</td></tr>
+                <tr>
+                    <td colspan="2" class="list-group-item-text">
+                        <p align="justify">{{module.description | limitTo: 375}} ... <a ng-click="model.viewModule($index)">learn more</a></p>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

@@ -61,6 +61,11 @@
                     ModuleService.setCurrentModule(response.data);
                 });
             });
+        } else if (courseId) {
+            CourseService.getCourseByNumber(courseId).then(function(response) {
+                vm.course = response.data;
+                CourseService.setCurrentCourse(vm.course);
+            });
         }
 
         // Module
@@ -80,7 +85,7 @@
 
         function addModule() {
             var number = selectedCourse.modules.length > 0 ? selectedCourse.modules[selectedCourse.modules.length - 1].number + 1 : 1;
-            vm.addingType = "module";
+            vm.element = "module";
 
             showAddDialog(function(model) {
                 var module = {
@@ -95,11 +100,13 @@
                     vm.course.modules = response.data;
                     CourseService.setCurrentCourse(vm.course);
                 });
+                model.title = "";
+                model.description = "";
             });
         }
 
         function editModule(index){
-            vm.addingType = "module";
+            vm.element = "module";
             vm.currentModule = vm.course.modules[index];
 
             showUpdateDialog(function(model){
@@ -153,7 +160,7 @@
             var currentModule = ModuleService.getCurrentModule();
             var number = currentModule.lectures.length > 0 ? currentModule.lectures[currentModule.lectures.length - 1].number + 1 : 1;
 
-            vm.addingType = "lecture";
+            vm.element = "lecture";
             showAddDialog(function(model) {
                 var lecture = {
                     "number": number,
@@ -197,7 +204,7 @@
         function editLecture(index){
             var currentModule = ModuleService.getCurrentModule();
             vm.currentLecture = currentModule.lectures[index];
-            vm.addingType = "lecture";
+            vm.element = "lecture";
 
             showUpdateDialog(function(model){
                 vm.currentLecture.title = model.title;
@@ -237,7 +244,7 @@
             var currentModule = ModuleService.getCurrentModule();
             var number = currentModule.examples.length > 0 ? currentModule.examples[currentModule.examples.length - 1].number + 1 : 1;
 
-            vm.addingType = "example";
+            vm.element = "example";
             showAddDialog(function(model) {
                 var example = {
                     "number": number,
@@ -291,7 +298,7 @@
             var currentModule = ModuleService.getCurrentModule();
             var number = currentModule.assignments.length > 0 ? currentModule.assignments[currentModule.assignments.length - 1].number + 1 : 1;
 
-            vm.addingType = "assignment";
+            vm.element = "assignment";
             showAddDialog(function(model) {
                 var assignment = {
                     "number": number,
@@ -345,7 +352,7 @@
         function addLearningElement(lecture) {
             var currentModule = ModuleService.getCurrentModule();
 
-            vm.addingType = "learning element";
+            vm.element = "learning element";
             showAddDialog(function(model) {
                 var learningElement = {
                     "title": model.title,

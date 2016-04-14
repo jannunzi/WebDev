@@ -1,11 +1,11 @@
-<div ng-switch on="model.addingType">
+<div ng-switch on="model.element">
 
     <!--module-->
 
     <div class="ngdialog-message" ng-switch-when="module">
-    <h4>Choose a name for {{model.addingType}}:</h4>
-        <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="model.currentModule.title" />
-        <input class="form-control" type="text" placeholder="{{model.addingType}} description" ng-model="model.currentModule.description" />
+        <h4><u>{{model.element}} details</u> | <small>update</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.currentModule.title" />
+        <input class="form-control" type="text" placeholder="{{model.element}} description" ng-model="model.currentModule.description" />
     </div>
     <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="module">
         <button type="button" class="ngdialog-button ngdialog-button-secondary"  ng-click=closeThisDialog("Cancel")>Cancel</button>
@@ -15,9 +15,9 @@
     <!--lecture-->
 
     <div class="ngdialog-message" ng-switch-when="lecture">
-        <h4>Choose a name for {{model.addingType}}:</h4>
-        <input class="form-control" type="text" placeholder="{{model.addingType}} title" ng-model="model.currentLecture.title" />
-        <input class="form-control" type="text" placeholder="{{model.addingType}} overview" ng-model="model.currentLecture.overview" />
+        <h4><u>{{model.element}} details</u> | <small>update</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.currentLecture.title" />
+        <input class="form-control" type="text" placeholder="{{model.element}} overview" ng-model="model.currentLecture.overview" />
     </div>
     <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="lecture">
         <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
