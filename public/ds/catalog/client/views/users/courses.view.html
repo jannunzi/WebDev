@@ -5,9 +5,9 @@
         <div class="list-group-item" ng-repeat="course in model.currentUser.courses">
             <table style="width: 100%">
                 <tr>
-                    <td><h3 class="list-group-item-heading"><a ng-click="model.viewModule($index)">{{course.number}}</a></h3></td>
+                    <td><h3 class="list-group-item-heading"><a ng-click="model.viewCourse(course)">{{course.number}}</a></h3></td>
                     <td align="right">
-                        <a ng-click="model.deleteModule($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                        <a ng-click="model.removeCourse(course)"><span class="glyphicon glyphicon-remove-circle"></span></a>
                     </td>
                 </tr>
                 <tr><td colspan="2" class="list-group-item-text">{{course.title}}</td></tr>

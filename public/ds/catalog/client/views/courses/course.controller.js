@@ -26,6 +26,7 @@
                 CourseService.getCourseByNumber(course.number).then(function(response) {
                     vm.course = response.data;
                     CourseService.setCurrentCourse(vm.course);
+                    vm.message = "Course details updated successfully";
                 });
             });
         }

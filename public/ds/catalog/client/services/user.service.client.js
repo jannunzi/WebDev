@@ -60,7 +60,7 @@
         }
 
         function enrollUserInCourse(userId, course) {
-            var course = {number: course.number, title: course.title};
+            var course = {_id: course._id, number: course.number, title: course.title};
             return $http.put('/api/ds/catalog/user/' + userId + '/enroll', course);
         }
 

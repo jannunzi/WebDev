@@ -14,6 +14,8 @@
         vm.message = null;
 
         vm.update = update;
+        vm.removeCourse = removeCourse;
+        vm.viewCourse = viewCourse;
 
         CourseService.setCurrentCourse(null);
 
@@ -52,6 +54,19 @@
                 vm.message = "User updated successfully";
                 $location.url('/profile');
             });
+        }
+
+        function removeCourse(course) {
+            UserService.disenrollUserFromCourse(vm.currentUser._id, course.number).then(function(response) {
+                UserService.setCurrentUser(response.data);
+                vm.currentUser = UserService.getCurrentUser();
+            });
+
+            CourseService.deregisterUserFromCourse(vm.currentUser.username, course._id).then(function(response) {});
+        }
+
+        function viewCourse(course) {
+            $location.url('/course/' + course.number);
         }
     }
 }());
