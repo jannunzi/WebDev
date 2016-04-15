@@ -21,8 +21,8 @@
         vm.course = selectedCourse;
 
         vm.lecture = ModuleService.getCurrentLecture();
-        vm.assignment = ModuleService.getCurrentAssignment();
         vm.example = ModuleService.getCurrentExample();
+        vm.assignment = ModuleService.getCurrentAssignment();
 
         vm.addModule = addModule;
         vm.deleteModule = deleteModule;
@@ -48,16 +48,18 @@
         vm.addLearningElement = addLearningElement;
         vm.deleteLearningElement = deleteLearningElement;
 
+        vm.viewOverview = viewOverview;
         vm.renderHtml = renderHtml;
 
         var courseId = $routeParams.courseId;
-        var moduleNumber = $routeParams.moduleNumber;
-        if (courseId && moduleNumber) {
+        var moduleId = $routeParams.moduleId;
+
+        if (courseId && moduleId) {
             CourseService.getCourseByNumber(courseId).then(function(response) {
                 vm.course = response.data;
                 CourseService.setCurrentCourse(vm.course);
 
-                ModuleService.getModuleByNumber(courseId, moduleNumber).then(function(response) {
+                ModuleService.getModuleByNumber(courseId, moduleId).then(function(response) {
                     ModuleService.setCurrentModule(response.data);
                 });
             });
@@ -231,11 +233,17 @@
 
         function viewLecture(index) {
             var currentModule = ModuleService.getCurrentModule();
-            vm.lecture = currentModule.lectures[index];
+            var lectureId = 1;
 
+            if (currentModule.lectures.length > 0) {
+                vm.lecture = currentModule.lectures[index];
+                lectureId = vm.lecture.number;
+            } else {
+                vm.lecture = null;
+            }
             ModuleService.setCurrentLecture(vm.lecture);
 
-            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number + "/lecture/" + vm.lecture.number);
+            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number + "/lecture/" + lectureId);
         }
 
         // Example
@@ -285,11 +293,17 @@
 
         function viewExample(index) {
             var currentModule = ModuleService.getCurrentModule();
-            vm.example = currentModule.examples[index];
+            var exampleId = 1;
 
+            if (currentModule.examples.length > 0) {
+                vm.example = currentModule.examples[index];
+                exampleId = vm.example.number;
+            } else {
+                vm.example = null;
+            }
             ModuleService.setCurrentExample(vm.example);
 
-            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number + "/example/" + vm.example.number);
+            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number + "/example/" + exampleId);
         }
 
         // Assignment
@@ -340,11 +354,17 @@
 
         function viewAssignment(index) {
             var currentModule = ModuleService.getCurrentModule();
-            vm.assignment = currentModule.assignments[index];
+            var assignmentId = 1;
 
+            if (currentModule.assignments.length > 0) {
+                vm.assignment = currentModule.assignments[index];
+                assignmentId = vm.assignment.number;
+            } else {
+                vm.assignment = null;
+            }
             ModuleService.setCurrentAssignment(vm.assignment);
 
-            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number + "/assignment/" + vm.assignment.number);
+            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number + "/assignment/" + assignmentId);
         }
 
         // LearningElement
@@ -411,6 +431,11 @@
 
         function showUpdateDialog(confirm, cancel){
             ngDialog.openConfirm({template: 'views/modules/update.html', scope: $scope}).then(confirm, cancel);
+        }
+
+        function viewOverview() {
+            var currentModule = ModuleService.getCurrentModule();
+            $location.url("/course/" + selectedCourse.number + "/module/" + currentModule.number);
         }
 
         function renderHtml(text) {

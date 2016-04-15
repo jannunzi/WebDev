@@ -46,3 +46,7 @@ body { font-family: 'Belgrano', sans-serif !important; }
 .margin-top-10 {
     margin-top: 10px;
 }
+
+a {
+    cursor: pointer;
+}

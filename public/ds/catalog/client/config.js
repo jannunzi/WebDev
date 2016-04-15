@@ -54,7 +54,7 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/module/:moduleNumber", {
+            .when("/course/:courseId/module/:moduleId", {
                 templateUrl: "./views/modules/detail.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
@@ -69,32 +69,32 @@
                 controller: "CourseController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/module/:id/lecture", {
+            .when("/course/:courseId/module/:moduleId/lecture", {
                 templateUrl: "./views/modules/lecture.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/module/:id/lecture/:id", {
+            .when("/course/:courseId/module/:moduleId/lecture/:id", {
                 templateUrl: "./views/modules/lecture.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/module/:id/example", {
+            .when("/course/:courseId/module/:moduleId/example", {
                 templateUrl: "./views/modules/example.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/module/:id/example/:id", {
+            .when("/course/:courseId/module/:moduleId/example/:id", {
                 templateUrl: "./views/modules/example.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/module/:id/assignment", {
+            .when("/course/:courseId/module/:moduleId/assignment", {
                 templateUrl: "./views/modules/assignment.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/module/:id/assignment/:id", {
+            .when("/course/:courseId/module/:moduleId/assignment/:id", {
                 templateUrl: "./views/modules/assignment.view.html",
                 controller: "ModuleController",
                 controllerAs: "model"

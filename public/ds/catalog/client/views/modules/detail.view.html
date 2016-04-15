@@ -5,13 +5,13 @@
         <li role="presentation" class="active"><a>
             <span class="glyphicon glyphicon-globe"></span> Overview</a>
         </li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/lecture">
+        <li role="presentation"><a ng-click="model.viewLecture(0)">
             <span class="glyphicon glyphicon-facetime-video"></span> Lectures</a>
         </li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/example">
+        <li role="presentation"><a ng-click="model.viewExample(0)">
             <span class="glyphicon glyphicon-play-circle"></span> Examples</a>
         </li>
-        <li role="presentation"><a href="#/course/{{model.course.number}}/module/{{currentModule.number}}/assignment">
+        <li role="presentation"><a ng-click="model.viewAssignment(0)">
             <span class="glyphicon glyphicon-paperclip"></span> Assignments</a>
         </li>
     </ul>
