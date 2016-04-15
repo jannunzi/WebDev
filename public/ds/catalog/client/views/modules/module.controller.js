@@ -47,6 +47,10 @@
         vm.viewOverview = viewOverview;
         vm.renderHtml = renderHtml;
 
+        vm.tinymceOptions = {
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist'
+        };
+
         var courseId = $routeParams.courseId;
         var moduleId = $routeParams.moduleId;
 

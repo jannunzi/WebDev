@@ -2,4 +2,9 @@
     <h1 class="page-header"><i class="fa fa-terminal"></i> {{model.course.number}} | {{model.course.title}}</h1>
 
     <h3 class="page-header">Syllabus</h3>
+    <textarea ui-tinymce="model.tinymceOptions" ng-model="model.tinymceModel"></textarea>
+
+    <br/>
+
+    <div ng-bind-html="model.renderHtml(model.tinymceModel)"></div>
 </div>

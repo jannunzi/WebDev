@@ -4,5 +4,5 @@
 
 (function() {
     "use strict";
-    angular.module("CatalogApp", ["ngRoute", "ngDialog", "gist"]);
+    angular.module("CatalogApp", ["ngRoute", "ngDialog", "gist", "ui.tinymce"]);
 })();

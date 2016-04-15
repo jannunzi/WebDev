@@ -8,13 +8,20 @@
         .module("CatalogApp")
         .controller("CourseController", CourseController)
 
-    function CourseController($location, CourseService, ModuleService, UserService, $routeParams) {
+    function CourseController($location, CourseService, ModuleService, UserService, $routeParams, $sce) {
         var vm = this;
 
         vm.updateCourse = updateCourse;
         vm.viewModule = viewModule;
         vm.enrollInCourse = enrollInCourse;
         vm.disenrollFromCourse = disenrollFromCourse;
+        vm.renderHtml = renderHtml;
+
+        vm.tinymceOptions = {
+            toolbar: 'insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+        };
+
+        vm.tinymceModel = 'Initial content';
 
         CourseService.getCourseByNumber($routeParams.courseId).then(function(response) {
             vm.course = response.data;
@@ -57,6 +64,12 @@
                 vm.course = response.data;
                 CourseService.setCurrentCourse(vm.course);
             });
+        }
+
+        function renderHtml(text) {
+            var abc = $sce.trustAsHtml(text);
+            console.log(abc);
+            return abc;
         }
     }
 }());
