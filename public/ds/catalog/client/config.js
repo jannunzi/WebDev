@@ -59,16 +59,6 @@
                 controller: "ModuleController",
                 controllerAs: "model"
             })
-            .when("/course/:courseId/syllabus", {
-                templateUrl: "./views/courses/syllabus.view.html",
-                controller: "CourseController",
-                controllerAs: "model"
-            })
-            .when("/course/:courseId/agenda", {
-                templateUrl: "./views/courses/agenda.view.html",
-                controller: "CourseController",
-                controllerAs: "model"
-            })
             .when("/course/:courseId/module/:moduleId/lecture", {
                 templateUrl: "./views/modules/lecture.view.html",
                 controller: "ModuleController",
@@ -97,6 +87,16 @@
             .when("/course/:courseId/module/:moduleId/assignment/:id", {
                 templateUrl: "./views/modules/assignment.view.html",
                 controller: "ModuleController",
+                controllerAs: "model"
+            })
+            .when("/course/:courseId/syllabus", {
+                templateUrl: "./views/courses/syllabus.view.html",
+                controller: "CourseController",
+                controllerAs: "model"
+            })
+            .when("/course/:courseId/agenda", {
+                templateUrl: "./views/courses/agenda.view.html",
+                controller: "CourseController",
                 controllerAs: "model"
             })
             .when("/:username/course", {

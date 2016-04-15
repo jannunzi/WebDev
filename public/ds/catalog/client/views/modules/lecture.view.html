@@ -11,7 +11,7 @@
         <li role="presentation"><a ng-click="model.viewExample(0)">
             <span class="glyphicon glyphicon-play-circle"></span> Examples</a>
         </li>
-        <li role="presentation"><a ng-click="viewAssignment(0)">
+        <li role="presentation"><a ng-click="model.viewAssignment(0)">
             <span class="glyphicon glyphicon-paperclip"></span> Assignments</a>
         </li>
     </ul>
@@ -45,17 +45,19 @@
         <div class="panel panel-default" ng-repeat="learningElement in model.lecture.learningElements">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
                         {{learningElement.title}}
                     </a>
                 </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body" ng-switch on="learningElement.type">
+                    <iframe ng-switch-when="PDF" src="{{learningElement.src | trustUrl}}" width="100%" height="500px" frameborder="0"></iframe>
                     <iframe ng-switch-when="VIDEO" src="{{learningElement.src | trustUrl}}" width="100%" height="486" frameborder="0" allowfullscreen></iframe>
-                    {{learningElement.height}}<br>
-                    {{learningElement.width}}<br>
-                    {{learningElement.html}}
+                    <iframe ng-switch-when="SLIDE" src="{{model.learningElement.src | trustUrl}}" width="100%" height="1000px" class="no-borders margin-top-10"></iframe>
+                    <a ng-switch-when="LINK" href="{{learningElement.src | trustUrl}}" class="btn btn-warning"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
+                    <iframe ng-switch-when="HTML" src="{{learningElement.src | trustUrl}}" width="100%" height="500px" class="no-borders margin-top-10"></iframe>
+                    <iframe ng-switch-when="IFRAME" src="{{learningElement.src | trustUrl}}" width="100%" height="500px" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
@@ -74,9 +76,15 @@
                     </td>
                 </tr>
                 <tr><td colspan="2" class="list-group-item-text" ng-bind-html="model.renderHtml(lecture.overview)"></td></tr>
+                <tr><td class="list-group-item-text">&emsp;</td></tr>
                 <tr ng-repeat="learningElement in lecture.learningElements">
-                    <td colspan="2" class="list-group-item-text"><a ng-click="model.deleteLearningElement($index, lecture)"><span class="glyphicon glyphicon-remove-circle"></span></a>&emsp;{{learningElement.title}}</td>
+                    <td class="list-group-item-text">
+                        <a ng-click="model.editLearningElement($index, lecture)"><span class="glyphicon glyphicon-edit"></span></a>&emsp;
+                        <a ng-click="model.deleteLearningElement($index, lecture)"><span class="glyphicon glyphicon-remove-circle"></span></a>&emsp;
+                        {{learningElement.title}}
+                    </td>
                 </tr>
+                <tr><td class="list-group-item-text">&emsp;</td></tr>
                 <tr>
                     <td colspan="2" class="list-group-item-text">
                         <span class="glyphicon glyphicon-plus-sign"></span>&emsp;<a ng-click="model.addLearningElement(lecture)">New Learning Element</a>

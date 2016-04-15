@@ -24,4 +24,36 @@
         <button ng-disabled="!(model.currentLecture.title && model.currentLecture.overview)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentLecture)>Update</button>
     </div>
 
+    <!--learning element-->
+
+    <div class="ngdialog-message" ng-switch-when="learning element">
+        <h4><u>{{model.element}} details</u> | <small>update</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.cLE.title" />
+        <select class="form-control" ng-model="model.cLE.type">
+            <option value="PDF">PDF Document</option>
+            <option value="VIDEO">Video</option>
+            <option value="SLIDE">Slides</option>
+            <option value="LINK">Link</option>
+            <option value="HTML">HTML</option>
+            <option value="IFRAME">iFrame</option>
+        </select>
+        <input class="form-control" type="text" placeholder="{{model.element}} src" ng-model="model.cLE.src" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="learning element">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.cLE.title && model.cLE.type && model.cLE.src)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.cLE)>Update</button>
+    </div>
+
+    <!--assignment-->
+
+    <div class="ngdialog-message" ng-switch-when="assignment">
+        <h4><u>{{model.element}} details</u> | <small>update</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.currentAssignment.title" />
+        <input class="form-control" type="text" placeholder="{{model.element}} src" ng-model="model.currentAssignment.src" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="assignment">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.currentAssignment.title && model.currentAssignment.src)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentAssignment)>Update</button>
+    </div>
+
 </div>
