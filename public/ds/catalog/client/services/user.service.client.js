@@ -18,7 +18,8 @@
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser,
             updateUserById: updateUserById,
-            enrollUserInCourse: enrollUserInCourse
+            enrollUserInCourse: enrollUserInCourse,
+            disenrollUserFromCourse: disenrollUserFromCourse
         };
         return service;
 
@@ -59,8 +60,12 @@
         }
 
         function enrollUserInCourse(userId, course) {
-            var enrollCourse = {number: course.number, title: course.title};
-            return $http.put('/api/ds/catalog/user/' + userId + '/enroll', enrollCourse);
+            var course = {number: course.number, title: course.title};
+            return $http.put('/api/ds/catalog/user/' + userId + '/enroll', course);
+        }
+
+        function disenrollUserFromCourse(userId, courseNumber) {
+            return $http.put('/api/ds/catalog/user/' + userId + '/disenroll/' + courseNumber);
         }
     }
 }());

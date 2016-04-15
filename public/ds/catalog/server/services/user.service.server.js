@@ -9,6 +9,7 @@ module.exports = function(app, userModel) {
     app.put("/api/ds/catalog/user/:id", updateUserById);
     app.delete("/api/ds/catalog/user/:id", deleteUserById);
     app.put("/api/ds/catalog/user/:id/enroll", enrollUserInCourse);
+    app.put("/api/ds/catalog/user/:id/disenroll/:crn", disenrollUserFromCourse);
 
     function createUser(req, res) {
         var user = req.body;
@@ -73,6 +74,14 @@ module.exports = function(app, userModel) {
 
     function enrollUserInCourse(req, res) {
         userModel.enrollUserInCourse(req.params.id, req.body).then(function(user) {
+            res.json(user);
+        }, function(err) {
+            res.status(400).send(err);
+        });
+    }
+
+    function disenrollUserFromCourse(req, res) {
+        userModel.disenrollUserFromCourse(req.params.id, req.params.crn).then(function(user) {
             res.json(user);
         }, function(err) {
             res.status(400).send(err);

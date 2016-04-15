@@ -14,6 +14,7 @@
         vm.updateCourse = updateCourse;
         vm.viewModule = viewModule;
         vm.enrollInCourse = enrollInCourse;
+        vm.disenrollFromCourse = disenrollFromCourse;
 
         CourseService.getCourseByNumber($routeParams.courseId).then(function(response) {
             vm.course = response.data;
@@ -41,6 +42,17 @@
             });
 
             CourseService.registerUserToCourse(user.username, vm.course._id).then(function(response) {
+                vm.course = response.data;
+                CourseService.setCurrentCourse(vm.course);
+            });
+        }
+
+        function disenrollFromCourse(user) {
+            UserService.disenrollUserFromCourse(user._id, vm.course.number).then(function(response) {
+                UserService.setCurrentUser(response.data);
+            });
+
+            CourseService.deregisterUserFromCourse(user.username, vm.course._id).then(function(response) {
                 vm.course = response.data;
                 CourseService.setCurrentCourse(vm.course);
             });

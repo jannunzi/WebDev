@@ -25,6 +25,7 @@ module.exports = function(db, mongoose) {
         findModulesForCourse: findModulesForCourse,
         updateModulesInCourse: updateModulesInCourse,
         registerUserToCourse: registerUserToCourse,
+        deregisterUserFromCourse: deregisterUserFromCourse,
         getCourseByNumber: getCourseByNumber,
         getModuleByNumber: getModuleByNumber
     };
@@ -232,10 +233,29 @@ module.exports = function(db, mongoose) {
     function registerUserToCourse(id, username) {
         var deferred = q.defer();
 
-        CourseModel.findById(id, function(err, course){
+        CourseModel.findById(id, function(err, course) {
             course.users.push(username);
             course.save(function(err, saved){
-                getCourseById(saved._id).then(function(course){
+                getCourseById(saved._id).then(function(course) {
+                    deferred.resolve(course);
+                });
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function deregisterUserFromCourse(id, username) {
+        var deferred = q.defer();
+
+        CourseModel.findById(id, function(err, course) {
+            for (u in course.users) {
+                if (course.users[u] == username) {
+                    course.users.splice(u, 1);
+                }
+            }
+            course.save(function(err, saved){
+                getCourseById(saved._id).then(function(course) {
                     deferred.resolve(course);
                 });
             });

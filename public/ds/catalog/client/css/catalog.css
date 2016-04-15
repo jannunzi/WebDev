@@ -50,3 +50,7 @@ body { font-family: 'Belgrano', sans-serif !important; }
 a {
     cursor: pointer;
 }
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: pointer;
+}

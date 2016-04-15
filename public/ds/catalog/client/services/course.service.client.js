@@ -25,6 +25,7 @@
             searchModuleInCourse: searchModuleInCourse,
             updateModulesByCourseId: updateModulesByCourseId,
             registerUserToCourse: registerUserToCourse,
+            deregisterUserFromCourse: deregisterUserFromCourse,
             getCourseByNumber: getCourseByNumber
         };
 
@@ -112,6 +113,10 @@
 
         function registerUserToCourse(username, courseId) {
             return $http.put('/api/ds/catalog/course/' + courseId + '/register/' + username);
+        }
+
+        function deregisterUserFromCourse(username, courseId) {
+            return $http.put('/api/ds/catalog/course/' + courseId + '/deregister/' + username);
         }
     }
 }());
