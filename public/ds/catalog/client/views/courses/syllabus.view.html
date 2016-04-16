@@ -2,9 +2,20 @@
     <h1 class="page-header"><i class="fa fa-terminal"></i> {{model.course.number}} | {{model.course.title}}</h1>
 
     <h3 class="page-header">Syllabus</h3>
-    <textarea ui-tinymce="model.tinymceOptions" ng-model="model.tinymceModel"></textarea>
+    <table style="width: 100%">
+        <tr>
+            <td align="right">
+                <a ng-click="model.editSyllabus()" ng-hide="model.isEditable"><span class="glyphicon glyphicon-edit"></span></a>
+                <a ng-click="model.saveSyllabus()" ng-hide="!(model.isEditable)"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+            </td>
+        </tr>
+    </table>
+
+    <div ng-hide="!(model.isEditable)">
+        <textarea ui-tinymce="model.tinymceOptions" ng-model="model.course.syllabus"></textarea>
+    </div>
 
     <br/>
 
-    <div ng-bind-html="model.renderHtml(model.tinymceModel)"></div>
+    <div ng-bind-html="model.renderHtml(model.course.syllabus)"></div>
 </div>

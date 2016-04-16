@@ -1,0 +1,35 @@
+{
+  "name": "angular-ui-tinymce",
+  "version": "0.0.15",
+  "description": "This directive allows you to TinyMCE in your form.",
+  "author": "https://github.com/angular-ui/ui-tinymce/graphs/contributors",
+  "license": "MIT",
+  "homepage": "http://angular-ui.github.com",
+  "main": "./src/tinymce.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test*",
+    "demo*",
+    "gruntFile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.4.x",
+    "tinymce-dist": "~4.3.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.x"
+  },
+  "_release": "0.0.15",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.15",
+    "commit": "3f35cb92b64675d0622e49fbe076dab2009051ee"
+  },
+  "_source": "https://github.com/angular-ui/ui-tinymce.git",
+  "_target": "^0.0.15",
+  "_originalSource": "angular-ui-tinymce",
+  "_direct": true
+}

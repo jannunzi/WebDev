@@ -52,7 +52,7 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body" ng-switch on="learningElement.type">
-                    <iframe ng-switch-when="PDF" src="{{learningElement.src | trustUrl}}" width="100%" height="500px" frameborder="0"></iframe>
+                    <embed ng-switch-when="PDF" src="{{learningElement.src | trustUrl}}" width="100%" height="500px" frameborder="0"></embed>
                     <iframe ng-switch-when="VIDEO" src="{{learningElement.src | trustUrl}}" width="100%" height="486" frameborder="0" allowfullscreen></iframe>
                     <iframe ng-switch-when="SLIDE" src="{{model.learningElement.src | trustUrl}}" width="100%" height="1000px" class="no-borders margin-top-10"></iframe>
                     <a ng-switch-when="LINK" href="{{learningElement.src | trustUrl}}" class="btn btn-warning"><i class="fa fa-eye" aria-hidden="true"></i> View</a>

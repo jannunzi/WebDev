@@ -17,6 +17,8 @@
     <div class="ngdialog-message" ng-switch-when="lecture">
         <h4><u>{{model.element}} details</u> | <small>add</small></h4>
         <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.title" />
+        <br/>
+        <u>Overview</u>
         <textarea ui-tinymce="model.tinymceOptions" ng-model="model.overview"></textarea>
     </div>
     <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="lecture">

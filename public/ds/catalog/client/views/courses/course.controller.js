@@ -16,12 +16,13 @@
         vm.enrollInCourse = enrollInCourse;
         vm.disenrollFromCourse = disenrollFromCourse;
         vm.renderHtml = renderHtml;
+        vm.editSyllabus = editSyllabus;
+        vm.saveSyllabus = saveSyllabus;
 
         vm.tinymceOptions = {
             toolbar: 'insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
         };
-
-        vm.tinymceModel = 'Initial content';
+        vm.isEditable = false;
 
         CourseService.getCourseByNumber($routeParams.courseId).then(function(response) {
             vm.course = response.data;
@@ -41,7 +42,7 @@
         function viewModule(index) {
             var selectedModule = vm.course.modules[index];
             ModuleService.setCurrentModule(selectedModule);
-            $location.url("/course/" + vm.course.number + "/module/" + selectedModule.number);
+            $location.path("/course/" + vm.course.number + "/module/" + selectedModule.number);
         }
 
         function enrollInCourse(user) {
@@ -66,10 +67,24 @@
             });
         }
 
+        function editSyllabus() {
+            vm.isEditable = true;
+
+        }
+
+        function saveSyllabus() {
+            vm.isEditable = false;
+            CourseService.updateCourseById(vm.course._id, vm.course).then(function(response) {
+                CourseService.getCourseByNumber(course.number).then(function(response) {
+                    vm.course = response.data;
+                    CourseService.setCurrentCourse(vm.course);
+                    vm.message = "Course details updated successfully";
+                });
+            });
+        }
+
         function renderHtml(text) {
-            var abc = $sce.trustAsHtml(text);
-            console.log(abc);
-            return abc;
+            return $sce.trustAsHtml(text);
         }
     }
 }());
