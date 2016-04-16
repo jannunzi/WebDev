@@ -48,6 +48,7 @@
         vm.renderHtml = renderHtml;
 
         vm.tinymceOptions = {
+            plugins: "link image",
             toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist'
         };
 
@@ -409,6 +410,7 @@
             var currentModule = ModuleService.getCurrentModule();
 
             vm.element = "learning element";
+            vm.type = "PDF";
             showAddDialog(function(model) {
                 var learningElement = {
                     "title": model.title,
