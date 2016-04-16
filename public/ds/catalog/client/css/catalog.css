@@ -54,3 +54,9 @@ a {
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
     cursor: pointer;
 }
+
+.customSelectedTab {
+    color: #0000cc;
+    font-weight: bold;
+    text-decoration: underline;
+}

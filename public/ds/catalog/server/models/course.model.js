@@ -325,7 +325,6 @@ module.exports = function(db, mongoose) {
             course.modules.id(moduleId).assignments.id(assignmentId).remove();
 
             course.save(function(err){
-                //console.log(err);
                 getAssignments(courseId, moduleId).then(function(found){
                     deferred.resolve(found);
                 });

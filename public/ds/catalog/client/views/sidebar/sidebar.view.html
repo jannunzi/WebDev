@@ -1,4 +1,4 @@
-<div class="col-sm-3 col-md-2 sidebar">
+<div class="col-sm-3 col-md-2 sidebar" ng-controller="SidebarController as model">
     <ul class="nav nav-sidebar">
         <li><a href="#/course"><span class="glyphicon glyphicon-home"></span>&emsp;Courses</a></li>
         <li ng-show="currentUser.roles.indexOf('student') >= 0" ng-class="{'active': $location.url() == '/' + currentUser.username + '/courses'}">
@@ -15,10 +15,11 @@
         <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/module'}">
             <a href="#/course/{{currentCourse.number}}/module"><span class="glyphicon glyphicon-tags"></span>&emsp;Modules</a>
             <ul ng-repeat="module in currentCourse.modules">
-                <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/module/' + module.number}">
-                    <a href="#/course/{{currentCourse.number}}/module/{{module.number}}">{{module.title}}</a>
+                <li>
+                    <a href="#/course/{{currentCourse.number}}/module/{{module.number}}" ng-class="model.getTabClass(currentCourse, module)">{{module.title}}</a>
                 </li>
             </ul>
+            {{model.moduleText}}
             <br/>
         </li>
         <li ng-class="{'active': $location.url() == '/course/' + currentCourse.number + '/syllabus'}">
