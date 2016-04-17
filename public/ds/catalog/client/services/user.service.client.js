@@ -19,7 +19,10 @@
             setCurrentUser: setCurrentUser,
             updateUserById: updateUserById,
             enrollUserInCourse: enrollUserInCourse,
-            disenrollUserFromCourse: disenrollUserFromCourse
+            disenrollUserFromCourse: disenrollUserFromCourse,
+            login: login,
+            logout: logout,
+            register: register
         };
         return service;
 
@@ -66,6 +69,18 @@
 
         function disenrollUserFromCourse(userId, courseNumber) {
             return $http.put('/api/ds/catalog/user/' + userId + '/disenroll/' + courseNumber);
+        }
+
+        function login(user) {
+            return $http.post('/api/ds/catalog/login', user);
+        }
+
+        function logout() {
+            return $http.post('/api/ds/catalog/logout');
+        }
+
+        function register(user) {
+            return $http.post('/api/ds/catalog/register', user);
         }
     }
 }());

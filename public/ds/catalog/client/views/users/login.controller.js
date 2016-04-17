@@ -15,12 +15,18 @@
         CourseService.setCurrentCourse(null);
 
         function login() {
-            var username = vm.username;
-            var password = vm.password;
-
-            UserService.findUserByCredentials(username, password).then(function(response) {
-                UserService.setCurrentUser(response.data);
-                $location.url('/profile');
+            if (!vm.username || !vm.password) {
+                vm.error = "Username & Password Required";
+                return;
+            }
+            UserService.login({username: vm.username, password: vm.password}).then(function(response) {
+                if (response) {
+                    UserService.setCurrentUser(response.data);
+                    $location.path('/profile');
+                }
+            },
+            function(err) {
+                vm.error = "Invalid Username/Password";
             });
         }
     }
