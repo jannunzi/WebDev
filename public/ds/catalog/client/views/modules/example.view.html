@@ -44,7 +44,7 @@
         <div class="panel panel-default" ng-repeat="demo in model.example.demos">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
                         {{demo.title}}
                     </a>
                 </h4>
@@ -52,7 +52,11 @@
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                     {{demo.base}}<br>
-                    {{demo.src}}
+                    {{demo.src}}<br>
+                    Dependencies - <br>
+                    <div ng-repeat="dependency in demo.dependencies">
+                        {{dependency.src}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,7 +74,30 @@
                         <a ng-click="model.deleteExample($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
                     </td>
                 </tr>
+                <tr><td class="list-group-item-text">&emsp;</td></tr>
+                <table style="width: 100%" ng-repeat="demo in example.demos">
+                    <tr>
+                    <td class="list-group-item-text">
+                        <a ng-click="model.editDemo($index, example)"><span class="glyphicon glyphicon-edit"></span></a>&emsp;
+                        <a ng-click="model.deleteDemo($index, example)"><span class="glyphicon glyphicon-remove-circle"></span></a>&emsp;
+                        {{demo.title}}
+                    </td>
+                    </tr>
+                    <tr ng-repeat="dependency in demo.dependencies">
+                        <td class="list-group-item-text">&emsp;&emsp;&emsp;-
+                            <a ng-click="model.editDependency($index, example, demo)"><span class="glyphicon glyphicon-edit"></span></a>&emsp;
+                            <a ng-click="model.deleteDependency($index, example, demo)"><span class="glyphicon glyphicon-remove-circle"></span></a>&emsp;
+                            {{dependency.src}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&emsp;&emsp;&emsp;- <span class="glyphicon glyphicon-plus-sign"></span>&emsp;<a ng-click="model.addDependency(example, demo)">New Dependency</a></td>
+                    </tr>
+                </table>
+                <tr><td class="list-group-item-text">&emsp;</td></tr>
             </table>
+            <br>
+            <span class="glyphicon glyphicon-plus-sign"></span>&emsp;<a ng-click="model.addDemo(example)">New Demo</a>
         </div>
     </div>
 

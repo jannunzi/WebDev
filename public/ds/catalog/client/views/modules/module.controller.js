@@ -33,6 +33,7 @@
 
         vm.addExample = addExample;
         vm.deleteExample = deleteExample;
+        vm.editExample = editExample;
         vm.viewExample = viewExample;
 
         vm.addAssignment = addAssignment;
@@ -43,6 +44,14 @@
         vm.addLearningElement = addLearningElement;
         vm.deleteLearningElement = deleteLearningElement;
         vm.editLearningElement = editLearningElement;
+
+        vm.addDemo = addDemo;
+        vm.deleteDemo = deleteDemo;
+        vm.editDemo = editDemo;
+
+        vm.addDependency = addDependency;
+        vm.deleteDependency = deleteDependency;
+        vm.editDependency = editDependency;
 
         vm.viewOverview = viewOverview;
         vm.renderHtml = renderHtml;
@@ -300,6 +309,33 @@
             });
         }
 
+        function editExample(index){
+            var currentModule = ModuleService.getCurrentModule();
+            vm.currentExample = currentModule.examples[index];
+            vm.element = "example";
+
+            showUpdateDialog(function(model){
+                vm.currentExample.title = model.title;
+
+                for (var e in currentModule.examples) {
+                    if (vm.currentExample._id === currentModule.examples[e]._id) {
+                        currentModule.examples[e] = vm.currentExample;
+                    }
+                }
+
+                for (var m in vm.course.modules) {
+                    if (currentModule._id === vm.course.modules[m]._id) {
+                        vm.course.modules[m] = currentModule;
+                    }
+                }
+
+                CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                });
+            });
+            vm.module = null;
+        }
+
         function viewExample(index) {
             var currentModule = ModuleService.getCurrentModule();
             var exampleId = 1;
@@ -495,6 +531,200 @@
                 CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
                     vm.course.modules = response.data;
                     vm.lecture = lecture;
+                });
+            });
+            vm.module = null;
+        }
+
+        // Demo
+
+        function addDemo(example) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            vm.element = "demo";
+            showAddDialog(function(model) {
+                var demo = {
+                    "title": model.title,
+                };
+
+                example.demos.push(demo);
+
+                for (var m in vm.course.modules) {
+                    if (currentModule._id === vm.course.modules[m]._id) {
+                        for (var e in currentModule.examples) {
+                            if (example._id === currentModule.examples[e]._id) {
+                                currentModule.examples[e] = example;
+                            }
+                        }
+                        vm.course.modules[m] = currentModule;
+                    }
+                }
+
+                CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                    vm.example = example;
+                });
+            });
+            vm.title = "";
+        }
+
+        function deleteDemo(index, example) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            example.demos.splice(index, 1);
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    for (var l in currentModule.examples) {
+                        if (example._id === currentModule.examples[l]._id) {
+                            currentModule.examples[l] = example;
+                        }
+                    }
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+                vm.example = example;
+            });
+        }
+
+        function editDemo(index, example){
+            var currentModule = ModuleService.getCurrentModule();
+            vm.currentDemo = example.demos[index];
+            vm.element = "demo";
+
+            showUpdateDialog(function(model){
+                vm.currentDemo.title = model.title;
+                vm.currentDemo.base = model.base;
+                vm.currentDemo.src = model.src;
+
+                for (var d in example.demos) {
+                    if (vm.currentDemo._id == example.demos[d]._id) {
+                        example.demos[d] = vm.currentDemo;
+                    }
+                }
+
+                for (var m in vm.course.modules) {
+                    if (currentModule._id === vm.course.modules[m]._id) {
+                        for (var e in currentModule.examples) {
+                            if (example._id === currentModule.examples[e]._id) {
+                                currentModule.examples[d] = example;
+                            }
+                        }
+                        vm.course.modules[m] = currentModule;
+                    }
+                }
+
+                CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                    vm.example = example;
+                });
+            });
+            vm.module = null;
+        }
+
+        // Dependency
+
+        function addDependency(example, demo) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            vm.element = "dependency";
+            showAddDialog(function(model) {
+                var dependency = {
+                    "src": model.src
+                };
+
+                demo.dependencies.push(dependency);
+
+                for (var d in example.demos) {
+                    if (example.demos[d]._id === demo._id) {
+                        example.demos[d] = demo;
+                    }
+                }
+
+                for (var m in vm.course.modules) {
+                    if (currentModule._id === vm.course.modules[m]._id) {
+                        for (var e in currentModule.examples) {
+                            if (example._id === currentModule.examples[e]._id) {
+                                currentModule.examples[e] = example;
+                            }
+                        }
+                        vm.course.modules[m] = currentModule;
+                    }
+                }
+
+                CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                    vm.example = example;
+                });
+            });
+            vm.title = "";
+        }
+
+        function deleteDependency(index, example, demo) {
+            var currentModule = ModuleService.getCurrentModule();
+
+            demo.dependencies.splice(index, 1);
+
+            for (var d in example.demos) {
+                if (example.demos[d]._id === demo._id) {
+                    example.demos[d] = demo;
+                }
+            }
+
+            for (var m in vm.course.modules) {
+                if (currentModule._id === vm.course.modules[m]._id) {
+                    for (var l in currentModule.examples) {
+                        if (example._id === currentModule.examples[l]._id) {
+                            currentModule.examples[l] = example;
+                        }
+                    }
+                    vm.course.modules[m] = currentModule;
+                }
+            }
+
+            CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
+                vm.course.modules = response.data;
+                vm.example = example;
+            });
+        }
+
+        function editDependency(index, example, demo){
+            var currentModule = ModuleService.getCurrentModule();
+            vm.currentDependency = demo.dependencies[index];
+            vm.element = "dependency";
+
+            showUpdateDialog(function(model){
+                vm.currentDependency.src = model.src;
+
+                for (var dep in demo.dependencies) {
+                    if (vm.currentDependency._id == demo.dependencies[dep]._id) {
+                        demo.dependencies[dep] = vm.currentDependency;
+                    }
+                }
+
+                for (var d in example.demos) {
+                    if (example.demos[d]._id === demo._id) {
+                        example.demos[d] = demo;
+                    }
+                }
+
+                for (var m in vm.course.modules) {
+                    if (currentModule._id === vm.course.modules[m]._id) {
+                        for (var e in currentModule.examples) {
+                            if (example._id === currentModule.examples[e]._id) {
+                                currentModule.examples[d] = example;
+                            }
+                        }
+                        vm.course.modules[m] = currentModule;
+                    }
+                }
+
+                CourseService.updateModulesByCourseId(vm.course._id, vm.course.modules).then(function(response) {
+                    vm.course.modules = response.data;
+                    vm.example = example;
                 });
             });
             vm.module = null;

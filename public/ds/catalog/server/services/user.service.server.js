@@ -11,6 +11,8 @@ module.exports = function(app, userModel) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+    var bcrypt = require("bcrypt-nodejs");
+
     app.post('/api/ds/catalog/login', passport.authenticate('catalog'), login);
     app.post('/api/ds/catalog/logout', logout);
     app.get('/api/ds/catalog/loggedin', loggedin);

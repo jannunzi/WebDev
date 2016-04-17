@@ -58,4 +58,39 @@
         <button ng-disabled="!(model.currentAssignment.title && model.currentAssignment.src)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentAssignment)>Update</button>
     </div>
 
+    <!--example-->
+
+    <div class="ngdialog-message" ng-switch-when="example">
+        <h4><u>{{model.element}} details</u> | <small>update</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.currentExample.title" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="example">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.currentExample.title)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentExample)>Update</button>
+    </div>
+
+    <!--demo-->
+
+    <div class="ngdialog-message" ng-switch-when="demo">
+        <h4><u>{{model.element}} details</u> | <small>update</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.currentDemo.title" />
+        <input class="form-control" type="text" placeholder="{{model.element}} base" ng-model="model.currentDemo.base" />
+        <input class="form-control" type="text" placeholder="{{model.element}} src" ng-model="model.currentDemo.src" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="demo">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.currentDemo.title)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentDemo)>Update</button>
+    </div>
+
+    <!--dependency-->
+
+    <div class="ngdialog-message" ng-switch-when="dependency">
+        <h4><u>{{model.element}} details</u> | <small>update</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} src" ng-model="model.currentDependency.src" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="dependency">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.currentDependency.src)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model.currentDependency)>Update</button>
+    </div>
+
 </div>

@@ -69,4 +69,26 @@
         <button ng-disabled="!(model.title)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
     </div>
 
+    <!--demo-->
+
+    <div class="ngdialog-message" ng-switch-when="demo">
+        <h4><u>{{model.element}} details</u> | <small>add</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} title" ng-model="model.title" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="demo">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.title)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
+    </div>
+
+    <!--dependency-->
+
+    <div class="ngdialog-message" ng-switch-when="dependency">
+        <h4><u>{{model.element}} details</u> | <small>add</small></h4>
+        <input class="form-control" type="text" placeholder="{{model.element}} src" ng-model="model.src" />
+    </div>
+    <div class="ngdialog-buttons" style="padding-top:20px;" ng-switch-when="dependency">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Cancel</button>
+        <button ng-disabled="!(model.src)" type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm(model)>Confirm</button>
+    </div>
+
 </div>

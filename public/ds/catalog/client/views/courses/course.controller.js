@@ -20,7 +20,8 @@
         vm.saveSyllabus = saveSyllabus;
 
         vm.tinymceOptions = {
-            toolbar: 'insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+            plugins: 'link image',
+            toolbar: 'insertfile undo redo | bold italic | alignleft aligncenter alignright | bullist numlist'
         };
         vm.isEditable = false;
 
