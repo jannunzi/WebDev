@@ -26,7 +26,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 var db = mongoose.connect(connectionString);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 4000;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
 
 app.set('view engine', 'ejs');
 
