@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .down1 {
+            position: relative;
+            top: 50px;
+        }
+        .down2 {
+            position: relative;
+            top: 100px;
+        }
+        .down3 {
+            position: relative;
+            top: 150px;
+        }
+        .down4 {
+            position: relative;
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+Boxes
+
+
+<div ng-repeat="group in groups" style="width:50px;float:left">
+    <div ng-repeat="module in group" style="width:50px;height:50px;float:left" ng-class="byModule(module)">
+        {{module.name}}
+    </div>
+</div>
+</body>
+</html>

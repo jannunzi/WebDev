@@ -34,7 +34,8 @@
       },
       {
         "title": "User Interface Development",
-        "available": true,
+        "visible": true,
+        "available": false,
         "lectures": [
           {
             "title": "HTML"
@@ -191,7 +192,7 @@
       },
       {
         "title": "Client Side Development",
-        "available": true,
+        "available": false,
         "lectures": [
           {
             "title": "JavaScript"
@@ -601,7 +602,7 @@
       },
       {
         "title": "Server Side Development",
-        "available": true,
+        "available": false,
         "assignments": [
           {
             "title": "Programming the Server"
@@ -675,7 +676,7 @@
       {
         "title": "Database Development",
         "visible": true,
-        "available": true,
+        "available": false,
         "assignments": [
           {
             "title": "Database Programming"
@@ -805,7 +806,7 @@
       {
         "title": "Security",
         "visible": true,
-        "available": true,
+        "available": false,
         "lectures": [
           {
             "title": "Ng-Routing"
@@ -852,7 +853,7 @@
       {
         "title": "Dynamic Server Pages",
         "visible": true,
-        "available": true,
+        "available": false,
         "assignments": [
           {
             "title": "Dynamic Server Pages"
