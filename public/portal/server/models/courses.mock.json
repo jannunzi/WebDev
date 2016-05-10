@@ -56,9 +56,6 @@
         "assignments": [
           {
             "title": "User Interface Development"
-          },
-          {
-            "title": "Project Proposal"
           }
         ],
         "css_examples": [
@@ -204,9 +201,6 @@
         "assignments": [
           {
             "title": "Programming the Client"
-          },
-          {
-            "title": "Project Proof of Concept"
           }
         ],
         "videos": [],
@@ -606,9 +600,6 @@
         "assignments": [
           {
             "title": "Programming the Server"
-          },
-          {
-            "title": "Project Prototype"
           }
         ],
         "lectures": [
