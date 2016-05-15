@@ -35,7 +35,7 @@
       {
         "title": "User Interface Development",
         "visible": true,
-        "available": false,
+        "available": true,
         "lectures": [
           {
             "title": "HTML"
