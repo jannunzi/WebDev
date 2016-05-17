@@ -21,6 +21,8 @@
                 element.css("font-size", "2em");
                 element.find("h2, h3, h4").css("font-size", "2em");
                 element.find("a, pre").css("font-size", "1em");
+                element.find("iframe")
+                    .css("height", "500px")
             } else {
                 element.removeClass("expanded");
                 element.css("overflow", "visible");
@@ -35,11 +37,13 @@
                 element.css("font-size", "1em");
                 element.find("h2, h3, h4").css("font-size", "2em");
                 element.find("a, pre").css("font-size", "1em");
+                element.find("iframe")
+                    .css("height", "300px")
             }
         }
 
         function link(scope, element, attrs) {
-            element.find("h2, h3, h4").click(toggle);
+            element.find("h2, h3, h4, iframe").click(toggle);
         }
         return {
             restrict: 'AEC',
