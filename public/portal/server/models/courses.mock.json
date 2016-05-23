@@ -189,7 +189,7 @@
       },
       {
         "title": "Client Side Development",
-        "available": false,
+        "available": true,
         "lectures": [
           {
             "title": "JavaScript"
@@ -200,7 +200,7 @@
         ],
         "assignments": [
           {
-            "title": "Programming the Client"
+            "title": "Client Side Development"
           }
         ],
         "videos": [],
