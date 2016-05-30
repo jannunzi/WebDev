@@ -596,7 +596,7 @@
       },
       {
         "title": "Server Side Development",
-        "available": false,
+        "available": true,
         "assignments": [
           {
             "title": "Programming the Server"
