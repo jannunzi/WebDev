@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("SortableApp", ["jgaSortable"])
+        .module("SortableApp", ["jgaDirectives"])
         .controller("SortableController", SortableController);
 
     function SortableController($scope) {

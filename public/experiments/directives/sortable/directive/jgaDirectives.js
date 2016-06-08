@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("jgaSortable", [])
+        .module("jgaDirectives", [])
         .directive("jgaSortable", jgaSortable);
 
     function jgaSortable() {

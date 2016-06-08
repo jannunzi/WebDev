@@ -667,7 +667,7 @@
       {
         "title": "Database Development",
         "visible": true,
-        "available": false,
+        "available": true,
         "assignments": [
           {
             "title": "Database Programming"
