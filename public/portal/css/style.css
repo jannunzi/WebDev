@@ -194,6 +194,10 @@ p{
     border-image: none;
 }
 
-jga-iframe-full {
+#loginForm.ng-submitted #username.ng-invalid {
+    background-color: red;
+}
 
+#username.ng-dirty {
+    background-color: beige;
 }

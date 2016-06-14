@@ -797,7 +797,7 @@
       {
         "title": "Security",
         "visible": true,
-        "available": false,
+        "available": true,
         "lectures": [
           {
             "title": "Ng-Routing"

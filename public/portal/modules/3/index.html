@@ -258,3 +258,60 @@ function searchDeveloper(username) {
         configures the reversed order of the collection.
     </p>
 </div>
+
+<div class="jga-slide">
+
+    <h3>Angular Validation</h3>
+
+    <form id="loginForm"
+          name="loginForm"
+          novalidate>
+        <label for="username">Username</label>
+        <input ng-model="username"
+               id="username"
+               name="username"
+               placeholder="alice"
+               required
+               class="form-control"/>
+            <span ng-show="loginForm.$submitted && loginForm.username.$invalid">
+                Username is required
+            </span>
+        <button type="submit"
+                class="btn btn-primary btn-block">
+            Submit
+        </button>
+    </form>
+
+<pre>
+&lt;form id=&quot;loginForm&quot;
+      name=&quot;loginForm&quot;
+      novalidate&gt;
+    &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+    &lt;input ng-model=&quot;username&quot;
+           id=&quot;username&quot;
+           name=&quot;username&quot;
+           required
+           class=&quot;form-control&quot;/&gt;
+        &lt;span ng-show=&quot;loginForm.$submitted &amp;&amp; loginForm.username.$invalid&quot;&gt;
+            Username is required
+        &lt;/span&gt;
+    &lt;button type=&quot;submit&quot;
+            class=&quot;btn btn-primary btn-block&quot;&gt;
+        Submit
+    &lt;/button&gt;
+&lt;/form&gt;</pre>
+
+</div>
+
+<div class="jga-slide">
+    <h3>Styling Validation</h3>
+
+    <pre>
+#loginForm.ng-submitted #username.ng-invalid {
+    background-color: red;
+}
+
+#username.ng-dirty {
+    background-color: beige;
+}</pre>
+</div>

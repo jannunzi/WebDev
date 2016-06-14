@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ValidationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="ValidationController as model">
+        <h1>Validation</h1>
+
+        <form id="loginForm"
+              name="loginForm"
+              novalidate>
+            Username
+            <input ng-model="username"
+                   id="username"
+                   name="username"
+                   required
+                   class="form-control"/>
+            <span ng-show="loginForm.$submitted && loginForm.username.$invalid">
+                Username is required
+            </span>
+            <button type="submit" class="btn btn-primary btn-block" type="button">
+                Submit
+            </button>
+        </form>
+    </div>
+</body>
+</html>
