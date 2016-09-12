@@ -1,7 +1,19 @@
 (function(){
     angular
         .module("jgaDirectives", [])
-        .directive("jgaSlide", jgaSlide);
+        .directive("jgaSlide", jgaSlide)
+        .directive("jgaImg", jgaImg);
+
+    function jgaImg() {
+        return {
+            restrict: 'EC',
+            scope: {
+                src: '@',
+                width: '@'
+            },
+            template: '<a target="_blank" href="{{src}}"><img width="{{width}}" ng-src="{{src}}"/></a>'
+        };
+    }
 
     function jgaSlide() {
 

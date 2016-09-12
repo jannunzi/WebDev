@@ -23,7 +23,13 @@
             "title": "GIT"
           },
           {
-            "title": "OpenShift"
+            "title": "Amazon Web Services"
+          },
+          {
+            "title": "MongoDB Atlas"
+          },
+          {
+            "title": "Mongo Lab"
           }
         ],
         "assignments": [
