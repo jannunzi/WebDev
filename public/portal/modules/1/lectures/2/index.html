@@ -1,235 +1,296 @@
 <div class="alert alert-success">
-  <h3>Setting Up Amazon Web Services</h3>
+  <h3>Setting Up Node.js on Heroku</h3>
   <p><strong>OVERVIEW</strong>:
   
-    <a target="_blank" href="https://aws.amazon.com/free">
-      Amazon Web Services (AWS)
+    <a target="_blank" href="http://heroku">
+      Heroku
     </a>
       
     is a platform as a service that allows creating hosted instances
-    of HTTP servers and databases. We will use AWS to host our
+    of HTTP servers and databases. We will use Heroku to host our
     Web applications online. This course is hosted at OpenShift
     as a Node.js Web application. This lecture covers how to create
-    simple AWS Node.js Web applications.
+    simple Heroku Node.js Web applications.
 
   </p>
 </div>
 
+
 <div class="jga-slide">
 
-<h3>Create an Account at Amazon Web Services</h3>
+  <h3>Install Heroku CLI</h3>
 
   <h4>
-    Search for 'Amazon Web Services' yields
+    Download CLI from Development Center
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/0-search-for-aws.png"></jga-img>
-
-  <br/>
-  <br/>
-
-  <h4>
-    <a href="https://aws.amazon.com/free">
-      Navigate to Amazon Web Services and create a free account: https://aws.amazon.com/free.
-    </a>
-  </h4>
-
-    <jga-img width="75%" src="/portal/modules/1/lectures/2/images/1-aws-free-tier.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/00.png"></jga-img>
 
   <br/>
   <br/>
 
   <h4>
-    Create a new account or use your existing Amazon login
+    Download and Install Based on your Operating System
   </h4>
 
-    <jga-img width="75%" src="/portal/modules/1/lectures/2/images/2-login-or-create.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/05.png"></jga-img>
 
   <br/>
   <br/>
 
   <h4>
-    Provide billing information
+    Go Through the Getting Started Tutorial
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/3-credit-card.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/10.png"></jga-img>
 
   <br/>
   <br/>
 
   <h4>
-    Verify your identity via phone
+    You Can Create Many Different Types of Applications. We Will Create Node.js Apps
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/4-verify-identity.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/15.png"></jga-img>
 
   <br/>
   <br/>
 
   <h4>
-    Choose the basic support plan
+    Tutorial Walks you Through Creating a Dummy Node.js Application
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/5-support-plan.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/20.png"></jga-img>
 
   <br/>
   <br/>
 
   <h4>
-    Complete the registration process and launch the management console
+    Dummy Application Has Random Name and Appear in Your Dashboard
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/6-launch-console.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/25.png"></jga-img>
+
+  <br/>
+  <br/>
+
+  <h4>
+    Each Application Has Its Own Configuration Dashboard. Open The App
+  </h4>
+
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/30.png"></jga-img>
+
+  <br/>
+  <br/>
+
+  <h4>
+    Dummy Node.js Application
+  </h4>
+
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-cli/35.png"></jga-img>
+
+  <br/>
+  <br/>
 
 </div>
 
 <div class="jga-slide">
 
-  <h3>Create an EC2 Instance</h3>
+<h3>Deploy a GitHub Repo to Heroku</h3>
 
   <h4>
-  After clicking on <em>Launch Management Console</em> you'll see the list of all
-  the services provided by Amazon Web Services
+    Create a Node.js Application
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/7-aws-services.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/00.png"></jga-img>
 
-  <br/><br/>
+  <br/>
+  <br/>
 
   <h4>
-  You'll need to create a group first
+    Name Your Application
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/8-create-resource-group.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/05.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    After creating a group, you'll be redirected to the management console
+    View Your Application Online
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/9-management-console.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/10.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    From the console, create an EC2 instance (Elastic Compute Cloud).
-    Click <em>Services</em> and then <em>EC2</em>.
+    Default Application is a Placeholder
   </h4>
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/10-select-ec2.png"></jga-img>
+
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/15.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    In the <em>EC2 Dashboard</em>, click on <em>Launch Instance</em> to create a new EC2 instance.
+    Connect to Your Git Account
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/11-launch-ec2-instance.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/20.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Select the <em>Amazon Machine Image</em>.
+    Grant Permissions to Heroku
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/12-select-amazon-machine-image.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/25.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Select a <em>Free instance</em> instance type
+    Create a Git Repository
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/13-choose-instance-type.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/30.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Launch your new instance
+    Connect Heroku to Your Git Repo and Branch
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/14-launch-new-instance.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/40.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Create a security key
+    Deploy Git Branch to Heroku
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-create-security-key.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/05-deploy-github-to-heroku/45.png"></jga-img>
+
+  <br/>
+  <br/>
+
+</div>
+
+<div class="jga-slide">
+
+  <h3>Connect Heroku Node.js to MongoDB on mLab</h3>
 
   <h4>
-    Download the security key
+    Create an Account at mlab.com
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/16-download-security-key.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/00.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Launch the instance
+    From Heroku Marketplace, Choose mLab MongoDB Add-On
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/16-launch-instance.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/04.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    View the new instance in the dashboard
+    Install the mLab MongoDB Add-On
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/17-view-instance.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/05.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-
+    Choose the Node.js Application
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/18-instance-dashboard.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/10.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Connect to the new instance
+    Choose the Sandbox-Free Plan
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/19-connect-to-instance.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/15.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    If you are on windows, you can use Putty to connect to the remote machine
+    If You Get An Error, You Might Need to Enter Credit Card Info. Won't be Charged
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/20-connecting-with-putty.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/20.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    If you are on windows, download and install Putty to connect to the remote machine
+    Enter Credit Card Info in your Account Manager
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/21-download-putty.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/25.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    If you are on a Mac, or other Unix machines, use the SSH command from the terminal
+    mLab Creates Free Sandbox Database. Make Note of Connection URL
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/22-connecting-with-ssh.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/30.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    You can install Node.js on your new instance, or create a brand new instance with Node.js installed on it.
-    Search for Node.js on Amazon's AWS Marketplace.
+    Create Users That Will Access Database
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/23-installing-nodejs.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/35.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Choose on what machine instance you want to install Node.js and accept the terms of service
+    Store Username and Passwords as Environment Variables, Never in Code
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/24.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/40.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    Wait for the software to be installed on your instance
+    You Can Navigate Through Collections
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/25.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/45.png"></jga-img>
+
+  <br/>
+  <br/>
 
   <h4>
-    After a while you'll be notified that your software has been installed
+    You Can Navigate Through Documents
   </h4>
 
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/26.png"></jga-img>
+  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/15-mlab/50.png"></jga-img>
 
-  <h4>
-    Use SSH to connect to the remote machine and use the <em>node</em> command line
-    to test whether node has been installed properly
-  </h4>
-
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/27.png"></jga-img>
-
-  <h4>
-    You will need to configure the machine's security to open up ports such as
-    port 3000
-  </h4>
-
-  <jga-img width="75%" src="/portal/modules/1/lectures/2/images/28-security-group.png"></jga-img>
-
+  <br/>
+  <br/>
 
 </div>
