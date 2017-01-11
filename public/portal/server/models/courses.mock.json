@@ -853,7 +853,7 @@
       {
         "title": "Dynamic Server Pages",
         "visible": true,
-        "available": false,
+        "available": true,
         "assignments": [
           {
             "title": "Dynamic Server Pages"
