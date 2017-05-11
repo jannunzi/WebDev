@@ -1,0 +1,35 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1>Course | {{course.title}}</h1>
+    <div class="table responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Course</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Timing</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Location</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom">&nbsp;</span>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input ng-model="number" class="form-control" placeholder="course number"/></td>
+                    <td><input ng-model="timing" class="form-control" placeholder="timing"/></td>
+                    <td><input ng-model="location" class="form-control" placeholder="location"/></td>
+                    <td>
+                        <a ng-click="addCourse()"><span class="glyphicon glyphicon-plus"></span></a>&emsp;
+                        <a ng-click="updateCourse()"><span class="glyphicon glyphicon-ok"></span></a>
+                    </td>
+                </tr>
+                <tr ng-repeat="course in courses">
+                    <td>{{course.number}}</td>
+                    <td>{{course.timing}}</td>
+                    <td>{{course.location}}</td>
+                    <td>
+                        <a ng-click="deleteCourse($index)"><span class="glyphicon glyphicon-remove"></span></a>&emsp;
+                        <a ng-click="selectCourse($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
