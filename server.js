@@ -250,4 +250,4 @@ require("./experiments/upload/app.js")(app);
 // pass db and mongoose reference to server side application module
 require("./public/project/omdb/server/app.js")(app, db, mongoose);
 
-app.listen(port, ipaddress);
+app.listen(port);
